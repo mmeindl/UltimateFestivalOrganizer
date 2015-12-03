@@ -35,6 +35,10 @@ namespace UFO.Server
         Category FindCategoryById(int id);
         IEnumerable<Category> FindAllCategories();
 
+        //Country
+        Country FindCountryByAbbreviation(string abbreviation);
+        IList<Country> FindAllCountries();
+
         //Performance
         Performance FindPerformanceById(int id);
         IEnumerable<Performance> FindAllPerformances();
