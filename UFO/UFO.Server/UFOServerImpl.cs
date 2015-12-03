@@ -58,7 +58,6 @@ namespace UFO.Server
 
         public User findUserByName(string name)
         {
-            IDatabase database = DalFactory.CreateDatabase();
             IUserDao userDao = DalFactory.CreateUserDao(database);
 
             return userDao.FindByUsername(name);
@@ -120,6 +119,18 @@ namespace UFO.Server
         }
 
         public bool UpdateVenue(Venue venue)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Country FindCountryByAbbreviation(string abbreviation)
+        {
+            ICountryDao countryDao = DalFactory.CreateCountryDao(database);
+
+            return countryDao.FindByAbbreviation(abbreviation);
+        }
+
+        public IList<Country> FindAllCountries()
         {
             throw new NotImplementedException();
         }
