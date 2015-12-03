@@ -15,12 +15,14 @@ namespace UFO.Commander.ViewModels
 
         private IUFOServer server;
         private Artist artist;
+        private string country;
         private string category;
 
-        public ArtistVM(Artist artist, string category, IUFOServer server)
+        public ArtistVM(Artist artist, string category, string country, IUFOServer server)
         {
             this.artist = artist;
             this.category = category;
+            this.country = country;
             this.server = server;
         }
 
@@ -37,15 +39,15 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public string CountryId
+        public string Country
         {
-            get { return artist.CountryId; }
+            get { return country; }
             set
             {
-                if (artist.CountryId != value)
+                if (country != value)
                 {
-                    artist.CountryId = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CountryId)));
+                    country = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(country)));
                 }
             }
         }

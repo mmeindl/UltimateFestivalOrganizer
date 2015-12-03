@@ -33,7 +33,8 @@ namespace UFO.Commander.ViewModels
             foreach (Artist artist in artists)
             {
                 Category category = server.FindCategoryById(artist.CategoryId);
-                Artists.Add(new ArtistVM(artist, category.Name, server));
+                Country country = server.FindCountryByAbbreviation(artist.CountryId);
+                Artists.Add(new ArtistVM(artist, category.Name, country.Name, server));
             }
         }
     }
