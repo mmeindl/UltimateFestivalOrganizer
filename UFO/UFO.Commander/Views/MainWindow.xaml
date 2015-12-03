@@ -6,13 +6,12 @@
         xmlns:local="clr-namespace:UFO.Commander.Views"
         xmlns:controls="clr-namespace:UFO.Commander.Views.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="*" Width="*">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="Programm">
             </TabItem>
             <TabItem Header="Künstler">
-                
                 <controls:ArtistTab />
             </TabItem>
             <TabItem Header="Spielstätten">

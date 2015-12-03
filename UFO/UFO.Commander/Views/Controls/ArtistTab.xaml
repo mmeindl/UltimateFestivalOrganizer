@@ -9,14 +9,24 @@
         d:DataContext="{d:DesignInstance vm:ArtistCollectionVM, IsDesignTimeCreatable=True}"
         Height="auto" Width="auto">
     <Grid>
-        <DataGrid ItemsSource="{Binding Artists}" AutoGenerateColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+            <DataGrid ItemsSource="{Binding Artists}"
+                      AutoGenerateColumns="False"
+                      Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
-                                    Binding="{Binding Path=Name}" />
+                                    Binding="{Binding Path=Name}"
+                                    Width="*" />
                 <DataGridTextColumn Header="Country" 
-                                    Binding="{Binding Path=Country}"  />
+                                    Binding="{Binding Path=Country}"
+                                    Width="*"  />
                 <DataGridTextColumn Header="Category" 
-                                    Binding="{Binding Path=Category}"  />
+                                    Binding="{Binding Path=Category}"
+                                    Width="*"  />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
