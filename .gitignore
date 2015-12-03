@@ -1,0 +1,4 @@
+*.config
+*.config
+UFO/UFO.UnitTest/App.config
+UFO/UFO.Server/App.config

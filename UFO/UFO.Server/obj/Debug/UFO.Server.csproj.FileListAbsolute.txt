@@ -10,3 +10,13 @@ D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer
 D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Server.dll.config
 D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UfoDB.mdf
 D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UfoDB_log.ldf
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Server.dll.config
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Server.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Server.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Dal.Common.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Domain.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Dal.Common.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\bin\Debug\UFO.Domain.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\obj\Debug\UFO.Server.csprojResolveAssemblyReference.cache
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\obj\Debug\UFO.Server.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UFO\UFO.Server\obj\Debug\UFO.Server.pdb
