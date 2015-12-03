@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UFO.Commander.Views"
         xmlns:controls="clr-namespace:UFO.Commander.Views.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="Programm">
