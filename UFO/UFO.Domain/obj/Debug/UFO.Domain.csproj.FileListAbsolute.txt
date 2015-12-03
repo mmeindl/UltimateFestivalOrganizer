@@ -1,4 +1,0 @@
-D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Domain\bin\Debug\UFO.Domain.dll
-D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Domain\bin\Debug\UFO.Domain.pdb
-D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Domain\obj\Debug\UFO.Domain.dll
-D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Domain\obj\Debug\UFO.Domain.pdb
