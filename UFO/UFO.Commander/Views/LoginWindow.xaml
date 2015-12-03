@@ -1,0 +1,102 @@
+﻿<Window x:Class="UFO.Commander.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UFO.Commander.Views"
+        mc:Ignorable="d"
+        Title="Login" Height="300" Width="500"
+        >
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Margin="10,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Name="lblUsername" 
+                Text="Username:"/>
+            <TextBlock 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Margin="10,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Name="lblPassword"
+                Text="Password:"/>
+            <TextBox  
+                Grid.Column="1" 
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"  
+                VerticalContentAlignment="Center"                
+                Margin="0,5"
+                Height="30"
+                Width="300"
+                Name="txtUsername" />
+            <PasswordBox  
+                Grid.Column="1" 
+                Grid.Row="1" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Margin="0,5"
+                Height="30"
+                Width="300"
+                Name="txtPassword"/>
+        </Grid>
+        <Grid Margin="0, 20" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="5,5"
+                    Content="Login" 
+                    Name="btnLogin" 
+                    Width="100"
+                    Click="DoLogin"/>
+                <TextBlock 
+                    Grid.Column="0" 
+                    Grid.Row="1" 
+                    Margin="0,20"
+                    Foreground="#8c0000"
+                    FontSize="12pt"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Name="tblError" 
+                    Text="Incorrect username or password. Please try again"
+                    Visibility="Hidden"/>
+            </Grid>
+            
+        </Grid>
+
+    </Grid>
+
+
+
+</Window>

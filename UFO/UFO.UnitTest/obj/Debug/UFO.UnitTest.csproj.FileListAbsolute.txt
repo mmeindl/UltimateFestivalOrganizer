@@ -1,0 +1,16 @@
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\obj\Debug\UFO.UnitTest.csprojResolveAssemblyReference.cache
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.UnitTest.dll.config
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.UnitTest.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.UnitTest.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Dal.Common.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Dal.SqlServer.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Domain.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Dal.Common.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Dal.SqlServer.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UFO.Domain.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\obj\Debug\UFO.UnitTest.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\obj\Debug\UFO.UnitTest.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UfoDB.mdf
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.UnitTest\bin\Debug\UfoDB_log.ldf

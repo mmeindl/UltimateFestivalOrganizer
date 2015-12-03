@@ -1,0 +1,22 @@
+﻿<Window x:Class="UFO.Commander.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UFO.Commander.Views"
+        xmlns:controls="clr-namespace:UFO.Commander.Views.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="300">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Programm">
+            </TabItem>
+            <TabItem Header="Künstler">
+                <controls:ArtistTab />
+            </TabItem>
+            <TabItem Header="Spielstätten">
+                <Label Content="Content goes here..." />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,11 @@
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\obj\Debug\UFO.Dal.SqlServer.csprojResolveAssemblyReference.cache
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Dal.SqlServer.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Dal.SqlServer.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Dal.Common.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Domain.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Dal.Common.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UFO.Domain.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\obj\Debug\UFO.Dal.SqlServer.dll
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\obj\Debug\UFO.Dal.SqlServer.pdb
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UfoDB.mdf
+D:\FH\05_WS_1516\SWK\Projekt\UltimateFestivalOrganizer\UltimateFestivalOrganizer\UFO\UFO.Dal.SqlServer\bin\Debug\UfoDB_log.ldf
