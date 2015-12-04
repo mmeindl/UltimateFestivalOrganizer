@@ -13,10 +13,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-            <DataGrid ItemsSource="{Binding Artists}"
-                      AutoGenerateColumns="False"
-                      Grid.Column="0">
+
+        <DataGrid AutoGenerateColumns="False"
+                  Grid.Column="0"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Artists}"
+                  SelectedItem="{Binding Path=CurrentAritst, Mode=TwoWay}">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
                                     Binding="{Binding Path=Name}"
@@ -29,5 +32,61 @@
                                     Width="*"  />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid Grid.Column="1"
+              DataContext="{Binding Path=CurrentArtist}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="0" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Name="lblArtistname"
+                       Text="Name"/>
+            
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="1" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       Name="txtCategory"
+                       VerticalAlignment="Center"
+                       Text="Category"/>
+            
+            <TextBox Text="{Binding Path=Name}" 
+                     Grid.Column="1" 
+                     Grid.Row="0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"  
+                     VerticalContentAlignment="Center"                
+                     Margin="0, 5"
+                     Height="30"
+                     Width="200"
+                     Name="txtArtistname" />
+            
+            <TextBox Grid.Column="1" 
+                     Grid.Row="1" 
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     Margin="0, 5"
+                     Height="30"
+                     Width="200"
+                     Name="txtCountry"/>
+
+        </Grid>
+        
+        
     </Grid>
 </UserControl>
