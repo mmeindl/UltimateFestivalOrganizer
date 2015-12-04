@@ -18,12 +18,31 @@ namespace UFO.Commander.ViewModels
 
         public ObservableCollection<ArtistVM> Artists { get; private set; }
 
+        private ArtistVM currentArtist;
+
         public ArtistCollectionVM(IUFOServer server)
         {
             this.server = server;
             Artists = new ObservableCollection<ArtistVM>();
+            currentArtist = null;
             LoadArtists();
         }
+
+        public ArtistVM CurrentArtist
+        {
+            get { return currentArtist; }
+            set
+            {
+                if (currentArtist != value)
+                {
+                    currentArtist = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(CurrentArtist)));
+                }
+            }
+        }
+
 
         private void LoadArtists()
         {
