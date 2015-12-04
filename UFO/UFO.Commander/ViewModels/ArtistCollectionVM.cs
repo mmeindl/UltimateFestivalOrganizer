@@ -28,8 +28,17 @@ namespace UFO.Commander.ViewModels
         {
             this.server = server;
             Artists = new ObservableCollection<ArtistVM>();
-            currentArtist = null;
             LoadArtists();
+
+            if (Artists.Count > 0)
+            {
+                currentArtist = Artists[0];
+            }
+            else
+            {
+                currentArtist = null;
+            }
+
             LoadCategories();
             LoadCountries();
         }
