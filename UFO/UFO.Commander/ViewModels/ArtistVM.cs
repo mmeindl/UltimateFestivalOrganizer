@@ -15,15 +15,19 @@ namespace UFO.Commander.ViewModels
 
         private IUFOServer server;
         private Artist artist;
-        private string country;
-        private string category;
+        private Country country;
+        private Category category;
+        private ArtistPicture profilePicture;
+        private ArtistVideo promoVideo;
 
-        public ArtistVM(Artist artist, string category, string country, IUFOServer server)
+        public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
         {
             this.artist = artist;
             this.category = category;
             this.country = country;
             this.server = server;
+            this.profilePicture = server.FindProfilePictureByArtistId(Id);
+            this.promoVideo = server.FindPromoVideoByArtistId(Id);
         }
 
         public int Id
@@ -39,7 +43,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public string Country
+        public Country Country
         {
             get { return country; }
             set
@@ -47,12 +51,12 @@ namespace UFO.Commander.ViewModels
                 if (country != value)
                 {
                     country = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(country)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Country)));
                 }
             }
         }
 
-        public string Category
+        public Category Category
         {
             get { return category; }
             set
@@ -60,7 +64,7 @@ namespace UFO.Commander.ViewModels
                 if (category != value)
                 {
                     category = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(category)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Category)));
                 }
             }
         }
@@ -104,6 +108,32 @@ namespace UFO.Commander.ViewModels
             }
         }
 
+        public ArtistPicture ProfilePicture
+        {
+            get { return profilePicture; }
+            set
+            {
+                if (profilePicture != value)
+                {
+                    profilePicture = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProfilePicture)));
+                }
+            }
+        }
+
+        public ArtistVideo PromoVideo
+        {
+            get { return promoVideo; }
+            set
+            {
+                if (promoVideo != value)
+                {
+                    promoVideo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PromoVideo)));
+                }
+            }
+        }
+
         public bool IsDeleted
         {
             get { return artist.IsDeleted; }
@@ -116,6 +146,5 @@ namespace UFO.Commander.ViewModels
                 }
             }
         }
-
     }
 }

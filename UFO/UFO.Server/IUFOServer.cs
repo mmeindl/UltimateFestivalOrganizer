@@ -20,6 +20,15 @@ namespace UFO.Server
         bool UpdateArtist(Artist artist);
         bool DeleteArtist(Artist artists);
 
+        // ArtistPicture
+        IList<ArtistPicture> FindAllPicturesByArtistId(int artistId);
+        ArtistPicture FindProfilePictureByArtistId(int artistId);
+
+
+        // ArtistVideo
+        IList<ArtistVideo> FindAllVideosByArtistId(int artistId);
+        ArtistVideo FindPromoVideoByArtistId(int artistId);
+
         // Venue
         Venue FindVenueById(int id);
         IEnumerable<Venue> FindAllVenues();

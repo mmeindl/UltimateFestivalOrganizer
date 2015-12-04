@@ -15,10 +15,11 @@
         </Grid.ColumnDefinitions>
 
         <DataGrid AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   Grid.Column="0"
                   IsReadOnly="True"
                   ItemsSource="{Binding Artists}"
-                  SelectedItem="{Binding Path=CurrentAritst, Mode=TwoWay}">
+                  SelectedItem="{Binding Path=CurrentArtist, Mode=TwoWay}">
             
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
@@ -33,14 +34,15 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1"
-              DataContext="{Binding Path=CurrentArtist}">
+        <Grid Grid.Column="1">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -56,15 +58,7 @@
                        Name="lblArtistname"
                        Text="Name"/>
             
-            <TextBlock Grid.Column="0" 
-                       Grid.Row="1" 
-                       Margin="10, 0"
-                       HorizontalAlignment="Right"
-                       Name="txtCategory"
-                       VerticalAlignment="Center"
-                       Text="Category"/>
-            
-            <TextBox Text="{Binding Path=Name}" 
+            <TextBox Text="{Binding Path=CurrentArtist.Name, Mode=OneWay}"
                      Grid.Column="1" 
                      Grid.Row="0"
                      HorizontalAlignment="Left"
@@ -75,15 +69,136 @@
                      Width="200"
                      Name="txtArtistname" />
             
-            <TextBox Grid.Column="1" 
-                     Grid.Row="1" 
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="1" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       Name="lblCategory"
+                       VerticalAlignment="Center"
+                       Text="Category"/>
+
+            <ComboBox ItemsSource="{Binding Path=Categories, Mode=OneWay}"
+                      SelectedValuePath="Name"
+                      SelectedValue="{Binding Path=CurrentArtist.Category.Name}"
+                      Grid.Column="1" 
+                      Grid.Row="1" 
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="0, 5"
+                      Height="30"
+                      Width="200"
+                      Name="txtCategory"/>
+
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="2" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       Name="lblCountry"
+                       VerticalAlignment="Center"
+                       Text="Category"/>
+
+            <ComboBox ItemsSource="{Binding Path=Countries, Mode=OneWay}"
+                      SelectedValuePath="Name"
+                      SelectedValue="{Binding Path=CurrentArtist.Country.Name}"
+                      Grid.Column="1" 
+                      Grid.Row="2" 
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="0, 5"
+                      Height="30"
+                      Width="200"
+                      Name="txtCountry"/>
+
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="3" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Name="lblEmail"
+                       Text="Email"/>
+
+            <TextBox Text="{Binding Path=CurrentArtist.Email, Mode=OneWay}"
+                     Grid.Column="1" 
+                     Grid.Row="3"
                      HorizontalAlignment="Left"
-                     VerticalAlignment="Center"
-                     VerticalContentAlignment="Center"
+                     VerticalAlignment="Center"  
+                     VerticalContentAlignment="Center"                
                      Margin="0, 5"
                      Height="30"
                      Width="200"
-                     Name="txtCountry"/>
+                     Name="txtEmail" />
+
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="4" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Name="lblWebsite"
+                       Text="Website"/>
+
+            <TextBox Text="{Binding Path=CurrentArtist.WebsiteURL, Mode=OneWay}"
+                     Grid.Column="1" 
+                     Grid.Row="4"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"  
+                     VerticalContentAlignment="Center"                
+                     Margin="0, 5"
+                     Height="30"
+                     Width="200"
+                     Name="txtWebsite" />
+
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="5" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Name="lblProfilePicture"
+                       Text="Profilepicture"/>
+
+            <TextBox Text="{Binding Path=CurrentArtist.ProfilePicture.PictureURL, Mode=OneWay}"
+                     Grid.Column="1" 
+                     Grid.Row="5"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"  
+                     VerticalContentAlignment="Center"                
+                     Margin="0, 5"
+                     Height="30"
+                     Width="200"
+                     Name="txtProfilePicture" />
+            
+            <!--<ComboBox ItemsSource="{Binding Path=CurrentArtist.Pictures, Mode=OneWay}"
+                      SelectedValuePath="PictureURL"
+                      SelectedValue="{Binding Path=CurrentArtist.ProfilePicture.PictureURL}"
+                      Grid.Column="1" 
+                      Grid.Row="5" 
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="0, 5"
+                      Height="30"
+                      Width="200"
+                      Name="txtProfilePicture"/>-->
+
+            <TextBlock Grid.Column="0" 
+                       Grid.Row="6" 
+                       Margin="10, 0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Name="lblPromoVideo"
+                       Text="Promovideo"/>
+
+            <TextBox Text="{Binding Path=CurrentArtist.PromoVideo.VideoURL, Mode=OneWay}"
+                     Grid.Column="1" 
+                     Grid.Row="6"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"  
+                     VerticalContentAlignment="Center"                
+                     Margin="0, 5"
+                     Height="30"
+                     Width="200"
+                     Name="txtPromoVideo" />
 
         </Grid>
         
