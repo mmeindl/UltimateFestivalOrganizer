@@ -10,13 +10,17 @@ using UFO.Server;
 
 namespace UFO.Commander.ViewModels
 {
-    class ArtistCollectionVM : INotifyPropertyChanged
+    public class ArtistCollectionVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IUFOServer server;
 
         public ObservableCollection<ArtistVM> Artists { get; private set; }
+
+        public IEnumerable<Category> Categories { get; private set; }
+
+        public IEnumerable<Country> Countries { get; private set; }
 
         private ArtistVM currentArtist;
 
@@ -26,6 +30,8 @@ namespace UFO.Commander.ViewModels
             Artists = new ObservableCollection<ArtistVM>();
             currentArtist = null;
             LoadArtists();
+            LoadCategories();
+            LoadCountries();
         }
 
         public ArtistVM CurrentArtist
@@ -36,6 +42,7 @@ namespace UFO.Commander.ViewModels
                 if (currentArtist != value)
                 {
                     currentArtist = value;
+
                     PropertyChanged?.Invoke(
                         this,
                         new PropertyChangedEventArgs(nameof(CurrentArtist)));
@@ -53,8 +60,18 @@ namespace UFO.Commander.ViewModels
             {
                 Category category = server.FindCategoryById(artist.CategoryId);
                 Country country = server.FindCountryByAbbreviation(artist.CountryId);
-                Artists.Add(new ArtistVM(artist, category.Name, country.Name, server));
+                Artists.Add(new ArtistVM(artist, category, country, server));
             }
+        }
+
+        private void LoadCategories()
+        {
+            Categories = server.FindAllCategories();
+        }
+
+        private void LoadCountries()
+        {
+            Countries = server.FindAllCountries();
         }
     }
 }

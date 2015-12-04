@@ -48,7 +48,9 @@ namespace UFO.Server
 
         public IEnumerable<Category> FindAllCategories()
         {
-            throw new NotImplementedException();
+            ICategoryDao categoryDao = DalFactory.CreateCategoryDao(database);
+
+            return categoryDao.FindAll();
         }
 
         public IEnumerable<Performance> FindAllPerformances()
@@ -132,7 +134,37 @@ namespace UFO.Server
 
         public IList<Country> FindAllCountries()
         {
-            throw new NotImplementedException();
+            ICountryDao countryDao = DalFactory.CreateCountryDao(database);
+
+            return countryDao.FindAll();
+        }
+
+        public IList<ArtistPicture> FindAllPicturesByArtistId(int artistId)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.FindAllByArtistId(artistId);
+        }
+
+        public ArtistPicture FindProfilePictureByArtistId(int artistId)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.FindProfilePictureByArtistId(artistId);
+        }
+
+        public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
+        {
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.FindAllByArtistId(artistId);
+        }
+
+        public ArtistVideo FindPromoVideoByArtistId(int artistId)
+        {
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.FindPromoVideoByArtistId(artistId);
         }
     }
 }
