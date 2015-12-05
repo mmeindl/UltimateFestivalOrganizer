@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UFO.Commander.ViewModels;
+using UFO.Domain;
 using UFO.Server;
 
 namespace UFO.Commander.Views.Controls
@@ -21,9 +22,41 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class ArtistTab : UserControl
     {
+        private IUFOServer server;
+        private bool selectItem;
+
         public ArtistTab()
         {
+            server = UFOServerFactory.GetUFOServer();
+            selectItem = false;
+
             InitializeComponent();
+        }
+
+        private void OnSelectItem(object sender, MouseEventArgs e)
+        {
+            selectItem = true;
+        }
+
+        private void OnProfilePictureSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (selectItem) {
+                var selectedItem = e.AddedItems;
+
+                if (selectedItem.Count > 0)
+                {
+                    ArtistPicture picture = (ArtistPicture)selectedItem[0];
+                    picture.IsProfilePicture = true;
+                    server.UpdateArtistPicture(picture);
+                }
+
+                selectItem = false;
+            }
+        }
+
+        private void OnPromoVideoSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

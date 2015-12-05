@@ -153,6 +153,23 @@ namespace UFO.Server
             return artistPictureDao.FindProfilePictureByArtistId(artistId);
         }
 
+        public bool InsertArtistPicture(ArtistPicture artistPicture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateArtistPicture(ArtistPicture artistPicture)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.Update(artistPicture);
+        }
+
+        public bool DeleteArtistPicture(ArtistPicture artistPicture)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
             IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
@@ -165,6 +182,21 @@ namespace UFO.Server
             IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
 
             return artistVideoDao.FindPromoVideoByArtistId(artistId);
+        }
+
+        public bool InsertArtistVideo(ArtistVideo artistVideo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateArtistVideo(ArtistVideo artistVideo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteArtistVideo(ArtistVideo artistVideo)
+        {
+            throw new NotImplementedException();
         }
     }
 }
