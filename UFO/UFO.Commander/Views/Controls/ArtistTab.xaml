@@ -104,7 +104,7 @@
                                     VerticalContentAlignment="Center"
                                     Margin="0, 5, 15, 0"
                                     Height="30"
-                                    Name="txtCategory"/>
+                                    Name="cmbCategory"/>
 
                         <TextBlock Grid.Column="0" 
                                     Grid.Row="2" 
@@ -124,7 +124,7 @@
                                     VerticalContentAlignment="Center"
                                     Margin="0, 5, 15, 0"
                                     Height="30"
-                                    Name="txtCountry"/>
+                                    Name="cmbCountry"/>
 
                         <TextBlock Grid.Column="0" 
                                     Grid.Row="3" 
@@ -170,28 +170,19 @@
                                    Name="lblProfilePicture"
                                    Text="Profilepicture"/>
 
-                        <TextBox Text="{Binding Path=CurrentArtist.ProfilePicture.PictureURL, Mode=OneWay}"
-                                 Grid.Column="1" 
-                                 Grid.Row="5"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Center"  
-                                 VerticalContentAlignment="Center"                
-                                 Margin="0, 5, 15, 0"
-                                 Height="30"
-                                 Name="txtProfilePicture" />
-
-                        <!--<ComboBox ItemsSource="{Binding Path=CurrentArtist.Pictures, Mode=OneWay}"
-                    SelectedValuePath="PictureURL"
-                    SelectedValue="{Binding Path=CurrentArtist.ProfilePicture.PictureURL}"
-                    Grid.Column="1" 
-                    Grid.Row="5" 
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Margin="0, 5"
-                    Height="30"
-                    Width="200"
-                    Name="txtProfilePicture"/>-->
+                        <ComboBox ItemsSource="{Binding Path=CurrentArtist.Pictures, Mode=OneWay}"
+                                  SelectedItem="{Binding Path=CurrentArtist.ProfilePicture, Mode=TwoWay}"
+                                  PreviewMouseDown="OnSelectItem"
+                                  DisplayMemberPath="PictureURL"
+                                  SelectionChanged="OnProfilePictureSelectionChanged"
+                                  Grid.Column="1" 
+                                  Grid.Row="5" 
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  Margin="0, 5, 15, 0"
+                                  Height="30"
+                                  Name="cmbProfilePicture"/>
 
                         <TextBlock Grid.Column="0" 
                                    Grid.Row="6" 
@@ -201,15 +192,20 @@
                                    Name="lblPromoVideo"
                                    Text="Promovideo"/>
 
-                        <TextBox Text="{Binding Path=CurrentArtist.PromoVideo.VideoURL, Mode=OneWay}"
-                                 Grid.Column="1" 
-                                 Grid.Row="6"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Center"  
-                                 VerticalContentAlignment="Center"                
-                                 Margin="0, 5, 15, 0"
-                                 Height="30"
-                                 Name="txtPromoVideo" />
+                        <ComboBox ItemsSource="{Binding Path=CurrentArtist.Videos}"
+                                  SelectedValue="{Binding Path=CurrentArtist.PromoVideo.VideoURL, Mode=OneWay}"
+                                  PreviewMouseDown="OnSelectItem"
+                                  SelectedValuePath="VideoURL"
+                                  DisplayMemberPath="VideoURL"
+                                  SelectionChanged="OnPromoVideoSelectionChanged"
+                                  Grid.Column="1" 
+                                  Grid.Row="6" 
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  Margin="0, 5, 15, 0"
+                                  Height="30"
+                                  Name="cmbPromoVideo"/>
 
                     </Grid>
                     <Grid Grid.Row="1" VerticalAlignment="Center">
@@ -273,7 +269,7 @@
                           VerticalAlignment="Center"
                           VerticalContentAlignment="Center"
                           Height="30"
-                          Name="txtCategoryNew"/>
+                          Name="cmbCategoryNew"/>
 
                 <TextBlock Grid.Column="4"
                            HorizontalAlignment="Left"
@@ -288,7 +284,7 @@
                           VerticalAlignment="Center"
                           VerticalContentAlignment="Center"
                           Height="30"
-                          Name="txtCountryNew"/>
+                          Name="cmbCountryNew"/>
 
                 <Button Grid.Column="6"
                         Width="100"

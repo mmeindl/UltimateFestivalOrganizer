@@ -24,10 +24,17 @@ namespace UFO.Server
         IList<ArtistPicture> FindAllPicturesByArtistId(int artistId);
         ArtistPicture FindProfilePictureByArtistId(int artistId);
 
+        bool InsertArtistPicture(ArtistPicture artistPicture);
+        bool UpdateArtistPicture(ArtistPicture artistPicture);
+        bool DeleteArtistPicture(ArtistPicture artistPicture);
 
         // ArtistVideo
         IList<ArtistVideo> FindAllVideosByArtistId(int artistId);
         ArtistVideo FindPromoVideoByArtistId(int artistId);
+
+        bool InsertArtistVideo(ArtistVideo artistVideo);
+        bool UpdateArtistVideo(ArtistVideo artistVideo);
+        bool DeleteArtistVideo(ArtistVideo artistVideo);
 
         // Venue
         Venue FindVenueById(int id);

@@ -20,6 +20,9 @@ namespace UFO.Commander.ViewModels
         private ArtistPicture profilePicture;
         private ArtistVideo promoVideo;
 
+        public IEnumerable<ArtistPicture> Pictures { get; private set; }
+        public IEnumerable<ArtistVideo> Videos { get; private set; }
+
         public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
         {
             this.artist = artist;
@@ -28,6 +31,8 @@ namespace UFO.Commander.ViewModels
             this.server = server;
             this.profilePicture = server.FindProfilePictureByArtistId(Id);
             this.promoVideo = server.FindPromoVideoByArtistId(Id);
+            this.Pictures = null;
+            this.Videos = null;
         }
 
         public int Id
@@ -145,6 +150,16 @@ namespace UFO.Commander.ViewModels
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDeleted)));
                 }
             }
+        }
+
+        public void LoadPictures()
+        {
+            Pictures = server.FindAllPicturesByArtistId(Id);
+        }
+
+        public void LoadVideos()
+        {
+            Videos = server.FindAllVideosByArtistId(Id);
         }
     }
 }

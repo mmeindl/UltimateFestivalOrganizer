@@ -32,7 +32,7 @@ namespace UFO.Commander.ViewModels
 
             if (Artists.Count > 0)
             {
-                currentArtist = Artists[0];
+                CurrentArtist = Artists[0];
             }
             else
             {
@@ -51,6 +51,16 @@ namespace UFO.Commander.ViewModels
                 if (currentArtist != value)
                 {
                     currentArtist = value;
+
+                    if (CurrentArtist.Pictures == null)
+                    {
+                        currentArtist.LoadPictures();
+                    }
+
+                    if (CurrentArtist.Videos == null)
+                    {
+                        currentArtist.LoadVideos();
+                    }
 
                     PropertyChanged?.Invoke(
                         this,
