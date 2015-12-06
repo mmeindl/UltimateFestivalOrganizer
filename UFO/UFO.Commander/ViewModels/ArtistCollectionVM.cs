@@ -52,7 +52,7 @@ namespace UFO.Commander.ViewModels
                 {
                     currentArtist = value;
 
-                    if (CurrentArtist.Pictures == null)
+                    if (CurrentArtist.Pictures.Count == 0)
                     {
                         currentArtist.LoadPictures();
                     }

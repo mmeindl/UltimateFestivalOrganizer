@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace UFO.Commander.ViewModels
         private ArtistPicture profilePicture;
         private ArtistVideo promoVideo;
 
-        public IEnumerable<ArtistPicture> Pictures { get; private set; }
+        public ObservableCollection<ArtistPictureVM> Pictures { get; private set; }
+        //public IEnumerable<ArtistPicture> Pictures { get; private set; }
         public IEnumerable<ArtistVideo> Videos { get; private set; }
 
         public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
@@ -31,7 +33,7 @@ namespace UFO.Commander.ViewModels
             this.server = server;
             this.profilePicture = server.FindProfilePictureByArtistId(Id);
             this.promoVideo = server.FindPromoVideoByArtistId(Id);
-            this.Pictures = null;
+            this.Pictures = new ObservableCollection<ArtistPictureVM>();
             this.Videos = null;
         }
 
@@ -154,7 +156,13 @@ namespace UFO.Commander.ViewModels
 
         public void LoadPictures()
         {
-            Pictures = server.FindAllPicturesByArtistId(Id);
+            Pictures.Clear();
+            IEnumerable<ArtistPicture> pictures = server.FindAllPicturesByArtistId(Id);
+
+            foreach (ArtistPicture picture in pictures)
+            {
+                Pictures.Add(new ArtistPictureVM(picture, server));
+            }
         }
 
         public void LoadVideos()

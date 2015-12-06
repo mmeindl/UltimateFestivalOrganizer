@@ -21,6 +21,7 @@ namespace UFO.Server
         bool DeleteArtist(Artist artists);
 
         // ArtistPicture
+        ArtistPicture FindArtistPictureByURL(string url);
         IList<ArtistPicture> FindAllPicturesByArtistId(int artistId);
         ArtistPicture FindProfilePictureByArtistId(int artistId);
 
