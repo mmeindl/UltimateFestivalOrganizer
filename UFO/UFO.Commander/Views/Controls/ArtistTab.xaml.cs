@@ -22,41 +22,23 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class ArtistTab : UserControl
     {
-        private IUFOServer server;
-        private bool selectItem;
-
         public ArtistTab()
         {
-            server = UFOServerFactory.GetUFOServer();
-            selectItem = false;
-
             InitializeComponent();
         }
 
-        private void OnSelectItem(object sender, MouseEventArgs e)
+        private void UrlClick(object sender, RoutedEventArgs e)
         {
-            selectItem = true;
+            string link = ((Hyperlink)sender).NavigateUri.ToString();
+            System.Diagnostics.Process.Start(link);
         }
 
-        private void OnProfilePictureSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditMedia(object sencer, RoutedEventArgs e)
         {
-            if (selectItem) {
-                var selectedItem = e.AddedItems;
-
-                if (selectedItem.Count > 0)
-                {
-                    ArtistPicture picture = (ArtistPicture)selectedItem[0];
-                    picture.IsProfilePicture = true;
-                    server.UpdateArtistPicture(picture);
-                }
-
-                selectItem = false;
-            }
-        }
-
-        private void OnPromoVideoSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            Object dc = this.DataContext;
+            MediaWindow mediaWindow = new MediaWindow();
+            mediaWindow.DataContext = dc;
+            mediaWindow.Show();
         }
     }
 }

@@ -138,6 +138,12 @@ namespace UFO.Server
 
             return countryDao.FindAll();
         }
+        public ArtistPicture FindArtistPictureByURL(string url)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.FindByURL(url);
+        }
 
         public IList<ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
@@ -167,7 +173,9 @@ namespace UFO.Server
 
         public bool DeleteArtistPicture(ArtistPicture artistPicture)
         {
-            throw new NotImplementedException();
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.Delete(artistPicture);
         }
 
         public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
@@ -198,5 +206,6 @@ namespace UFO.Server
         {
             throw new NotImplementedException();
         }
+
     }
 }
