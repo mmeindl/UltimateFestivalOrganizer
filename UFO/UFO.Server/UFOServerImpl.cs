@@ -48,7 +48,9 @@ namespace UFO.Server
 
         public IEnumerable<Category> FindAllCategories()
         {
-            throw new NotImplementedException();
+            ICategoryDao categoryDao = DalFactory.CreateCategoryDao(database);
+
+            return categoryDao.FindAll();
         }
 
         public IEnumerable<Performance> FindAllPerformances()
@@ -131,6 +133,68 @@ namespace UFO.Server
         }
 
         public IList<Country> FindAllCountries()
+        {
+            ICountryDao countryDao = DalFactory.CreateCountryDao(database);
+
+            return countryDao.FindAll();
+        }
+
+        public IList<ArtistPicture> FindAllPicturesByArtistId(int artistId)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.FindAllByArtistId(artistId);
+        }
+
+        public ArtistPicture FindProfilePictureByArtistId(int artistId)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.FindProfilePictureByArtistId(artistId);
+        }
+
+        public bool InsertArtistPicture(ArtistPicture artistPicture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateArtistPicture(ArtistPicture artistPicture)
+        {
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.Update(artistPicture);
+        }
+
+        public bool DeleteArtistPicture(ArtistPicture artistPicture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
+        {
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.FindAllByArtistId(artistId);
+        }
+
+        public ArtistVideo FindPromoVideoByArtistId(int artistId)
+        {
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.FindPromoVideoByArtistId(artistId);
+        }
+
+        public bool InsertArtistVideo(ArtistVideo artistVideo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateArtistVideo(ArtistVideo artistVideo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteArtistVideo(ArtistVideo artistVideo)
         {
             throw new NotImplementedException();
         }

@@ -10,7 +10,7 @@ using UFO.Server;
 
 namespace UFO.Commander.ViewModels
 {
-    class ArtistCollectionVM : INotifyPropertyChanged
+    public class ArtistCollectionVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,12 +18,57 @@ namespace UFO.Commander.ViewModels
 
         public ObservableCollection<ArtistVM> Artists { get; private set; }
 
+        public IEnumerable<Category> Categories { get; private set; }
+
+        public IEnumerable<Country> Countries { get; private set; }
+
+        private ArtistVM currentArtist;
+
         public ArtistCollectionVM(IUFOServer server)
         {
             this.server = server;
             Artists = new ObservableCollection<ArtistVM>();
             LoadArtists();
+
+            if (Artists.Count > 0)
+            {
+                CurrentArtist = Artists[0];
+            }
+            else
+            {
+                currentArtist = null;
+            }
+
+            LoadCategories();
+            LoadCountries();
         }
+
+        public ArtistVM CurrentArtist
+        {
+            get { return currentArtist; }
+            set
+            {
+                if (currentArtist != value)
+                {
+                    currentArtist = value;
+
+                    if (CurrentArtist.Pictures == null)
+                    {
+                        currentArtist.LoadPictures();
+                    }
+
+                    if (CurrentArtist.Videos == null)
+                    {
+                        currentArtist.LoadVideos();
+                    }
+
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(CurrentArtist)));
+                }
+            }
+        }
+
 
         private void LoadArtists()
         {
@@ -34,8 +79,18 @@ namespace UFO.Commander.ViewModels
             {
                 Category category = server.FindCategoryById(artist.CategoryId);
                 Country country = server.FindCountryByAbbreviation(artist.CountryId);
-                Artists.Add(new ArtistVM(artist, category.Name, country.Name, server));
+                Artists.Add(new ArtistVM(artist, category, country, server));
             }
+        }
+
+        private void LoadCategories()
+        {
+            Categories = server.FindAllCategories();
+        }
+
+        private void LoadCountries()
+        {
+            Countries = server.FindAllCountries();
         }
     }
 }

@@ -24,7 +24,8 @@ namespace UFO.Dal.SqlServer
 
         const string SQL_FIND_ALL =
           @"SELECT *
-            FROM Artist";
+            FROM Artist
+            WHERE Artist.isDeleted = 0";
 
         const string SQL_INSERT =
           @"INSERT INTO Artist
