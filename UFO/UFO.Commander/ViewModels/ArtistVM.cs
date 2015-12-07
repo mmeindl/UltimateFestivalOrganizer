@@ -22,8 +22,7 @@ namespace UFO.Commander.ViewModels
         private ArtistVideo promoVideo;
 
         public ObservableCollection<ArtistPictureVM> Pictures { get; private set; }
-        //public IEnumerable<ArtistPicture> Pictures { get; private set; }
-        public IEnumerable<ArtistVideo> Videos { get; private set; }
+        public ObservableCollection<ArtistVideoVM> Videos { get; private set; }
 
         public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
         {
@@ -34,7 +33,7 @@ namespace UFO.Commander.ViewModels
             this.profilePicture = server.FindProfilePictureByArtistId(Id);
             this.promoVideo = server.FindPromoVideoByArtistId(Id);
             this.Pictures = new ObservableCollection<ArtistPictureVM>();
-            this.Videos = null;
+            this.Videos = new ObservableCollection<ArtistVideoVM>();
         }
 
         public int Id
@@ -161,13 +160,19 @@ namespace UFO.Commander.ViewModels
 
             foreach (ArtistPicture picture in pictures)
             {
-                Pictures.Add(new ArtistPictureVM(picture, server));
+                Pictures.Add(new ArtistPictureVM(picture, this, server));
             }
         }
 
         public void LoadVideos()
         {
-            Videos = server.FindAllVideosByArtistId(Id);
+            Videos.Clear();
+            IEnumerable<ArtistVideo> videos = server.FindAllVideosByArtistId(Id);
+
+            foreach (ArtistVideo video in videos)
+            {
+                Videos.Add(new ArtistVideoVM(video, this, server));
+            }
         }
     }
 }

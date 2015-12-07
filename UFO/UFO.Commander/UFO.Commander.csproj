@@ -60,7 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\ArtistCollectionVM.cs" />
-    <Compile Include="ViewModels\ArtistPictureCollectionVM.cs" />
+    <Compile Include="ViewModels\ArtistVideoVM.cs" />
     <Compile Include="ViewModels\ArtistPictureVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
     <Compile Include="Views\Controls\ArtistTab.xaml.cs">

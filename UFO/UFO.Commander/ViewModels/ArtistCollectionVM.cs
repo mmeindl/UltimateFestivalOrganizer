@@ -57,7 +57,7 @@ namespace UFO.Commander.ViewModels
                         currentArtist.LoadPictures();
                     }
 
-                    if (CurrentArtist.Videos == null)
+                    if (CurrentArtist.Videos.Count == 0)
                     {
                         currentArtist.LoadVideos();
                     }

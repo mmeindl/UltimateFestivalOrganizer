@@ -155,7 +155,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <Button Content="Remove"
-                                            Click="RemovePicture"/>
+                                            Click="RemovePicture" />
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
