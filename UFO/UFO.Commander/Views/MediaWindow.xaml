@@ -111,7 +111,8 @@
                     Height="30"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Command="{Binding Path=UpdateArtistMediaCommand}" >
+                    DataContext="{Binding Path=CurrentArtist}"
+                    Click="SaveChanges" >
                 <TextBlock Text="Save Changes"/>
             </Button>
         </Grid>
@@ -187,8 +188,9 @@
                 <Button Grid.Column="2"
                         Width="100"
                         Height="30"
-                        Command="{Binding Path=CreateArtistPictureCommand}"
-                        Margin="5,0" >
+                        Click="AddPicture"
+                        Margin="5,0"
+                        DataContext="{Binding Path=CurrentArtist}">
                     <TextBlock Text="Add Picture"/>
                 </Button>
             </Grid>
@@ -265,7 +267,8 @@
                 <Button Grid.Column="2"
                         Width="100"
                         Height="30"
-                        Command="{Binding Path=CreateArtistVideoCommand}"
+                        DataContext="{Binding Path=CurrentArtist}"
+                        Click="AddVideo"
                         Margin="5,0" >
                     <TextBlock Text="Add Video"/>
                 </Button>

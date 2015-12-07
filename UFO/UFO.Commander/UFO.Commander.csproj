@@ -63,6 +63,7 @@
     <Compile Include="ViewModels\ArtistVideoVM.cs" />
     <Compile Include="ViewModels\ArtistPictureVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\Controls\ArtistTab.xaml.cs">
       <DependentUpon>ArtistTab.xaml</DependentUpon>
     </Compile>

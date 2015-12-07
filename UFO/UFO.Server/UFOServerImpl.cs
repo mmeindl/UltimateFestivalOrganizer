@@ -75,7 +75,9 @@ namespace UFO.Server
 
         public bool UpdateArtist(Artist artist)
         {
-            throw new NotImplementedException();
+            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+
+            return artistDao.Update(artist);
         }
 
         public bool DeleteArtist(Artist artists)
@@ -169,7 +171,9 @@ namespace UFO.Server
 
         public bool InsertArtistPicture(ArtistPicture artistPicture)
         {
-            throw new NotImplementedException();
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+
+            return artistPictureDao.Insert(artistPicture);
         }
 
         public bool UpdateArtistPicture(ArtistPicture artistPicture)
@@ -210,12 +214,16 @@ namespace UFO.Server
 
         public bool InsertArtistVideo(ArtistVideo artistVideo)
         {
-            throw new NotImplementedException();
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.Insert(artistVideo);
         }
 
         public bool UpdateArtistVideo(ArtistVideo artistVideo)
         {
-            throw new NotImplementedException();
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+
+            return artistVideoDao.Update(artistVideo);
         }
 
         public bool DeleteArtistVideo(ArtistVideo artistVideo)
@@ -223,6 +231,18 @@ namespace UFO.Server
             IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
 
             return artistVideoDao.Delete(artistVideo);
+        }
+
+        // helpers
+        public bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video)
+        {
+            bool result = true;
+
+            result = UpdateArtist(artist);
+            result = result & UpdateArtistPicture(picture);
+            result = result & UpdateArtistVideo(video);
+
+            return result;
         }
 
     }
