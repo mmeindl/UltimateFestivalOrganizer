@@ -30,6 +30,7 @@ namespace UFO.Server
         bool DeleteArtistPicture(ArtistPicture artistPicture);
 
         // ArtistVideo
+        ArtistVideo FindArtistVideoByURL(string url);
         IList<ArtistVideo> FindAllVideosByArtistId(int artistId);
         ArtistVideo FindPromoVideoByArtistId(int artistId);
 

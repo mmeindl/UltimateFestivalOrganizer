@@ -36,14 +36,29 @@ namespace UFO.Commander.Views
             ArtistPictureVM pictureVM = ((FrameworkElement)sender).DataContext as ArtistPictureVM;
             ArtistPicture picture = server.FindArtistPictureByURL(pictureVM.PictureURL);
 
-            //TODO remove pictureVM from observablecollection pictures of currentartist
+            pictureVM.Artist.Pictures.Remove(pictureVM);
+
+            if (picture.IsProfilePicture)
+            {
+                pictureVM.Artist.ProfilePicture = null;
+            }
 
             server.DeleteArtistPicture(picture);
         }
 
         private void RemoveVideo(object sender, RoutedEventArgs e)
         {
+            ArtistVideoVM videoVM = ((FrameworkElement)sender).DataContext as ArtistVideoVM;
+            ArtistVideo video = server.FindArtistVideoByURL(videoVM.VideoURL);
 
+            videoVM.Artist.Videos.Remove(videoVM);
+
+            if (video.IsPromoVideo)
+            {
+                videoVM.Artist.PromoVideo = null;
+            }
+
+            server.DeleteArtistVideo(video);
         }
 
         void UrlClick(object sender, RoutedEventArgs e)
