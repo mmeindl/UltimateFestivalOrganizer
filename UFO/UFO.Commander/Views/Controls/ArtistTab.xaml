@@ -30,7 +30,7 @@
                             SelectionMode="Single"
                             IsReadOnly="True"
                             FontSize="14"
-                            ItemsSource="{Binding Artists}"
+                            ItemsSource="{Binding Path=Artists}"
                             SelectedItem="{Binding Path=CurrentArtist, Mode=TwoWay}">
 
                     <DataGrid.Columns>

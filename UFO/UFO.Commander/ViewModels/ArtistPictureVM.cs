@@ -73,6 +73,11 @@ namespace UFO.Commander.ViewModels
             get { return artist; }
         }
 
+        public ArtistPicture ArtistPicture
+        {
+            get { return artistPicture; }
+        }
+
 
     }
 }

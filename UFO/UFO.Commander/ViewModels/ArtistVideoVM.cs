@@ -50,7 +50,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public bool IsProfileVideo
+        public bool IsPromoVideo
         {
             get { return artistVideo.IsPromoVideo; }
             set
@@ -58,7 +58,7 @@ namespace UFO.Commander.ViewModels
                 if (artistVideo.IsPromoVideo != value)
                 {
                     artistVideo.IsPromoVideo = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsProfileVideo)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPromoVideo)));
                 }
             }
         }
@@ -73,6 +73,9 @@ namespace UFO.Commander.ViewModels
             get { return artist; }
         }
 
-
+        public ArtistVideo ArtistVideo
+        {
+            get { return artistVideo; }
+        }
     }
 }

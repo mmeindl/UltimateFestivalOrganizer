@@ -31,6 +31,101 @@ namespace UFO.Commander.Views
             InitializeComponent();
         }
 
+        private void SaveChanges(object sender, RoutedEventArgs e)
+        {
+            ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
+            String newWebsite = txtWebsite.Text;
+            ArtistPictureVM newPicture = (ArtistPictureVM)cmbProfilePicture.SelectedItem;
+            ArtistVideoVM newVideo = (ArtistVideoVM)cmbPromoVideo.SelectedItem;
+
+            artist.WebsiteURL = newWebsite;
+
+            bool success = false;
+            try
+            {
+                success = server.UpdateArtist(artist.Artist);
+            }
+            catch (Exception exc)
+            {
+                // TODO User hinweisen
+            }
+
+            if (success)
+            {
+                artist.WebsiteURL = newWebsite;
+            }
+
+            if (newPicture != null)
+            {
+                foreach (ArtistPictureVM item in cmbProfilePicture.Items)
+                {
+                    item.IsProfilePicture = false;
+                }
+
+                newPicture.IsProfilePicture = true;
+                success = false;
+                try
+                {
+                    success = server.UpdateArtistPicture(newPicture.ArtistPicture);
+                }
+                catch (Exception exc)
+                {
+                    // TODO User hinweisen
+                }
+
+                if (success)
+                {
+                    artist.ProfilePicture = newPicture;
+                }
+            }
+
+            if (newVideo != null)
+            {
+                foreach (ArtistVideoVM item in cmbPromoVideo.Items)
+                {
+                    item.IsPromoVideo = false;
+                }
+
+                newVideo.IsPromoVideo = true;
+                success = false;
+                try
+                {
+                    success = server.UpdateArtistVideo(newVideo.ArtistVideo);
+                }
+                catch (Exception exc)
+                {
+                    // TODO User hinweisen
+                }
+
+                if (success)
+                {
+                    artist.PromoVideo = newVideo;
+                }
+            }
+        }
+
+        private void AddPicture(object sender, RoutedEventArgs e)
+        {
+            ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
+            ArtistPicture picture = new ArtistPicture(txtPictureURL.Text, artist.Id);
+
+            bool success = false;
+
+            try
+            {
+                success = server.InsertArtistPicture(picture);
+            }
+            catch (Exception exc)
+            {
+                // TODO User hinweisen
+            }
+
+            if (success)
+            {
+                artist.Pictures.Add(new ArtistPictureVM(picture, artist, server));
+            }
+        }
+
         private void RemovePicture(object sender, RoutedEventArgs e)
         {
             ArtistPictureVM pictureVM = ((FrameworkElement)sender).DataContext as ArtistPictureVM;
@@ -44,6 +139,28 @@ namespace UFO.Commander.Views
             }
 
             server.DeleteArtistPicture(picture);
+        }
+
+        private void AddVideo(object sender, RoutedEventArgs e)
+        {
+            ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
+            ArtistVideo video = new ArtistVideo(txtVideoURL.Text, artist.Id);
+
+            bool success = false;
+
+            try
+            {
+               success = server.InsertArtistVideo(video);
+            }
+            catch (Exception exc)
+            {
+                // TODO User hinweisen
+            }
+            
+            if (success)
+            {
+                artist.Videos.Add(new ArtistVideoVM(video, artist, server));
+            }
         }
 
         private void RemoveVideo(object sender, RoutedEventArgs e)

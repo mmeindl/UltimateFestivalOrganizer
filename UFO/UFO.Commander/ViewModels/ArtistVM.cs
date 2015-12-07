@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Swk5.MediaAnnotator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using UFO.Domain;
 using UFO.Server;
 
@@ -18,11 +20,13 @@ namespace UFO.Commander.ViewModels
         private Artist artist;
         private Country country;
         private Category category;
-        private ArtistPicture profilePicture;
-        private ArtistVideo promoVideo;
+        private ArtistPictureVM profilePicture;
+        private ArtistVideoVM promoVideo;
 
         public ObservableCollection<ArtistPictureVM> Pictures { get; private set; }
         public ObservableCollection<ArtistVideoVM> Videos { get; private set; }
+
+        public ICommand UpdateArtistMediaCommand { get; private set; }
 
         public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
         {
@@ -30,11 +34,33 @@ namespace UFO.Commander.ViewModels
             this.category = category;
             this.country = country;
             this.server = server;
-            this.profilePicture = server.FindProfilePictureByArtistId(Id);
-            this.promoVideo = server.FindPromoVideoByArtistId(Id);
             this.Pictures = new ObservableCollection<ArtistPictureVM>();
             this.Videos = new ObservableCollection<ArtistVideoVM>();
+
+            ArtistPicture pic = server.FindProfilePictureByArtistId(Id);
+            ArtistVideo vid = server.FindPromoVideoByArtistId(Id);
+
+            if (pic == null)
+            {
+                this.profilePicture = null;
+            }
+            else
+            {
+                this.profilePicture = new ArtistPictureVM(pic, this, server);
+            }
+            
+            if (vid == null)
+            {
+                this.promoVideo = null;
+            }
+            else
+            {
+                this.promoVideo = new ArtistVideoVM(vid, this, server);
+            }
+
+            this.UpdateArtistMediaCommand = new RelayCommand(p => server.UpdateArtistMedia(artist, profilePicture.ArtistPicture, promoVideo.ArtistVideo));
         }
+
 
         public int Id
         {
@@ -114,7 +140,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public ArtistPicture ProfilePicture
+        public ArtistPictureVM ProfilePicture
         {
             get { return profilePicture; }
             set
@@ -127,7 +153,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public ArtistVideo PromoVideo
+        public ArtistVideoVM PromoVideo
         {
             get { return promoVideo; }
             set
@@ -153,25 +179,32 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public void LoadPictures()
+        public Artist Artist
+        {
+            get { return artist; }
+        }
+
+        public async void LoadPictures()
         {
             Pictures.Clear();
             IEnumerable<ArtistPicture> pictures = server.FindAllPicturesByArtistId(Id);
 
-            foreach (ArtistPicture picture in pictures)
+            IEnumerator<ArtistPicture> enumerator = pictures.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Pictures.Add(new ArtistPictureVM(picture, this, server));
+                Pictures.Add(new ArtistPictureVM(enumerator.Current, this, server));
             }
         }
 
-        public void LoadVideos()
+        public async void LoadVideos()
         {
             Videos.Clear();
             IEnumerable<ArtistVideo> videos = server.FindAllVideosByArtistId(Id);
 
-            foreach (ArtistVideo video in videos)
+            IEnumerator<ArtistVideo> enumerator = videos.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Videos.Add(new ArtistVideoVM(video, this, server));
+                Videos.Add(new ArtistVideoVM(enumerator.Current, this, server));
             }
         }
     }

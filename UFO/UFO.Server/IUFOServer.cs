@@ -65,7 +65,8 @@ namespace UFO.Server
         bool UpdatePerformance(Performance performance);
         bool DeletePerformance(Performance performance);
 
-
+        // helpers
+        bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video);
 
 
     }
