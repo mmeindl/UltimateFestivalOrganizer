@@ -70,7 +70,9 @@ namespace UFO.Server
 
         public bool InsertArtist(Artist artist)
         {
-            throw new NotImplementedException();
+            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+
+            return artistDao.Insert(artist);
         }
 
         public bool UpdateArtist(Artist artist)

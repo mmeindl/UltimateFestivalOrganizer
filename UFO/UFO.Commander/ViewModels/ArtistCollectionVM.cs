@@ -62,9 +62,7 @@ namespace UFO.Commander.ViewModels
                         currentArtist.LoadVideos();
                     }
 
-                    PropertyChanged?.Invoke(
-                        this,
-                        new PropertyChangedEventArgs(nameof(CurrentArtist)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentArtist)));
                 }
             }
         }

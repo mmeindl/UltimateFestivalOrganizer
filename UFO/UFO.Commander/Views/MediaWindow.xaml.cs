@@ -34,7 +34,8 @@ namespace UFO.Commander.Views
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
             ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
-            String newWebsite = txtWebsite.Text;
+            string newWebsite = txtWebsite.Text;
+            string oldWebsite = artist.WebsiteURL;
             ArtistPictureVM newPicture = (ArtistPictureVM)cmbProfilePicture.SelectedItem;
             ArtistVideoVM newVideo = (ArtistVideoVM)cmbPromoVideo.SelectedItem;
 
@@ -123,6 +124,7 @@ namespace UFO.Commander.Views
             if (success)
             {
                 artist.Pictures.Add(new ArtistPictureVM(picture, artist, server));
+                txtPictureURL.Clear();
             }
         }
 
@@ -160,6 +162,7 @@ namespace UFO.Commander.Views
             if (success)
             {
                 artist.Videos.Add(new ArtistVideoVM(video, artist, server));
+                txtVideoURL.Clear();
             }
         }
 

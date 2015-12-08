@@ -26,6 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <DataGrid Grid.Column="0"
+                            Name="dgArtists"
                             AutoGenerateColumns="False"
                             SelectionMode="Single"
                             IsReadOnly="True"
@@ -150,7 +151,6 @@
                                 Margin="0, 5, 15, 0"
                                 Height="30"
                                 Name="txtEmail" />
-
                     </Grid>
 
                     <Button Grid.Row="2"
@@ -159,7 +159,8 @@
                             Height="30"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Command="{Binding Path=UpdateArtistCommand}" >
+                            Click="SaveChanges"
+                            DataContext="{Binding Path=CurrentArtist}">
                         <TextBlock Text="Save Changes"/>
                     </Button>
 
@@ -315,8 +316,9 @@
                 <Button Grid.Column="6"
                         Width="100"
                         Height="30"
-                        Command="{Binding Path=CreateArtistCommand}"
-                        Margin="5,0" >
+                        Click="AddArtist"
+                        Margin="5,0" 
+                        DataContext="{Binding}">
                     <TextBlock Text="Add Artist"/>
                 </Button>
             </Grid>
