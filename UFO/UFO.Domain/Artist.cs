@@ -11,6 +11,9 @@ namespace UFO.Domain
     {
         public Artist()
         {
+            this.Id = 0;
+            this.WebsiteURL = "";
+            this.IsDeleted = false;
         }
 
         public Artist(string countryId, int categoryId, string name, string email,

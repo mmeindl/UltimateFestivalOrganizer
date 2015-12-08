@@ -83,6 +83,7 @@ namespace UFO.Commander.ViewModels
                 if (country != value)
                 {
                     country = value;
+                    artist.CountryId = country.Abbreviation;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Country)));
                 }
             }
@@ -96,6 +97,7 @@ namespace UFO.Commander.ViewModels
                 if (category != value)
                 {
                     category = value;
+                    artist.CategoryId = category.Id;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Category)));
                 }
             }
