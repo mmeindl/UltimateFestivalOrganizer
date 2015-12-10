@@ -14,6 +14,7 @@ namespace UFO.Server
 
         // Artist
         Artist FindArtistById(int artistId);
+        Artist FindArtistByName(string name);
         IEnumerable<Artist> FindAllArtists();
 
         bool InsertArtist(Artist artist);

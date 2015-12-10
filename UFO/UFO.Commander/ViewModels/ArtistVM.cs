@@ -18,6 +18,7 @@ namespace UFO.Commander.ViewModels
 
         private IUFOServer server;
         private Artist artist;
+        private ArtistCollectionVM artistCollection;
         private Country country;
         private Category category;
         private ArtistPictureVM profilePicture;
@@ -28,11 +29,12 @@ namespace UFO.Commander.ViewModels
 
         public ICommand UpdateArtistMediaCommand { get; private set; }
 
-        public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
+        public ArtistVM(Artist artist, Category category, Country country, ArtistCollectionVM artistCollection, IUFOServer server)
         {
             this.artist = artist;
             this.category = category;
             this.country = country;
+            this.artistCollection = artistCollection;
             this.server = server;
             this.Pictures = new ObservableCollection<ArtistPictureVM>();
             this.Videos = new ObservableCollection<ArtistVideoVM>();
@@ -184,6 +186,11 @@ namespace UFO.Commander.ViewModels
         public Artist Artist
         {
             get { return artist; }
+        }
+
+        public ArtistCollectionVM ArtistCollection
+        {
+            get { return artistCollection; }
         }
 
         public async void LoadPictures()

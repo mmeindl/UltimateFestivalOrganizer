@@ -37,6 +37,7 @@ namespace UFO.Commander.Views.Controls
             string name = txtArtistnameNew.Text;
             Category category = (Category)cmbCategoryNew.SelectedItem;
             Country country = (Country)cmbCountryNew.SelectedItem;
+            string email = txtEmailNew.Text;
 
             Artist artist = new Artist();
 
@@ -46,7 +47,7 @@ namespace UFO.Commander.Views.Controls
                 artist.Name = name;
                 artist.CategoryId = category.Id;
                 artist.CountryId = country.Abbreviation;
-                artist.Email = "test@email.at";
+                artist.Email = email;
 
                 success = server.InsertArtist(artist);
             }
@@ -57,12 +58,28 @@ namespace UFO.Commander.Views.Controls
 
             if (success)
             {
-                ArtistVM artistVM = new ArtistVM(artist, category, country, server);
+                artist = server.FindArtistByName(artist.Name);
+                ArtistVM artistVM = new ArtistVM(artist, category, country, artistCollection, server);
                 artistCollection.Artists.Add(artistVM);
                 artistCollection.CurrentArtist = artistVM;
                 dgArtists.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                 dgArtists.ScrollIntoView(artistVM);
             }
+        }
+
+        private void RemoveArtist(object sender, RoutedEventArgs e)
+        {
+            ArtistVM artistVM = ((FrameworkElement)sender).DataContext as ArtistVM;
+
+            ArtistVM currentArtist = artistVM.ArtistCollection.Artists[0];
+            
+
+            artistVM.ArtistCollection.Artists.Remove(artistVM);
+
+            artistVM.ArtistCollection.CurrentArtist = currentArtist;
+            dgArtists.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            dgArtists.ScrollIntoView(currentArtist);
+            server.DeleteArtist(artistVM.Artist);
         }
 
 
