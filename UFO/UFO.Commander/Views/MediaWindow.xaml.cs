@@ -123,6 +123,7 @@ namespace UFO.Commander.Views
 
             if (success)
             {
+                picture = server.FindArtistPictureByURL(picture.PictureURL);
                 artist.Pictures.Add(new ArtistPictureVM(picture, artist, server));
                 txtPictureURL.Clear();
             }
@@ -161,6 +162,7 @@ namespace UFO.Commander.Views
             
             if (success)
             {
+                video = server.FindArtistVideoByURL(video.VideoURL);
                 artist.Videos.Add(new ArtistVideoVM(video, artist, server));
                 txtVideoURL.Clear();
             }

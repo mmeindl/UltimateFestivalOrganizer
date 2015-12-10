@@ -151,11 +151,11 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Content="Remove"
+                                    <Button Content="X"
                                             Click="RemovePicture" />
                                 </Grid>
                             </DataTemplate>
@@ -231,11 +231,11 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Button Content="Remove" Click="RemoveVideo"/>
+                                    <Button Content="X" Click="RemoveVideo"/>
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -58,6 +58,13 @@ namespace UFO.Server
             return artistDao.FindAll();
         }
 
+        public Artist FindArtistByName(string name)
+        {
+            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+
+            return artistDao.FindByName(name);
+        }
+
         public Artist FindArtistById(int artistId)
         {
             throw new NotImplementedException();
@@ -82,9 +89,11 @@ namespace UFO.Server
             return artistDao.Update(artist);
         }
 
-        public bool DeleteArtist(Artist artists)
+        public bool DeleteArtist(Artist artist)
         {
-            throw new NotImplementedException();
+            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+
+            return artistDao.Delete(artist);
         }
 
         // Performance
