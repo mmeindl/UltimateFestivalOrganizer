@@ -37,7 +37,9 @@ namespace UFO.Commander.Views
             string newWebsite = txtWebsite.Text;
             string oldWebsite = artist.WebsiteURL;
             ArtistPictureVM newPicture = (ArtistPictureVM)cmbProfilePicture.SelectedItem;
+            ArtistPictureVM oldPicture = artist.ProfilePicture;
             ArtistVideoVM newVideo = (ArtistVideoVM)cmbPromoVideo.SelectedItem;
+            ArtistVideoVM oldVideo = artist.PromoVideo;
 
             artist.WebsiteURL = newWebsite;
 
@@ -51,18 +53,17 @@ namespace UFO.Commander.Views
                 // TODO User hinweisen
             }
 
-            if (success)
+            if (!success)
             {
-                artist.WebsiteURL = newWebsite;
+                artist.WebsiteURL = oldWebsite;
             }
 
             if (newPicture != null)
             {
-                foreach (ArtistPictureVM item in cmbProfilePicture.Items)
+                if (oldPicture != null)
                 {
-                    item.IsProfilePicture = false;
+                    oldPicture.IsProfilePicture = false;
                 }
-
                 newPicture.IsProfilePicture = true;
                 success = false;
                 try
@@ -74,7 +75,15 @@ namespace UFO.Commander.Views
                     // TODO User hinweisen
                 }
 
-                if (success)
+                if (!success)
+                {
+                    newPicture.IsProfilePicture = false;
+                    if (oldPicture != null)
+                    {
+                        oldPicture.IsProfilePicture = true;
+                    }
+                }
+                else
                 {
                     artist.ProfilePicture = newPicture;
                 }
@@ -82,11 +91,10 @@ namespace UFO.Commander.Views
 
             if (newVideo != null)
             {
-                foreach (ArtistVideoVM item in cmbPromoVideo.Items)
+                if (oldVideo != null)
                 {
-                    item.IsPromoVideo = false;
+                    oldVideo.IsPromoVideo = false;
                 }
-
                 newVideo.IsPromoVideo = true;
                 success = false;
                 try
@@ -98,7 +106,15 @@ namespace UFO.Commander.Views
                     // TODO User hinweisen
                 }
 
-                if (success)
+                if (!success)
+                {
+                    newVideo.IsPromoVideo = false;
+                    if (oldVideo != null)
+                    {
+                        oldVideo.IsPromoVideo = true;
+                    }
+                }
+                else
                 {
                     artist.PromoVideo = newVideo;
                 }
@@ -134,12 +150,12 @@ namespace UFO.Commander.Views
             ArtistPictureVM pictureVM = ((FrameworkElement)sender).DataContext as ArtistPictureVM;
             ArtistPicture picture = server.FindArtistPictureByURL(pictureVM.PictureURL);
 
-            pictureVM.Artist.Pictures.Remove(pictureVM);
-
             if (picture.IsProfilePicture)
             {
                 pictureVM.Artist.ProfilePicture = null;
             }
+
+            pictureVM.Artist.Pictures.Remove(pictureVM);
 
             server.DeleteArtistPicture(picture);
         }
@@ -173,12 +189,12 @@ namespace UFO.Commander.Views
             ArtistVideoVM videoVM = ((FrameworkElement)sender).DataContext as ArtistVideoVM;
             ArtistVideo video = server.FindArtistVideoByURL(videoVM.VideoURL);
 
-            videoVM.Artist.Videos.Remove(videoVM);
-
             if (video.IsPromoVideo)
             {
                 videoVM.Artist.PromoVideo = null;
             }
+
+            videoVM.Artist.Videos.Remove(videoVM);
 
             server.DeleteArtistVideo(video);
         }
