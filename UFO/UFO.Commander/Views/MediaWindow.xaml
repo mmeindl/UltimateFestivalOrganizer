@@ -1,0 +1,280 @@
+﻿<Window x:Class="UFO.Commander.Views.MediaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UFO.Commander.Views"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:UFO.Commander.ViewModels"
+        d:DataContext="{d:DesignInstance vm:ArtistCollectionVM, IsDesignTimeCreatable=True}"
+        Title="Artist Media" MinHeight="300" Height="300" MinWidth="1200" Width="1200">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="{Binding Path=CurrentArtist.Name}"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                            Grid.Row="0" 
+                            Margin="10, 0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Name="lblWebsite"
+                            Text="Website"/>
+
+                <TextBox Height="30"
+                         Grid.Column="1" 
+                         Grid.Row="0" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="0, 5, 15, 0"
+                         Text="{Binding Path=CurrentArtist.WebsiteURL, Mode=OneWay}"
+                         Name="txtWebsite">
+                </TextBox>
+
+                <TextBlock Grid.Column="0" 
+                           Grid.Row="1" 
+                           Margin="10, 0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Name="lblProfilePicture"
+                           Text="Profilepicture"/>
+
+                <ComboBox Height="30"
+                          Grid.Column="1" 
+                          Grid.Row="1" 
+                          ItemsSource="{Binding Path=CurrentArtist.Pictures}"
+                          SelectedValue="{Binding Path=CurrentArtist.ProfilePicture.PictureURL, Mode=OneWay}"
+                          SelectedValuePath="PictureURL"
+                          DisplayMemberPath="PictureURL"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Margin="0, 5, 15, 0"
+                          Name="cmbProfilePicture">
+                </ComboBox>
+
+                <TextBlock Grid.Column="0" 
+                            Grid.Row="2" 
+                            Margin="10, 0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Name="lblPromoVideo"
+                            Text="Promovideo"/>
+
+                <ComboBox Height="30"
+                          Grid.Column="1" 
+                          Grid.Row="2" 
+                          ItemsSource="{Binding Path=CurrentArtist.Videos}"
+                          SelectedValue="{Binding Path=CurrentArtist.PromoVideo.VideoURL, Mode=OneWay}"
+                          SelectedValuePath="VideoURL"
+                          DisplayMemberPath="VideoURL"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Margin="0, 5, 15, 0"
+                          Name="cmbPromoVideo">
+                </ComboBox>
+            </Grid>
+
+            <Button Grid.Row="2"
+                    Margin="5, 5"
+                    Width="100"
+                    Height="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    DataContext="{Binding Path=CurrentArtist}"
+                    Click="SaveChanges" >
+                <TextBlock Text="Save Changes"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Margin="10, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Pictures"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <DataGrid Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      FontSize="14"
+                      Focusable="False"
+                      ItemsSource="{Binding Path=CurrentArtist.Pictures}">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="URL" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Hyperlink Click="UrlClick" NavigateUri="{Binding Path=PictureURL}">
+                                        <TextBlock Text="{Binding Path=PictureURL}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X"
+                                            Click="RemovePicture" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="2">
+                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Name="lblPictureUrl"
+                            Text="URL"
+                            Margin="5,0"/>
+
+                <TextBox Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"  
+                        VerticalContentAlignment="Center"
+                        Height="30"
+                        Name="txtPictureURL" />
+
+                <Button Grid.Column="2"
+                        Width="100"
+                        Height="30"
+                        Click="AddPicture"
+                        Margin="5,0"
+                        DataContext="{Binding Path=CurrentArtist}">
+                    <TextBlock Text="Add Picture"/>
+                </Button>
+            </Grid>
+           
+        </Grid>
+
+        <Grid Grid.Column="2"
+              Margin="10, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0"
+                       Text="Videos"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <DataGrid Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      FontSize="14"
+                      Focusable="False"
+                      ItemsSource="{Binding Path=CurrentArtist.Videos}">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="URL" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Hyperlink Click="UrlClick" NavigateUri="{Binding Path=VideoURL}">
+                                        <TextBlock Text="{Binding Path=VideoURL}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X" Click="RemoveVideo"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Name="lblVideoUrl"
+                            Text="URL"
+                            Margin="5,0"/>
+
+                <TextBox Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"  
+                        VerticalContentAlignment="Center"
+                        Height="30"
+                        Name="txtVideoURL" />
+
+                <Button Grid.Column="2"
+                        Width="100"
+                        Height="30"
+                        DataContext="{Binding Path=CurrentArtist}"
+                        Click="AddVideo"
+                        Margin="5,0" >
+                    <TextBlock Text="Add Video"/>
+                </Button>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>

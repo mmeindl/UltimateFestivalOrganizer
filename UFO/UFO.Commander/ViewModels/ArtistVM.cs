@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Swk5.MediaAnnotator.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using UFO.Domain;
 using UFO.Server;
 
@@ -15,25 +18,51 @@ namespace UFO.Commander.ViewModels
 
         private IUFOServer server;
         private Artist artist;
+        private ArtistCollectionVM artistCollection;
         private Country country;
         private Category category;
-        private ArtistPicture profilePicture;
-        private ArtistVideo promoVideo;
+        private ArtistPictureVM profilePicture;
+        private ArtistVideoVM promoVideo;
 
-        public IEnumerable<ArtistPicture> Pictures { get; private set; }
-        public IEnumerable<ArtistVideo> Videos { get; private set; }
+        public ObservableCollection<ArtistPictureVM> Pictures { get; private set; }
+        public ObservableCollection<ArtistVideoVM> Videos { get; private set; }
 
-        public ArtistVM(Artist artist, Category category, Country country, IUFOServer server)
+        public ICommand UpdateArtistMediaCommand { get; private set; }
+
+        public ArtistVM(Artist artist, Category category, Country country, ArtistCollectionVM artistCollection, IUFOServer server)
         {
             this.artist = artist;
             this.category = category;
             this.country = country;
+            this.artistCollection = artistCollection;
             this.server = server;
-            this.profilePicture = server.FindProfilePictureByArtistId(Id);
-            this.promoVideo = server.FindPromoVideoByArtistId(Id);
-            this.Pictures = null;
-            this.Videos = null;
+            this.Pictures = new ObservableCollection<ArtistPictureVM>();
+            this.Videos = new ObservableCollection<ArtistVideoVM>();
+
+            ArtistPicture pic = server.FindProfilePictureByArtistId(Id);
+            ArtistVideo vid = server.FindPromoVideoByArtistId(Id);
+
+            if (pic == null)
+            {
+                this.profilePicture = null;
+            }
+            else
+            {
+                this.profilePicture = new ArtistPictureVM(pic, this, server);
+            }
+            
+            if (vid == null)
+            {
+                this.promoVideo = null;
+            }
+            else
+            {
+                this.promoVideo = new ArtistVideoVM(vid, this, server);
+            }
+
+            this.UpdateArtistMediaCommand = new RelayCommand(p => server.UpdateArtistMedia(artist, profilePicture.ArtistPicture, promoVideo.ArtistVideo));
         }
+
 
         public int Id
         {
@@ -56,6 +85,7 @@ namespace UFO.Commander.ViewModels
                 if (country != value)
                 {
                     country = value;
+                    artist.CountryId = country.Abbreviation;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Country)));
                 }
             }
@@ -69,6 +99,7 @@ namespace UFO.Commander.ViewModels
                 if (category != value)
                 {
                     category = value;
+                    artist.CategoryId = category.Id;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Category)));
                 }
             }
@@ -113,7 +144,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public ArtistPicture ProfilePicture
+        public ArtistPictureVM ProfilePicture
         {
             get { return profilePicture; }
             set
@@ -126,7 +157,7 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public ArtistVideo PromoVideo
+        public ArtistVideoVM PromoVideo
         {
             get { return promoVideo; }
             set
@@ -152,14 +183,38 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public void LoadPictures()
+        public Artist Artist
         {
-            Pictures = server.FindAllPicturesByArtistId(Id);
+            get { return artist; }
         }
 
-        public void LoadVideos()
+        public ArtistCollectionVM ArtistCollection
         {
-            Videos = server.FindAllVideosByArtistId(Id);
+            get { return artistCollection; }
+        }
+
+        public async void LoadPictures()
+        {
+            Pictures.Clear();
+            IEnumerable<ArtistPicture> pictures = server.FindAllPicturesByArtistId(Id);
+
+            IEnumerator<ArtistPicture> enumerator = pictures.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
+            {
+                Pictures.Add(new ArtistPictureVM(enumerator.Current, this, server));
+            }
+        }
+
+        public async void LoadVideos()
+        {
+            Videos.Clear();
+            IEnumerable<ArtistVideo> videos = server.FindAllVideosByArtistId(Id);
+
+            IEnumerator<ArtistVideo> enumerator = videos.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
+            {
+                Videos.Add(new ArtistVideoVM(enumerator.Current, this, server));
+            }
         }
     }
 }

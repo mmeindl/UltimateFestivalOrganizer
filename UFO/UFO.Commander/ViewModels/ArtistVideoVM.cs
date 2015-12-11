@@ -9,29 +9,29 @@ using UFO.Server;
 
 namespace UFO.Commander.ViewModels
 {
-    public class ArtistPictureVM : INotifyPropertyChanged
+    public class ArtistVideoVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IUFOServer server;
-        private ArtistPicture artistPicture;
+        private ArtistVideo artistVideo;
         private ArtistVM artist;
 
-        public ArtistPictureVM(ArtistPicture artistPicture, ArtistVM artist, IUFOServer server)
+        public ArtistVideoVM(ArtistVideo artistVideo, ArtistVM artist, IUFOServer server)
         {
-            this.artistPicture = artistPicture;
+            this.artistVideo = artistVideo;
             this.server = server;
             this.artist = artist;
         }
 
         public int Id
         {
-            get { return artistPicture.Id; }
+            get { return artistVideo.Id; }
             set
             {
-                if (artistPicture.Id != value)
+                if (artistVideo.Id != value)
                 {
-                    artistPicture.Id = value;
+                    artistVideo.Id = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Id)));
                 }
             }
@@ -39,33 +39,33 @@ namespace UFO.Commander.ViewModels
 
         public int ArtistId
         {
-            get { return artistPicture.ArtistId; }
+            get { return artistVideo.ArtistId; }
             set
             {
-                if (artistPicture.ArtistId != value)
+                if (artistVideo.ArtistId != value)
                 {
-                    artistPicture.ArtistId = value;
+                    artistVideo.ArtistId = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ArtistId)));
                 }
             }
         }
 
-        public bool IsProfilePicture
+        public bool IsPromoVideo
         {
-            get { return artistPicture.IsProfilePicture; }
+            get { return artistVideo.IsPromoVideo; }
             set
             {
-                if (artistPicture.IsProfilePicture != value)
+                if (artistVideo.IsPromoVideo != value)
                 {
-                    artistPicture.IsProfilePicture = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsProfilePicture)));
+                    artistVideo.IsPromoVideo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPromoVideo)));
                 }
             }
         }
 
-        public string PictureURL
+        public string VideoURL
         {
-            get { return artistPicture.PictureURL; }
+            get { return artistVideo.VideoURL; }
         }
 
         public ArtistVM Artist
@@ -73,11 +73,9 @@ namespace UFO.Commander.ViewModels
             get { return artist; }
         }
 
-        public ArtistPicture ArtistPicture
+        public ArtistVideo ArtistVideo
         {
-            get { return artistPicture; }
+            get { return artistVideo; }
         }
-
-
     }
 }

@@ -52,19 +52,19 @@ namespace UFO.Commander.ViewModels
                 {
                     currentArtist = value;
 
-                    if (CurrentArtist.Pictures == null)
+                    if (currentArtist != null)
                     {
-                        currentArtist.LoadPictures();
-                    }
+                        if (CurrentArtist.Pictures.Count == 0)
+                        {
+                            currentArtist.LoadPictures();
+                        }
 
-                    if (CurrentArtist.Videos == null)
-                    {
-                        currentArtist.LoadVideos();
+                        if (CurrentArtist.Videos.Count == 0)
+                        {
+                            currentArtist.LoadVideos();
+                        }
                     }
-
-                    PropertyChanged?.Invoke(
-                        this,
-                        new PropertyChangedEventArgs(nameof(CurrentArtist)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentArtist)));
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace UFO.Commander.ViewModels
             {
                 Category category = server.FindCategoryById(artist.CategoryId);
                 Country country = server.FindCountryByAbbreviation(artist.CountryId);
-                Artists.Add(new ArtistVM(artist, category, country, server));
+                Artists.Add(new ArtistVM(artist, category, country, this, server));
             }
         }
 

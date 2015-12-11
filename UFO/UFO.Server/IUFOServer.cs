@@ -14,6 +14,7 @@ namespace UFO.Server
 
         // Artist
         Artist FindArtistById(int artistId);
+        Artist FindArtistByName(string name);
         IEnumerable<Artist> FindAllArtists();
 
         bool InsertArtist(Artist artist);
@@ -21,6 +22,7 @@ namespace UFO.Server
         bool DeleteArtist(Artist artists);
 
         // ArtistPicture
+        ArtistPicture FindArtistPictureByURL(string url);
         IList<ArtistPicture> FindAllPicturesByArtistId(int artistId);
         ArtistPicture FindProfilePictureByArtistId(int artistId);
 
@@ -29,6 +31,7 @@ namespace UFO.Server
         bool DeleteArtistPicture(ArtistPicture artistPicture);
 
         // ArtistVideo
+        ArtistVideo FindArtistVideoByURL(string url);
         IList<ArtistVideo> FindAllVideosByArtistId(int artistId);
         ArtistVideo FindPromoVideoByArtistId(int artistId);
 
@@ -63,7 +66,8 @@ namespace UFO.Server
         bool UpdatePerformance(Performance performance);
         bool DeletePerformance(Performance performance);
 
-
+        // helpers
+        bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video);
 
 
     }

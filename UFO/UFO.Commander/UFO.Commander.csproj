@@ -60,9 +60,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\ArtistCollectionVM.cs" />
-    <Compile Include="ViewModels\ArtistPictureCollectionVM.cs" />
+    <Compile Include="ViewModels\ArtistVideoVM.cs" />
     <Compile Include="ViewModels\ArtistPictureVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\Controls\ArtistTab.xaml.cs">
       <DependentUpon>ArtistTab.xaml</DependentUpon>
     </Compile>
@@ -71,6 +72,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaWindow.xaml.cs">
+      <DependentUpon>MediaWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
