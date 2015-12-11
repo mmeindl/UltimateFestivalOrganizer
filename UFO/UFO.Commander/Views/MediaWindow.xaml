@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UFO.Commander.Views"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:UFO.Commander.ViewModels"
         d:DataContext="{d:DesignInstance vm:ArtistCollectionVM, IsDesignTimeCreatable=True}"
         Title="Artist Media" MinHeight="300" Height="300" MinWidth="1200" Width="1200">
 
