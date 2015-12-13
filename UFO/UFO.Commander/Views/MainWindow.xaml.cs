@@ -24,8 +24,7 @@ namespace UFO.Commander.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ArtistCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            
         }
     }
 }

@@ -29,10 +29,56 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
+            DataContext = new VenueCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
+        private void AddArea(object sender, RoutedEventArgs e)
+        {
+            VenueCollectionVM venueCollectionVM = ((FrameworkElement)sender).DataContext as VenueCollectionVM;
+
+            string name = txtNameNew.Text;
+
+            if (name != null)
+            {
+                Area area = new Area(name);
+                bool success = server.InsertArea(area);
+                if (success)
+                {
+                    area = server.FindAreaByName(name);
+
+                    AreaVM areaVM = new AreaVM(area, venueCollectionVM, server);
+                    venueCollectionVM.Areas.Add(areaVM);
+
+                    venueCollectionVM.CurrentArea = areaVM;
+                    dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
+                    dgAreas.ScrollIntoView(areaVM);
+                }
+            }
         }
 
         private void RemoveArea(object sender, RoutedEventArgs e)
         {
+            AreaVM areaVM = ((FrameworkElement)sender).DataContext as AreaVM;
+
+            try
+            {
+                bool success = server.DeleteArea(areaVM.Area);
+
+                if (success)
+                {
+                    areaVM.VenueCollectionVM.Areas.Remove(areaVM);
+                    AreaVM currentArea = areaVM.VenueCollectionVM.Areas[0];
+                    areaVM.VenueCollectionVM.CurrentArea = currentArea;
+                    dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+                    dgAreas.ScrollIntoView(currentArea);
+                    server.DeleteArea(areaVM.Area);
+                }
+            }
+            catch (Exception exc)
+            {
+                // Inform User
+            }
         }
     }
 }
