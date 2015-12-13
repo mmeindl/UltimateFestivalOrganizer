@@ -27,8 +27,6 @@ namespace UFO.Commander.ViewModels
         public ObservableCollection<ArtistPictureVM> Pictures { get; private set; }
         public ObservableCollection<ArtistVideoVM> Videos { get; private set; }
 
-        public ICommand UpdateArtistMediaCommand { get; private set; }
-
         public ArtistVM(Artist artist, Category category, Country country, ArtistCollectionVM artistCollection, IUFOServer server)
         {
             this.artist = artist;
@@ -59,8 +57,6 @@ namespace UFO.Commander.ViewModels
             {
                 this.promoVideo = new ArtistVideoVM(vid, this, server);
             }
-
-            this.UpdateArtistMediaCommand = new RelayCommand(p => server.UpdateArtistMedia(artist, profilePicture.ArtistPicture, promoVideo.ArtistVideo));
         }
 
 
