@@ -9,6 +9,7 @@
         d:DataContext="{d:DesignInstance vm:VenueCollectionVM, IsDesignTimeCreatable=True}"
         Height="auto" Width="auto">
 
+    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,7 +18,12 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <DataGrid Grid.Row="1"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0"
+                      Name="dgAreas"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       FontSize="14"
@@ -27,7 +33,7 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Area" 
-                                        Binding="{Binding Path=CurrentArea.Name}"
+                                        Binding="{Binding Path=Name}"
                                         Width="*"  />
 
                     <DataGridTemplateColumn Width="30">
@@ -35,13 +41,43 @@
                             <DataTemplate>
                                 <Grid>
                                     <Button Content="X"
-                                            Click="RemoveArea" />
+                                            Click="RemoveArea"/>
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Name="lblNameNew"
+                               Text="Name"
+                               Margin="5,0"/>
+
+                <TextBox Grid.Column="1"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"  
+                             VerticalContentAlignment="Center"
+                             Height="30"
+                             Name="txtNameNew" />
+
+                <Button Grid.Column="2"
+                            Width="100"
+                            Height="30"
+                            Click="AddArea"
+                            Margin="5,0" 
+                            DataContext="{Binding}">
+                    <TextBlock Text="Add Area"/>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

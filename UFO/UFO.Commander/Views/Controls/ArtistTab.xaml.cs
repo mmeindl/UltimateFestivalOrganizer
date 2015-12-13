@@ -29,6 +29,8 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
+            DataContext = new ArtistCollectionVM(
+                UFOServerFactory.GetUFOServer());
         }
         private void AddArtist(object sender, RoutedEventArgs e)
         {

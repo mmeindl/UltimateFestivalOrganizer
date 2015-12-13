@@ -158,7 +158,9 @@ namespace UFO.Server
 
         public Area FindAreaByName(string name)
         {
-            throw new NotImplementedException();
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.FindByName(name);
         }
 
         public IList<Area> FindAllAreas()
@@ -170,7 +172,9 @@ namespace UFO.Server
 
         public bool InsertArea(Area area)
         {
-            throw new NotImplementedException();
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.Insert(area);
         }
 
         public bool UpdateArea(Area area)
@@ -180,7 +184,9 @@ namespace UFO.Server
 
         public bool DeleteArea(Area area)
         {
-            throw new NotImplementedException();
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.Delete(area);
         }
 
         // Country

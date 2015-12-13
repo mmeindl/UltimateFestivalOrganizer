@@ -19,9 +19,12 @@ namespace UFO.Commander.ViewModels
         private IUFOServer server;
         private Area area;
 
-        public AreaVM(Area area, IUFOServer server)
+        private VenueCollectionVM venueCollectionVM;
+
+        public AreaVM(Area area, VenueCollectionVM venueCollectionVM, IUFOServer server)
         {
             this.area = area;
+            this.venueCollectionVM = venueCollectionVM;
             this.server = server;
         }
 
@@ -55,6 +58,11 @@ namespace UFO.Commander.ViewModels
         public Area Area
         {
             get { return area; }
+        }
+
+        public VenueCollectionVM VenueCollectionVM
+        {
+            get { return venueCollectionVM; }
         }
     }
 }
