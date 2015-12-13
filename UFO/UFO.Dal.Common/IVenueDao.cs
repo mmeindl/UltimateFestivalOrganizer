@@ -10,6 +10,7 @@ namespace UFO.Dal.Common
     public interface IVenueDao
     {
         Venue FindById(int id);
+        IList<Venue> FindByAreaId(int id);
         IList<Venue> FindAll();
 
         bool Insert(Venue venue);
