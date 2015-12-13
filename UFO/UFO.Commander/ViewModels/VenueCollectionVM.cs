@@ -84,7 +84,7 @@ namespace UFO.Commander.ViewModels
 
             foreach (Area area in areas)
             {
-                Areas.Add(new AreaVM(area, server));
+                Areas.Add(new AreaVM(area, this, server));
             }
         }
 
