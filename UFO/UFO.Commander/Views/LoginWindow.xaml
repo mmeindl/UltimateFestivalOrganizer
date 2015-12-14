@@ -68,29 +68,25 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Button
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Margin="5,5"
-                    Content="Login" 
-                    Name="btnLogin" 
-                    Width="100"
-                    Click="DoLogin"/>
-                <TextBlock 
-                    Grid.Column="0" 
-                    Grid.Row="1" 
-                    Margin="0,20"
-                    Foreground="#8c0000"
-                    FontSize="12pt"
-                    TextWrapping="Wrap"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Name="tblError" 
-                    Text="Incorrect username or password. Please try again"
-                    Visibility="Hidden"/>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Button
+                        Margin="5,5"
+                        Content="Login" 
+                        Name="btnLogin" 
+                        Width="100"
+                        Click="DoLogin"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="1" Grid.Column="0" Name="spnError">
+                    <TextBlock
+                        Name="tblError"
+                        FontSize="13pt"
+                        Foreground="Red"/>
+                </StackPanel>
+                
             </Grid>
             
         </Grid>

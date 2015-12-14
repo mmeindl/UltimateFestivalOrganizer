@@ -3,8 +3,9 @@ class Program
 static void Main(string[] args)
 {
     string password = "admin";
+    string password = "user";
 
-    byte[] salt;
+   byte[] salt;
     new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
 
     var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
