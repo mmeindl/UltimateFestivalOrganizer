@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UFO.Dal.Common;
@@ -33,22 +34,68 @@ namespace UFO.Server
         }
 
         // User
-        public User findUserByName(string name)
+        public bool AuthenticateUser(string usernername, string password, IList<string> error)
+        {
+            IUserDao userDao = DalFactory.CreateUserDao(database);
+            User user = userDao.FindByUsername(usernername);
+            if (user == null)
+            {
+                error.Add("User does not exist");
+                return false;
+            }
+
+
+            if (user.RoleId != 1)
+            {
+                error.Add("User has no Administration Rights");
+                return false;
+            }
+
+
+            /*
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+
+            string passwordHash = Convert.ToBase64String(hashBytes);
+            */
+
+            string savedPasswordHash = user.Password;
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            for (int i = 0; i < 20; i++)
+            {
+                if (hashBytes[i + 16] != hash[i])
+                {
+                    error.Add("Incorrect password");
+                    return false;
+                }
+            }
+
+            return true;     
+        }
+
+        public User FindUserByName(string name)
         {
             IUserDao userDao = DalFactory.CreateUserDao(database);
 
             return userDao.FindByUsername(name);
         }
 
-        public IEnumerable<User> findAllUsers()
+        public IEnumerable<User> FindAllUsers()
         {
             throw new NotImplementedException();
         }
 
-        public bool CheckLoginData(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
 
         // Artist
         public IEnumerable<Artist> FindAllArtists()
@@ -255,6 +302,7 @@ namespace UFO.Server
 
             return result;
         }
+
 
     }
 }
