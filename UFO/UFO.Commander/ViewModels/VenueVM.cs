@@ -105,5 +105,10 @@ namespace UFO.Commander.ViewModels
                 }
             }
         }
+
+        public Venue Venue
+        {
+            get { return venue; }
+        }
     }
 }
