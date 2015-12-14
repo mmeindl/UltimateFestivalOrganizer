@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UFO.Server;
 
 namespace UFO.Commander.Views
 {
@@ -19,17 +20,20 @@ namespace UFO.Commander.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+        IUFOServer server;
+
         public LoginWindow()
         {
+            server = UFOServerFactory.GetUFOServer();
             InitializeComponent();
         }
         private void DoLogin(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Password;
-
-            // TODO hash Password and check user with database content
-            if ( (username == "user" && password == "pw" ) || (username == "" && password == "") )
+            IList<string> error = new List<string>();
+            bool correctAuthentication = server.AuthenticateUser(username, password, error);
+            if (correctAuthentication)
             {
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
@@ -37,10 +41,8 @@ namespace UFO.Commander.Views
             }
             else
             {
-                tblError.Visibility = Visibility.Visible;
+                tblError.Text = error[0];
             }
-
-            
         }
     }
 }

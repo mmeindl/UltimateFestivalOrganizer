@@ -9,7 +9,6 @@ namespace UFO.Server
 {
     public interface IUFOServer
     {
-        bool CheckLoginData(string username, string password);
         void InformAllArtists();
 
         // Artist
@@ -57,8 +56,9 @@ namespace UFO.Server
         bool UpdateVenue(Venue venue);
 
         // User
-        User findUserByName(string name);
-        IEnumerable<User> findAllUsers();
+        bool AuthenticateUser(string usernername, string password, IList<string> error);
+        User FindUserByName(string name);
+        IEnumerable<User> FindAllUsers();
 
         //Category
         Category FindCategoryById(int id);
