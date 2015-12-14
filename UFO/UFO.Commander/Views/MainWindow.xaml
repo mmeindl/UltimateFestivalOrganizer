@@ -9,13 +9,14 @@
         Title="MainWindow" MinHeight="600" Height="600" MinWidth="1200" Width="1200">
     <Grid>
         <TabControl>
-            <TabItem Header="Programm">
+            <TabItem Header="Performances">
+                <controls:PerformancesTab />
             </TabItem>
-            <TabItem Header="Künstler">
+            <TabItem Header="Artists">
                 <controls:ArtistTab />
             </TabItem>
-            <TabItem Header="Spielstätten">
-                <Label Content="Content goes here..." />
+            <TabItem Header="Venues">
+                <controls:VenueTab />
             </TabItem>
         </TabControl>
     </Grid>

@@ -404,6 +404,15 @@ namespace UFO.UnitTest
         /* ----- Area ----- */
 
         [TestMethod]
+        public void AreaFindByNameTest()
+        {
+            IDatabase database = DalFactory.CreateDatabase();
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            Assert.IsNotNull(areaDao.FindByName("Hauptplatz"));
+        }
+
+        [TestMethod]
         public void AreaFindAllTest()
         {
             IDatabase database = DalFactory.CreateDatabase();
@@ -412,6 +421,21 @@ namespace UFO.UnitTest
             Assert.AreEqual(areaDao.FindAll().Count, 5);
         }
 
+        [TestMethod]
+        public void AreaInsertTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                IDatabase database = DalFactory.CreateDatabase();
+                IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+                Area area = new Area("Dom");
+
+                Assert.IsTrue(areaDao.Insert(area));
+
+                scope.Dispose();
+            }
+        }
 
         /* ----- VENUE ----- */
 

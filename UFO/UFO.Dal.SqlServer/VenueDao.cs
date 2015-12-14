@@ -18,6 +18,11 @@ namespace UFO.Dal.SqlServer
                 FROM Venue
                 WHERE Venue.id = @id";
 
+        const string SQL_FIND_BY_AREAID =
+            @"SELECT *
+                FROM Venue
+                WHERE Venue.areaId = @areaId";
+
         const string SQL_FIND_ALL =
             @"SELECT *
                 FROM Venue";
@@ -66,6 +71,32 @@ namespace UFO.Dal.SqlServer
                 {
                     return null;
                 }
+            }
+        }
+
+        private DbCommand CreateFindByAreaIdCommand(int areaId)
+        {
+            DbCommand findByAreaIdCommand = database.CreateCommand(SQL_FIND_BY_AREAID);
+            database.DefineParameter(findByAreaIdCommand, "areaId", DbType.Int32, areaId);
+            return findByAreaIdCommand;
+        }
+
+        public IList<Venue> FindByAreaId(int areaId)
+        {
+            using (DbCommand command = CreateFindByAreaIdCommand(areaId))
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                IList<Venue> result = new List<Venue>();
+                while (reader.Read())
+                    result.Add(new Venue(
+                        (int)reader["Id"],
+                        (string)reader["name"],
+                        (string)reader["shortName"],
+                        (decimal)reader["geoLocationLat"],
+                        (decimal)reader["geoLocationLon"],
+                        (int)reader["areaId"])
+                    );
+                return result;
             }
         }
 

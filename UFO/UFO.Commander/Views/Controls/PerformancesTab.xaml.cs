@@ -11,20 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using UFO.Commander.ViewModels;
-using UFO.Server;
 
-namespace UFO.Commander.Views
+namespace UFO.Commander.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik für PerformancesTab.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PerformancesTab : UserControl
     {
-        public MainWindow()
+        public PerformancesTab()
         {
             InitializeComponent();
-            
         }
     }
 }

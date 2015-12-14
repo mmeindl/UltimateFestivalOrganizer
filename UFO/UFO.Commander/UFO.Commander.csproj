@@ -59,13 +59,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\VenueCollectionVM.cs" />
     <Compile Include="ViewModels\ArtistCollectionVM.cs" />
     <Compile Include="ViewModels\ArtistVideoVM.cs" />
     <Compile Include="ViewModels\ArtistPictureVM.cs" />
+    <Compile Include="ViewModels\AreaVM.cs" />
+    <Compile Include="ViewModels\VenueVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\Controls\VenueTab.xaml.cs">
+      <DependentUpon>VenueTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ArtistTab.xaml.cs">
       <DependentUpon>ArtistTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PerformancesTab.xaml.cs">
+      <DependentUpon>PerformancesTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -127,7 +136,15 @@
     <Folder Include="Views\Icons\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Controls\VenueTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\ArtistTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\PerformancesTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

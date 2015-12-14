@@ -180,6 +180,13 @@ namespace UFO.Server
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Venue> FindVenuesByAreaId(int areaId)
+        {
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.FindByAreaId(areaId);
+        }
+
         public bool InsertVenue(Venue venue)
         {
             throw new NotImplementedException();
@@ -188,6 +195,45 @@ namespace UFO.Server
         public bool UpdateVenue(Venue venue)
         {
             throw new NotImplementedException();
+        }
+
+        // Area
+        public Area FindAreaById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Area FindAreaByName(string name)
+        {
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.FindByName(name);
+        }
+
+        public IList<Area> FindAllAreas()
+        {
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.FindAll();
+        }
+
+        public bool InsertArea(Area area)
+        {
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.Insert(area);
+        }
+
+        public bool UpdateArea(Area area)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteArea(Area area)
+        {
+            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+
+            return areaDao.Delete(area);
         }
 
         // Country

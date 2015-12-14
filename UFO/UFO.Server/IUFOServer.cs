@@ -38,8 +38,18 @@ namespace UFO.Server
         bool UpdateArtistVideo(ArtistVideo artistVideo);
         bool DeleteArtistVideo(ArtistVideo artistVideo);
 
+        //Area
+        Area FindAreaById(int id);
+        Area FindAreaByName(string name);
+        IList<Area> FindAllAreas();
+
+        bool InsertArea(Area area);
+        bool UpdateArea(Area area);
+        bool DeleteArea(Area area);
+
         // Venue
         Venue FindVenueById(int id);
+        IEnumerable<Venue> FindVenuesByAreaId(int areaId);
         IEnumerable<Venue> FindAllVenues();
 
         bool InsertVenue(Venue venue);
