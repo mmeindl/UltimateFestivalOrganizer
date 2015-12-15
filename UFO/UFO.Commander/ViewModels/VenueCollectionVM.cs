@@ -91,7 +91,7 @@ namespace UFO.Commander.ViewModels
 
             foreach (Venue venue in venues)
             {
-                Venues.Add(new VenueVM(venue, currentArea.Area, server));
+                Venues.Add(new VenueVM(venue, currentArea.Area, this, server));
             }
 
             if (Venues.Count > 0)

@@ -34,7 +34,7 @@ namespace UFO.Commander.Views.Controls
         }
         private void AddArtist(object sender, RoutedEventArgs e)
         {
-            ArtistCollectionVM artistCollection = ((FrameworkElement)sender).DataContext as ArtistCollectionVM;
+            ArtistCollectionVM artistCollectionVM = ((FrameworkElement)sender).DataContext as ArtistCollectionVM;
 
             string name = txtArtistnameNew.Text;
             Category category = (Category)cmbCategoryNew.SelectedItem;
@@ -61,9 +61,9 @@ namespace UFO.Commander.Views.Controls
             if (success)
             {
                 artist = server.FindArtistByName(artist.Name);
-                ArtistVM artistVM = new ArtistVM(artist, category, country, artistCollection, server);
-                artistCollection.Artists.Add(artistVM);
-                artistCollection.CurrentArtist = artistVM;
+                ArtistVM artistVM = new ArtistVM(artist, category, country, artistCollectionVM, server);
+                artistCollectionVM.Artists.Add(artistVM);
+                artistCollectionVM.CurrentArtist = artistVM;
                 dgArtists.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                 dgArtists.ScrollIntoView(artistVM);
             }

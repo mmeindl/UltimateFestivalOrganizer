@@ -49,6 +49,7 @@ namespace UFO.Server
 
         // Venue
         Venue FindVenueById(int id);
+        Venue FindVenueByName(string name);
         IEnumerable<Venue> FindVenuesByAreaId(int areaId);
         IEnumerable<Venue> FindAllVenues();
 
