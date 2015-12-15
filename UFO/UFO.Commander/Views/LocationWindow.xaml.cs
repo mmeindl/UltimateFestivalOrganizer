@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Globalization;
+using Microsoft.Maps.MapControl.WPF;
+using Microsoft.Maps.MapControl.WPF.Design;
 
 namespace UFO.Commander.Views
 {
@@ -22,6 +15,28 @@ namespace UFO.Commander.Views
         public LocationWindow()
         {
             InitializeComponent();
+            myMap.Focus();
+            myMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
+        }
+
+        private void viewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
+        {
+            Map map = sender as Map;
+            if (map != null)
+            {
+                Location mapCenter = map.Center;
+
+                txtLatitude.Text = string.Format(CultureInfo.InvariantCulture,
+                  "{0:F5}", mapCenter.Latitude);
+                txtLongitude.Text = string.Format(CultureInfo.InvariantCulture,
+                    "{0:F5}", mapCenter.Longitude);
+            }
+        }
+
+        private void PutLocation(object sender, RoutedEventArgs e)
+        {
+            decimal longitude = Convert.ToDecimal(txtLongitude.Text);
+            decimal latitude = Convert.ToDecimal(txtLatitude.Text);
         }
     }
 }

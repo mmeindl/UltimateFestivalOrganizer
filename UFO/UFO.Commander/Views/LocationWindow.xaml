@@ -6,27 +6,60 @@
         xmlns:local="clr-namespace:UFO.Commander.Views"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
         mc:Ignorable="d"
-        Title="LocationWindow" Height="768" Width="1024">      
+        Title="LocationWindow" Height="768" Width="1024">
 
-        <Grid x:Name="LayoutRoot" Background="White">
+    <Grid x:Name="LayoutRoot" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
 
 
         <m:Map x:Name="myMap" CredentialsProvider="oagiQf9d32qhYa3dc8bV~-i0zOz80T7QFixsUNCsevA~AmrLHYKIpj4nRcoWmahCnnK_wxuyRpXI8YKIHMiHkpcDgYxnmk6lj6CdB9RwgBal" 
-               Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Padding="5"
-               Center="48.000000, 14.000000" ZoomLevel="8.000" AnimationLevel="None" Mode="AerialWithLabels"/>
+                   Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Padding="5"
+                   Center="48.305700, 14.286500" ZoomLevel="19.000" AnimationLevel="None" Mode="AerialWithLabels"/>
+
+        <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Background="LightGray">
             
-            <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center">
-                <TextBlock Text="Latitude: " Padding="5" Foreground="White"/>
-                <TextBox x:Name="txtLatitude" Text="" IsReadOnly="True" Background="LightGray"/>
-                <TextBlock Text="Longitude: " Padding="5" Foreground="White" />
-                <TextBox x:Name="txtLongitude" Text="" IsReadOnly="True" Background="LightGray"/>
-            </StackPanel>
-        </Grid>
+            <TextBlock
+                Text="Latitude: "
+                Padding="5" 
+                Foreground="Black" 
+                FontSize="14pt"/>
+            <TextBox 
+                x:Name="txtLatitude" 
+                Text="48.305700" 
+                Padding="2"
+                Margin="5"
+                IsReadOnly="True" 
+                Background="White" 
+                Width="200px" 
+                VerticalAlignment="Center"/>
+            <TextBlock 
+                Text="Longitude: " 
+                Padding="5" 
+                Foreground="Black"  
+                FontSize="14pt"/>
+            <TextBox 
+                x:Name="txtLongitude" 
+                Text="14.286500" 
+                Padding="2"
+                Margin="5"
+                IsReadOnly="True" 
+                Background="White" 
+                Width="200px" 
+                VerticalAlignment="Center"/>
+            <Button Padding="2" Margin="5" Click="PutLocation" Background="Green">
+                <TextBlock Foreground="White" FontSize="14pt" Text="Übernehmen"/>
+                
+            </Button>
+                
+        </StackPanel>
+        <StackPanel Margin="260">
+            <Image Name="ImageViewer1" Height="80" Width="80" Source="Icons/pin.png"/>
+        </StackPanel>
+
+
+    </Grid>
 </Window>

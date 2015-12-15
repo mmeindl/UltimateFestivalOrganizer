@@ -136,7 +136,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Icons\" />
+    <Resource Include="Views\Icons\pin.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Controls\VenueTab.xaml">

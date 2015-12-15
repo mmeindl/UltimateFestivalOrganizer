@@ -133,7 +133,10 @@ namespace UFO.Commander.Views.Controls
 
         private void ShowMap(object sender, RoutedEventArgs e)
         {
-
+            Object dc = this.DataContext;
+            LocationWindow locationWindow = new LocationWindow();
+            locationWindow.DataContext = dc;
+            locationWindow.Show();
         }
     }
 }
