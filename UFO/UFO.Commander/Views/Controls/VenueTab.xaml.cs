@@ -72,7 +72,6 @@ namespace UFO.Commander.Views.Controls
                     areaVM.VenueCollectionVM.CurrentArea = currentArea;
                     dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
                     dgAreas.ScrollIntoView(currentArea);
-                    server.DeleteArea(areaVM.Area);
                 }
             }
             catch (Exception exc)
@@ -106,6 +105,10 @@ namespace UFO.Commander.Views.Controls
         }
 
 
+        private void UpdateVenue(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void RemoveVenue(object sender, RoutedEventArgs e)
         {
@@ -134,6 +137,12 @@ namespace UFO.Commander.Views.Controls
         private void ShowMap(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SetFocus(object sender, RoutedEventArgs e)
+        {
+            //((DataGrid)sender).MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            //((DataGrid)sender).ScrollIntoView()
         }
     }
 }
