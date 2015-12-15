@@ -180,6 +180,13 @@ namespace UFO.Server
             throw new NotImplementedException();
         }
 
+        public Venue FindVenueByName(string name)
+        {
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.FindByName(name);
+        }
+
         public IEnumerable<Venue> FindVenuesByAreaId(int areaId)
         {
             IVenueDao venueDao = DalFactory.CreateVenueDao(database);

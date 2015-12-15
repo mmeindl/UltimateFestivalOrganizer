@@ -18,6 +18,11 @@ namespace UFO.Dal.SqlServer
                 FROM Venue
                 WHERE Venue.id = @id";
 
+        const string SQL_FIND_BY_NAME =
+            @"SELECT *
+                FROM Venue
+                WHERE Venue.name = @name";
+
         const string SQL_FIND_BY_AREAID =
             @"SELECT *
                 FROM Venue
@@ -54,6 +59,36 @@ namespace UFO.Dal.SqlServer
         public Venue FindById(int id)
         {
             using (DbCommand command = CreateFindByIdCommand(id))
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                if (reader.Read())
+                {
+                    return new Venue(
+                        (int)reader["Id"],
+                        (string)reader["name"],
+                        (string)reader["shortName"],
+                        (decimal)reader["geoLocationLat"],
+                        (decimal)reader["geoLocationLon"],
+                        (int)reader["areaId"]
+                        );
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        private DbCommand CreateFindByNameCommand(string name)
+        {
+            DbCommand findByNameCommand = database.CreateCommand(SQL_FIND_BY_NAME);
+            database.DefineParameter(findByNameCommand, "name", DbType.Int32, name);
+            return findByNameCommand;
+        }
+
+        public Venue FindByName(string name)
+        {
+            using (DbCommand command = CreateFindByNameCommand(name))
             using (IDataReader reader = database.ExecuteReader(command))
             {
                 if (reader.Read())
