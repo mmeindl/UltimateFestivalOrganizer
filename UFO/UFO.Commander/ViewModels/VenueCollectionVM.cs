@@ -33,15 +33,6 @@ namespace UFO.Commander.ViewModels
             {
                 CurrentArea = Areas[0];
                 LoadVenues();
-
-                if (Venues.Count > 0)
-                {
-                    CurrentVenue = Venues[0];
-                }
-                else
-                {
-                    currentVenue = null;
-                }
             }
             else
             {
@@ -72,6 +63,11 @@ namespace UFO.Commander.ViewModels
                 {
                     currentArea = value;
 
+                    if (currentArea != null)
+                    {
+                        LoadVenues();
+                    }
+                    
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentArea)));
                 }
             }
@@ -95,7 +91,16 @@ namespace UFO.Commander.ViewModels
 
             foreach (Venue venue in venues)
             {
-                Venues.Add(new VenueVM(venue, currentArea.Area, server));
+                Venues.Add(new VenueVM(venue, currentArea.Area, this, server));
+            }
+
+            if (Venues.Count > 0)
+            {
+                CurrentVenue = Venues[0];
+            }
+            else
+            {
+                currentVenue = null;
             }
         }
     }

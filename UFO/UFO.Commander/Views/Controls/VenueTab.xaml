@@ -14,15 +14,23 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="9*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="0"
+
+            <TextBlock Grid.Row="0"
+                       Text="Areas"
+                       FontSize="20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <DataGrid Grid.Row="1"
                       Name="dgAreas"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
@@ -32,7 +40,7 @@
                       SelectedItem="{Binding Path=CurrentArea, Mode=TwoWay}">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Area" 
+                    <DataGridTextColumn Header="Name" 
                                         Binding="{Binding Path=Name}"
                                         Width="*"  />
 
@@ -49,7 +57,8 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Grid Grid.Row="1">
+            <Border Grid.Row="2" BorderThickness="1" BorderBrush="LightGray" />
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
@@ -83,43 +92,171 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="9*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="*"  />
             </Grid.RowDefinitions>
-            <DataGrid Grid.Row="0"
-                            Name="dgVenues"
-                            AutoGenerateColumns="False"
-                            SelectionMode="Single"
-                            IsReadOnly="True"
-                            FontSize="14"
-                            ItemsSource="{Binding Path=Venues}"
-                            SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" 
-                                            Binding="{Binding Path=Name}"
-                                            Width="*" />
-                    <DataGridTextColumn Header="Shortname" 
-                                            Binding="{Binding Path=ShortName}"
-                                            Width="*"  />
-                    <DataGridTextColumn Header="Latitude" 
-                                            Binding="{Binding Path=GeoLocationLat}"
-                                            Width="*"  />
-                    <DataGridTextColumn Header="Longitude" 
-                                            Binding="{Binding Path=GeoLocationLon}"
-                                            Width="*"  />
 
-                    <DataGridTemplateColumn Width="30">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Button Content="X"
-                                                Click="RemoveVenue"/>
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="Venues"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+
+                    <DataGrid Grid.Row="1"
+                                    Name="dgVenues"
+                                    AutoGenerateColumns="False"
+                                    SelectionMode="Single"
+                                    IsReadOnly="True"
+                                    FontSize="14"
+                                    SourceUpdated="SetFocus"
+                                    ItemsSource="{Binding Path=Venues}"
+                                    SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Path=Name}"
+                                                    Width="*" />
+                            <DataGridTextColumn Header="Shortname" 
+                                                    Binding="{Binding Path=ShortName}"
+                                                    Width="*"  />
+                            <DataGridTemplateColumn Width="30">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Button Content="X"
+                                                        Click="RemoveVenue"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                           Text="Venue Details"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" 
+                            Grid.Row="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Name="lblVenueName"
+                            Text="Name"
+                            Margin="5,0"/>
+
+                        <TextBox Grid.Column="1" 
+                            Grid.Row="0"
+                            Text="{Binding CurrentVenue.Name}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="txtVenueName" />
+
+                        <TextBlock Grid.Column="0" 
+                            Grid.Row="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Name="lblShortName"
+                            Text="Shortname"
+                            Margin="5,0"/>
+
+                        <TextBox Grid.Column="1"
+                            Grid.Row="1"
+                            Text="{Binding CurrentVenue.ShortName}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="txtShortName" />
+
+                        <TextBlock Grid.Column="0" 
+                                Grid.Row="2"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Name="lblGeoLat"
+                                Text="Latitude"
+                                Margin="5,0"/>
+
+                        <TextBox Grid.Column="1"
+                                Grid.Row="2"
+                                Text="{Binding CurrentVenue.GeoLocationLat}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"  
+                                VerticalContentAlignment="Center"
+                                Height="30"
+                                Name="txtGeoLat" />
+
+                        <TextBlock Grid.Column="0" 
+                                Grid.Row="3"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Name="lblLongitude"
+                                Text="Longitude"
+                                Margin="5,0"/>
+
+                        <TextBox Grid.Column="1"
+                                Grid.Row="3"
+                                Text="{Binding CurrentVenue.GeoLocationLon}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"  
+                                VerticalContentAlignment="Center"
+                                Height="30"
+                                Name="txtGeoLon" />
+                    </Grid>
+                    <Button Grid.Row="2"
+                        Height="30"
+                        Width="100"
+                        Click="ShowMap"
+                        DataContext="{Binding}">
+                        <TextBlock Text="Map"/>
+                    </Button>
+
+                    <Button Grid.Row="3"
+                        Height="30"
+                        Width="100"
+                        Click="UpdateVenue"
+                        DataContext="{Binding}">
+                        <TextBlock Text="Save changes"/>
+                    </Button>
+                </Grid>
+
+            </Grid>
+            <Border Grid.Row="1" BorderThickness="1" BorderBrush="LightGray" />
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -133,81 +270,81 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblVenueNameNew"
-                           Text="Name"
-                           Margin="5,0"/>
 
-                <TextBox Grid.Column="1"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtVenueNameNew" />
+                <TextBlock Grid.Column="0" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Name="lblVenueNameNew"
+                               Text="Name"
+                               Margin="5,0"/>
+
+                <TextBox Grid.Column="1" 
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"  
+                             VerticalContentAlignment="Center"
+                             Height="30"
+                             Name="txtVenueNameNew" />
 
                 <TextBlock Grid.Column="2" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblShortNameNew"
-                           Text="Shortname"
-                           Margin="5,0"/>
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Name="lblShortNameNew"
+                               Text="Shortname"
+                               Margin="5,0"/>
 
-                <TextBox Grid.Column="3"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtShortNameNew" />
+                <TextBox Grid.Column="3" 
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"  
+                             VerticalContentAlignment="Center"
+                             Height="30"
+                             Name="txtShortNameNew" />
 
-                <TextBlock Grid.Column="4" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblGeoLatNew"
-                           Text="Latitude"
-                           Margin="5,0"/>
+                <TextBlock Grid.Column="4"  
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Name="lblGeoLatNew"
+                               Text="Latitude"
+                               Margin="5,0"/>
 
                 <TextBox Grid.Column="5"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtGeoLatNew" />
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"  
+                             VerticalContentAlignment="Center"
+                             Height="30"
+                             Name="txtGeoLatNew" />
 
                 <TextBlock Grid.Column="6" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblLongitudeNew"
-                           Text="Longitude"
-                           Margin="5,0"/>
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Name="lblLongitudeNew"
+                               Text="Longitude"
+                               Margin="5,0"/>
 
                 <TextBox Grid.Column="7"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtGeoLonNew" />
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Center"  
+                             VerticalContentAlignment="Center"
+                             Height="30"
+                             Name="txtGeoLonNew" />
 
                 <Button Grid.Column="8"
-                        Width="100"
-                        Height="30"
-                        Click="ShowMap"
-                        Margin="5,0" 
-                        DataContext="{Binding}">
+                            Height="30"
+                            Width="100"
+                            Click="ShowMap"
+                            Margin="5,0" 
+                            DataContext="{Binding}">
                     <TextBlock Text="Map"/>
                 </Button>
-                
+
                 <Button Grid.Column="9"
-                        Width="100"
-                        Height="30"
-                        Click="AddVenue"
-                        Margin="5,0" 
-                        DataContext="{Binding}">
+                            Height="30"
+                            Width="100"
+                            Click="AddVenue"
+                            Margin="0,0,5,0" 
+                            DataContext="{Binding}">
                     <TextBlock Text="Add Venue"/>
                 </Button>
             </Grid>
         </Grid>
-
     </Grid>
 </UserControl>
