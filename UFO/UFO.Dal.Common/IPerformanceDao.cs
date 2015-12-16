@@ -17,6 +17,8 @@ namespace UFO.Dal.Common
         IList<Performance> FindAllByVenueId(int venueId);
         IList<Performance> FindAllInFutureByArtistId(int artistId);
 
+        IList<DateTime> GetPerformanceDates();
+
         bool Insert(Performance performance);
         bool Update(Performance performance);
         bool Delete(Performance performance);
