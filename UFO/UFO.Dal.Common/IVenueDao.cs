@@ -16,5 +16,6 @@ namespace UFO.Dal.Common
 
         bool Insert(Venue venue);
         bool Update(Venue venue);
+        bool Delete(Venue venue);
     }
 }
