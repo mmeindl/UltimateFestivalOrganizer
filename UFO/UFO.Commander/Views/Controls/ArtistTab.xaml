@@ -170,7 +170,7 @@
                             Height="30"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Click="SaveChanges"
+                            Click="UpdateArtist"
                             DataContext="{Binding Path=CurrentArtist}">
                         <TextBlock Text="Save Changes"/>
                     </Button>

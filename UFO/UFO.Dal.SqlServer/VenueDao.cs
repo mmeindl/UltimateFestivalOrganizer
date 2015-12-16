@@ -39,7 +39,11 @@ namespace UFO.Dal.SqlServer
         const string SQL_UPDATE =
             @"UPDATE Venue
             SET Name = @name, ShortName = @shortName, GeoLocationLat = @GeoLocationLat, GeoLocationLon = @geoLocationLon, AreaId = @areaId
-            WHERE Id = @id";
+                WHERE Venue.Id = @id";
+
+        const string SQL_DELETE =
+            @"DELETE FROM Venue
+                WHERE Venue.Id = @id";
 
 
         private IDatabase database;
@@ -64,12 +68,12 @@ namespace UFO.Dal.SqlServer
                 if (reader.Read())
                 {
                     return new Venue(
-                        (int)reader["Id"],
+                        (int)reader["areaId"],
                         (string)reader["name"],
                         (string)reader["shortName"],
                         (decimal)reader["geoLocationLat"],
                         (decimal)reader["geoLocationLon"],
-                        (int)reader["areaId"]
+                        (int)reader["Id"]
                         );
                 }
                 else
@@ -94,12 +98,12 @@ namespace UFO.Dal.SqlServer
                 if (reader.Read())
                 {
                     return new Venue(
-                        (int)reader["Id"],
+                        (int)reader["areaId"],
                         (string)reader["name"],
                         (string)reader["shortName"],
                         (decimal)reader["geoLocationLat"],
                         (decimal)reader["geoLocationLon"],
-                        (int)reader["areaId"]
+                        (int)reader["Id"]
                         );
                 }
                 else
@@ -124,12 +128,12 @@ namespace UFO.Dal.SqlServer
                 IList<Venue> result = new List<Venue>();
                 while (reader.Read())
                     result.Add(new Venue(
-                        (int)reader["Id"],
+                        (int)reader["areaId"],
                         (string)reader["name"],
                         (string)reader["shortName"],
                         (decimal)reader["geoLocationLat"],
                         (decimal)reader["geoLocationLon"],
-                        (int)reader["areaId"])
+                        (int)reader["Id"])
                     );
                 return result;
             }
@@ -148,12 +152,12 @@ namespace UFO.Dal.SqlServer
                 IList<Venue> result = new List<Venue>();
                 while (reader.Read())
                     result.Add(new Venue(
-                        (int)reader["Id"],
+                        (int)reader["areaId"],
                         (string)reader["name"],
                         (string)reader["shortName"],
                         (decimal)reader["geoLocationLat"],
                         (decimal)reader["geoLocationLon"],
-                        (int)reader["areaId"])
+                        (int)reader["Id"])
                     );
                 return result;
             }
@@ -198,5 +202,20 @@ namespace UFO.Dal.SqlServer
             }
         }
 
+        private DbCommand CreateDeleteCommand(int id)
+        {
+            DbCommand deleteCommand = database.CreateCommand(SQL_DELETE);
+            database.DefineParameter(deleteCommand, "id", DbType.Int32, id);
+
+            return deleteCommand;
+        }
+
+        public bool Delete(Venue venue)
+        {
+            using (DbCommand command = CreateDeleteCommand(venue.Id))
+            {
+                return database.ExecuteNonQuery(command) == 1;
+            }
+        }
     }
 }

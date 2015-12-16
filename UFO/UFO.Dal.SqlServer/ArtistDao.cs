@@ -195,9 +195,6 @@ namespace UFO.Dal.SqlServer
             }
 
             return result;
-
-            
         }
-
     }
 }
