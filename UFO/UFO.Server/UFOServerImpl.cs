@@ -114,7 +114,9 @@ namespace UFO.Server
 
         public Artist FindArtistById(int artistId)
         {
-            throw new NotImplementedException();
+            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+
+            return artistDao.FindById(artistId);
         }
 
         public void InformAllArtists()
@@ -154,6 +156,20 @@ namespace UFO.Server
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Performance> FindPerformancesByDate(DateTime date)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.FindAllByDate(date);
+        }
+
+        public IEnumerable<DateTime> GetPerformanceDates()
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.GetPerformanceDates();
+        }
+
         public bool InsertPerformance(Performance performance)
         {
             throw new NotImplementedException();
@@ -172,7 +188,9 @@ namespace UFO.Server
         // Venue
         public IEnumerable<Venue> FindAllVenues()
         {
-            throw new NotImplementedException();
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.FindAll();
         }
 
         public Venue FindVenueById(int id)

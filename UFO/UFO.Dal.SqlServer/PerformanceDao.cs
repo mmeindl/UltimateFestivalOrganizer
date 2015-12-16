@@ -34,18 +34,23 @@ namespace UFO.Dal.SqlServer
         const string SQL_FIND_ALL_BY_ARTISTID =
             @"SELECT *
                 FROM Performance
-                WHERE ArtistId = @artistId";
+                WHERE Performance.ArtistId = @artistId";
 
         const string SQL_FIND_ALL_BY_VENUEID =
             @"SELECT *
                 FROM Performance
-                WHERE VenueId = @venueId";
+                WHERE Performance.VenueId = @venueId";
 
         const string SQL_FIND_ALL_IN_FUTURE_BY_ARTIST_ID =
             @"SELECT *
                 FROM Performance
                 WHERE DATEDIFF(MI ,GETDATE(), dateTime) > 0
-                AND ArtistId = @id";
+                AND Performance.ArtistId = @id";
+
+        const string SQL_GET_PERFORMANCE_DATES =
+            @"SELECT CONVERT(DATE, Performance.DateTime) AS DateTime
+                FROM Performance
+                GROUP BY CONVERT(DATE, Performance.DateTime)";
 
         const string SQL_INSERT =
             @"INSERT INTO Performance
@@ -234,6 +239,24 @@ namespace UFO.Dal.SqlServer
                         (int)reader["venueId"],
                         (int)reader["artistId"],
                         (int)reader["Id"])
+                    );
+                return result;
+            }
+        }
+
+        private DbCommand GetPerformanceDatesCommand()
+        {
+            return database.CreateCommand(SQL_GET_PERFORMANCE_DATES);
+        }
+
+        public IList<DateTime> GetPerformanceDates()
+        {
+            using (DbCommand command = GetPerformanceDatesCommand())
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                IList<DateTime> result = new List<DateTime>();
+                while (reader.Read())
+                    result.Add((DateTime)reader["dateTime"]
                     );
                 return result;
             }

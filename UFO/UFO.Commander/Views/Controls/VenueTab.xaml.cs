@@ -30,8 +30,8 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
-            DataContext = new VenueCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            //DataContext = new VenueCollectionVM(
+            //    UFOServerFactory.GetUFOServer());
         }
 
         private void AddArea(object sender, RoutedEventArgs e)

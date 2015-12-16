@@ -62,6 +62,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\PerformanceVM.cs" />
+    <Compile Include="ViewModels\PerformanceCollectionVM.cs" />
     <Compile Include="ViewModels\VenueCollectionVM.cs" />
     <Compile Include="ViewModels\ArtistCollectionVM.cs" />
     <Compile Include="ViewModels\ArtistVideoVM.cs" />

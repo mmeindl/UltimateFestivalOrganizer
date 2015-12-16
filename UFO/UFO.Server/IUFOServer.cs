@@ -73,6 +73,9 @@ namespace UFO.Server
         //Performance
         Performance FindPerformanceById(int id);
         IEnumerable<Performance> FindAllPerformances();
+        IEnumerable<Performance> FindPerformancesByDate(DateTime date);
+
+        IEnumerable<DateTime> GetPerformanceDates();
 
         bool InsertPerformance(Performance performance);
         bool UpdatePerformance(Performance performance);

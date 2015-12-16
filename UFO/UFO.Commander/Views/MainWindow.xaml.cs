@@ -26,5 +26,24 @@ namespace UFO.Commander.Views
             InitializeComponent();
             
         }
+
+        private void performances_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new PerformanceCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
+        private void artists_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new ArtistCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
+        private void venues_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            DataContext = new VenueCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
     }
 }
