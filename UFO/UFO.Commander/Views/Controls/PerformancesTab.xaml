@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UFO.Commander.Views.Controls"
         xmlns:vm="clr-namespace:UFO.Commander.ViewModels"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance vm:ArtistCollectionVM, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance vm:PerformanceCollectionVM, IsDesignTimeCreatable=True}"
         Height="auto" Width="auto">
 
 
@@ -18,27 +18,66 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
-            
-            <ComboBox ItemsSource="{Binding}"
+
+            <ComboBox ItemsSource="{Binding Path=performanceDays}"
+                      SelectedItem="{Binding Path=CurrentDate, Mode=TwoWay}"
                       Grid.Column="0" 
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
                       Margin="10, 0, 0, 0"
-                      Height="20"
+                      Height="30"
                       Name="cmbPerformanceDay"/>
 
-            <ComboBox ItemsSource="{Binding}"
+            <ComboBox ItemsSource="{Binding Path=areas}"
+                      SelectedItem="{Binding Path=CurrentArea, Mode=TwoWay}"
+                      DisplayMemberPath="Name"
                       Grid.Column="1"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
                       Margin="10, 0, 0, 0"
-                      Height="20"
+                      Height="30"
                       Name="cmbPerformanceVenue"/>
         </Grid>
+
+        <!--<DataGrid Grid.Row="1"
+                            Name="dgPerformances"
+                            AutoGenerateColumns="False"
+                            SelectionMode="Single"
+                            IsReadOnly="True"
+                            FontSize="14"
+                            ItemsSource="{Binding}"
+                            SelectedItem="{Binding Path=CurrentPerformance, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" Header="Venue">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBox Text="{Binding Path=venues.Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="14 - 15" 
+                                            Binding="{Binding Path=Performances14}"
+                                            Width="*" />
+
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Content="X"
+                                        Click="RemovePerformance"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>-->
     </Grid>
 </UserControl>

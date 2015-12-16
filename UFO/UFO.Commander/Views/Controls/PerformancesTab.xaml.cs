@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UFO.Commander.ViewModels;
+using UFO.Server;
 
 namespace UFO.Commander.Views.Controls
 {
@@ -19,9 +21,38 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class PerformancesTab : UserControl
     {
+        IUFOServer server;
+
         public PerformancesTab()
         {
+            server = UFOServerFactory.GetUFOServer();
+
             InitializeComponent();
+            DataContext = new PerformanceCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
+        private void RemovePerformance(object sender, RoutedEventArgs e)
+        {
+            //AreaVM areaVM = ((FrameworkElement)sender).DataContext as AreaVM;
+
+            //try
+            //{
+            //    bool success = server.DeleteArea(areaVM.Area);
+
+            //    if (success)
+            //    {
+            //        areaVM.VenueCollectionVM.Areas.Remove(areaVM);
+            //        AreaVM currentArea = areaVM.VenueCollectionVM.Areas[0];
+            //        areaVM.VenueCollectionVM.CurrentArea = currentArea;
+            //        dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+            //        dgAreas.ScrollIntoView(currentArea);
+            //    }
+            //}
+            //catch (Exception exc)
+            //{
+            //    // Inform User
+            //}
         }
     }
 }

@@ -9,8 +9,6 @@
         d:DataContext="{d:DesignInstance vm:VenueCollectionVM, IsDesignTimeCreatable=True}"
         Height="auto" Width="auto">
 
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -179,7 +177,7 @@
 
                         <TextBox Grid.Column="1" 
                             Grid.Row="0"
-                            Text="{Binding CurrentVenue.Name}"
+                            Text="{Binding CurrentVenue.Name, Mode=OneWay}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"  
                             VerticalContentAlignment="Center"
@@ -196,7 +194,7 @@
 
                         <TextBox Grid.Column="1"
                             Grid.Row="1"
-                            Text="{Binding CurrentVenue.ShortName}"
+                            Text="{Binding CurrentVenue.ShortName, Mode=OneWay}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"  
                             VerticalContentAlignment="Center"
@@ -213,7 +211,7 @@
 
                         <TextBox Grid.Column="1"
                                 Grid.Row="2"
-                                Text="{Binding CurrentVenue.GeoLocationLat}"
+                                Text="{Binding CurrentVenue.GeoLocationLat, Mode=OneWay}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
                                 VerticalContentAlignment="Center"
@@ -230,7 +228,7 @@
 
                         <TextBox Grid.Column="1"
                                 Grid.Row="3"
-                                Text="{Binding CurrentVenue.GeoLocationLon}"
+                                Text="{Binding CurrentVenue.GeoLocationLon, Mode=OneWay}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
                                 VerticalContentAlignment="Center"
