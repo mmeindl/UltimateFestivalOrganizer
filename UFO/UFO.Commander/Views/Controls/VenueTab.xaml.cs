@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,9 +84,6 @@ namespace UFO.Commander.Views.Controls
         private void AddVenue(object sender, RoutedEventArgs e)
         {
             VenueCollectionVM venueCollectionVM = ((FrameworkElement)sender).DataContext as VenueCollectionVM;
-
-            
-
             Venue venue = new Venue();
 
             bool success = false;
@@ -93,13 +91,14 @@ namespace UFO.Commander.Views.Controls
             {
                 string name = txtVenueNameNew.Text;
                 string shortName = txtShortNameNew.Text;
-                decimal geoLat = Decimal.Parse(txtGeoLatNew.Text);
-                decimal geoLon = Decimal.Parse(txtGeoLonNew.Text);
+                decimal geoLat = decimal.Parse(txtGeoLatNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                decimal geoLon = decimal.Parse(txtGeoLonNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
                 venue.Name = name;
                 venue.ShortName = shortName;
                 venue.GeoLocationLat = geoLat;
                 venue.GeoLocationLon = geoLon;
+                venue.AreaId = venueCollectionVM.CurrentArea.Id;
 
                 success = server.InsertVenue(venue);
             }
@@ -116,32 +115,71 @@ namespace UFO.Commander.Views.Controls
                 venueCollectionVM.CurrentVenue = venueVM;
                 dgVenues.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                 dgVenues.ScrollIntoView(venueVM);
+
+                txtVenueNameNew.Clear();
+                txtShortNameNew.Clear();
+                txtGeoLatNew.Clear();
+                txtGeoLonNew.Clear();
             }
         }
 
 
         private void UpdateVenue(object sender, RoutedEventArgs e)
         {
+            VenueCollectionVM venueCollectionVM = ((FrameworkElement)sender).DataContext as VenueCollectionVM;
+            VenueVM venueVM = venueCollectionVM.CurrentVenue;
 
+            string oldName = venueVM.Name;
+            string oldShortName = venueVM.ShortName;
+            decimal oldGeoLat = venueVM.GeoLocationLat;
+            decimal oldGeoLon = venueVM.GeoLocationLon;
+
+            bool success = false;
+            try
+            {
+                string name = txtVenueName.Text;
+                string shortName = txtShortName.Text;
+                decimal geoLat = decimal.Parse(txtGeoLat.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                decimal geoLon = decimal.Parse(txtGeoLon.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+
+                venueVM.Name = name;
+                venueVM.ShortName = shortName;
+                venueVM.GeoLocationLat = geoLat;
+                venueVM.GeoLocationLon = geoLon;
+
+                success = server.UpdateVenue(venueVM.Venue);
+            }
+            catch (Exception exc)
+            {
+                // TODO User hinweisen
+            }
+
+            if (!success)
+            {
+                venueVM.Name = oldName;
+                venueVM.ShortName = oldShortName;
+                venueVM.GeoLocationLat = oldGeoLat;
+                venueVM.GeoLocationLon = oldGeoLon;
+            }
         }
 
         private void RemoveVenue(object sender, RoutedEventArgs e)
         {
             VenueVM venueVM = ((FrameworkElement)sender).DataContext as VenueVM;
-
+            
             try
             {
-                //bool success = server.DeleteVenue(venueVM.Venue);
+                bool success = server.DeleteVenue(venueVM.Venue);
 
-                //if (success)
-                //{
-                    //areaVM.VenueCollectionVM.Areas.Remove(areaVM);
-                    //AreaVM currentArea = areaVM.VenueCollectionVM.Areas[0];
-                    //areaVM.VenueCollectionVM.CurrentArea = currentArea;
-                    //dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-                    //dgAreas.ScrollIntoView(currentArea);
-                    //server.DeleteArea(areaVM.Area);
-                //}
+                if (success)
+                {
+                    venueVM.VenueCollectionVM.Venues.Remove(venueVM);
+                    VenueVM currentVenue = venueVM.VenueCollectionVM.Venues[0];
+                    venueVM.VenueCollectionVM.CurrentVenue = currentVenue;
+                    dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+                    dgAreas.ScrollIntoView(currentVenue);
+                    server.DeleteVenue(venueVM.Venue);
+                }
             }
             catch (Exception exc)
             {
@@ -154,10 +192,5 @@ namespace UFO.Commander.Views.Controls
 
         }
 
-        private void SetFocus(object sender, RoutedEventArgs e)
-        {
-            //((DataGrid)sender).MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-            //((DataGrid)sender).ScrollIntoView()
-        }
     }
 }

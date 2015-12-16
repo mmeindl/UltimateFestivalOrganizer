@@ -55,6 +55,7 @@ namespace UFO.Server
 
         bool InsertVenue(Venue venue);
         bool UpdateVenue(Venue venue);
+        bool DeleteVenue(Venue venue);
 
         // User
         bool AuthenticateUser(string usernername, string password, IList<string> error);

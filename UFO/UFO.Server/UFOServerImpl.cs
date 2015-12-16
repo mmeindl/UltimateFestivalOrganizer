@@ -196,12 +196,23 @@ namespace UFO.Server
 
         public bool InsertVenue(Venue venue)
         {
-            throw new NotImplementedException();
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.Insert(venue);
         }
 
         public bool UpdateVenue(Venue venue)
         {
-            throw new NotImplementedException();
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.Update(venue);
+        }
+
+        public bool DeleteVenue(Venue venue)
+        {
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.Delete(venue);
         }
 
         // Area

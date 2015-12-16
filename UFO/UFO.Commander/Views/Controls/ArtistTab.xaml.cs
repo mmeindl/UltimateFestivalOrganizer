@@ -35,17 +35,17 @@ namespace UFO.Commander.Views.Controls
         private void AddArtist(object sender, RoutedEventArgs e)
         {
             ArtistCollectionVM artistCollectionVM = ((FrameworkElement)sender).DataContext as ArtistCollectionVM;
+            Artist artist = new Artist();
 
-            string name = txtArtistnameNew.Text;
             Category category = (Category)cmbCategoryNew.SelectedItem;
             Country country = (Country)cmbCountryNew.SelectedItem;
-            string email = txtEmailNew.Text;
-
-            Artist artist = new Artist();
 
             bool success = false;
             try
             {
+                string name = txtArtistnameNew.Text;
+                string email = txtEmailNew.Text;
+
                 artist.Name = name;
                 artist.CategoryId = category.Id;
                 artist.CountryId = country.Abbreviation;
@@ -85,26 +85,28 @@ namespace UFO.Commander.Views.Controls
         }
 
 
-        private void SaveChanges(object sender, RoutedEventArgs e)
+        private void UpdateArtist(object sender, RoutedEventArgs e)
         {
             ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
-            string newName = txtArtistname.Text;
-            string oldName = artist.Name;
-            Category newCategory = (Category)cmbCategory.SelectedItem;
-            Category oldCategory = artist.Category;
-            Country newCountry = (Country)cmbCountry.SelectedItem;
-            Country oldCountry = artist.Country;
-            string newEmail = txtEmail.Text;
-            string oldEmail = artist.Email;
 
-            artist.Name = newName;
-            artist.Category = newCategory;
-            artist.Country = newCountry;
-            artist.Email = newEmail;
+            string oldName = artist.Name;
+            Category oldCategory = artist.Category;
+            Country oldCountry = artist.Country;
+            string oldEmail = artist.Email;
 
             bool success = false;
             try
             {
+                string newName = txtArtistname.Text;
+                Category newCategory = (Category)cmbCategory.SelectedItem;
+                Country newCountry = (Country)cmbCountry.SelectedItem;
+                string newEmail = txtEmail.Text;
+
+                artist.Name = newName;
+                artist.Category = newCategory;
+                artist.Country = newCountry;
+                artist.Email = newEmail;
+
                 success = server.UpdateArtist(artist.Artist);
             }
             catch (Exception exc)

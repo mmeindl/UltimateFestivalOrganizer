@@ -118,7 +118,6 @@
                                     SelectionMode="Single"
                                     IsReadOnly="True"
                                     FontSize="14"
-                                    SourceUpdated="SetFocus"
                                     ItemsSource="{Binding Path=Venues}"
                                     SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
                         <DataGrid.Columns>
