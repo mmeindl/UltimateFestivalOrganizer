@@ -45,6 +45,35 @@ namespace UFO.Commander.ViewModels
 
                     if (currentArtist != null)
                     {
+                        if (CurrentArtist.ProfilePicture == null)
+                        {
+                            ArtistPicture pic = server.FindProfilePictureByArtistId(CurrentArtist.Id);
+                            
+
+                            if (pic == null)
+                            {
+                                CurrentArtist.ProfilePicture = null;
+                            }
+                            else
+                            {
+                                CurrentArtist.ProfilePicture = new ArtistPictureVM(pic, CurrentArtist, server);
+                            }
+                        }
+
+                        if (CurrentArtist.PromoVideo == null)
+                        {
+                            ArtistVideo vid = server.FindPromoVideoByArtistId(CurrentArtist.Id);
+
+                            if (vid == null)
+                            {
+                                CurrentArtist.PromoVideo = null;
+                            }
+                            else
+                            {
+                                CurrentArtist.PromoVideo = new ArtistVideoVM(vid, CurrentArtist, server);
+                            }
+                        }
+
                         if (CurrentArtist.Pictures.Count == 0)
                         {
                             currentArtist.LoadPictures();
