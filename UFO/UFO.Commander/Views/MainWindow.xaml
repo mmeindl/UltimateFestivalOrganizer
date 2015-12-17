@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UFO.Commander.Views"
         xmlns:controls="clr-namespace:UFO.Commander.Views.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="600" Height="600" MinWidth="1200" Width="1200">
+        Title="MainWindow" MinHeight="600" Height="750" MinWidth="1200" Width="1200">
     <Grid>
         <TabControl>
             <TabItem Header="Performances">

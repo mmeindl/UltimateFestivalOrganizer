@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UFO.Commander.Views.Controls"
         xmlns:vm="clr-namespace:UFO.Commander.ViewModels"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:VenueCollectionVM, IsDesignTimeCreatable=True}"
         Height="auto" Width="auto">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
@@ -63,37 +64,33 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" 
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Name="lblNameNew"
-                               Text="Name"
-                               Margin="5,0"/>
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Name="lblNameNew"
+                            Text="Name"
+                            Margin="5,0"/>
 
                 <TextBox Grid.Column="1"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"  
-                             VerticalContentAlignment="Center"
-                             Height="30"
-                             Name="txtNameNew" />
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"  
+                        VerticalContentAlignment="Center"
+                        Height="30"
+                        Name="txtNameNew" />
 
                 <Button Grid.Column="2"
-                            Width="100"
-                            Height="30"
-                            Click="AddArea"
-                            Margin="5,0" 
-                            DataContext="{Binding}">
+                    Width="100"
+                    Height="30"
+                    Click="AddArea"
+                    Margin="5,0" 
+                    DataContext="{Binding}">
                     <TextBlock Text="Add Area"/>
                 </Button>
             </Grid>
         </Grid>
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="9*" />
-                <RowDefinition Height="*"  />
-            </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -111,236 +108,270 @@
                                HorizontalAlignment="Center"/>
 
                     <DataGrid Grid.Row="1"
-                                    Name="dgVenues"
-                                    AutoGenerateColumns="False"
-                                    SelectionMode="Single"
-                                    IsReadOnly="True"
-                                    FontSize="14"
-                                    ItemsSource="{Binding Path=Venues}"
-                                    SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
+                            Name="dgVenues"
+                            AutoGenerateColumns="False"
+                            SelectionMode="Single"
+                            IsReadOnly="True"
+                            FontSize="14"
+                            ItemsSource="{Binding Path=Venues}"
+                            SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" 
-                                                    Binding="{Binding Path=Name}"
-                                                    Width="*" />
+                                                Binding="{Binding Path=Name}"
+                                                Width="*" />
                             <DataGridTextColumn Header="Shortname" 
-                                                    Binding="{Binding Path=ShortName}"
-                                                    Width="*"  />
+                                                Binding="{Binding Path=ShortName}"
+                                                Width="*"  />
                             <DataGridTemplateColumn Width="30">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <Button Content="X"
-                                                        Click="RemoveVenue"/>
+                                            <Button Content="X" Click="RemoveVenue"/>
                                         </Grid>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-
                 </Grid>
 
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="5*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="2*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"
-                           Text="Venue Details"
-                           FontSize="20"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"/>
-
-                    <Grid Grid.Row="1">
+                <StackPanel Grid.Column="1">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0" 
+                        <Button 
                             Grid.Row="0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Name="lblVenueName"
-                            Text="Name"
-                            Margin="5,0"/>
-
-                        <TextBox Grid.Column="1" 
-                            Grid.Row="0"
-                            Text="{Binding CurrentVenue.Name, Mode=OneWay}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"  
-                            VerticalContentAlignment="Center"
                             Height="30"
-                            Name="txtVenueName" />
+                            Margin="5,30,5,5"
+                            Click="CollapseEditVenueView">
+                            <TextBlock Text="Venue Details V"/>
+                        </Button>
 
-                        <TextBlock Grid.Column="0" 
-                            Grid.Row="1"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Name="lblShortName"
-                            Text="Shortname"
-                            Margin="5,0"/>
-
-                        <TextBox Grid.Column="1"
-                            Grid.Row="1"
-                            Text="{Binding CurrentVenue.ShortName, Mode=OneWay}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"  
-                            VerticalContentAlignment="Center"
-                            Height="30"
-                            Name="txtShortName" />
-
-                        <TextBlock Grid.Column="0" 
-                                Grid.Row="2"
-                                HorizontalAlignment="Right"
+                        <StackPanel Orientation="Vertical" Margin="15,0,15,0" Grid.Row="1" Name="editVenueView"  Visibility="Visible">
+                            <TextBlock
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Name="lblGeoLat"
-                                Text="Latitude"
-                                Margin="5,0"/>
+                                Name="lblVenueName"
+                                Text="Name:"
+                                FontWeight="Bold"
+                                Margin="5,5,0,5"/>
 
-                        <TextBox Grid.Column="1"
-                                Grid.Row="2"
-                                Text="{Binding CurrentVenue.GeoLocationLat, Mode=OneWay}"
+                            <TextBox 
+                                Text="{Binding CurrentVenue.Name, Mode=OneWay}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
                                 VerticalContentAlignment="Center"
                                 Height="30"
-                                Name="txtGeoLat" />
+                                Name="txtVenueName"
+                                TextChanged="txtVenueName_TextChanged"/>
 
-                        <TextBlock Grid.Column="0" 
-                                Grid.Row="3"
-                                HorizontalAlignment="Right"
+                            <TextBlock                             
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Name="lblLongitude"
-                                Text="Longitude"
-                                Margin="5,0"/>
+                                Name="lblShortName"
+                                Text="Abbreveation:"
+                                FontWeight="Bold"
+                                Margin="5,10,0,5"/>
 
-                        <TextBox Grid.Column="1"
-                                Grid.Row="3"
-                                Text="{Binding CurrentVenue.GeoLocationLon, Mode=OneWay}"
+                            <TextBox                             
+                                Text="{Binding CurrentVenue.ShortName, Mode=OneWay}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
                                 VerticalContentAlignment="Center"
                                 Height="30"
-                                Name="txtGeoLon" />
+                                Name="txtShortName" />
+
+                            <TextBlock                             
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Name="lblPosition"
+                                Text="Position:"
+                                FontWeight="Bold"
+                                Margin="5,10,0,5"/>
+                            <StackPanel Orientation="Vertical" Width="400" Margin="0,5" Name="editMapPane" Visibility="Collapsed">
+                                <m:Map 
+                                    x:Name="editMap"
+                                    CredentialsProvider="oagiQf9d32qhYa3dc8bV~-i0zOz80T7QFixsUNCsevA~AmrLHYKIpj4nRcoWmahCnnK_wxuyRpXI8YKIHMiHkpcDgYxnmk6lj6CdB9RwgBal"                                         
+                                    ZoomLevel="19.000" AnimationLevel="None" Mode="AerialWithLabels" Height="300">
+                                </m:Map>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox
+                                        Grid.Column="0"
+                                        Text=""
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"  
+                                        VerticalContentAlignment="Center"
+                                        Height="30"
+                                        Name="txtGeoLatEditMap" 
+                                        Margin="0,0,2,0"
+                                        />
+
+                                    <TextBox
+                                        Grid.Column="1"
+                                        Text=""
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"  
+                                        VerticalContentAlignment="Center"
+                                        Height="30"
+                                        Name="txtGeoLonEditMap"
+                                        Margin="2,0,2,0"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <Grid Name="editLocationGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox
+                                    Grid.Column="0"
+                                    Text="{Binding CurrentVenue.GeoLocationLat, Mode=OneWay}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"  
+                                    VerticalContentAlignment="Center"
+                                    Height="30"
+                                    Name="txtGeoLat" 
+                                    Margin="0,0,2,0"
+                                    />
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding CurrentVenue.GeoLocationLon, Mode=OneWay}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"  
+                                    VerticalContentAlignment="Center"
+                                    Height="30"
+                                    Name="txtGeoLon"
+                                    Margin="2,0,2,0"/>
+
+                                <Button
+                                    Grid.Column="2"
+                                    Height="30"
+                                    Click="ShowEditMap"
+                                    Margin="2,0,0,0"
+                                    DataContext="{Binding}">
+                                    <TextBlock Text="Map"/>
+                                </Button>
+                            </Grid>
+
+                            <Button
+                                Height="30"
+                                Width="100"
+                                Margin="0,10,30,5"
+                                Click="UpdateVenue"
+                                DataContext="{Binding}">
+                                <TextBlock Text="Save changes"/>
+                            </Button>
+                        </StackPanel>
+
+                        <Button 
+                            Grid.Row="2"
+                            Height="30"
+                            Margin="5,5,5,5"
+                            Click="CollapseNewVenueView">
+                            <TextBlock Text="NewVenue V"/>
+                        </Button>
+
+                        <StackPanel Orientation="Vertical" Margin="15,0,15,0" Grid.Row="3" Name="newVenueView"  Visibility="Collapsed">
+                            <TextBlock
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Name="lblVenueNameNew"
+                                Text="Name:"
+                                FontWeight="Bold"
+                                Margin="5,5,0,5"/>
+
+
+                            <TextBox Grid.Column="1" 
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"  
+                                 VerticalContentAlignment="Center"
+                                 Height="30"
+                                 Name="txtVenueNameNew" />
+
+                            <TextBlock                             
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Name="lblShortNameNew"
+                                Text="Abbreveation:"
+                                FontWeight="Bold"
+                                Margin="5,10,0,5"/>
+
+                            <TextBox 
+                                Grid.Column="3" 
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"  
+                                VerticalContentAlignment="Center"
+                                Height="30"
+                                Name="txtShortNameNew" />
+
+                            <TextBlock                             
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Name="lblPositionNew"
+                                Text="Position:"
+                                FontWeight="Bold"
+                                Margin="5,10,0,5"/>
+                            <StackPanel Orientation="Vertical" Width="400" Margin="0,5" Name="newMapPane" Visibility="Visible">
+                                <m:Map 
+                                    x:Name="newMap"
+                                    CredentialsProvider="oagiQf9d32qhYa3dc8bV~-i0zOz80T7QFixsUNCsevA~AmrLHYKIpj4nRcoWmahCnnK_wxuyRpXI8YKIHMiHkpcDgYxnmk6lj6CdB9RwgBal"                                         
+                                    ZoomLevel="19.000" Center="48.30582, 14.28639" AnimationLevel="None" Mode="AerialWithLabels" Height="300">
+                                </m:Map>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox
+                                        Grid.Column="0"
+                                        Text=""
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"  
+                                        VerticalContentAlignment="Center"
+                                        Height="30"
+                                        Name="txtGeoLatNew" 
+                                        Margin="0,0,2,0"
+                                        />
+
+                                    <TextBox
+                                        Grid.Column="1"
+                                        Text=""
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"  
+                                        VerticalContentAlignment="Center"
+                                        Height="30"
+                                        Name="txtGeoLonNew"
+                                        Margin="2,0,2,0"/>
+
+                                </Grid>
+                            </StackPanel>
+
+                            <Button
+                                Height="30"
+                                Width="100"
+                                Click="AddVenue"
+                                Margin="0,10,5,5"
+                                DataContext="{Binding}">
+                                <TextBlock Text="Add Venue"/>
+                            </Button>
+                        </StackPanel>
+
                     </Grid>
-                    <Button Grid.Row="2"
-                        Height="30"
-                        Width="100"
-                        Click="ShowMap"
-                        DataContext="{Binding}">
-                        <TextBlock Text="Map"/>
-                    </Button>
-
-                    <Button Grid.Row="3"
-                        Height="30"
-                        Width="100"
-                        Click="UpdateVenue"
-                        DataContext="{Binding}">
-                        <TextBlock Text="Save changes"/>
-                    </Button>
-                </Grid>
-
-            </Grid>
-            <Border Grid.Row="1" BorderThickness="1" BorderBrush="LightGray" />
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0" 
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Name="lblVenueNameNew"
-                               Text="Name"
-                               Margin="5,0"/>
-
-                <TextBox Grid.Column="1" 
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"  
-                             VerticalContentAlignment="Center"
-                             Height="30"
-                             Name="txtVenueNameNew" />
-
-                <TextBlock Grid.Column="2" 
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Name="lblShortNameNew"
-                               Text="Shortname"
-                               Margin="5,0"/>
-
-                <TextBox Grid.Column="3" 
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"  
-                             VerticalContentAlignment="Center"
-                             Height="30"
-                             Name="txtShortNameNew" />
-
-                <TextBlock Grid.Column="4"  
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Name="lblGeoLatNew"
-                               Text="Latitude"
-                               Margin="5,0"/>
-
-                <TextBox Grid.Column="5"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"  
-                             VerticalContentAlignment="Center"
-                             Height="30"
-                             Name="txtGeoLatNew" />
-
-                <TextBlock Grid.Column="6" 
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Name="lblLongitudeNew"
-                               Text="Longitude"
-                               Margin="5,0"/>
-
-                <TextBox Grid.Column="7"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Center"  
-                             VerticalContentAlignment="Center"
-                             Height="30"
-                             Name="txtGeoLonNew" />
-
-                <Button Grid.Column="8"
-                            Height="30"
-                            Width="100"
-                            Click="ShowMap"
-                            Margin="5,0" 
-                            DataContext="{Binding}">
-                    <TextBlock Text="Map"/>
-                </Button>
-
-                <Button Grid.Column="9"
-                            Height="30"
-                            Width="100"
-                            Click="AddVenue"
-                            Margin="0,0,5,0" 
-                            DataContext="{Binding}">
-                    <TextBlock Text="Add Venue"/>
-                </Button>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

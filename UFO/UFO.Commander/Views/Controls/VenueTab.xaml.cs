@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -32,6 +33,27 @@ namespace UFO.Commander.Views.Controls
             InitializeComponent();
             DataContext = new VenueCollectionVM(
                 UFOServerFactory.GetUFOServer());
+
+            newMap.Focus();
+            newMap.ViewChangeOnFrame += NewMap_ViewChangeOnFrame;
+            //editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+
+            DataContext = new VenueCollectionVM(
+                UFOServerFactory.GetUFOServer());
+        }
+
+        private void NewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
+        {
+            Map map = sender as Map;
+            if (map != null)
+            {
+                Location mapCenter = map.Center;
+
+                txtGeoLatNew.Text = string.Format(CultureInfo.InvariantCulture,
+                  "{0:F5}", mapCenter.Latitude);
+                txtGeoLonNew.Text = string.Format(CultureInfo.InvariantCulture,
+                    "{0:F5}", mapCenter.Longitude);
+            }
         }
 
         private void AddArea(object sender, RoutedEventArgs e)
@@ -139,15 +161,23 @@ namespace UFO.Commander.Views.Controls
             {
                 string name = txtVenueName.Text;
                 string shortName = txtShortName.Text;
+
                 decimal geoLat = decimal.Parse(txtGeoLat.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
                 decimal geoLon = decimal.Parse(txtGeoLon.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+
+                if (editMapPane.Visibility == Visibility.Visible && txtGeoLonEditMap.Text != "" && txtGeoLatEditMap.Text != "")
+                {
+                    geoLat = decimal.Parse(txtGeoLatEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                    geoLon = decimal.Parse(txtGeoLonEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                }
+
 
                 venueVM.Name = name;
                 venueVM.ShortName = shortName;
                 venueVM.GeoLocationLat = geoLat;
                 venueVM.GeoLocationLon = geoLon;
 
-                success = server.UpdateVenue(venueVM.Venue);
+                success = server.UpdateVenue(venueVM.Venue);                
             }
             catch (Exception exc)
             {
@@ -160,13 +190,17 @@ namespace UFO.Commander.Views.Controls
                 venueVM.ShortName = oldShortName;
                 venueVM.GeoLocationLat = oldGeoLat;
                 venueVM.GeoLocationLon = oldGeoLon;
+            } else
+            {
+                editMapPane.Visibility = Visibility.Collapsed;
+                editLocationGrid.Visibility = Visibility.Visible;
             }
         }
 
         private void RemoveVenue(object sender, RoutedEventArgs e)
         {
             VenueVM venueVM = ((FrameworkElement)sender).DataContext as VenueVM;
-            
+
             try
             {
                 bool success = server.DeleteVenue(venueVM.Venue);
@@ -187,13 +221,77 @@ namespace UFO.Commander.Views.Controls
             }
         }
 
-        private void ShowMap(object sender, RoutedEventArgs e)
+        private void ShowEditMap(object sender, RoutedEventArgs e)
         {
-            Object dc = this.DataContext;
-            LocationWindow locationWindow = new LocationWindow();
-            locationWindow.DataContext = dc;
-            locationWindow.Show();
+            editMapPane.Visibility = Visibility.Visible;
+            editLocationGrid.Visibility = Visibility.Collapsed;
+            Location center = new Location();
+            string lat = txtGeoLat.Text.Substring(0, 7).Replace('.', ',');
+            string lon = txtGeoLon.Text.Substring(0, 7).Replace('.', ',');
+            center.Latitude = Convert.ToDouble(lat);
+            center.Longitude = Convert.ToDouble(lon);
+
+            editMap.Center = center;
+            editMap.Focus();
+            editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+
         }
 
+        private void viewEditMap_ViewChangeOnFrame(object sender, MapEventArgs e)
+        {
+            Map map = sender as Map;
+            if (map != null)
+            {
+                Location mapCenter = map.Center;
+
+                txtGeoLatEditMap.Text = string.Format(CultureInfo.InvariantCulture,
+                  "{0:F5}", mapCenter.Latitude);
+                txtGeoLonEditMap.Text = string.Format(CultureInfo.InvariantCulture,
+                    "{0:F5}", mapCenter.Longitude);
+            }
+        }
+
+        private void txtVenueName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            editMapPane.Visibility = Visibility.Collapsed;
+            editLocationGrid.Visibility = Visibility.Visible;
+        }
+
+        
+        private void CollapseEditVenueView(object sender, RoutedEventArgs e)
+        {
+            if (editVenueView.Visibility == Visibility.Visible)
+            {
+                editVenueView.Visibility = Visibility.Collapsed;
+            }
+            else if (newVenueView.Visibility == Visibility.Visible)
+            {
+                editVenueView.Visibility = Visibility.Visible;
+                newVenueView.Visibility = Visibility.Collapsed;
+            }
+            else if (editVenueView.Visibility == Visibility.Collapsed)
+            {
+                editVenueView.Visibility = Visibility.Visible;
+                newVenueView.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void CollapseNewVenueView(object sender, RoutedEventArgs e)
+        {
+            if (newVenueView.Visibility == Visibility.Visible)
+            {
+                newVenueView.Visibility = Visibility.Collapsed;
+            }
+            else if (editVenueView.Visibility == Visibility.Visible)
+            {
+                editVenueView.Visibility = Visibility.Collapsed;
+                newVenueView.Visibility = Visibility.Visible;
+            }
+            else if (newVenueView.Visibility == Visibility.Collapsed)
+            {
+                editVenueView.Visibility = Visibility.Collapsed;
+                newVenueView.Visibility = Visibility.Visible;
+            }
+
+        }
     }
 }

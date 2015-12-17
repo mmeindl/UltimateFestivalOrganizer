@@ -30,7 +30,7 @@ namespace UFO.Commander.ViewModels
             this.VenuePerformances = new ObservableCollection<PerformanceVM>();
             this.server = server;
 
-            LoadPerformances(performances);
+            //LoadPerformances(performances);
         }
 
         public Venue Venue
