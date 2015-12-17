@@ -26,7 +26,7 @@ namespace UFO.Dal.SqlServer
         const string SQL_FIND_ALL_BY_ARTISTID =
           @"SELECT *
             FROM ArtistPicture
-            WHERE ArtistPicture.artistId = @Id";
+            WHERE ArtistPicture.artistId = @id";
 
         const string SQL_INSERT =
           @"INSERT INTO ArtistPicture
@@ -40,7 +40,8 @@ namespace UFO.Dal.SqlServer
         const string SQL_UPDATE_PROFILEPICTURE_TO_FALSE =
           @"UPDATE ArtistPicture
             SET IsProfilePicture = 0
-            WHERE IsProfilePicture = 1";
+            WHERE IsProfilePicture = 1
+            AND ArtistPicture.ArtistId = @artistId";
 
         const string SQL_DELETE =
           @"DELETE FROM ArtistPicture
@@ -132,9 +133,10 @@ namespace UFO.Dal.SqlServer
             }
         }
 
-        private DbCommand CreateUpdateProfilePictureToFalseCommand()
+        private DbCommand CreateUpdateProfilePictureToFalseCommand(int artistId)
         {
             DbCommand updateProfilePictureToFalseCommand = database.CreateCommand(SQL_UPDATE_PROFILEPICTURE_TO_FALSE);
+            database.DefineParameter(updateProfilePictureToFalseCommand, "artistId", DbType.Int32, artistId);
             return updateProfilePictureToFalseCommand;
         }
 
@@ -163,7 +165,7 @@ namespace UFO.Dal.SqlServer
            
             if (artistPicture.IsProfilePicture)
             {
-                using (DbCommand command = CreateUpdateProfilePictureToFalseCommand())
+                using (DbCommand command = CreateUpdateProfilePictureToFalseCommand(artistPicture.ArtistId))
                 {
                     result = database.ExecuteNonQuery(command) == 1 && result;
                 }
@@ -190,7 +192,7 @@ namespace UFO.Dal.SqlServer
 
             if (artistPicture.IsProfilePicture)
             {
-                using (DbCommand command = CreateUpdateProfilePictureToFalseCommand())
+                using (DbCommand command = CreateUpdateProfilePictureToFalseCommand(artistPicture.ArtistId))
                 {
                     result = database.ExecuteNonQuery(command) == 1;
                 }
