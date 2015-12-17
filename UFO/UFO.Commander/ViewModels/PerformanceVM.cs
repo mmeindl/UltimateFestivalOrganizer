@@ -26,7 +26,12 @@ namespace UFO.Commander.ViewModels
         {
             this.performance = performance;
             this.performanceCollectionVM = performanceCollectionVM;
-            this.artist = server.FindArtistById(performance.ArtistId);
+
+            if (performance != null)
+            {
+                this.artist = server.FindArtistById(performance.ArtistId);
+            }
+
             this.server = server;
         }
 
@@ -60,6 +65,17 @@ namespace UFO.Commander.ViewModels
         public Performance Performance
         {
             get { return performance; }
+            set
+            {
+                if (performance != value)
+                {
+                    performance = value;
+
+                    artist = server.FindArtistById(performance.ArtistId);
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Performance)));
+                }
+            }
         }
 
         public PerformanceCollectionVM PerformanceCollectionVM

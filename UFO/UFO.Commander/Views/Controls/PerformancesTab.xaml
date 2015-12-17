@@ -44,40 +44,34 @@
                       Name="cmbPerformanceVenue"/>
         </Grid>
 
-        <!--<DataGrid Grid.Row="1"
+        <DataGrid Grid.Row="1"
                             Name="dgPerformances"
                             AutoGenerateColumns="False"
                             SelectionMode="Single"
+                            SelectionUnit="Cell"
                             IsReadOnly="True"
                             FontSize="14"
-                            ItemsSource="{Binding}"
+                            ItemsSource="{Binding Path=PerformanceRows}"
                             SelectedItem="{Binding Path=CurrentPerformance, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="*" Header="Venue">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBox Text="{Binding Path=venues.Name}" />
+                                <TextBox Text="{Binding Path=venue.Name}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="14 - 15" 
-                                            Binding="{Binding Path=Performances14}"
+                                            Binding="{Binding Path=venuePerformances[0].performanceVM.Name}"
                                             Width="*" />
 
-                <DataGridTemplateColumn Width="30">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Button Content="X"
-                                        Click="RemovePerformance"/>
-                            </Grid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="15 - 16" 
+                                            Binding="{Binding Path=venuePerformances[1].performanceVM.Name}"
+                                            Width="*" />
             </DataGrid.Columns>
-        </DataGrid>-->
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -163,6 +163,13 @@ namespace UFO.Server
             return performanceDao.FindAllByDate(date);
         }
 
+        public IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.FindByDateAndVenue(date, venue);
+        }
+
         public IEnumerable<DateTime> GetPerformanceDates()
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);

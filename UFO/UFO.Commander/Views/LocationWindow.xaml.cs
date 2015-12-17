@@ -35,8 +35,8 @@ namespace UFO.Commander.Views
 
         private void PutLocation(object sender, RoutedEventArgs e)
         {
-            decimal longitude = Convert.ToDecimal(txtLongitude.Text);
-            decimal latitude = Convert.ToDecimal(txtLatitude.Text);
+            decimal longitude = decimal.Parse(txtLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+            decimal latitude = decimal.Parse(txtLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
         }
     }
 }
