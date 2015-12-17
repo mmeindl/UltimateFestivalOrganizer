@@ -95,6 +95,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
         }
 
@@ -122,6 +123,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
 
             if (success)
@@ -177,6 +179,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
 
             if (!success)
@@ -213,22 +216,31 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
         }
 
         private void ShowEditMap(object sender, RoutedEventArgs e)
         {
-            editMapPane.Visibility = Visibility.Visible;
-            editLocationGrid.Visibility = Visibility.Collapsed;
-            Location center = new Location();
-            string lat = txtGeoLat.Text.Substring(0, 7).Replace('.', ',');
-            string lon = txtGeoLon.Text.Substring(0, 7).Replace('.', ',');
-            center.Latitude = Convert.ToDouble(lat);
-            center.Longitude = Convert.ToDouble(lon);
+            try
+            {            
+                editMapPane.Visibility = Visibility.Visible;
+                editLocationGrid.Visibility = Visibility.Collapsed;
+                Location center = new Location();
+                string lat = txtGeoLat.Text.Substring(0, 7).Replace('.', ',');
+                string lon = txtGeoLon.Text.Substring(0, 7).Replace('.', ',');
+                center.Latitude = Convert.ToDouble(lat);
+                center.Longitude = Convert.ToDouble(lon);
 
-            editMap.Center = center;
-            editMap.Focus();
-            editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+                editMap.Center = center;
+                editMap.Focus();
+                editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+            }
+            catch (Exception exc)
+            {
+                // Inform User
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
+            }
 
         }
 
@@ -251,45 +263,8 @@ namespace UFO.Commander.Views.Controls
             editMapPane.Visibility = Visibility.Collapsed;
             editLocationGrid.Visibility = Visibility.Visible;
 
-            if (txtGeoLat.Text == "" || txtGeoLon.Text == "")
-                btnShowEditMap.IsEnabled = false;
         }
 
-        
-        //private void CollapseEditVenueView(object sender, RoutedEventArgs e)
-        //{
-        //    if (editVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (newVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Visible;
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (editVenueView.Visibility == Visibility.Collapsed)
-        //    {
-        //        editVenueView.Visibility = Visibility.Visible;
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //}
-        //private void CollapseNewVenueView(object sender, RoutedEventArgs e)
-        //{
-        //    if (newVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (editVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //        newVenueView.Visibility = Visibility.Visible;
-        //    }
-        //    else if (newVenueView.Visibility == Visibility.Collapsed)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //        newVenueView.Visibility = Visibility.Visible;
-        //    }
 
-        //}
     }
 }

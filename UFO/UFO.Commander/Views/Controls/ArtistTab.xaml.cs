@@ -54,6 +54,8 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
+                
             }
 
             if (success)
@@ -110,6 +112,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
 
             if (!success)
