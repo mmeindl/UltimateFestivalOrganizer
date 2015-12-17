@@ -34,29 +34,10 @@ namespace UFO.Commander.ViewModels
             this.country = country;
             this.artistCollection = artistCollection;
             this.server = server;
+            this.profilePicture = null;
+            this.promoVideo = null;
             this.Pictures = new ObservableCollection<ArtistPictureVM>();
             this.Videos = new ObservableCollection<ArtistVideoVM>();
-
-            ArtistPicture pic = server.FindProfilePictureByArtistId(Id);
-            ArtistVideo vid = server.FindPromoVideoByArtistId(Id);
-
-            if (pic == null)
-            {
-                this.profilePicture = null;
-            }
-            else
-            {
-                this.profilePicture = new ArtistPictureVM(pic, this, server);
-            }
-            
-            if (vid == null)
-            {
-                this.promoVideo = null;
-            }
-            else
-            {
-                this.promoVideo = new ArtistVideoVM(vid, this, server);
-            }
         }
 
 
