@@ -68,7 +68,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblArtistname"
-                                Text="Name"/>
+                                Text="Name:"/>
 
                             <TextBox 
                                 Text="{Binding Path=CurrentArtist.Name, Mode=OneWay}"
@@ -84,7 +84,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblCategory"
-                                Text="Category"/>
+                                Text="Category:"/>
 
                             <ComboBox 
                                 ItemsSource="{Binding Path=Categories, Mode=OneWay}"
@@ -102,7 +102,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblCountry"
-                                Text="Country"/>
+                                Text="Country:"/>
 
                             <ComboBox 
                                 ItemsSource="{Binding Path=Countries, Mode=OneWay}"
@@ -120,7 +120,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblEmail"
-                                Text="Email"/>
+                                Text="Email:"/>
 
                             <TextBox 
                                 Text="{Binding Path=CurrentArtist.Email, Mode=OneWay}"
@@ -150,7 +150,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblWebsite"
-                                Text="Website"/>
+                                Text="Website:"/>
 
                             <TextBlock 
                                 Height="30"
@@ -171,7 +171,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblProfilePicture"
-                                Text="Profilepicture"/>
+                                Text="Profilepicture:"/>
 
                             <TextBlock 
                                 Height="30"
@@ -192,7 +192,7 @@
                                 Margin="5,5,0,5"
                                 FontWeight="Bold"
                                 Name="lblPromoVideo"
-                                Text="Promovideo"/>
+                                Text="Promovideo:"/>
 
                             <TextBlock 
                                 Height="30"
@@ -227,7 +227,7 @@
                             Margin="5,5,0,5"
                             FontWeight="Bold"
                             Name="lblArtistnameNew"
-                            Text="Name"/>
+                            Text="Name:"/>
 
                         <TextBox 
                             HorizontalAlignment="Stretch"
@@ -242,7 +242,7 @@
                             Margin="5,5,0,5"
                             FontWeight="Bold"
                             Name="lblCategoryNew"
-                            Text="Category"/>
+                            Text="Category:"/>
 
                         <ComboBox 
                             ItemsSource="{Binding Path=Categories, Mode=OneWay}"
@@ -258,7 +258,7 @@
                             Margin="5,5,0,5"
                             FontWeight="Bold"
                             Name="lblCountryNew"
-                            Text="Country"/>
+                            Text="Country:"/>
 
                         <ComboBox 
                             ItemsSource="{Binding Path=Countries, Mode=OneWay}"
@@ -274,7 +274,7 @@
                             Margin="5,5,0,5"
                             FontWeight="Bold"
                             Name="lblEmailNew"
-                            Text="Email"/>
+                            Text="Email:"/>
 
                         <TextBox 
                             HorizontalAlignment="Stretch"
