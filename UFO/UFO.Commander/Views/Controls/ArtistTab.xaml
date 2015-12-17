@@ -11,344 +11,290 @@
 
 
     <Grid>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="9*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid
+                Grid.Column="0"
+                Name="dgArtists"
+                AutoGenerateColumns="False"
+                SelectionMode="Single"
+                IsReadOnly="True"
+                FontSize="14"
+                ItemsSource="{Binding Path=Artists}"
+                SelectedItem="{Binding Path=CurrentArtist, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="Name" 
+                        Binding="{Binding Path=Name}"
+                        Width="*" />
+                    <DataGridTextColumn 
+                        Header="Country" 
+                        Binding="{Binding Path=Country}"
+                        Width="*"  />
+                    <DataGridTextColumn 
+                        Header="Category" 
+                        Binding="{Binding Path=Category}"
+                        Width="*"  />
 
 
-            <Border Grid.Row="0" BorderThickness="1" BorderBrush="LightGray" />
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Content="X" Click="RemoveArtist"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
-                <DataGrid Grid.Column="0"
-                            Name="dgArtists"
-                            AutoGenerateColumns="False"
-                            SelectionMode="Single"
-                            IsReadOnly="True"
-                            FontSize="14"
-                            ItemsSource="{Binding Path=Artists}"
-                            SelectedItem="{Binding Path=CurrentArtist, Mode=TwoWay}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" 
-                                            Binding="{Binding Path=Name}"
-                                            Width="*" />
-                        <DataGridTextColumn Header="Country" 
-                                            Binding="{Binding Path=Country}"
-                                            Width="*"  />
-                        <DataGridTextColumn Header="Category" 
-                                            Binding="{Binding Path=Category}"
-                                            Width="*"  />
-
-
-                        <DataGridTemplateColumn Width="30">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Button Content="X"
-                                                Click="RemoveArtist"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0"
-                               Text="Artist Details"
-                               FontSize="20"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-
+            <TabControl Grid.Column="1">
+                <TabItem Header="Artist Details">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" 
-                                    Grid.Row="0" 
-                                    Margin="10, 0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Name="lblArtistname"
-                                    Text="Name"/>
+                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="15">
+                            <TextBlock
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblArtistname"
+                                Text="Name"/>
 
-                        <TextBox Text="{Binding Path=CurrentArtist.Name, Mode=OneWay}"
-                                Grid.Column="1" 
-                                Grid.Row="0"
+                            <TextBox 
+                                Text="{Binding Path=CurrentArtist.Name, Mode=OneWay}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
-                                VerticalContentAlignment="Center"                
-                                Margin="0, 5, 15, 0"
+                                VerticalContentAlignment="Center"
                                 Height="30"
                                 Name="txtArtistname" />
 
-                        <TextBlock Grid.Column="0" 
-                                    Grid.Row="1" 
-                                    Margin="10, 0"
-                                    HorizontalAlignment="Right"
-                                    Name="lblCategory"
-                                    VerticalAlignment="Center"
-                                    Text="Category"/>
+                            <TextBlock 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblCategory"
+                                Text="Category"/>
 
-                        <ComboBox ItemsSource="{Binding Path=Categories, Mode=OneWay}"
-                                    SelectedValuePath="Name"
-                                    SelectedValue="{Binding Path=CurrentArtist.Category.Name}"
-                                    Grid.Column="1" 
-                                    Grid.Row="1" 
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Margin="0, 5, 15, 0"
-                                    Height="30"
-                                    Name="cmbCategory"/>
-
-                        <TextBlock Grid.Column="0" 
-                                    Grid.Row="2" 
-                                    Margin="10, 0"
-                                    HorizontalAlignment="Right"
-                                    Name="lblCountry"
-                                    VerticalAlignment="Center"
-                                    Text="Country"/>
-
-                        <ComboBox ItemsSource="{Binding Path=Countries, Mode=OneWay}"
-                                    SelectedValuePath="Name"
-                                    SelectedValue="{Binding Path=CurrentArtist.Country.Name}"
-                                    Grid.Column="1" 
-                                    Grid.Row="2" 
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Margin="0, 5, 15, 0"
-                                    Height="30"
-                                    Name="cmbCountry"/>
-
-                        <TextBlock Grid.Column="0" 
-                                    Grid.Row="3" 
-                                    Margin="10, 0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Name="lblEmail"
-                                    Text="Email"/>
-
-                        <TextBox Text="{Binding Path=CurrentArtist.Email, Mode=OneWay}"
-                                Grid.Column="1" 
-                                Grid.Row="3"
+                            <ComboBox 
+                                ItemsSource="{Binding Path=Categories, Mode=OneWay}"
+                                SelectedValuePath="Name"
+                                SelectedValue="{Binding Path=CurrentArtist.Category.Name}"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"  
-                                VerticalContentAlignment="Center"                
-                                Margin="0, 5, 15, 0"
+                                VerticalContentAlignment="Center"
+                                Height="30"
+                                Name="cmbCategory"/>
+
+                            <TextBlock                            
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblCountry"
+                                Text="Country"/>
+
+                            <ComboBox 
+                                ItemsSource="{Binding Path=Countries, Mode=OneWay}"
+                                SelectedValuePath="Name"
+                                SelectedValue="{Binding Path=CurrentArtist.Country.Name}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"  
+                                VerticalContentAlignment="Center"
+                                Height="30"
+                                Name="cmbCountry"/>
+
+                            <TextBlock 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblEmail"
+                                Text="Email"/>
+
+                            <TextBox 
+                                Text="{Binding Path=CurrentArtist.Email, Mode=OneWay}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"  
+                                VerticalContentAlignment="Center"
                                 Height="30"
                                 Name="txtEmail" />
-                    </Grid>
 
-                    <Button Grid.Row="2"
-                            Margin="5, 5"
-                            Width="100"
-                            Height="30"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Click="UpdateArtist"
-                            DataContext="{Binding Path=CurrentArtist}">
-                        <TextBlock Text="Save Changes"/>
-                    </Button>
+                            <Button 
+                                Grid.Row="2"
+                                Margin="5, 5"
+                                Width="100"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Click="UpdateArtist"
+                                DataContext="{Binding Path=CurrentArtist}">                                    
+                                <TextBlock Text="Save Changes"/>                                
+                            </Button>
+                        </StackPanel>
 
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Margin="15" Grid.Row="1">
+                            <TextBlock 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblWebsite"
+                                Text="Website"/>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                            <TextBlock 
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="0,5,0,5"
+                                Name="lvlWebsiteLink">
 
-                        <TextBlock Grid.Column="0" 
-                                    Grid.Row="0" 
-                                    Margin="10, 0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Name="lblWebsite"
-                                    Text="Website"/>
-
-                        <!-- TODO center -->
-                        <TextBlock Height="30"
-                                   Grid.Column="1" 
-                                   Grid.Row="0" 
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center"
-                                   Margin="0, 5, 15, 0"
-                                   Name="lvlWebsiteLink">
-
-                            <Hyperlink NavigateUri="{Binding Path=CurrentArtist.WebsiteURL}"
-                                        Click="UrlClick">
+                            <Hyperlink 
+                                NavigateUri="{Binding Path=CurrentArtist.WebsiteURL}" Click="UrlClick">
                                 <TextBlock Text="{Binding Path=CurrentArtist.WebsiteURL}" />    
                             </Hyperlink>
                         </TextBlock>
 
-                        <TextBlock Grid.Column="0" 
-                                   Grid.Row="1" 
-                                   Margin="10, 0"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"
-                                   Name="lblProfilePicture"
-                                   Text="Profilepicture"/>
+                            <TextBlock 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblProfilePicture"
+                                Text="Profilepicture"/>
 
-                        <!-- TODO center -->
-                        <TextBlock Height="30"
-                                   Grid.Column="1" 
-                                   Grid.Row="1" 
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center"
-                                   Margin="0, 5, 15, 0"
-                                   Name="lblProfilePictureLink">
+                            <TextBlock 
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="0,5,0,5"
+                                Name="lblProfilePictureLink">
 
-                            <Hyperlink NavigateUri="{Binding Path=CurrentArtist.ProfilePicture.PictureURL}"
-                                        Click="UrlClick">
+                            <Hyperlink 
+                                NavigateUri="{Binding Path=CurrentArtist.ProfilePicture.PictureURL}" Click="UrlClick">
                                 <TextBlock Text="{Binding Path=CurrentArtist.ProfilePicture.PictureURL}" />    
                             </Hyperlink>
                         </TextBlock>
 
-                        <TextBlock Grid.Column="0" 
-                                   Grid.Row="2" 
-                                   Margin="10, 0"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"
-                                   Name="lblPromoVideo"
-                                   Text="Promovideo"/>
+                            <TextBlock 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,5,0,5"
+                                FontWeight="Bold"
+                                Name="lblPromoVideo"
+                                Text="Promovideo"/>
 
-                        <!-- TODO center -->
-                        <TextBlock Height="30"
-                                   Grid.Column="2" 
-                                   Grid.Row="7" 
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Center"
-                                   Margin="0, 5, 15, 0"
-                                   Name="lblPromoVideoLink">
+                            <TextBlock 
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="0,5,0,5"
+                                Name="lblPromoVideoLink">
 
-                            <Hyperlink NavigateUri="{Binding Path=CurrentArtist.PromoVideo.VideoURL}"
-                                        Click="UrlClick">
+                            <Hyperlink 
+                                NavigateUri="{Binding Path=CurrentArtist.PromoVideo.VideoURL}" Click="UrlClick">
                                 <TextBlock Text="{Binding Path=CurrentArtist.PromoVideo.VideoURL}" />    
                             </Hyperlink>
                         </TextBlock>
+                            <Button
+                                Margin="5, 5"
+                                Width="100"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Click="EditMedia" >
+                                <TextBlock Text="Edit Media"/>
+                            </Button>
+                        </StackPanel>
                     </Grid>
+                </TabItem>
 
-                    <Button Grid.Row="4"
-                            Margin="5, 5"
+                <TabItem Header="Add new Artist">
+                    <StackPanel Grid.Row="0" Orientation="Vertical" Margin="15">                       
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="5,5,0,5"
+                            FontWeight="Bold"
+                            Name="lblArtistnameNew"
+                            Text="Name"/>
+
+                        <TextBox 
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="txtArtistnameNew" />
+
+                        <TextBlock 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="5,5,0,5"
+                            FontWeight="Bold"
+                            Name="lblCategoryNew"
+                            Text="Category"/>
+
+                        <ComboBox 
+                            ItemsSource="{Binding Path=Categories, Mode=OneWay}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="cmbCategoryNew"/>
+
+                        <TextBlock                            
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="5,5,0,5"
+                            FontWeight="Bold"
+                            Name="lblCountryNew"
+                            Text="Country"/>
+
+                        <ComboBox 
+                            ItemsSource="{Binding Path=Countries, Mode=OneWay}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="cmbCountryNew"/>
+
+                        <TextBlock 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="5,5,0,5"
+                            FontWeight="Bold"
+                            Name="lblEmailNew"
+                            Text="Email"/>
+
+                        <TextBox 
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"  
+                            VerticalContentAlignment="Center"
+                            Height="30"
+                            Name="txtEmailNew" />
+
+                        <Button 
+                            Grid.Column="8"
                             Width="100"
                             Height="30"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Click="EditMedia" >
-                        <TextBlock Text="Edit Media"/>
-                    </Button>
-                </Grid>
-            </Grid>
-            <Border Grid.Row="1" BorderThickness="1" BorderBrush="LightGray" />
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblArtistnameNew"
-                           Text="Name"
-                           Margin="5,0"/>
-
-                <TextBox Grid.Column="1"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtArtistnameNew" />
-
-                <TextBlock Grid.Column="2"
-                           HorizontalAlignment="Left"
-                           Name="lblCategoryNew"
-                           VerticalAlignment="Center"
-                           Text="Category"
-                           Margin="5,0"/>
-
-                <ComboBox ItemsSource="{Binding Path=Categories, Mode=OneWay}"
-                          Grid.Column="3"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Center"
-                          VerticalContentAlignment="Center"
-                          Height="30"
-                          Name="cmbCategoryNew"/>
-
-                <TextBlock Grid.Column="4"
-                           HorizontalAlignment="Left"
-                           Name="lblCountryNew"
-                           VerticalAlignment="Center"
-                           Text="Country"
-                           Margin="5,0"/>
-
-                <ComboBox ItemsSource="{Binding Path=Countries, Mode=OneWay}"
-                          Grid.Column="5" 
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Center"
-                          VerticalContentAlignment="Center"
-                          Height="30"
-                          Name="cmbCountryNew"/>
-
-                <TextBlock Grid.Column="6" 
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Name="lblEmailNew"
-                           Text="Email"
-                           Margin="5,0"/>
-
-                <TextBox Grid.Column="7"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Center"  
-                         VerticalContentAlignment="Center"
-                         Height="30"
-                         Name="txtEmailNew" />
-                
-                <Button Grid.Column="8"
-                        Width="100"
-                        Height="30"
-                        Click="AddArtist"
-                        Margin="5,0" 
-                        DataContext="{Binding}">
-                    <TextBlock Text="Add Artist"/>
-                </Button>
-            </Grid>
+                            Click="AddArtist"
+                            Margin="5,5" 
+                            DataContext="{Binding}">
+                            <TextBlock Text="Add Artist"/>
+                        </Button>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </UserControl>
