@@ -30,7 +30,7 @@ namespace UFO.Dal.SqlServer
             @"SELECT *
                 FROM Performance
                 WHERE DATEDIFF(DAY ,dateTime, @date) = 0
-                AND Performance.VenueId = venueId";
+                AND Performance.VenueId = @venueId";
 
         const string SQL_FIND_ALL_IN_FUTURE =
             @"SELECT *
