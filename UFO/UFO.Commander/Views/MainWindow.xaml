@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:UFO.Commander.Views"
         xmlns:controls="clr-namespace:UFO.Commander.Views.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="600" Height="750" MinWidth="1200" Width="1200">
+        Title="UFO"
+        Height="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}" 
+        Width="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
+        WindowStartupLocation="Manual" 
+        Left="0" Top="0">
     <Grid>
         <TabControl>
             <TabItem Name="Performances">
