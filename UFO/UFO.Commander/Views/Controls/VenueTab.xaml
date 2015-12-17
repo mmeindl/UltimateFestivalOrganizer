@@ -137,7 +137,10 @@
 
                 <TabControl Grid.Column="1">
 
-                    <TabItem Header="Venue Details" >
+                    <TabItem>
+                        <TabItem.Header>
+                            <Label Content="Venue Details" FontSize="20"/>
+                        </TabItem.Header>
 
                         <StackPanel Orientation="Vertical" Margin="15">
                             <TextBlock
@@ -282,7 +285,10 @@
 
                     </TabItem>
 
-                    <TabItem  Header="Add new Venue">
+                    <TabItem>
+                        <TabItem.Header>
+                            <Label Content="Add new Venue" FontSize="20"/>
+                        </TabItem.Header>
                         <StackPanel Orientation="Vertical"  Margin="15">
                             <TextBlock
                                 HorizontalAlignment="Left"

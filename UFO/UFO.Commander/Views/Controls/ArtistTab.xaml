@@ -54,7 +54,10 @@
             </DataGrid>
 
             <TabControl Grid.Column="1">
-                <TabItem Header="Artist Details">
+                <TabItem>
+                    <TabItem.Header>
+                        <Label Content="Artist Details" FontSize="20"/>
+                    </TabItem.Header>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -219,8 +222,11 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Add new Artist">
-                    <StackPanel Grid.Row="0" Orientation="Vertical" Margin="15">                       
+                    <TabItem>
+                        <TabItem.Header>
+                            <Label Content="Add new Artist" FontSize="20"/>
+                        </TabItem.Header>
+                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="15">                       
                         <TextBlock
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
