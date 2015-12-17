@@ -31,15 +31,12 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
-            DataContext = new VenueCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            /*DataContext = new VenueCollectionVM(
+                server);*/
 
             newMap.Focus();
             newMap.ViewChangeOnFrame += NewMap_ViewChangeOnFrame;
             //editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
-
-            DataContext = new VenueCollectionVM(
-                UFOServerFactory.GetUFOServer());
         }
 
         private void NewMap_ViewChangeOnFrame(object sender, MapEventArgs e)

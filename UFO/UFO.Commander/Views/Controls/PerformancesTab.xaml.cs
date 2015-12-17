@@ -28,8 +28,8 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
-            DataContext = new PerformanceCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            /*DataContext = new PerformanceCollectionVM(
+                server);*/
         }
 
         private void RemovePerformance(object sender, RoutedEventArgs e)
