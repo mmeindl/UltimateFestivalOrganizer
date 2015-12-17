@@ -31,6 +31,8 @@ namespace UFO.Commander.Views.Controls
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
+            DataContext = new VenueCollectionVM(
+                UFOServerFactory.GetUFOServer());
 
             newMap.Focus();
             newMap.ViewChangeOnFrame += NewMap_ViewChangeOnFrame;

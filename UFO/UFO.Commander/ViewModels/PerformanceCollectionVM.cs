@@ -16,19 +16,10 @@ namespace UFO.Commander.ViewModels
 
         private IUFOServer server;
 
-        public ObservableCollection<PerformanceVM> Performances14 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances15 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances16 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances17 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances18 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances19 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances20 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances21 { get; private set; }
-        public ObservableCollection<PerformanceVM> Performances22 { get; private set; }
+        public ObservableCollection<PerformanceRowVM> PerformanceRows { get; private set; }
 
         public IEnumerable<DateTime> performanceDays { get; private set; }
         public IEnumerable<Area> areas { get; private set; }
-        public IEnumerable<Venue> venues { get; private set; }
 
         private PerformanceVM currentPerformance;
         private DateTime currentDate;
@@ -37,19 +28,10 @@ namespace UFO.Commander.ViewModels
         public PerformanceCollectionVM(IUFOServer server)
         {
             this.server = server;
-            Performances14 = new ObservableCollection<PerformanceVM>();
-            Performances15 = new ObservableCollection<PerformanceVM>();
-            Performances16 = new ObservableCollection<PerformanceVM>();
-            Performances17 = new ObservableCollection<PerformanceVM>();
-            Performances18 = new ObservableCollection<PerformanceVM>();
-            Performances19 = new ObservableCollection<PerformanceVM>();
-            Performances20 = new ObservableCollection<PerformanceVM>();
-            Performances21 = new ObservableCollection<PerformanceVM>();
-            Performances22 = new ObservableCollection<PerformanceVM>();
+            PerformanceRows = new ObservableCollection<PerformanceRowVM>();
 
             LoadPerformanceDays();
             LoadAreas();
-            LoadVenues();
             LoadPerformances();
         }
 
@@ -99,54 +81,17 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        private void LoadPerformances()
+        private async void LoadPerformances()
         {
-            IEnumerable<Performance> performances = server.FindPerformancesByDate(currentDate);
+            PerformanceRows.Clear();
+            IEnumerable<Venue> venues = server.FindVenuesByAreaId(currentArea.Id);
 
-            Performances14.Clear();
-            Performances15.Clear();
-            Performances16.Clear();
-            Performances17.Clear();
-            Performances18.Clear();
-            Performances19.Clear();
-            Performances20.Clear();
-            Performances21.Clear();
-            Performances22.Clear();
-
-            foreach (Performance performance in performances)
+            IEnumerator<Venue> enumerator = venues.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                switch (performance.DateTime.Hour)
-                {
-                    case 14:
-                        Performances14.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 15:
-                        Performances15.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 16:
-                        Performances16.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 17:
-                        Performances17.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 18:
-                        Performances18.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 19:
-                        Performances19.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 20:
-                        Performances20.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 21:
-                        Performances21.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    case 22:
-                        Performances22.Add(new PerformanceVM(performance, this, server));
-                        break;
-                    default:
-                        break;
-                }
+                IEnumerable<Performance> performances = server.FindPerformancesByDateAndVenue(currentDate, enumerator.Current);
+
+                PerformanceRows.Add(new PerformanceRowVM(performances, enumerator.Current, this, server));
             }
         }
 
@@ -166,11 +111,6 @@ namespace UFO.Commander.ViewModels
             {
                 currentDate = days[0];
             }
-        }
-
-        private void LoadVenues()
-        {
-            venues = server.FindAllVenues();
         }
 
         private void LoadAreas()
