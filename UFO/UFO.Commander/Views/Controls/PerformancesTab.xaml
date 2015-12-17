@@ -54,23 +54,61 @@
                             ItemsSource="{Binding Path=PerformanceRows}"
                             SelectedItem="{Binding Path=CurrentPerformance, Mode=TwoWay}">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Width="auto" Header="Token">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBox IsReadOnly="True" Text="{Binding Path=VenueShortName, Mode=OneWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Width="*" Header="Venue">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBox Text="{Binding Path=venue.Name}" />
+                                <TextBox IsReadOnly="True" Text="{Binding Path=VenueName, Mode=OneWay}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="14 - 15" 
-                                            Binding="{Binding Path=venuePerformances[0].performanceVM.Name}"
+                                            Binding="{Binding Path=PerformanceArtist14.Name}"
                                             Width="*" />
 
                 <DataGridTextColumn Header="15 - 16" 
-                                            Binding="{Binding Path=venuePerformances[1].performanceVM.Name}"
+                                            Binding="{Binding Path=PerformanceArtist15.Name}"
                                             Width="*" />
+
+                <DataGridTextColumn Header="16 - 17" 
+                                            Binding="{Binding Path=PerformanceArtist16.Name}"
+                                            Width="*" />
+ <!--                  
+                <DataGridTextColumn Header="17 - 18" 
+                                            Binding="{Binding Path=PerformanceArtist17.Name}"
+                                            Width="*" />
+
+                <DataGridTextColumn Header="18 - 19" 
+                                            Binding="{Binding Path=PerformanceArtist18.Name}"
+                                            Width="*" />
+
+                <DataGridTextColumn Header="19 - 20" 
+                                            Binding="{Binding Path=PerformanceArtist19.Name}"
+                                            Width="*" />
+                
+                <DataGridTextColumn Header="20 - 21" 
+                                            Binding="{Binding Path=PerformanceArtist20.Name}"
+                                            Width="*" />
+
+                <DataGridTextColumn Header="21 - 22" 
+                                            Binding="{Binding Path=PerformanceArtist21.Name}"
+                                            Width="*" />
+
+                <DataGridTextColumn Header="22 - 23" 
+                                            Binding="{Binding Path=PerformanceArtist22.Name}"
+                                            Width="*" />-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

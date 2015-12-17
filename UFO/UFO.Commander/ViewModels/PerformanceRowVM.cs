@@ -30,21 +30,162 @@ namespace UFO.Commander.ViewModels
             this.VenuePerformances = new ObservableCollection<PerformanceVM>();
             this.server = server;
 
-            //LoadPerformances(performances);
+            LoadPerformances(performances);
         }
 
-        public Venue Venue
+        public string VenueName
         {
-            get { return venue; }
+            get { return venue.Name; }
+        }
+
+        public string VenueShortName
+        {
+            get { return venue.ShortName; }
+        }
+
+        public Artist PerformanceArtist14
+        {
+            get
+            {
+                return VenuePerformances[0].Artist;
+            }
             set
             {
-                if (venue != value)
+                if (VenuePerformances[0].Artist != value)
                 {
-                    venue = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Venue)));
+                    VenuePerformances[0].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist14)));
                 }
             }
         }
+
+        public Artist PerformanceArtist15
+        {
+            get
+            {
+                return VenuePerformances[1].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[1].Artist != value)
+                {
+                    VenuePerformances[1].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist15)));
+                }
+            }
+        }
+        
+        public Artist PerformanceArtist16
+        {
+            get
+            {
+                return VenuePerformances[2].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[2].Artist != value)
+                {
+                    VenuePerformances[2].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist16)));
+                }
+            }
+        }
+/*
+        public Artist PerformanceArtist17
+        {
+            get
+            {
+                return VenuePerformances[3].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[3].Artist != value)
+                {
+                    VenuePerformances[3].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist17)));
+                }
+            }
+        }
+
+        public Artist PerformanceArtist18
+        {
+            get
+            {
+                return VenuePerformances[4].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[4].Artist != value)
+                {
+                    VenuePerformances[4].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist18)));
+                }
+            }
+        }
+
+        public Artist PerformanceArtist19
+        {
+            get
+            {
+                return VenuePerformances[5].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[5].Artist != value)
+                {
+                    VenuePerformances[5].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist19)));
+                }
+            }
+        }
+
+        public Artist PerformanceArtist20
+        {
+            get
+            {
+                return VenuePerformances[6].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[6].Artist != value)
+                {
+                    VenuePerformances[6].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist20)));
+                }
+            }
+        }
+
+        public Artist PerformanceArtist21
+        {
+            get
+            {
+                return VenuePerformances[7].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[7].Artist != value)
+                {
+                    VenuePerformances[7].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist21)));
+                }
+            }
+        }
+
+        public Artist PerformanceArtist22
+        {
+            get
+            {
+                return VenuePerformances[8].Artist;
+            }
+            set
+            {
+                if (VenuePerformances[8].Artist != value)
+                {
+                    VenuePerformances[8].Artist = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist22)));
+                }
+            }
+        }*/
 
         public PerformanceCollectionVM PerformanceCollectionVM
         {
