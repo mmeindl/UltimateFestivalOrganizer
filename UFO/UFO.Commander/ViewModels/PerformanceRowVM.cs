@@ -90,7 +90,7 @@ namespace UFO.Commander.ViewModels
                 }
             }
         }
-/*
+
         public Artist PerformanceArtist17
         {
             get
@@ -185,7 +185,7 @@ namespace UFO.Commander.ViewModels
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist22)));
                 }
             }
-        }*/
+        }
 
         public PerformanceCollectionVM PerformanceCollectionVM
         {

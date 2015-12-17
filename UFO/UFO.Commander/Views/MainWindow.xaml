@@ -9,13 +9,22 @@
         Title="MainWindow" MinHeight="600" Height="750" MinWidth="1200" Width="1200">
     <Grid>
         <TabControl>
-            <TabItem Header="Performances">
+            <TabItem Name="Performances">
+                <TabItem.Header>
+                    <Label Content="Performances" MouseLeftButtonDown="performances_Clicked" HorizontalAlignment="Stretch"/>
+                </TabItem.Header>
                 <controls:PerformancesTab />
             </TabItem>
-            <TabItem Header="Artists">
+            <TabItem Name="Artists">
+                <TabItem.Header>
+                    <Label Content="Artists" MouseLeftButtonDown="artists_Clicked" HorizontalAlignment="Stretch"/>
+                </TabItem.Header>
                 <controls:ArtistTab />
             </TabItem>
-            <TabItem Header="Venues">
+            <TabItem Name="Venues">
+                <TabItem.Header>
+                    <Label Content="Venues" MouseLeftButtonDown="venues_Clicked" HorizontalAlignment="Stretch"/>
+                </TabItem.Header>
                 <controls:VenueTab />
             </TabItem>
         </TabControl>
