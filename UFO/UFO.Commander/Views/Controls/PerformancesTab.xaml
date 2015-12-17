@@ -85,7 +85,7 @@
                 <DataGridTextColumn Header="16 - 17" 
                                             Binding="{Binding Path=PerformanceArtist16.Name}"
                                             Width="*" />
- <!--                  
+                
                 <DataGridTextColumn Header="17 - 18" 
                                             Binding="{Binding Path=PerformanceArtist17.Name}"
                                             Width="*" />
@@ -108,7 +108,7 @@
 
                 <DataGridTextColumn Header="22 - 23" 
                                             Binding="{Binding Path=PerformanceArtist22.Name}"
-                                            Width="*" />-->
+                                            Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

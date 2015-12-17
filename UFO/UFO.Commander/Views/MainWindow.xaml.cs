@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UFO.Commander.ViewModels;
+using UFO.Commander.Views.Controls;
 using UFO.Server;
 
 namespace UFO.Commander.Views
@@ -24,26 +25,27 @@ namespace UFO.Commander.Views
         public MainWindow()
         {
             InitializeComponent();
-            
+            Performances.DataContext = new PerformanceCollectionVM(
+                UFOServerFactory.GetUFOServer());
+
         }
 
         private void performances_Clicked(object sender, MouseButtonEventArgs e)
         {
-            DataContext = new PerformanceCollectionVM(
+            Performances.DataContext = new PerformanceCollectionVM(
                 UFOServerFactory.GetUFOServer());
         }
 
         private void artists_Clicked(object sender, MouseButtonEventArgs e)
         {
-            DataContext = new ArtistCollectionVM(
+            Artists.DataContext = new ArtistCollectionVM(
                 UFOServerFactory.GetUFOServer());
         }
 
         private void venues_Clicked(object sender, MouseButtonEventArgs e)
         {
-            DataContext = new VenueCollectionVM(
+            Venues.DataContext = new VenueCollectionVM(
                 UFOServerFactory.GetUFOServer());
         }
-
     }
 }
