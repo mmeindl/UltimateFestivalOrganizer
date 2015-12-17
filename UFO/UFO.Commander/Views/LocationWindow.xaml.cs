@@ -12,11 +12,14 @@ namespace UFO.Commander.Views
     /// </summary>
     public partial class LocationWindow : Window
     {
+   
         public LocationWindow()
         {
             InitializeComponent();
             myMap.Focus();
             myMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
+
+            
         }
 
         private void viewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
@@ -37,6 +40,9 @@ namespace UFO.Commander.Views
         {
             decimal longitude = Convert.ToDecimal(txtLongitude.Text);
             decimal latitude = Convert.ToDecimal(txtLatitude.Text);
+
+            Application.Current.Properties["latitude"] = "hallo";
         }
+            
     }
 }
