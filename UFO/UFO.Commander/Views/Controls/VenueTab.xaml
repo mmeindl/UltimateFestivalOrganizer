@@ -135,24 +135,11 @@
                     </DataGrid>
                 </Grid>
 
-                <StackPanel Grid.Column="1">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                <TabControl Grid.Column="1">
 
-                        <Button 
-                            Grid.Row="0"
-                            Height="30"
-                            Margin="5,30,5,5"
-                            Click="CollapseEditVenueView">
-                            <TextBlock Text="Venue Details V"/>
-                        </Button>
+                    <TabItem Header="Venue Details" >
 
-                        <StackPanel Orientation="Vertical" Margin="15,0,15,0" Grid.Row="1" Name="editVenueView"  Visibility="Visible">
+                        <StackPanel Orientation="Vertical" Margin="15">
                             <TextBlock
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
@@ -276,15 +263,10 @@
                             </Button>
                         </StackPanel>
 
-                        <Button 
-                            Grid.Row="2"
-                            Height="30"
-                            Margin="5,5,5,5"
-                            Click="CollapseNewVenueView">
-                            <TextBlock Text="NewVenue V"/>
-                        </Button>
+                    </TabItem>
 
-                        <StackPanel Orientation="Vertical" Margin="15,0,15,0" Grid.Row="3" Name="newVenueView"  Visibility="Collapsed">
+                    <TabItem  Header="Add new Venue">
+                        <StackPanel Orientation="Vertical"  Margin="15">
                             <TextBlock
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
@@ -369,9 +351,8 @@
                                 <TextBlock Text="Add Venue"/>
                             </Button>
                         </StackPanel>
-
-                    </Grid>
-                </StackPanel>
+                    </TabItem>
+                </TabControl>                
             </Grid>
         </Grid>
     </Grid>
