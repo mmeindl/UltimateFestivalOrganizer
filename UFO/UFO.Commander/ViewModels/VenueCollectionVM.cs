@@ -77,7 +77,6 @@ namespace UFO.Commander.ViewModels
             if (Areas.Count > 0)
             {
                 CurrentArea = Areas[0];
-                LoadVenues();
             }
             else
             {
