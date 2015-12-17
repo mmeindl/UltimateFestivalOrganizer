@@ -28,16 +28,6 @@ namespace UFO.Commander.ViewModels
             Venues = new ObservableCollection<VenueVM>();
             Areas = new ObservableCollection<AreaVM>();
             LoadAreas();
-
-            if (Areas.Count > 0)
-            {
-                CurrentArea = Areas[0];
-                LoadVenues();
-            }
-            else
-            {
-                currentArea = null;
-            }
         }
 
         public VenueVM CurrentVenue
@@ -67,31 +57,43 @@ namespace UFO.Commander.ViewModels
                     {
                         LoadVenues();
                     }
-                    
+
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentArea)));
                 }
             }
         }
 
-        private void LoadAreas()
+        private async void LoadAreas()
         {
             Areas.Clear();
             IEnumerable<Area> areas = server.FindAllAreas();
 
-            foreach (Area area in areas)
+            IEnumerator<Area> enumerator = areas.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Areas.Add(new AreaVM(area, this, server));
+                Areas.Add(new AreaVM(enumerator.Current, this, server));
+            }
+
+            if (Areas.Count > 0)
+            {
+                CurrentArea = Areas[0];
+                LoadVenues();
+            }
+            else
+            {
+                currentArea = null;
             }
         }
 
-        private void LoadVenues()
+        private async void LoadVenues()
         {
             Venues.Clear();
             IEnumerable<Venue> venues = server.FindVenuesByAreaId(currentArea.Id);
 
-            foreach (Venue venue in venues)
+            IEnumerator<Venue> enumerator = venues.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Venues.Add(new VenueVM(venue, currentArea.Area, this, server));
+                Venues.Add(new VenueVM(enumerator.Current, currentArea.Area, this, server));
             }
 
             if (Venues.Count > 0)

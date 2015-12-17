@@ -28,17 +28,8 @@ namespace UFO.Commander.ViewModels
         {
             this.server = server;
             Artists = new ObservableCollection<ArtistVM>();
+
             LoadArtists();
-
-            if (Artists.Count > 0)
-            {
-                CurrentArtist = Artists[0];
-            }
-            else
-            {
-                currentArtist = null;
-            }
-
             LoadCategories();
             LoadCountries();
         }
@@ -69,18 +60,28 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-
-        private void LoadArtists()
+        private async void LoadArtists()
         {
             Artists.Clear();
             IEnumerable<Artist> artists = server.FindAllArtists();
 
-            foreach (Artist artist in artists)
+            IEnumerator<Artist> enumerator = artists.GetEnumerator();
+            while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Category category = server.FindCategoryById(artist.CategoryId);
-                Country country = server.FindCountryByAbbreviation(artist.CountryId);
-                Artists.Add(new ArtistVM(artist, category, country, this, server));
+                Category category = server.FindCategoryById(enumerator.Current.CategoryId);
+                Country country = server.FindCountryByAbbreviation(enumerator.Current.CountryId);
+                Artists.Add(new ArtistVM(enumerator.Current, category, country, this, server));
             }
+
+            if (Artists.Count > 0)
+            {
+                CurrentArtist = Artists[0];
+            }
+            else
+            {
+                currentArtist = null;
+            }
+
         }
 
         private void LoadCategories()
