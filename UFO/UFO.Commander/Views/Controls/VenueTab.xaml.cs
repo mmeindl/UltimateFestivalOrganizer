@@ -252,6 +252,9 @@ namespace UFO.Commander.Views.Controls
         {
             editMapPane.Visibility = Visibility.Collapsed;
             editLocationGrid.Visibility = Visibility.Visible;
+
+            if (txtGeoLat.Text == "" || txtGeoLon.Text == "")
+                btnShowEditMap.IsEnabled = false;
         }
 
         
