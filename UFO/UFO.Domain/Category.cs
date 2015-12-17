@@ -13,15 +13,18 @@ namespace UFO.Domain
         {
         }
 
-        public Category(string name, int id = 0)
+        public Category(string name, string color, int id = 0)
         {
             this.Id = id;
             this.Name = name;
+            this.Color = color;
         }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string Color { get; set; }
 
         public override string ToString()
         {

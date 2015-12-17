@@ -43,5 +43,10 @@ namespace UFO.Commander.ViewModels
         {
             get { return artist.Name; }
         }
+
+        public string Color
+        {
+            get { return category.Color; }
+        }
     }
 }
