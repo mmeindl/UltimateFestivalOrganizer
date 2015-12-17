@@ -44,6 +44,7 @@ namespace UFO.Dal.SqlServer
                 {
                     return new Category(
                         (string)reader["name"],
+                        (string)reader["color"],
                         (int)reader["Id"]
                         );
                 }
@@ -68,6 +69,7 @@ namespace UFO.Dal.SqlServer
                 while (reader.Read())
                     result.Add(new Category(
                         (string)reader["name"],
+                        (string)reader["color"],
                         (int)reader["Id"])
                     );
                 return result;
