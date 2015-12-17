@@ -258,40 +258,40 @@ namespace UFO.Commander.Views.Controls
         }
 
         
-        private void CollapseEditVenueView(object sender, RoutedEventArgs e)
-        {
-            if (editVenueView.Visibility == Visibility.Visible)
-            {
-                editVenueView.Visibility = Visibility.Collapsed;
-            }
-            else if (newVenueView.Visibility == Visibility.Visible)
-            {
-                editVenueView.Visibility = Visibility.Visible;
-                newVenueView.Visibility = Visibility.Collapsed;
-            }
-            else if (editVenueView.Visibility == Visibility.Collapsed)
-            {
-                editVenueView.Visibility = Visibility.Visible;
-                newVenueView.Visibility = Visibility.Collapsed;
-            }
-        }
-        private void CollapseNewVenueView(object sender, RoutedEventArgs e)
-        {
-            if (newVenueView.Visibility == Visibility.Visible)
-            {
-                newVenueView.Visibility = Visibility.Collapsed;
-            }
-            else if (editVenueView.Visibility == Visibility.Visible)
-            {
-                editVenueView.Visibility = Visibility.Collapsed;
-                newVenueView.Visibility = Visibility.Visible;
-            }
-            else if (newVenueView.Visibility == Visibility.Collapsed)
-            {
-                editVenueView.Visibility = Visibility.Collapsed;
-                newVenueView.Visibility = Visibility.Visible;
-            }
+        //private void CollapseEditVenueView(object sender, RoutedEventArgs e)
+        //{
+        //    if (editVenueView.Visibility == Visibility.Visible)
+        //    {
+        //        editVenueView.Visibility = Visibility.Collapsed;
+        //    }
+        //    else if (newVenueView.Visibility == Visibility.Visible)
+        //    {
+        //        editVenueView.Visibility = Visibility.Visible;
+        //        newVenueView.Visibility = Visibility.Collapsed;
+        //    }
+        //    else if (editVenueView.Visibility == Visibility.Collapsed)
+        //    {
+        //        editVenueView.Visibility = Visibility.Visible;
+        //        newVenueView.Visibility = Visibility.Collapsed;
+        //    }
+        //}
+        //private void CollapseNewVenueView(object sender, RoutedEventArgs e)
+        //{
+        //    if (newVenueView.Visibility == Visibility.Visible)
+        //    {
+        //        newVenueView.Visibility = Visibility.Collapsed;
+        //    }
+        //    else if (editVenueView.Visibility == Visibility.Visible)
+        //    {
+        //        editVenueView.Visibility = Visibility.Collapsed;
+        //        newVenueView.Visibility = Visibility.Visible;
+        //    }
+        //    else if (newVenueView.Visibility == Visibility.Collapsed)
+        //    {
+        //        editVenueView.Visibility = Visibility.Collapsed;
+        //        newVenueView.Visibility = Visibility.Visible;
+        //    }
 
-        }
+        //}
     }
 }
