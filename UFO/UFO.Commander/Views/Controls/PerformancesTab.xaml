@@ -59,6 +59,16 @@
                 </Style>
             </DataGrid.RowStyle>
 
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="auto" Header="Token">
                     <DataGridTemplateColumn.CellStyle>
@@ -68,8 +78,8 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Path=VenueShortName, Mode=OneWay}" FontWeight="Bold" />
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=VenueShortName, Mode=OneWay}" FontWeight="Bold" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -83,8 +93,8 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Path=VenueName, Mode=OneWay}" FontWeight="Bold"/>
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=VenueName, Mode=OneWay}" FontWeight="Bold"/>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
