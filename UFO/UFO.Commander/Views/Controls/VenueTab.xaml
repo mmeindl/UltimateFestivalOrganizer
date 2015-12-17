@@ -13,7 +13,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
@@ -116,12 +116,12 @@
                             ItemsSource="{Binding Path=Venues}"
                             SelectedItem="{Binding Path=CurrentVenue, Mode=TwoWay}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Token" 
+                                                Binding="{Binding Path=ShortName}"
+                                                Width="auto"  />
                             <DataGridTextColumn Header="Name" 
                                                 Binding="{Binding Path=Name}"
                                                 Width="*" />
-                            <DataGridTextColumn Header="Shortname" 
-                                                Binding="{Binding Path=ShortName}"
-                                                Width="*"  />
                             <DataGridTemplateColumn Width="30">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
