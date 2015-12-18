@@ -167,7 +167,7 @@ namespace UFO.Dal.SqlServer
             {
                 using (DbCommand command = CreateUpdatePromoVideoToFalseCommand(artistVideo.ArtistId))
                 {
-                    result = database.ExecuteNonQuery(command) == 1 && result;
+                    database.ExecuteNonQuery(command);
                 }
             }
 
@@ -189,19 +189,17 @@ namespace UFO.Dal.SqlServer
 
         public bool Update(ArtistVideo artistVideo)
         {
-            bool result = true;
-
             if (artistVideo.IsPromoVideo)
             {
                 using (DbCommand command = CreateUpdatePromoVideoToFalseCommand(artistVideo.ArtistId))
                 {
-                    result = database.ExecuteNonQuery(command) == 1;
+                    database.ExecuteNonQuery(command);
                 }
             }
 
             using (DbCommand command = CreateUpdateCommand(artistVideo.Id, artistVideo.IsPromoVideo))
             {
-                return database.ExecuteNonQuery(command) == 1 && result;
+                return database.ExecuteNonQuery(command) == 1;
             }
         }
 
