@@ -69,10 +69,6 @@ namespace UFO.Commander.Views
 
             if (newPicture != null)
             {
-                if (oldPicture != null)
-                {
-                    oldPicture.IsProfilePicture = false;
-                }
                 newPicture.IsProfilePicture = true;
                 success = false;
                 try
@@ -88,23 +84,17 @@ namespace UFO.Commander.Views
                 if (!success)
                 {
                     newPicture.IsProfilePicture = false;
-                    if (oldPicture != null)
-                    {
-                        oldPicture.IsProfilePicture = true;
-                    }
                 }
                 else
                 {
+                    if (oldPicture != null)
+                        oldPicture.IsProfilePicture = false;
                     artist.ProfilePicture = newPicture;
                 }
             }
 
             if (newVideo != null)
             {
-                if (oldVideo != null)
-                {
-                    oldVideo.IsPromoVideo = false;
-                }
                 newVideo.IsPromoVideo = true;
                 success = false;
                 try
@@ -120,13 +110,11 @@ namespace UFO.Commander.Views
                 if (!success)
                 {
                     newVideo.IsPromoVideo = false;
-                    if (oldVideo != null)
-                    {
-                        oldVideo.IsPromoVideo = true;
-                    }
                 }
                 else
                 {
+                    if (oldVideo != null)
+                        oldVideo.IsPromoVideo = false;
                     artist.PromoVideo = newVideo;
                 }
             }
@@ -168,14 +156,18 @@ namespace UFO.Commander.Views
             ArtistPictureVM pictureVM = ((FrameworkElement)sender).DataContext as ArtistPictureVM;
             ArtistPicture picture = server.FindArtistPictureByURL(pictureVM.PictureURL);
 
-            if (picture.IsProfilePicture)
+            bool success = false;
+
+            success = server.DeleteArtistPicture(picture);
+
+            if (success)
             {
-                pictureVM.Artist.ProfilePicture = null;
+                if (picture.IsProfilePicture)
+                {
+                    pictureVM.Artist.ProfilePicture = null;
+                }
+                pictureVM.Artist.Pictures.Remove(pictureVM);
             }
-
-            pictureVM.Artist.Pictures.Remove(pictureVM);
-
-            server.DeleteArtistPicture(picture);
         }
 
         private void AddVideo(object sender, RoutedEventArgs e)
@@ -214,14 +206,19 @@ namespace UFO.Commander.Views
             ArtistVideoVM videoVM = ((FrameworkElement)sender).DataContext as ArtistVideoVM;
             ArtistVideo video = server.FindArtistVideoByURL(videoVM.VideoURL);
 
-            if (video.IsPromoVideo)
+            bool success = false;
+
+            success = server.DeleteArtistVideo(video);
+
+            if (success)
             {
-                videoVM.Artist.PromoVideo = null;
+                if (video.IsPromoVideo)
+                {
+                    videoVM.Artist.PromoVideo = null;
+                }
+
+                videoVM.Artist.Videos.Remove(videoVM);
             }
-
-            videoVM.Artist.Videos.Remove(videoVM);
-
-            server.DeleteArtistVideo(video);
         }
 
         void UrlClick(object sender, RoutedEventArgs e)

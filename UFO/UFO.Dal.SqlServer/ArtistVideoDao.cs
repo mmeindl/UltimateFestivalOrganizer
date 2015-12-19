@@ -17,7 +17,7 @@ namespace UFO.Dal.SqlServer
             FROM ArtistVideo
             WHERE ArtistVideo.videoURL = @url";
 
-        const string SQL_FIND_PROMOVideo_BY_ARTISTID =
+        const string SQL_FIND_PROMOVIDEO_BY_ARTISTID =
           @"SELECT *
             FROM ArtistVideo
             WHERE ArtistVideo.artistId = @id
@@ -40,7 +40,8 @@ namespace UFO.Dal.SqlServer
         const string SQL_UPDATE_PROMOVIDEO_TO_FALSE =
           @"UPDATE ArtistVideo
             SET IsPromoVideo = 0
-            WHERE IsPromoVideo = 1";
+            WHERE IsPromoVideo = 1
+            AND ArtistVideo.ArtistId = @artistId";
 
         const string SQL_DELETE =
           @"DELETE FROM ArtistVideo
@@ -83,7 +84,7 @@ namespace UFO.Dal.SqlServer
 
         private DbCommand CreateFindPromoVideoByArtistIdCommand(int artistId)
         {
-            DbCommand findPromoVideoByArtistIdCommand = database.CreateCommand(SQL_FIND_PROMOVideo_BY_ARTISTID);
+            DbCommand findPromoVideoByArtistIdCommand = database.CreateCommand(SQL_FIND_PROMOVIDEO_BY_ARTISTID);
             database.DefineParameter(findPromoVideoByArtistIdCommand, "id", DbType.Int32, artistId);
             return findPromoVideoByArtistIdCommand;
         }
@@ -132,9 +133,10 @@ namespace UFO.Dal.SqlServer
             }
         }
 
-        private DbCommand CreateUpdatePromoVideoToFalseCommand()
+        private DbCommand CreateUpdatePromoVideoToFalseCommand(int artistId)
         {
             DbCommand updatePromoVideoToFalseCommand = database.CreateCommand(SQL_UPDATE_PROMOVIDEO_TO_FALSE);
+            database.DefineParameter(updatePromoVideoToFalseCommand, "artistId", DbType.Int32, artistId);
             return updatePromoVideoToFalseCommand;
         }
 
@@ -163,9 +165,9 @@ namespace UFO.Dal.SqlServer
 
             if (artistVideo.IsPromoVideo)
             {
-                using (DbCommand command = CreateUpdatePromoVideoToFalseCommand())
+                using (DbCommand command = CreateUpdatePromoVideoToFalseCommand(artistVideo.ArtistId))
                 {
-                    result = database.ExecuteNonQuery(command) == 1 && result;
+                    database.ExecuteNonQuery(command);
                 }
             }
 
@@ -187,19 +189,17 @@ namespace UFO.Dal.SqlServer
 
         public bool Update(ArtistVideo artistVideo)
         {
-            bool result = true;
-
             if (artistVideo.IsPromoVideo)
             {
-                using (DbCommand command = CreateUpdatePromoVideoToFalseCommand())
+                using (DbCommand command = CreateUpdatePromoVideoToFalseCommand(artistVideo.ArtistId))
                 {
-                    result = database.ExecuteNonQuery(command) == 1;
+                    database.ExecuteNonQuery(command);
                 }
             }
 
             using (DbCommand command = CreateUpdateCommand(artistVideo.Id, artistVideo.IsPromoVideo))
             {
-                return database.ExecuteNonQuery(command) == 1 && result;
+                return database.ExecuteNonQuery(command) == 1;
             }
         }
 
