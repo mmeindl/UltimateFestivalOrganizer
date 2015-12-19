@@ -124,10 +124,10 @@ namespace UFO.Commander.Views.Controls
 
             try
             {
-                if (artist.Name == "" ||
+                if (newName == "" ||
                     newCategory == null ||
                     newCountry == null ||
-                    newEmail == null ||
+                    newEmail == "" ||
                     !regexUtilities.IsValidEmail(newEmail))
                 { throw new Exception(); }
 
