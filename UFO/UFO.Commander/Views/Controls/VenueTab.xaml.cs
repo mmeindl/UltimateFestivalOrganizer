@@ -25,6 +25,15 @@ namespace UFO.Commander.Views.Controls
     public partial class VenueTab : UserControl
     {
         IUFOServer server;
+        const string msgRemoveAreaException = "Unable to remove area. Please remove connected venues first.";
+        const string msgRemoveVenueException = "Unable to remove venue. Pleas remove connected performances first.";
+        const string msgEmptyNameException = "Unable to save changes. Please enter a name.";
+        const string msgEmptyAbbreviationException = "Unable to save changes. Please enter an abbreviation.";
+        const string msgEmptyPositionException = "Unable to save changes. Please enter a position.";
+        const string msgSaveException = "Unable to save changes. Please check your input.";
+        const string msgShowMapException = "Unable to show Map";
+        const string msgDuplicateAreaException = "Unable to save changes. Area already exists.";
+        const string msgDuplicateVenueException = "Unable to save changes. Venue already exists.";
 
         public VenueTab()
         {
@@ -34,7 +43,7 @@ namespace UFO.Commander.Views.Controls
 
             newMap.Focus();
             newMap.ViewChangeOnFrame += NewMap_ViewChangeOnFrame;
-            //editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+            
         }
 
         private void NewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
@@ -57,10 +66,13 @@ namespace UFO.Commander.Views.Controls
 
             string name = txtNameNew.Text;
 
-            if (name != null)
+            try
             {
+                if (name == "")
+                    throw new Exception();
                 Area area = new Area(name);
                 bool success = server.InsertArea(area);
+
                 if (success)
                 {
                     area = server.FindAreaByName(name);
@@ -72,6 +84,16 @@ namespace UFO.Commander.Views.Controls
                     dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                     dgAreas.ScrollIntoView(areaVM);
                 }
+            }
+            catch (Exception exc)
+            {
+                MessageBoxResult result;
+                if (name == "")
+                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                else if (server.FindAreaByName(name) != null)
+                    result = MessageBox.Show(msgDuplicateAreaException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgSaveException, "Confirmation");
             }
         }
 
@@ -95,6 +117,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
+                MessageBoxResult result = MessageBox.Show(msgRemoveAreaException, "Confirmation");
             }
         }
 
@@ -103,11 +126,13 @@ namespace UFO.Commander.Views.Controls
             VenueCollectionVM venueCollectionVM = ((FrameworkElement)sender).DataContext as VenueCollectionVM;
             Venue venue = new Venue();
 
+            string name = txtVenueNameNew.Text;
+            string shortName = txtShortNameNew.Text;
+
+
             bool success = false;
             try
             {
-                string name = txtVenueNameNew.Text;
-                string shortName = txtShortNameNew.Text;
                 decimal geoLat = decimal.Parse(txtGeoLatNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
                 decimal geoLon = decimal.Parse(txtGeoLonNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
@@ -122,6 +147,17 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result;
+                if (name == "")
+                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                else if (shortName == "")
+                    result = MessageBox.Show(msgEmptyAbbreviationException, "Confirmation");
+                else if (txtGeoLatNew.Text == "" && txtGeoLonNew.Text == "")
+                    result = MessageBox.Show(msgEmptyPositionException, "Confirmation");
+                else if (server.FindVenueByName(name) != null)
+                    result = MessageBox.Show(msgDuplicateVenueException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgSaveException, "Confirmation");
             }
 
             if (success)
@@ -151,21 +187,24 @@ namespace UFO.Commander.Views.Controls
             decimal oldGeoLat = venueVM.GeoLocationLat;
             decimal oldGeoLon = venueVM.GeoLocationLon;
 
+            string name = txtVenueName.Text;
+            string shortName = txtShortName.Text;
+
+            decimal geoLat = decimal.Parse(txtGeoLat.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+            decimal geoLon = decimal.Parse(txtGeoLon.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+
+            if (editMapPane.Visibility == Visibility.Visible && txtGeoLonEditMap.Text != "" && txtGeoLatEditMap.Text != "")
+            {
+                geoLat = decimal.Parse(txtGeoLatEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+                geoLon = decimal.Parse(txtGeoLonEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+            }
+
             bool success = false;
             try
             {
-                string name = txtVenueName.Text;
-                string shortName = txtShortName.Text;
-
-                decimal geoLat = decimal.Parse(txtGeoLat.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
-                decimal geoLon = decimal.Parse(txtGeoLon.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
-
-                if (editMapPane.Visibility == Visibility.Visible && txtGeoLonEditMap.Text != "" && txtGeoLatEditMap.Text != "")
-                {
-                    geoLat = decimal.Parse(txtGeoLatEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
-                    geoLon = decimal.Parse(txtGeoLonEditMap.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
-                }
-
+                if (name == "" ||
+                    shortName == "")
+                { throw new Exception(); }
 
                 venueVM.Name = name;
                 venueVM.ShortName = shortName;
@@ -177,6 +216,15 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result;
+                if (name == "")
+                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                else if (shortName == "")
+                    result = MessageBox.Show(msgEmptyAbbreviationException, "Confirmation");
+                else if (oldName != name && server.FindVenueByName(name) != null)
+                    result = MessageBox.Show(msgDuplicateVenueException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgSaveException, "Confirmation");
             }
 
             if (!success)
@@ -213,22 +261,33 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
+                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
             }
         }
 
         private void ShowEditMap(object sender, RoutedEventArgs e)
         {
-            editMapPane.Visibility = Visibility.Visible;
-            editLocationGrid.Visibility = Visibility.Collapsed;
-            Location center = new Location();
-            string lat = txtGeoLat.Text.Substring(0, 7).Replace('.', ',');
-            string lon = txtGeoLon.Text.Substring(0, 7).Replace('.', ',');
-            center.Latitude = Convert.ToDouble(lat);
-            center.Longitude = Convert.ToDouble(lon);
+            try
+            {            
+                editMapPane.Visibility = Visibility.Visible;
+                editLocationGrid.Visibility = Visibility.Collapsed;
+                Location center = new Location();
+                string lat = txtGeoLat.Text.Substring(0, 7).Replace('.', ',');
+                string lon = txtGeoLon.Text.Substring(0, 7).Replace('.', ',');
+                center.Latitude = Convert.ToDouble(lat);
+                center.Longitude = Convert.ToDouble(lon);
 
-            editMap.Center = center;
-            editMap.Focus();
-            editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+                editMap.Center = center;
+                editMap.Focus();
+                editMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewEditMap_ViewChangeOnFrame);
+            }
+            catch (Exception exc)
+            {
+                // Inform User
+                editMapPane.Visibility = Visibility.Collapsed;
+                editLocationGrid.Visibility = Visibility.Visible;
+                MessageBoxResult result = MessageBox.Show(msgShowMapException, "Confirmation");
+            }
 
         }
 
@@ -251,45 +310,8 @@ namespace UFO.Commander.Views.Controls
             editMapPane.Visibility = Visibility.Collapsed;
             editLocationGrid.Visibility = Visibility.Visible;
 
-            if (txtGeoLat.Text == "" || txtGeoLon.Text == "")
-                btnShowEditMap.IsEnabled = false;
         }
 
-        
-        //private void CollapseEditVenueView(object sender, RoutedEventArgs e)
-        //{
-        //    if (editVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (newVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Visible;
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (editVenueView.Visibility == Visibility.Collapsed)
-        //    {
-        //        editVenueView.Visibility = Visibility.Visible;
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //}
-        //private void CollapseNewVenueView(object sender, RoutedEventArgs e)
-        //{
-        //    if (newVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        newVenueView.Visibility = Visibility.Collapsed;
-        //    }
-        //    else if (editVenueView.Visibility == Visibility.Visible)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //        newVenueView.Visibility = Visibility.Visible;
-        //    }
-        //    else if (newVenueView.Visibility == Visibility.Collapsed)
-        //    {
-        //        editVenueView.Visibility = Visibility.Collapsed;
-        //        newVenueView.Visibility = Visibility.Visible;
-        //    }
 
-        //}
     }
 }
