@@ -24,7 +24,7 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class VenueTab : UserControl
     {
-        IUFOServer server;
+        private IUFOServer server;
 
         public VenueTab()
         {

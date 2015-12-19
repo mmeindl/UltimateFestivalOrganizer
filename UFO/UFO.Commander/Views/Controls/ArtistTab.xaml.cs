@@ -22,7 +22,7 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class ArtistTab : UserControl
     {
-        IUFOServer server;
+        private IUFOServer server;
 
         public ArtistTab()
         {

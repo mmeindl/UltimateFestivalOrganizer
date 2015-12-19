@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,13 +22,52 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class PerformancesTab : UserControl
     {
-        IUFOServer server;
+        private IUFOServer server;
+        private PerformanceVM selectedPerformanceVM;
+
+        private bool isDragging;
 
         public PerformancesTab()
         {
             server = UFOServerFactory.GetUFOServer();
 
             InitializeComponent();
+
+            isDragging = false;
+        }
+
+        private void drag_performance(object sender, MouseButtonEventArgs e)
+        {
+            PerformanceCollectionVM performanceCollectionVM = ((FrameworkElement)sender).DataContext as PerformanceCollectionVM;
+
+            DataGridCell cell = GetCell((DependencyObject)e.OriginalSource);
+
+            GetPerformanceFromCell(cell);
+
+            Cursor = Cursors.Cross;
+
+            isDragging = true;
+        }
+
+        private void drop_performance(object sender, MouseButtonEventArgs e)
+        {
+            if (isDragging)
+            {
+                PerformanceVM performanceVMtoDrop = selectedPerformanceVM;
+
+                DataGridCell cell = GetCell((DependencyObject)e.OriginalSource);
+
+                if (GetPerformanceFromCell(cell) && selectedPerformanceVM.Performance == null)
+                {
+                    PerformanceVM helperVM = selectedPerformanceVM;
+                    selectedPerformanceVM = performanceVMtoDrop;
+                    performanceVMtoDrop = helperVM;
+                }
+
+                Cursor = Cursors.Arrow;
+
+                isDragging = false;
+            }
         }
 
         private void RemovePerformance(object sender, RoutedEventArgs e)
@@ -51,6 +91,64 @@ namespace UFO.Commander.Views.Controls
             //{
             //    // Inform User
             //}
+        }
+
+
+
+
+
+        // Helpers
+
+        private DataGridCell GetCell(DependencyObject dep)
+        {
+            while ((dep != null) && !(dep is DataGridCell) && !(dep is DataGridColumnHeader))
+            {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            return dep as DataGridCell;
+        }
+
+        private DataGridRow GetRow(DependencyObject cell)
+        {
+            while ((cell != null) && !(cell is DataGridRow))
+            {
+                cell = VisualTreeHelper.GetParent(cell);
+            }
+
+            return cell as DataGridRow;
+        }
+
+        private int GetRowIndex(DataGridRow row)
+        {
+            DataGrid dataGrid = ItemsControl.ItemsControlFromItemContainer(row) as DataGrid;
+
+            int index = dataGrid.ItemContainerGenerator.IndexFromContainer(row);
+
+            return index;
+        }
+
+        private bool GetPerformanceFromCell(DataGridCell cell)
+        {
+            const int STARTCOLIDX = 2;
+            
+            if (cell == null)
+            {
+                return false;
+            }
+
+            int colIndex = cell.Column.DisplayIndex;
+            DataGridRow row = GetRow(cell);
+
+            if (colIndex >= STARTCOLIDX)
+            {
+                PerformanceRowVM performanceRowVM = (PerformanceRowVM)row.Item;
+                selectedPerformanceVM = performanceRowVM.VenuePerformances.ElementAt(colIndex - STARTCOLIDX);
+                return true;
+            }
+
+            selectedPerformanceVM = null;
+            return false;
         }
     }
 }
