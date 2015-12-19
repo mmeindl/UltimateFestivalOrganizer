@@ -41,18 +41,19 @@
                       VerticalContentAlignment="Center"
                       Margin="10, 0, 0, 0"
                       Height="30"
-                      Name="cmbPerformanceVenue"/>
+                      Name="cmbPerformanceArea"/>
         </Grid>
 
         <DataGrid Grid.Row="1"
-                            Name="dgPerformances"
-                            AutoGenerateColumns="False"
-                            SelectionMode="Single"
-                            SelectionUnit="Cell"
-                            IsReadOnly="True"
-                            FontSize="14"
-                            ItemsSource="{Binding Path=PerformanceRows}"
-                            SelectedItem="{Binding Path=CurrentPerformance, Mode=TwoWay}">
+                  Name="dgPerformances"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  SelectionUnit="Cell"
+                  IsReadOnly="True"
+                  FontSize="14"
+                  ItemsSource="{Binding Path=PerformanceRows}"
+                  MouseLeftButtonDown="drag_performance"
+                  MouseLeftButtonUp="drop_performance">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="auto" />
@@ -103,7 +104,7 @@
                 <DataGridTemplateColumn Width="*" Header="14 - 15 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist14.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist14.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -125,7 +126,7 @@
                 <DataGridTemplateColumn Width="*" Header="15 - 16 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist15.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist15.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -147,7 +148,7 @@
                 <DataGridTemplateColumn Width="*" Header="16 - 17 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist16.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist16.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -169,7 +170,7 @@
                 <DataGridTemplateColumn Width="*" Header="17 - 18 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist17.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist17.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -191,7 +192,7 @@
                 <DataGridTemplateColumn Width="*" Header="18 - 19 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist18.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist18.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -213,7 +214,7 @@
                 <DataGridTemplateColumn Width="*" Header="19 - 20 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist19.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist19.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -235,7 +236,7 @@
                 <DataGridTemplateColumn Width="*" Header="20 - 21 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist20.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist20.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -257,7 +258,7 @@
                 <DataGridTemplateColumn Width="*" Header="21 - 22 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist21.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist21.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
@@ -279,7 +280,7 @@
                 <DataGridTemplateColumn Width="*" Header="22 - 23 Uhr">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
-                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist22.Color, Mode=OneWay}" />
+                            <Setter Property="Background" Value="{Binding Path=PerformanceArtist22.Color, FallbackValue='White', Mode=OneWay}" />
                         </Style>
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>

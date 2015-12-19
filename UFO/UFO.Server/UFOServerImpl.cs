@@ -184,7 +184,9 @@ namespace UFO.Server
 
         public bool UpdatePerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Update(performance);
         }
         
         public bool DeletePerformance(Performance performance)
