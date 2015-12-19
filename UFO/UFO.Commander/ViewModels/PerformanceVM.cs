@@ -20,15 +20,15 @@ namespace UFO.Commander.ViewModels
         private Performance performance;
         private PerformanceArtistVM performanceArtistVM;
 
-        private PerformanceCollectionVM performanceCollectionVM;
+        private PerformanceRowVM performanceRowVM;
 
-        public PerformanceVM(Performance performance, PerformanceCollectionVM performanceCollectionVM, IUFOServer server)
+        public PerformanceVM(Performance performance, PerformanceRowVM performanceRowVM, IUFOServer server)
         {
             this.performance = performance;
-            this.performanceCollectionVM = performanceCollectionVM;
+            this.performanceRowVM = performanceRowVM;
             this.server = server;
 
-            if (performance != null)
+            if (performance.Id != 0)
             {
                 Artist artist = server.FindArtistById(performance.ArtistId);
                 performanceArtistVM = new PerformanceArtistVM(artist,
@@ -85,9 +85,17 @@ namespace UFO.Commander.ViewModels
             }
         }
 
-        public PerformanceCollectionVM PerformanceCollectionVM
+        public PerformanceRowVM PerformanceRowVM
         {
-            get { return performanceCollectionVM; }
+            get { return performanceRowVM; }
+            set
+            {
+                if (performanceRowVM != value)
+                {
+                    performanceRowVM = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceRowVM)));
+                }
+            }
         }
     }
 }

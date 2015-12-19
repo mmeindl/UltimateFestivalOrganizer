@@ -41,7 +41,7 @@
                       VerticalContentAlignment="Center"
                       Margin="10, 0, 0, 0"
                       Height="30"
-                      Name="cmbPerformanceVenue"/>
+                      Name="cmbPerformanceArea"/>
         </Grid>
 
         <DataGrid Grid.Row="1"
