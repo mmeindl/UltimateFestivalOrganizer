@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +25,14 @@ namespace UFO.Commander.Views.Controls
     public partial class ArtistTab : UserControl
     {
         IUFOServer server;
+        RegexUtilities regexUtilities = new RegexUtilities();
+        const string msgSaveException = "Unable to save changes. Please check your input!";
+        const string msgEmptyNameException = "Unable to save changes. Please enter a artist!";
+        const string msgEmptyCategoryException = "Unable to save changes. Please enter a category!";
+        const string msgEmptyCountryException = "Unable to save changes. Please enter a country!";
+        const string msgEmptyEmailException = "Unable to save changes. Please enter a e-mail address!";
+        const string msgInvalidEmailException = "Unable to save changes. Please enter a valid e-mail address!";
+        const string msgDuplicateException = "Unable to save chnges. Artist already exists.";
 
         public ArtistTab()
         {
@@ -39,11 +49,10 @@ namespace UFO.Commander.Views.Controls
             Country country = (Country)cmbCountryNew.SelectedItem;
 
             bool success = false;
+            string name = txtArtistnameNew.Text;
+            string email = txtEmailNew.Text;
             try
             {
-                string name = txtArtistnameNew.Text;
-                string email = txtEmailNew.Text;
-
                 artist.Name = name;
                 artist.CategoryId = category.Id;
                 artist.CountryId = country.Abbreviation;
@@ -53,7 +62,21 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
+                MessageBoxResult result;
+                if (name == "")
+                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                else if (category == null)
+                    result = MessageBox.Show(msgEmptyCategoryException, "Confirmation");
+                else if (country == null)
+                    result = MessageBox.Show(msgEmptyCountryException, "Confirmation");
+                else if (email == "")
+                    result = MessageBox.Show(msgEmptyEmailException, "Confirmation");
+                else if (!regexUtilities.IsValidEmail(email))
+                    result = MessageBox.Show(msgInvalidEmailException, "Confirmation");
+                else if (server.FindAreaByName(name) != null)
+                    result = MessageBox.Show(msgDuplicateException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgSaveException, "Confirmation");
             }
 
             if (success)
@@ -72,7 +95,7 @@ namespace UFO.Commander.Views.Controls
             ArtistVM artistVM = ((FrameworkElement)sender).DataContext as ArtistVM;
 
             ArtistVM currentArtist = artistVM.ArtistCollection.Artists[0];
-            
+
 
             artistVM.ArtistCollection.Artists.Remove(artistVM);
 
@@ -93,12 +116,20 @@ namespace UFO.Commander.Views.Controls
             string oldEmail = artist.Email;
 
             bool success = false;
+
+            string newName = txtArtistname.Text;
+            Category newCategory = (Category)cmbCategory.SelectedItem;
+            Country newCountry = (Country)cmbCountry.SelectedItem;
+            string newEmail = txtEmail.Text;
+
             try
             {
-                string newName = txtArtistname.Text;
-                Category newCategory = (Category)cmbCategory.SelectedItem;
-                Country newCountry = (Country)cmbCountry.SelectedItem;
-                string newEmail = txtEmail.Text;
+                if (artist.Name == "" ||
+                    newCategory == null ||
+                    newCountry == null ||
+                    newEmail == null ||
+                    !regexUtilities.IsValidEmail(newEmail))
+                { throw new Exception(); }
 
                 artist.Name = newName;
                 artist.Category = newCategory;
@@ -109,7 +140,21 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
+                MessageBoxResult result;
+                if (newName == "")
+                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                else if (newCategory == null)
+                    result = MessageBox.Show(msgEmptyCategoryException, "Confirmation");
+                else if (newCountry == null)
+                    result = MessageBox.Show(msgEmptyCountryException, "Confirmation");
+                else if (newEmail == "")
+                    result = MessageBox.Show(msgEmptyEmailException, "Confirmation");
+                else if (!regexUtilities.IsValidEmail(newEmail))
+                    result = MessageBox.Show(msgInvalidEmailException, "Confirmation");
+                else if (oldName != txtArtistname.Text && server.FindAreaByName(newName) != null)
+                    result = MessageBox.Show(msgDuplicateException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgSaveException, "Confirmation");
             }
 
             if (!success)

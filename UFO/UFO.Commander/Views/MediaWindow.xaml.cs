@@ -20,9 +20,16 @@ namespace UFO.Commander.Views
     /// <summary>
     /// Interaktionslogik für MediaWindow.xaml
     /// </summary>
+    /// 
     public partial class MediaWindow : Window
     {
+
         IUFOServer server;
+        RegexUtilities regexUtilities = new RegexUtilities();
+        const string msgSaveException = "Unable to save changes. Please check your input!";
+        const string msgInvalidURLException = "URL has to start with 'http(s)://'";
+        const string msgInvalidURLPathException = "Unable to save changes. Please enter a valid URL";
+        const string msgDuplicateURLException = "Unable to save changes. URL already exists.";
 
         public MediaWindow()
         {
@@ -33,6 +40,7 @@ namespace UFO.Commander.Views
 
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
+            
             ArtistVM artist = ((FrameworkElement)sender).DataContext as ArtistVM;
             string newWebsite = txtWebsite.Text;
             string oldWebsite = artist.WebsiteURL;
@@ -51,6 +59,7 @@ namespace UFO.Commander.Views
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
             }
 
             if (!success)
@@ -69,6 +78,7 @@ namespace UFO.Commander.Views
                 catch (Exception exc)
                 {
                     // TODO User hinweisen
+                    MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
                 }
 
                 if (!success)
@@ -94,6 +104,7 @@ namespace UFO.Commander.Views
                 catch (Exception exc)
                 {
                     // TODO User hinweisen
+                    MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
                 }
 
                 if (!success)
@@ -122,7 +133,14 @@ namespace UFO.Commander.Views
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
+                // TODO
+                MessageBoxResult result;
+                if (!regexUtilities.IsValidURL(txtPictureURL.Text))
+                    result = MessageBox.Show(msgInvalidURLException, "Confirmation");
+                else if(server.FindArtistPictureByURL(txtPictureURL.Text) != null)
+                    result = MessageBox.Show(msgDuplicateURLException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgInvalidURLPathException, "Confirmation");
             }
 
             if (success)
@@ -166,6 +184,13 @@ namespace UFO.Commander.Views
             catch (Exception exc)
             {
                 // TODO User hinweisen
+                MessageBoxResult result;
+                if (!regexUtilities.IsValidURL(txtPictureURL.Text))
+                    result = MessageBox.Show(msgInvalidURLException, "Confirmation");
+                else if (server.FindArtistVideoByURL(txtVideoURL.Text) != null)
+                    result = MessageBox.Show(msgDuplicateURLException, "Confirmation");
+                else
+                    result = MessageBox.Show(msgInvalidURLPathException, "Confirmation");
             }
             
             if (success)
