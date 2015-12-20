@@ -54,7 +54,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[0].PerformanceArtistVM != value)
                 {
                     VenuePerformances[0].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist14)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[1].PerformanceArtistVM != value)
                 {
                     VenuePerformances[1].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist15)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[2].PerformanceArtistVM != value)
                 {
                     VenuePerformances[2].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist16)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[3].PerformanceArtistVM != value)
                 {
                     VenuePerformances[3].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist17)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[4].PerformanceArtistVM != value)
                 {
                     VenuePerformances[4].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist18)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[5].PerformanceArtistVM != value)
                 {
                     VenuePerformances[5].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist19)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[6].PerformanceArtistVM != value)
                 {
                     VenuePerformances[6].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist20)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[7].PerformanceArtistVM != value)
                 {
                     VenuePerformances[7].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist21)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace UFO.Commander.ViewModels
                 if (VenuePerformances[8].PerformanceArtistVM != value)
                 {
                     VenuePerformances[8].PerformanceArtistVM = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PerformanceArtist22)));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VenuePerformances)));
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace UFO.Commander.ViewModels
             VenuePerformances.Clear();
             for (int i = 0; i < 9; ++i)
             {
-                VenuePerformances.Add(new PerformanceVM(null, performanceCollectionVM, server));
+                VenuePerformances.Add(new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 14 + i, 0, 0, 0), venue.Id, 0), this, server));
             }
 
             IEnumerator<Performance> enumerator = performances.GetEnumerator();
