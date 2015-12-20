@@ -135,6 +135,8 @@ namespace UFO.Commander.Views.Controls
             bool success = false;
             try
             {
+                if (name == "")
+                    throw new Exception();
                 decimal geoLat = decimal.Parse(txtGeoLatNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
                 decimal geoLon = decimal.Parse(txtGeoLonNew.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
