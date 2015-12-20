@@ -35,8 +35,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AcroPDFLib">
+      <HintPath>.\AcroPDFLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="AxAcroPDFLib">
+      <HintPath>.\AxAcroPDFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxPdfLib">
+      <HintPath>.\AxPdfLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF">
       <HintPath>C:\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-WPF">
+      <HintPath>.\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-WPF">
+      <HintPath>.\MigraDoc.Rendering-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-WPF">
+      <HintPath>.\MigraDoc.RtfRendering-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfLib">
+      <HintPath>.\PdfLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>.\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-WPF">
+      <HintPath>.\PdfSharp.Charting-WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

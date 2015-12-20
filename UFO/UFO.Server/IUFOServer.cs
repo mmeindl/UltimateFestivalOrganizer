@@ -75,6 +75,7 @@ namespace UFO.Server
         IEnumerable<Performance> FindAllPerformances();
         IEnumerable<Performance> FindPerformancesByDate(DateTime date);
         IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue);
+        IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist);
 
         IEnumerable<DateTime> GetPerformanceDates();
 

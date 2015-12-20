@@ -35,6 +35,8 @@ namespace UFO.Commander.Views.Controls
         private const string msgDuplicateAreaException = "Unable to save changes. Area already exists.";
         private const string msgDuplicateVenueException = "Unable to save changes. Venue already exists.";
 
+        const string msgWindowTitle = "Error";
+
         public VenueTab()
         {
             server = UFOServerFactory.GetUFOServer();
@@ -89,11 +91,11 @@ namespace UFO.Commander.Views.Controls
             {
                 MessageBoxResult result;
                 if (name == "")
-                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
                 else if (server.FindAreaByName(name) != null)
-                    result = MessageBox.Show(msgDuplicateAreaException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateAreaException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgSaveException, "Confirmation");
+                    result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
         }
 
@@ -117,7 +119,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
-                MessageBoxResult result = MessageBox.Show(msgRemoveAreaException, "Confirmation");
+                MessageBoxResult result = MessageBox.Show(msgRemoveAreaException, msgWindowTitle);
             }
         }
 
@@ -149,15 +151,15 @@ namespace UFO.Commander.Views.Controls
                 // TODO User hinweisen
                 MessageBoxResult result;
                 if (name == "")
-                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
                 else if (shortName == "")
-                    result = MessageBox.Show(msgEmptyAbbreviationException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyAbbreviationException, msgWindowTitle);
                 else if (txtGeoLatNew.Text == "" && txtGeoLonNew.Text == "")
-                    result = MessageBox.Show(msgEmptyPositionException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyPositionException, msgWindowTitle);
                 else if (server.FindVenueByName(name) != null)
-                    result = MessageBox.Show(msgDuplicateVenueException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateVenueException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgSaveException, "Confirmation");
+                    result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
             if (success)
@@ -218,13 +220,13 @@ namespace UFO.Commander.Views.Controls
                 // TODO User hinweisen
                 MessageBoxResult result;
                 if (name == "")
-                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
                 else if (shortName == "")
-                    result = MessageBox.Show(msgEmptyAbbreviationException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyAbbreviationException, msgWindowTitle);
                 else if (oldName != name && server.FindVenueByName(name) != null)
-                    result = MessageBox.Show(msgDuplicateVenueException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateVenueException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgSaveException, "Confirmation");
+                    result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
             if (!success)
@@ -261,7 +263,7 @@ namespace UFO.Commander.Views.Controls
             catch (Exception exc)
             {
                 // Inform User
-                MessageBoxResult result = MessageBox.Show(exc.Message, "Confirmation");
+                MessageBoxResult result = MessageBox.Show(exc.Message, msgWindowTitle);
             }
         }
 
@@ -286,7 +288,7 @@ namespace UFO.Commander.Views.Controls
                 // Inform User
                 editMapPane.Visibility = Visibility.Collapsed;
                 editLocationGrid.Visibility = Visibility.Visible;
-                MessageBoxResult result = MessageBox.Show(msgShowMapException, "Confirmation");
+                MessageBoxResult result = MessageBox.Show(msgShowMapException, msgWindowTitle);
             }
 
         }

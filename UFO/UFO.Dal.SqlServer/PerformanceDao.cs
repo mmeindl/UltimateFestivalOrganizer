@@ -32,6 +32,12 @@ namespace UFO.Dal.SqlServer
                 WHERE DATEDIFF(DAY ,dateTime, @date) = 0
                 AND Performance.VenueId = @venueId";
 
+        const string SQL_FIND_ALL_BY_DATE_AND_ARTIST =
+            @"SELECT *
+                FROM Performance
+                WHERE DATEDIFF(DAY ,dateTime, @date) = 0
+                AND Performance.ArtistId = @artistId";
+
         const string SQL_FIND_ALL_IN_FUTURE =
             @"SELECT *
                 FROM Performance
@@ -177,7 +183,32 @@ namespace UFO.Dal.SqlServer
                 return result;
             }
         }
-        
+
+        private DbCommand CreateFindAllByDateAndArtist(DateTime date, int artistId)
+        {
+            DbCommand findAllByDateAndArtist = database.CreateCommand(SQL_FIND_ALL_BY_DATE_AND_ARTIST);
+            database.DefineParameter(findAllByDateAndArtist, "date", DbType.DateTime, date);
+            database.DefineParameter(findAllByDateAndArtist, "artistId", DbType.Int32, artistId);
+            return findAllByDateAndArtist;
+        }
+
+        public IList<Performance> FindByDateAndArtist(DateTime date, Artist artist)
+        {
+            using (DbCommand command = CreateFindAllByDateAndArtist(date, artist.Id))
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                IList<Performance> result = new List<Performance>();
+                while (reader.Read())
+                    result.Add(new Performance(
+                        (DateTime)reader["dateTime"],
+                        (int)reader["venueId"],
+                        (int)reader["artistId"],
+                        (int)reader["Id"])
+                    );
+                return result;
+            }
+        }
+
         private DbCommand CreateFindAllInFuture()
         {
             return database.CreateCommand(SQL_FIND_ALL_IN_FUTURE);
