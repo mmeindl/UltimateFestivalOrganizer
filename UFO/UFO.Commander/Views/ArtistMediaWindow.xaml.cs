@@ -21,7 +21,7 @@ namespace UFO.Commander.Views
     /// Interaktionslogik für MediaWindow.xaml
     /// </summary>
     /// 
-    public partial class MediaWindow : Window
+    public partial class ArtistMediaWindow : Window
     {
 
         IUFOServer server;
@@ -33,7 +33,7 @@ namespace UFO.Commander.Views
 
         const string msgWindowTitle = "Error";
 
-        public MediaWindow()
+        public ArtistMediaWindow()
         {
             server = UFOServerFactory.GetUFOServer();
 
