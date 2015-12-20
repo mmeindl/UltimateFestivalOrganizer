@@ -13,7 +13,6 @@ namespace UFO.Dal.Common
         Area FindByName(string name);
         IList<Area> FindAll();
         bool Insert(Area area);
-        bool Update(Area area);
         bool Delete(Area area);
     }
 }
