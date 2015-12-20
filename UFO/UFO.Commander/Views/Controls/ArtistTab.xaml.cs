@@ -177,9 +177,9 @@ namespace UFO.Commander.Views.Controls
 
         private void EditMedia(object sencer, RoutedEventArgs e)
         {
-            MediaWindow mediaWindow = new MediaWindow();
-            mediaWindow.DataContext = this.DataContext;
-            mediaWindow.Show();
+            ArtistMediaWindow artistMediaWindow = new ArtistMediaWindow();
+            artistMediaWindow.DataContext = this.DataContext;
+            artistMediaWindow.ShowDialog();
         }
     }
 }

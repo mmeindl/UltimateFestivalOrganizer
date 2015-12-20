@@ -402,6 +402,64 @@ namespace UFO.Server
             return artistVideoDao.Delete(artistVideo);
         }
 
+        // PerformancePicture
+        public PerformancePicture FindPerformancePictureByURL(string url)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.FindByURL(url);
+        }
+
+        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int PerformanceId)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.FindAllByPerformanceId(PerformanceId);
+        }
+
+        public bool InsertPerformancePicture(PerformancePicture PerformancePicture)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.Insert(PerformancePicture);
+        }
+
+        public bool DeletePerformancePicture(PerformancePicture PerformancePicture)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.Delete(PerformancePicture);
+        }
+
+        // PerformanceVideo
+        public PerformanceVideo FindPerformanceVideoByURL(string url)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.FindByURL(url);
+        }
+
+        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int PerformanceId)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.FindAllByPerformanceId(PerformanceId);
+        }
+
+        public bool InsertPerformanceVideo(PerformanceVideo PerformanceVideo)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.Insert(PerformanceVideo);
+        }
+
+        public bool DeletePerformanceVideo(PerformanceVideo PerformanceVideo)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.Delete(PerformanceVideo);
+        }
+
         // helpers
         public bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video)
         {
@@ -413,7 +471,6 @@ namespace UFO.Server
 
             return result;
         }
-
 
     }
 }

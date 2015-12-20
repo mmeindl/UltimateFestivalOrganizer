@@ -238,7 +238,12 @@ namespace UFO.Commander.Views.Controls
 
         private void EditMedia(object sender, RoutedEventArgs e)
         {
+            PerformanceMediaWindow pmw = new PerformanceMediaWindow();
+            pmw.DataContext = new PerformanceMediaCollectionVM(selectedPerformanceVM.Performance,
+                UFOServerFactory.GetUFOServer());
+            pmw.ShowDialog();
 
+            selectedPerformanceVM = null;
         }
 
 
