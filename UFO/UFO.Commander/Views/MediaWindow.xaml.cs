@@ -31,6 +31,8 @@ namespace UFO.Commander.Views
         const string msgInvalidURLPathException = "Unable to save changes. Please enter a valid URL";
         const string msgDuplicateURLException = "Unable to save changes. URL already exists.";
 
+        const string msgWindowTitle = "Error";
+
         public MediaWindow()
         {
             server = UFOServerFactory.GetUFOServer();
@@ -59,7 +61,7 @@ namespace UFO.Commander.Views
             catch (Exception exc)
             {
                 // TODO User hinweisen
-                MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
+                MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
             if (!success)
@@ -78,7 +80,7 @@ namespace UFO.Commander.Views
                 catch (Exception exc)
                 {
                     // TODO User hinweisen
-                    MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
+                    MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
                 }
 
                 if (!success)
@@ -104,7 +106,7 @@ namespace UFO.Commander.Views
                 catch (Exception exc)
                 {
                     // TODO User hinweisen
-                    MessageBoxResult result = MessageBox.Show(msgSaveException, "Confirmation");
+                    MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
                 }
 
                 if (!success)
@@ -136,11 +138,11 @@ namespace UFO.Commander.Views
                 // TODO
                 MessageBoxResult result;
                 if (!regexUtilities.IsValidURL(txtPictureURL.Text))
-                    result = MessageBox.Show(msgInvalidURLException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidURLException, msgWindowTitle);
                 else if(server.FindArtistPictureByURL(txtPictureURL.Text) != null)
-                    result = MessageBox.Show(msgDuplicateURLException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateURLException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgInvalidURLPathException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
 
             if (success)
@@ -186,11 +188,11 @@ namespace UFO.Commander.Views
                 // TODO User hinweisen
                 MessageBoxResult result;
                 if (!regexUtilities.IsValidURL(txtPictureURL.Text))
-                    result = MessageBox.Show(msgInvalidURLException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidURLException, msgWindowTitle);
                 else if (server.FindArtistVideoByURL(txtVideoURL.Text) != null)
-                    result = MessageBox.Show(msgDuplicateURLException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateURLException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgInvalidURLPathException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
             
             if (success)

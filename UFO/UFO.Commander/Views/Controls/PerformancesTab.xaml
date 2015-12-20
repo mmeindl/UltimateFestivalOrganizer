@@ -16,7 +16,37 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+            <ComboBox ItemsSource="{Binding Path=performanceDays}"
+                      SelectedItem="{Binding Path=CurrentDate, Mode=TwoWay}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="10, 0, 0, 0"
+                      Width="100"
+                      Name="cmbPerformanceDay"/>
+
+            <ComboBox ItemsSource="{Binding Path=areas}"
+                      SelectedItem="{Binding Path=CurrentArea, Mode=TwoWay}"
+                      DisplayMemberPath="Name"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Margin="10, 0, 0, 0"
+                      Width="200"
+                      Name="cmbPerformanceVenue"/>
+            <Button
+                Width="150"
+                Margin="10"
+                Click="SendEmail">Send E-Mail</Button>
+            <Button
+                Width="150"
+                Margin="10"
+                Click="TestPdf">TestPdf</Button>
+        </StackPanel>
+
+        <!--<Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
@@ -42,7 +72,11 @@
                       Margin="10, 0, 0, 0"
                       Height="30"
                       Name="cmbPerformanceVenue"/>
-        </Grid>
+            <Button
+                Grid.Column="2"
+                Click="CreatePDF">PDF</Button>
+                
+        </Grid>-->
 
         <DataGrid Grid.Row="1"
                             Name="dgPerformances"
