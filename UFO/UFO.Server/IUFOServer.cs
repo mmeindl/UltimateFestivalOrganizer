@@ -9,8 +9,6 @@ namespace UFO.Server
 {
     public interface IUFOServer
     {
-        void InformAllArtists();
-
         // Artist
         Artist FindArtistById(int artistId);
         Artist FindArtistByName(string name);
@@ -39,12 +37,10 @@ namespace UFO.Server
         bool DeleteArtistVideo(ArtistVideo artistVideo);
 
         //Area
-        Area FindAreaById(int id);
         Area FindAreaByName(string name);
         IList<Area> FindAllAreas();
 
         bool InsertArea(Area area);
-        bool UpdateArea(Area area);
         bool DeleteArea(Area area);
 
         // Venue
@@ -60,7 +56,6 @@ namespace UFO.Server
         // User
         bool AuthenticateUser(string usernername, string password, IList<string> error);
         User FindUserByName(string name);
-        IEnumerable<User> FindAllUsers();
 
         //Category
         Category FindCategoryById(int id);
@@ -71,9 +66,7 @@ namespace UFO.Server
         IList<Country> FindAllCountries();
 
         //Performance
-        Performance FindPerformanceById(int id);
         Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId);
-        IEnumerable<Performance> FindAllPerformances();
         IEnumerable<Performance> FindPerformancesByDate(DateTime date);
         IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue);
         IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist);

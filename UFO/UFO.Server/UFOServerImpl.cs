@@ -91,12 +91,6 @@ namespace UFO.Server
             return userDao.FindByUsername(name);
         }
 
-        public IEnumerable<User> FindAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-
         // Artist
         public IEnumerable<Artist> FindAllArtists()
         {
@@ -117,11 +111,6 @@ namespace UFO.Server
             IArtistDao artistDao = DalFactory.CreateArtistDao(database);
 
             return artistDao.FindById(artistId);
-        }
-
-        public void InformAllArtists()
-        {
-            throw new NotImplementedException();
         }
 
         public bool InsertArtist(Artist artist)
@@ -146,16 +135,6 @@ namespace UFO.Server
         }
 
         // Performance
-        public IEnumerable<Performance> FindAllPerformances()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Performance FindPerformanceById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
@@ -263,11 +242,6 @@ namespace UFO.Server
         }
 
         // Area
-        public Area FindAreaById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Area FindAreaByName(string name)
         {
             IAreaDao areaDao = DalFactory.CreateAreaDao(database);
@@ -287,11 +261,6 @@ namespace UFO.Server
             IAreaDao areaDao = DalFactory.CreateAreaDao(database);
 
             return areaDao.Insert(area);
-        }
-
-        public bool UpdateArea(Area area)
-        {
-            throw new NotImplementedException();
         }
 
         public bool DeleteArea(Area area)
