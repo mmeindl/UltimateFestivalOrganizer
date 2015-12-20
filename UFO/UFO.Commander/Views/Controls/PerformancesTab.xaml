@@ -40,10 +40,10 @@
                 Width="150"
                 Margin="10"
                 Click="SendEmail">Send E-Mail</Button>
-            <Button
+            <!--<Button
                 Width="150"
                 Margin="10"
-                Click="TestPdf">TestPdf</Button>
+                Click="TestPdf">TestPdf</Button>-->
         </StackPanel>
 
         <!--<Grid Grid.Row="0">

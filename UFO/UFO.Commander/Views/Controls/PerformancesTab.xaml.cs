@@ -79,9 +79,9 @@ namespace UFO.Commander.Views.Controls
                 if (GetPerformanceFromCell(cell) && selectedPerformanceVM.Performance.Id == 0 && performanceVMtoDrop != null)
                 {
                     Performance p = performanceVMtoDrop.Performance;
-                        p.DateTime =
-                        performanceVMtoDrop.Performance.DateTime.Date +
-                        new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0);
+                    p.DateTime =
+                    performanceVMtoDrop.Performance.DateTime.Date +
+                    new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0);
 
                     p.VenueId = selectedPerformanceVM.Performance.VenueId;
 
@@ -230,7 +230,7 @@ namespace UFO.Commander.Views.Controls
             SmtpClient smtpClient = new SmtpClient();
             NetworkCredential basicCredential =
                 new NetworkCredential("ufo.swk@gmx.at", "?ufoswk1");
-            MailMessage message = new MailMessage();
+
             MailAddress fromAddress = new MailAddress("ufo.swk@gmx.at");
 
             smtpClient.Host = "mail.gmx.net";
@@ -240,37 +240,59 @@ namespace UFO.Commander.Views.Controls
             System.Net.Mail.Attachment attachment;
             CreatePDF();
             attachment = new System.Net.Mail.Attachment("../../bin/Debug/programm.pdf");
-            message.Attachments.Add(attachment);
 
-            message.From = fromAddress;
-            message.Subject = "Programm was changed";
-            //Set IsBodyHtml to true means you can send HTML email.
-            message.IsBodyHtml = true;
+            DateTime date = Convert.ToDateTime(cmbPerformanceDay.SelectedValue.ToString());
 
-            message.Body = CreateMessageBody();
-            message.To.Add("t.roither@gmail.com");
-
-            try
+            foreach (Artist artist in server.FindAllArtists())
             {
-                smtpClient.Send(message);
-                MessageBox.Show("E-mail was sent!", "Success");
+                MailMessage message = new MailMessage();
+                message.Attachments.Add(attachment);
+
+                message.From = fromAddress;
+                message.Subject = "Programm of " + date.ToString().Substring(0, 10);
+                //Set IsBodyHtml to true means you can send HTML email.
+                message.IsBodyHtml = true;
+
+
+                message.Body = CreateMessageBody(artist, date);
+                message.To.Add(artist.Email);
+
+                try
+                {
+                    smtpClient.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    //Error, could not send the message
+                    //MessageBox.Show(ex.Message, "Error");
+                }
             }
-            catch (Exception ex)
-            {
-                //Error, could not send the message
-                MessageBox.Show(ex.Message, "Error");
-            }
+            MessageBox.Show("E-mails were sent!", "Success");
+
         }
 
-        private string CreateMessageBody()
+        private string CreateMessageBody(Artist artist, DateTime date)
         {
-            string bodyStr = "<h1>Your appointments:</h1>";
+            string bodyStr = "<h1>Your appointments: " + artist.Name + "</h1>";
+            bodyStr += "<ul>";
+            foreach (Performance performance in server.FindPerformancesByDateAndArtist(date, artist))
+            {
+                bodyStr += "<li>";
+                bodyStr += performance.DateTime.ToString().Substring(11, 5);
+                bodyStr += " @ ";
+                bodyStr += server.FindVenueById(performance.VenueId).Name;
+                bodyStr += "</li>";
+            }
+
+            bodyStr += "</ul>";
+
+
             return bodyStr;
         }
 
         private void CreatePDF()
         {
-            PdfDocument document = new PdfDocument();           
+            PdfDocument document = new PdfDocument();
             document.Info.Title = "Created with PDFsharp";
 
             DateTime date = Convert.ToDateTime(cmbPerformanceDay.SelectedValue.ToString());
@@ -288,8 +310,8 @@ namespace UFO.Commander.Views.Controls
                 DrawTimes(40, 85, page, gfx);//14
                 DrawContent(5, 120, page, gfx, area.Id, date); //16 144
                 DrawVenueLegend(20, 550, page, gfx, area.Id);
-            }          
-            
+            }
+
             // Save the document...
             try
             {
@@ -300,7 +322,7 @@ namespace UFO.Commander.Views.Controls
             {
                 MessageBox.Show("unable to close");
             }
-            
+
         }
 
         private void DrawVenueLegend(double x, double y, PdfPage page, XGraphics gfx, int areaId)
@@ -312,7 +334,7 @@ namespace UFO.Commander.Views.Controls
             double xWidth = 100;
             double yHeight = 12;
 
-            foreach(Venue venue in server.FindVenuesByAreaId(areaId))
+            foreach (Venue venue in server.FindVenuesByAreaId(areaId))
             {
                 abbrevStr = venue.ShortName;
                 venueStr = venue.Name;
@@ -362,7 +384,7 @@ namespace UFO.Commander.Views.Controls
             double yLineHeight = 40;
             double xWidthFirstRow = 40;
             double xIndent = 3;
-            int curHour;          
+            int curHour;
 
             foreach (Venue venue in server.FindVenuesByAreaId(areaId))
             {
@@ -372,7 +394,7 @@ namespace UFO.Commander.Views.Controls
                 xPos += xWidthFirstRow;
                 curHour = 14;
 
-                foreach(Performance performance in server.FindPerformancesByDateAndVenue(date, venue))
+                foreach (Performance performance in server.FindPerformancesByDateAndVenue(date, venue))
                 {
 
                     while (performance.DateTime.Hour != curHour)
@@ -388,7 +410,7 @@ namespace UFO.Commander.Views.Controls
                         new XRect(xPos + xIndent, yPos + yHeight, page.Width, page.Height), XStringFormats.TopLeft);
                     curHour++;
                     xPos += xWidth;
-                }               
+                }
 
                 yPos += yLineHeight;
                 xPos = x;
@@ -396,17 +418,10 @@ namespace UFO.Commander.Views.Controls
 
         }
 
-
-
-
-
         private void TestPdf(object sender, RoutedEventArgs e)
         {
             CreatePDF();
         }
-
-
-
 
         // Helpers
 
@@ -442,7 +457,7 @@ namespace UFO.Commander.Views.Controls
         private bool GetPerformanceFromCell(DataGridCell cell)
         {
             const int STARTCOLIDX = 2;
-            
+
             if (cell == null)
             {
                 return false;

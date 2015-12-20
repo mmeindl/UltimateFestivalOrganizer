@@ -184,14 +184,18 @@ namespace UFO.Server
 
         public bool UpdatePerformance(Performance performance)
         {
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
-
-            return performanceDao.Update(performance);
+            throw new NotImplementedException();
         }
         
         public bool DeletePerformance(Performance performance)
         {
             throw new NotImplementedException();
+        }
+        public IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.FindByDateAndArtist(date, artist);
         }
 
         // Venue
@@ -204,7 +208,9 @@ namespace UFO.Server
 
         public Venue FindVenueById(int id)
         {
-            throw new NotImplementedException();
+            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+
+            return venueDao.FindById(id);
         }
 
         public Venue FindVenueByName(string name)
