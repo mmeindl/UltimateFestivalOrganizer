@@ -34,6 +34,8 @@ namespace UFO.Commander.Views.Controls
         private const string msgInvalidEmailException = "Unable to save changes. Please enter a valid e-mail address!";
         private const string msgDuplicateException = "Unable to save chnges. Artist already exists.";
 
+        const string msgWindowTitle = "Error";
+
         public ArtistTab()
         {
             server = UFOServerFactory.GetUFOServer();
@@ -65,19 +67,19 @@ namespace UFO.Commander.Views.Controls
             {
                 MessageBoxResult result;
                 if (name == "")
-                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
                 else if (category == null)
-                    result = MessageBox.Show(msgEmptyCategoryException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyCategoryException, msgWindowTitle);
                 else if (country == null)
-                    result = MessageBox.Show(msgEmptyCountryException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyCountryException, msgWindowTitle);
                 else if (email == "")
-                    result = MessageBox.Show(msgEmptyEmailException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyEmailException, msgWindowTitle);
                 else if (!regexUtilities.IsValidEmail(email))
-                    result = MessageBox.Show(msgInvalidEmailException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidEmailException, msgWindowTitle);
                 else if (server.FindAreaByName(name) != null)
-                    result = MessageBox.Show(msgDuplicateException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgSaveException, "Confirmation");
+                    result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
             if (success)
@@ -125,10 +127,10 @@ namespace UFO.Commander.Views.Controls
 
             try
             {
-                if (artist.Name == "" ||
+                if (newName == "" ||
                     newCategory == null ||
                     newCountry == null ||
-                    newEmail == null ||
+                    newEmail == "" ||
                     !regexUtilities.IsValidEmail(newEmail))
                 { throw new Exception(); }
 
@@ -143,19 +145,19 @@ namespace UFO.Commander.Views.Controls
             {
                 MessageBoxResult result;
                 if (newName == "")
-                    result = MessageBox.Show(msgEmptyNameException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
                 else if (newCategory == null)
-                    result = MessageBox.Show(msgEmptyCategoryException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyCategoryException, msgWindowTitle);
                 else if (newCountry == null)
-                    result = MessageBox.Show(msgEmptyCountryException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyCountryException, msgWindowTitle);
                 else if (newEmail == "")
-                    result = MessageBox.Show(msgEmptyEmailException, "Confirmation");
+                    result = MessageBox.Show(msgEmptyEmailException, msgWindowTitle);
                 else if (!regexUtilities.IsValidEmail(newEmail))
-                    result = MessageBox.Show(msgInvalidEmailException, "Confirmation");
+                    result = MessageBox.Show(msgInvalidEmailException, msgWindowTitle);
                 else if (oldName != txtArtistname.Text && server.FindAreaByName(newName) != null)
-                    result = MessageBox.Show(msgDuplicateException, "Confirmation");
+                    result = MessageBox.Show(msgDuplicateException, msgWindowTitle);
                 else
-                    result = MessageBox.Show(msgSaveException, "Confirmation");
+                    result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
             if (!success)
