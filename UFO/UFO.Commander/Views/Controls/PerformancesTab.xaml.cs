@@ -78,13 +78,11 @@ namespace UFO.Commander.Views.Controls
 
                 if (GetPerformanceFromCell(cell) && selectedPerformanceVM.Performance.Id == 0 && performanceVMtoDrop != null)
                 {
-                    Performance p = performanceVMtoDrop.Performance;
-                    p.DateTime =
-                    performanceVMtoDrop.Performance.DateTime.Date +
-                    new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0);
-
-                    p.VenueId = selectedPerformanceVM.Performance.VenueId;
-
+                    Performance p = new Performance(performanceVMtoDrop.Performance.DateTime.Date +
+                                                    new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0),
+                                                    selectedPerformanceVM.Performance.VenueId,
+                                                    performanceVMtoDrop.Performance.ArtistId,
+                                                    performanceVMtoDrop.Performance.Id);
                     bool success = false;
 
                     try
@@ -98,105 +96,58 @@ namespace UFO.Commander.Views.Controls
 
                     if (success)
                     {
-                        /*
-                        DateTime curDate = performanceVMtoDrop.PerformanceRowVM.PerformanceCollectionVM.CurrentDate;
-                        Area curArea = performanceVMtoDrop.PerformanceRowVM.PerformanceCollectionVM.CurrentArea;
+                        PerformanceVM dropSpot = new PerformanceVM(new Performance(performanceVMtoDrop.Performance.DateTime.Date +
+                                                                                   new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0),
+                                                                                   selectedPerformanceVM.Performance.VenueId,
+                                                                                   performanceVMtoDrop.Performance.ArtistId,
+                                                                                   performanceVMtoDrop.Performance.Id),
+                                                                   selectedPerformanceVM.PerformanceRowVM,
+                                                                   server);
 
-                        this.DataContext = new PerformanceCollectionVM(
-                            UFOServerFactory.GetUFOServer());
-*/
-                        /*
-                        PerformanceVM helperPerformance = selectedPerformanceVM;
+                        PerformanceVM dragSpot = new PerformanceVM(new Performance(selectedPerformanceVM.Performance.DateTime.Date +
+                                                                                   new TimeSpan(performanceVMtoDrop.Performance.DateTime.Hour, 0, 0),
+                                                                                   performanceVMtoDrop.Performance.VenueId,
+                                                                                   selectedPerformanceVM.Performance.ArtistId,
+                                                                                   selectedPerformanceVM.Performance.Id),
+                                                                   performanceVMtoDrop.PerformanceRowVM,
+                                                                   server);
+
+                        PerformanceRowVM dropRow = dropSpot.PerformanceRowVM;
+                        int perfIndex1 = dropSpot.Performance.DateTime.Hour - 14;
+                        dropRow.VenuePerformances.RemoveAt(perfIndex1);
+                        dropRow.VenuePerformances.Insert(perfIndex1, dropSpot);
+
+                        PerformanceRowVM dragRow = dragSpot.PerformanceRowVM;
+                        int perfIndex2 = dragSpot.Performance.DateTime.Hour - 14;
+                        dragRow.VenuePerformances.RemoveAt(perfIndex2);
+                        dragRow.VenuePerformances.Insert(perfIndex2, dragSpot);
                         
-                        selectedPerformanceVM.Performance.ArtistId = performanceVMtoDrop.Performance.ArtistId;
-                        selectedPerformanceVM.Performance.VenueId = performanceVMtoDrop.Performance.VenueId;
-                        selectedPerformanceVM.Performance.Id = performanceVMtoDrop.Performance.Id;
-                        selectedPerformanceVM.PerformanceArtistVM = performanceVMtoDrop.PerformanceArtistVM;
-                        selectedPerformanceVM.PerformanceRowVM = performanceVMtoDrop.PerformanceRowVM;
-
-                        performanceVMtoDrop.Performance.ArtistId = helperPerformance.Performance.ArtistId;
-                        performanceVMtoDrop.Performance.VenueId = helperPerformance.Performance.VenueId;
-                        performanceVMtoDrop.Performance.Id = helperPerformance.Performance.Id;
-                        performanceVMtoDrop.PerformanceArtistVM = helperPerformance.PerformanceArtistVM;
-                        performanceVMtoDrop.PerformanceRowVM = helperPerformance.PerformanceRowVM;
-
-/*
-                        /*
-                        switch (selectedPerformanceVM.Performance.DateTime.Hour)
+                        if (dropRow.VenueName == dragRow.VenueName)
                         {
-                            case 14:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[0] = performanceVMtoDrop;
-                                break;
-                            case 15:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[1] = performanceVMtoDrop;
-                                break;
-                            case 16:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[2] = performanceVMtoDrop;
-                                break;
-                            case 17:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[3] = performanceVMtoDrop;
-                                break;
-                            case 18:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[4] = performanceVMtoDrop;
-                                break;
-                            case 19:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[5] = performanceVMtoDrop;
-                                break;
-                            case 20:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[6] = performanceVMtoDrop;
-                                break;
-                            case 21:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[7] = performanceVMtoDrop;
-                                break;
-                            case 22:
-                                selectedPerformanceVM.PerformanceRowVM.VenuePerformances[8] = performanceVMtoDrop;
-                                break;
-                            default:
-                                break;
+                            IList<PerformanceRowVM> rows = performanceVMtoDrop.PerformanceRowVM.PerformanceCollectionVM.PerformanceRows;
+                            int index = rows.IndexOf(dropRow);
+
+                            rows.RemoveAt(index);
+                            rows.Insert(index, dropRow);
                         }
-
-                        switch (performanceVMtoDrop.Performance.DateTime.Hour)
+                        else
                         {
-                            case 14:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[0] = 
-                                    new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 14, 0, 0, 0), 0, 0),
-                                                                      performanceVMtoDrop.PerformanceRowVM,
-                                                                      server);
-                                break;
-                            case 15:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[1] =
-                                    new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 15, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 16:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[2] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 16, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 17:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[3] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 17, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 18:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[4] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 18, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 19:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[5] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 19, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 20:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[6] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 20, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 21:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[7] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 21, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            case 22:
-                                performanceVMtoDrop.PerformanceRowVM.VenuePerformances[8] = new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 22, 0, 0, 0), 0, 0), performanceVMtoDrop.PerformanceRowVM, server);
-                                break;
-                            default:
-                                break;
-                        }*/
-                    }
+                            IList<PerformanceRowVM> rows = performanceVMtoDrop.PerformanceRowVM.PerformanceCollectionVM.PerformanceRows;
+                            int index1 = rows.IndexOf(dropRow);
+                            int index2 = rows.IndexOf(dragRow);
 
+                            rows.RemoveAt(index1);
+                            rows.Insert(index1, dropRow);
+
+                            rows.RemoveAt(index2);
+                            rows.Insert(index2, dragRow);
+                        }
+                    }
                 }
 
                 Cursor = Cursors.Arrow;
-
+                performanceVMtoDrop = null;
+                selectedPerformanceVM = null;
                 isDragging = false;
             }
         }
