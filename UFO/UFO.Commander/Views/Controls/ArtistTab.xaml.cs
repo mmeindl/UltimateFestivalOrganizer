@@ -24,15 +24,15 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class ArtistTab : UserControl
     {
-        IUFOServer server;
-        RegexUtilities regexUtilities = new RegexUtilities();
-        const string msgSaveException = "Unable to save changes. Please check your input!";
-        const string msgEmptyNameException = "Unable to save changes. Please enter a artist!";
-        const string msgEmptyCategoryException = "Unable to save changes. Please enter a category!";
-        const string msgEmptyCountryException = "Unable to save changes. Please enter a country!";
-        const string msgEmptyEmailException = "Unable to save changes. Please enter a e-mail address!";
-        const string msgInvalidEmailException = "Unable to save changes. Please enter a valid e-mail address!";
-        const string msgDuplicateException = "Unable to save chnges. Artist already exists.";
+        private IUFOServer server;
+        private RegexUtilities regexUtilities = new RegexUtilities();
+        private const string msgSaveException = "Unable to save changes. Please check your input!";
+        private const string msgEmptyNameException = "Unable to save changes. Please enter an artist!";
+        private const string msgEmptyCategoryException = "Unable to save changes. Please enter a category!";
+        private const string msgEmptyCountryException = "Unable to save changes. Please enter a country!";
+        private const string msgEmptyEmailException = "Unable to save changes. Please enter an e-mail address!";
+        private const string msgInvalidEmailException = "Unable to save changes. Please enter a valid e-mail address!";
+        private const string msgDuplicateException = "Unable to save chnges. Artist already exists.";
 
         const string msgWindowTitle = "Error";
 
@@ -42,6 +42,7 @@ namespace UFO.Commander.Views.Controls
 
             InitializeComponent();
         }
+
         private void AddArtist(object sender, RoutedEventArgs e)
         {
             ArtistCollectionVM artistCollectionVM = ((FrameworkElement)sender).DataContext as ArtistCollectionVM;

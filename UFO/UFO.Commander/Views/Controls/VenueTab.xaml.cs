@@ -24,16 +24,16 @@ namespace UFO.Commander.Views.Controls
     /// </summary>
     public partial class VenueTab : UserControl
     {
-        IUFOServer server;
-        const string msgRemoveAreaException = "Unable to remove area. Please remove connected venues first.";
-        const string msgRemoveVenueException = "Unable to remove venue. Pleas remove connected performances first.";
-        const string msgEmptyNameException = "Unable to save changes. Please enter a name.";
-        const string msgEmptyAbbreviationException = "Unable to save changes. Please enter an abbreviation.";
-        const string msgEmptyPositionException = "Unable to save changes. Please enter a position.";
-        const string msgSaveException = "Unable to save changes. Please check your input.";
-        const string msgShowMapException = "Unable to show Map";
-        const string msgDuplicateAreaException = "Unable to save changes. Area already exists.";
-        const string msgDuplicateVenueException = "Unable to save changes. Venue already exists.";
+        private IUFOServer server;
+        private const string msgRemoveAreaException = "Unable to remove area. Please remove connected venues first.";
+        private const string msgRemoveVenueException = "Unable to remove venue. Pleas remove connected performances first.";
+        private const string msgEmptyNameException = "Unable to save changes. Please enter a name.";
+        private const string msgEmptyAbbreviationException = "Unable to save changes. Please enter an abbreviation.";
+        private const string msgEmptyPositionException = "Unable to save changes. Please enter a position.";
+        private const string msgSaveException = "Unable to save changes. Please check your input.";
+        private const string msgShowMapException = "Unable to show Map";
+        private const string msgDuplicateAreaException = "Unable to save changes. Area already exists.";
+        private const string msgDuplicateVenueException = "Unable to save changes. Venue already exists.";
 
         const string msgWindowTitle = "Error";
 

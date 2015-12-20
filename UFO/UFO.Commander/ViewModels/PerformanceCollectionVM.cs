@@ -93,6 +93,11 @@ namespace UFO.Commander.ViewModels
 
                 PerformanceRows.Add(new PerformanceRowVM(performances, enumerator.Current, this, server));
             }
+
+            if (PerformanceRows.Count > 0)
+            {
+                currentPerformance = PerformanceRows[0].VenuePerformances[0];
+            }
         }
 
         private void LoadPerformanceDays()
