@@ -102,7 +102,8 @@
     <Compile Include="ViewModels\AreaVM.cs" />
     <Compile Include="ViewModels\VenueVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
-    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\Controls\InvertObjectToBoolConverter.cs" />
+    <Compile Include="Views\Controls\ObjectToBoolConverter.cs" />
     <Compile Include="Views\Controls\VenueTab.xaml.cs">
       <DependentUpon>VenueTab.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,9 @@
     </Compile>
     <Compile Include="Views\MediaWindow.xaml.cs">
       <DependentUpon>MediaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PerformanceArtistsWindow.xaml.cs">
+      <DependentUpon>PerformanceArtistsWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MediaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PerformanceArtistsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

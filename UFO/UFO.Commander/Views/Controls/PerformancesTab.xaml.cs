@@ -5,6 +5,7 @@ using PdfSharp.Pdf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -152,28 +153,94 @@ namespace UFO.Commander.Views.Controls
             }
         }
 
+        private void remember_performance(object sender, MouseEventArgs e)
+        {
+            DataGridCell cell = GetCell((DependencyObject)e.OriginalSource);
+            GetPerformanceFromCell(cell);
+        }
+
+        private void AddPerformance(object sender, RoutedEventArgs e)
+        {
+            PerformanceVM performanceVM = selectedPerformanceVM;
+
+            PerformanceArtistsWindow performanceArtistWindow = new PerformanceArtistsWindow();
+            performanceArtistWindow.ShowDialog();
+
+            var artist = performanceArtistWindow.Artist;
+            
+            Performance p = new Performance(selectedPerformanceVM.PerformanceRowVM.PerformanceCollectionVM.CurrentDate.Date +
+                                            new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
+                                            performanceVM.Performance.VenueId, artist.Id);
+            try
+            {
+                bool success = server.InsertPerformance(p);
+
+                if (success)
+                {
+                    p = server.FindPerformanceByDateTimeAndArtistId(p.DateTime, p.ArtistId);
+
+                    PerformanceVM pVM = new PerformanceVM(p, performanceVM.PerformanceRowVM, server);
+
+                    PerformanceRowVM row = pVM.PerformanceRowVM;
+                    int perfIndex = pVM.Performance.DateTime.Hour - 14;
+                    row.VenuePerformances.RemoveAt(perfIndex);
+                    row.VenuePerformances.Insert(perfIndex, pVM);
+
+                    IList<PerformanceRowVM> rows = pVM.PerformanceRowVM.PerformanceCollectionVM.PerformanceRows;
+                    int index = rows.IndexOf(row);
+
+                    rows.RemoveAt(index);
+                    rows.Insert(index, row);
+                }
+            }
+            catch (Exception exc)
+            {
+                // nothing to do
+            }
+
+            selectedPerformanceVM = null;
+        }
+
         private void RemovePerformance(object sender, RoutedEventArgs e)
         {
-            //AreaVM areaVM = ((FrameworkElement)sender).DataContext as AreaVM;
+            PerformanceVM performanceVM = selectedPerformanceVM;
 
-            //try
-            //{
-            //    bool success = server.DeleteArea(areaVM.Area);
+            try
+            {
+                bool success = server.DeletePerformance(performanceVM.Performance);
 
-            //    if (success)
-            //    {
-            //        areaVM.VenueCollectionVM.Areas.Remove(areaVM);
-            //        AreaVM currentArea = areaVM.VenueCollectionVM.Areas[0];
-            //        areaVM.VenueCollectionVM.CurrentArea = currentArea;
-            //        dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-            //        dgAreas.ScrollIntoView(currentArea);
-            //    }
-            //}
-            //catch (Exception exc)
-            //{
-            //    // Inform User
-            //}
+                if (success)
+                {
+                    PerformanceVM p = new PerformanceVM(new Performance(new DateTime(2000, 1, 1) + new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
+                                                                        performanceVM.Performance.VenueId, 0),
+                                                        selectedPerformanceVM.PerformanceRowVM,
+                                                        server);
+
+                    PerformanceRowVM row = p.PerformanceRowVM;
+                    int perfIndex = p.Performance.DateTime.Hour - 14;
+                    row.VenuePerformances.RemoveAt(perfIndex);
+                    row.VenuePerformances.Insert(perfIndex, p);
+
+                    IList<PerformanceRowVM> rows = p.PerformanceRowVM.PerformanceCollectionVM.PerformanceRows;
+                    int index = rows.IndexOf(row);
+
+                    rows.RemoveAt(index);
+                    rows.Insert(index, row);
+                }
+            }
+            catch (Exception exc)
+            {
+                // nothing to do
+            }
+
+            selectedPerformanceVM = null;
         }
+
+        private void EditMedia(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void SendEmail(object sender, RoutedEventArgs e)
         {

@@ -156,6 +156,13 @@ namespace UFO.Server
             throw new NotImplementedException();
         }
 
+        public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.FindByDateTimeAndArtistId(dateTime, artistId);
+        }
+
         public IEnumerable<Performance> FindPerformancesByDate(DateTime date)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
@@ -179,7 +186,9 @@ namespace UFO.Server
 
         public bool InsertPerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Insert(performance);
         }
 
         public bool UpdatePerformance(Performance performance)
@@ -191,8 +200,11 @@ namespace UFO.Server
         
         public bool DeletePerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Delete(performance);
         }
+
         public IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
