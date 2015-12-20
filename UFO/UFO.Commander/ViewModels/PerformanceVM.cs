@@ -1,5 +1,4 @@
-﻿using Swk5.MediaAnnotator.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -34,6 +33,7 @@ namespace UFO.Commander.ViewModels
                 performanceArtistVM = new PerformanceArtistVM(artist,
                                                               server.FindCategoryById(artist.CategoryId),
                                                               server.FindCountryByAbbreviation(artist.CountryId),
+                                                              this,
                                                               server);
             }
         }
@@ -78,6 +78,7 @@ namespace UFO.Commander.ViewModels
                     performanceArtistVM = new PerformanceArtistVM(artist,
                                                                   server.FindCategoryById(artist.CategoryId),
                                                                   server.FindCountryByAbbreviation(artist.CountryId),
+                                                                  this,
                                                                   server);
 
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Performance)));

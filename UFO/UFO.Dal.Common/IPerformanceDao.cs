@@ -10,6 +10,7 @@ namespace UFO.Dal.Common
     public interface IPerformanceDao
     {
         Performance FindById(int id);
+        Performance FindByDateTimeAndArtistId(DateTime dateTime, int artistId);
         IList<Performance> FindAll();
         IList<Performance> FindAllByDate(DateTime date);
         IList<Performance> FindByDateAndVenue(DateTime date, Venue venue);
