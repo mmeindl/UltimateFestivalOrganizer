@@ -166,13 +166,16 @@ namespace UFO.Commander.Views.Controls
             PerformanceArtistsWindow performanceArtistWindow = new PerformanceArtistsWindow();
             performanceArtistWindow.ShowDialog();
 
-            var artist = performanceArtistWindow.Artist;
             
-            Performance p = new Performance(selectedPerformanceVM.PerformanceRowVM.PerformanceCollectionVM.CurrentDate.Date +
-                                            new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
-                                            performanceVM.Performance.VenueId, artist.Id);
+            
+            
             try
             {
+                var artist = performanceArtistWindow.Artist;
+                Performance p = new Performance(selectedPerformanceVM.PerformanceRowVM.PerformanceCollectionVM.CurrentDate.Date +
+                                                new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
+                                                performanceVM.Performance.VenueId, artist.Id);
+
                 bool success = server.InsertPerformance(p);
 
                 if (success)
