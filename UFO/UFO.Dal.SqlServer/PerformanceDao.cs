@@ -500,7 +500,8 @@ namespace UFO.Dal.SqlServer
 
             foreach (Performance p in performances)
             {
-                if (p.DateTime <= dt.AddHours(1) && p.DateTime >= dt.AddHours(-1))
+                if (p.DateTime <= dt.AddHours(1) && p.DateTime >= dt.AddHours(-1) &&
+                    p.Id != performance.Id)
                 {
                     return false;
                 }
