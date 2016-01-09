@@ -92,7 +92,7 @@ namespace UFO.Commander.Views.Controls
                     }
                     catch (Exception exc)
                     {
-                        // inform user?
+                        // nothing to do
                     }
 
                     if (success)

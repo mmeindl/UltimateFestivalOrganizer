@@ -118,7 +118,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // Inform User
                 MessageBoxResult result = MessageBox.Show(msgRemoveAreaException, msgWindowTitle);
             }
         }
@@ -150,7 +149,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
                 MessageBoxResult result;
                 if (name == "")
                     result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
@@ -219,7 +217,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
                 MessageBoxResult result;
                 if (name == "")
                     result = MessageBox.Show(msgEmptyNameException, msgWindowTitle);
@@ -264,7 +261,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // Inform User
                 MessageBoxResult result = MessageBox.Show(exc.Message, msgWindowTitle);
             }
         }
@@ -287,7 +283,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // Inform User
                 editMapPane.Visibility = Visibility.Collapsed;
                 editLocationGrid.Visibility = Visibility.Visible;
                 MessageBoxResult result = MessageBox.Show(msgShowMapException, msgWindowTitle);
