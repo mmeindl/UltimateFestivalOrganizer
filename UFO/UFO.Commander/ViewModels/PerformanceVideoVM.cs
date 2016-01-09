@@ -21,7 +21,7 @@ namespace UFO.Commander.ViewModels
         {
             this.performanceVideo = PerformanceVideo;
             this.server = server;
-            this.performanceMediaCollectionVM = PerformanceMediaCollectionVM;
+            this.performanceMediaCollectionVM = performanceMediaCollectionVM;
         }
 
         public int Id
