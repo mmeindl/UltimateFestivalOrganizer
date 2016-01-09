@@ -54,7 +54,6 @@ namespace UFO.Commander.Views
             }
             catch (Exception exc)
             {
-                // TODO
                 MessageBoxResult result;
                 if (!regexUtilities.IsValidURL(txtPictureURL.Text))
                     result = MessageBox.Show(msgInvalidURLException, msgWindowTitle);
@@ -102,7 +101,6 @@ namespace UFO.Commander.Views
             }
             catch (Exception exc)
             {
-                // TODO User hinweisen
                 MessageBoxResult result;
                 if (!regexUtilities.IsValidURL(txtPictureURL.Text))
                     result = MessageBox.Show(msgInvalidURLException, msgWindowTitle);
