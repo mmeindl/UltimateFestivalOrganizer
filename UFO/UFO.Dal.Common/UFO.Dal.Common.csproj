@@ -60,10 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UFO.Database\UFO.Database.csproj">
-      <Project>{220ee0bb-ed73-49dc-89b2-06c1bdc14d6c}</Project>
-      <Name>UFO.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UFO.Domain\UFO.Domain.csproj">
       <Project>{cc7a683a-b1d1-4849-8fe1-803d879498cf}</Project>
       <Name>UFO.Domain</Name>
