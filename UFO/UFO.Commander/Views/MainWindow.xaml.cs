@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -23,30 +24,33 @@ namespace UFO.Commander.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IUFOServer server;
+
         public MainWindow()
         {
             InitializeComponent();
-            Performances.DataContext = new PerformanceCollectionVM(
-                UFOServerFactory.GetUFOServer());
+
+            BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
+
+            server = UFOServerFactory.GetUFOServer(type);
+
+            Performances.DataContext = new PerformanceCollectionVM(server);
 
         }
 
         private void performances_Clicked(object sender, MouseButtonEventArgs e)
         {
-            Performances.DataContext = new PerformanceCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            Performances.DataContext = new PerformanceCollectionVM(server);
         }
 
         private void artists_Clicked(object sender, MouseButtonEventArgs e)
         {
-            Artists.DataContext = new ArtistCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            Artists.DataContext = new ArtistCollectionVM(server);
         }
 
         private void venues_Clicked(object sender, MouseButtonEventArgs e)
         {
-            Venues.DataContext = new VenueCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            Venues.DataContext = new VenueCollectionVM(server);
         }
     }
 }
