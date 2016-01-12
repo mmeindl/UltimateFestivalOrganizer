@@ -44,6 +44,7 @@
     <Compile Include="RegexUtilities.cs" />
     <Compile Include="UFOServerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UFOWebServiceImpl.cs" />
     <Compile Include="UFOServerImpl.cs" />
   </ItemGroup>
   <ItemGroup>
