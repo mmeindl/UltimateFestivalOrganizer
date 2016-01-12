@@ -379,25 +379,25 @@ namespace UFO.Server
             return PerformancePictureDao.FindByURL(url);
         }
 
-        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int PerformanceId)
+        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
             IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
 
-            return PerformancePictureDao.FindAllByPerformanceId(PerformanceId);
+            return PerformancePictureDao.FindAllByPerformanceId(performanceId);
         }
 
-        public bool InsertPerformancePicture(PerformancePicture PerformancePicture)
+        public bool InsertPerformancePicture(PerformancePicture performancePicture)
         {
             IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
 
-            return PerformancePictureDao.Insert(PerformancePicture);
+            return PerformancePictureDao.Insert(performancePicture);
         }
 
-        public bool DeletePerformancePicture(PerformancePicture PerformancePicture)
+        public bool DeletePerformancePicture(PerformancePicture performancePicture)
         {
             IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
 
-            return PerformancePictureDao.Delete(PerformancePicture);
+            return PerformancePictureDao.Delete(performancePicture);
         }
 
         // PerformanceVideo
@@ -408,25 +408,25 @@ namespace UFO.Server
             return PerformanceVideoDao.FindByURL(url);
         }
 
-        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int PerformanceId)
+        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
             IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
 
-            return PerformanceVideoDao.FindAllByPerformanceId(PerformanceId);
+            return PerformanceVideoDao.FindAllByPerformanceId(performanceId);
         }
 
-        public bool InsertPerformanceVideo(PerformanceVideo PerformanceVideo)
+        public bool InsertPerformanceVideo(PerformanceVideo performanceVideo)
         {
             IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
 
-            return PerformanceVideoDao.Insert(PerformanceVideo);
+            return PerformanceVideoDao.Insert(performanceVideo);
         }
 
-        public bool DeletePerformanceVideo(PerformanceVideo PerformanceVideo)
+        public bool DeletePerformanceVideo(PerformanceVideo performanceVideo)
         {
             IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
 
-            return PerformanceVideoDao.Delete(PerformanceVideo);
+            return PerformanceVideoDao.Delete(performanceVideo);
         }
 
         // helpers
