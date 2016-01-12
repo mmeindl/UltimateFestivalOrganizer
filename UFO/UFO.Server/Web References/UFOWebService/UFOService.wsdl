@@ -1,0 +1,2333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ufo.fh-hagenberg.at/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ufo.fh-hagenberg.at/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ufo.fh-hagenberg.at/">
+      <s:element name="FindCategoryById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindCategoryByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindCategoryByIdResult" type="tns:Category" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Category">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllCategories">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllCategoriesResult" type="tns:ArrayOfCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usernername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindUserByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindUserByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindUserByNameResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllArtists">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllArtistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllArtistsResult" type="tns:ArrayOfArtist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArtist">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Artist" nillable="true" type="tns:Artist" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Artist">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebsiteURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeleted" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindArtistByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArtistByNameResult" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArtistByIdResult" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artist" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertArtistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artist" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateArtistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artist" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteArtistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformanceByDateTimeAndArtistId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformanceByDateTimeAndArtistIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformanceByDateTimeAndArtistIdResult" type="tns:Performance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Performance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VenueId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindPerformancesByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancesByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformancesByDateResult" type="tns:ArrayOfPerformance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPerformance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Performance" nillable="true" type="tns:Performance" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindPerformancesByDateAndVenue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="venue" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Venue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AreaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShortName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GeoLocationLat" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="GeoLocationLon" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindPerformancesByDateAndVenueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformancesByDateAndVenueResult" type="tns:ArrayOfPerformance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerformanceDates">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPerformanceDatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPerformanceDatesResult" type="tns:ArrayOfDateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDateTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="dateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPerformance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performance" type="tns:Performance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPerformanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPerformanceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePerformance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performance" type="tns:Performance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePerformanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdatePerformanceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performance" type="tns:Performance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletePerformanceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancesByDateAndArtist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="artist" type="tns:Artist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancesByDateAndArtistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformancesByDateAndArtistResult" type="tns:ArrayOfPerformance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAllVenues">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllVenuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllVenuesResult" type="tns:ArrayOfVenue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVenue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Venue" nillable="true" type="tns:Venue" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindVenueById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindVenueByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindVenueByIdResult" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindVenueByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindVenueByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindVenueByNameResult" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindVenuesByAreaId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="areaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindVenuesByAreaIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindVenuesByAreaIdResult" type="tns:ArrayOfVenue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertVenue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="venue" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertVenueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertVenueResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVenue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="venue" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVenueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateVenueResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVenue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="venue" type="tns:Venue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVenueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteVenueResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAreaByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAreaByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAreaByNameResult" type="tns:Area" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Area">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllAreas">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllAreasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllAreasResult" type="tns:ArrayOfArea" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArea">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Area" nillable="true" type="tns:Area" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="area" type="tns:Area" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertAreaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="area" type="tns:Area" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteAreaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindCountryByAbbreviation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="abbreviation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindCountryByAbbreviationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindCountryByAbbreviationResult" type="tns:Country" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Country">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Abbreviation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllCountries">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllCountriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllCountriesResult" type="tns:ArrayOfCountry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCountry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Country" nillable="true" type="tns:Country" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindArtistPictureByURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistPictureByURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArtistPictureByURLResult" type="tns:ArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArtistPicture">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsProfilePicture" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllPicturesByArtistId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAllPicturesByArtistIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllPicturesByArtistIdResult" type="tns:ArrayOfArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArtistPicture">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArtistPicture" nillable="true" type="tns:ArtistPicture" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindProfilePictureByArtistId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindProfilePictureByArtistIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindProfilePictureByArtistIdResult" type="tns:ArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistPicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistPicture" type="tns:ArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistPictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertArtistPictureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistPicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistPicture" type="tns:ArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistPictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateArtistPictureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtistPicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistPicture" type="tns:ArtistPicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtistPictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteArtistPictureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistVideoByURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindArtistVideoByURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindArtistVideoByURLResult" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArtistVideo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPromoVideo" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllVideosByArtistId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAllVideosByArtistIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllVideosByArtistIdResult" type="tns:ArrayOfArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArtistVideo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArtistVideo" nillable="true" type="tns:ArtistVideo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindPromoVideoByArtistId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artistId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPromoVideoByArtistIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPromoVideoByArtistIdResult" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistVideo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistVideo" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertArtistVideoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertArtistVideoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistVideo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistVideo" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistVideoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateArtistVideoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtistVideo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artistVideo" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteArtistVideoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteArtistVideoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancePictureByURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancePictureByURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformancePictureByURLResult" type="tns:PerformancePicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PerformancePicture">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PerformanceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllPicturesByPerformanceId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="performanceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAllPicturesByPerformanceIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllPicturesByPerformanceIdResult" type="tns:ArrayOfPerformancePicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPerformancePicture">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PerformancePicture" nillable="true" type="tns:PerformancePicture" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPerformancePicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performancePicture" type="tns:PerformancePicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPerformancePictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPerformancePictureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformancePicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performancePicture" type="tns:PerformancePicture" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformancePictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletePerformancePictureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformanceVideoByURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformanceVideoByURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformanceVideoByURLResult" type="tns:PerformanceVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PerformanceVideo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PerformanceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FindAllVideosByPerformanceId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="performanceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindAllVideosByPerformanceIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllVideosByPerformanceIdResult" type="tns:ArrayOfPerformanceVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPerformanceVideo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PerformanceVideo" nillable="true" type="tns:PerformanceVideo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertPerformanceVideo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performanceVideo" type="tns:PerformanceVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPerformanceVideoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertPerformanceVideoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformanceVideo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="performanceVideo" type="tns:PerformanceVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePerformanceVideoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletePerformanceVideoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistMedia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artist" type="tns:Artist" />
+            <s:element minOccurs="0" maxOccurs="1" name="picture" type="tns:ArtistPicture" />
+            <s:element minOccurs="0" maxOccurs="1" name="video" type="tns:ArtistVideo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateArtistMediaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateArtistMediaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FindCategoryByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="FindCategoryByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllCategories" />
+  </wsdl:message>
+  <wsdl:message name="FindAllCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindUserByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:FindUserByName" />
+  </wsdl:message>
+  <wsdl:message name="FindUserByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:FindUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllArtistsSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllArtists" />
+  </wsdl:message>
+  <wsdl:message name="FindAllArtistsSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllArtistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArtistByName" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArtistByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArtistById" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArtistByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArtist" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertArtistResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateArtist" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateArtistResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteArtist" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteArtistResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformanceByDateTimeAndArtistIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformanceByDateTimeAndArtistId" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformanceByDateTimeAndArtistIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformanceByDateTimeAndArtistIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDate" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateAndVenueSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateAndVenue" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateAndVenueSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateAndVenueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceDatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerformanceDates" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceDatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPerformanceDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformanceSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPerformance" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformanceSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPerformanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePerformanceSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePerformance" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePerformanceSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePerformanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformanceSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePerformance" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformanceSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePerformanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateAndArtistSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateAndArtist" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateAndArtistSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateAndArtistResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVenuesSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllVenues" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVenuesSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllVenuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindVenueByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindVenueById" />
+  </wsdl:message>
+  <wsdl:message name="FindVenueByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindVenueByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindVenueByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:FindVenueByName" />
+  </wsdl:message>
+  <wsdl:message name="FindVenueByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:FindVenueByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindVenuesByAreaIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindVenuesByAreaId" />
+  </wsdl:message>
+  <wsdl:message name="FindVenuesByAreaIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindVenuesByAreaIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertVenueSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertVenue" />
+  </wsdl:message>
+  <wsdl:message name="InsertVenueSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertVenueResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVenueSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateVenue" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVenueSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateVenueResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVenueSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteVenue" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVenueSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteVenueResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAreaByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAreaByName" />
+  </wsdl:message>
+  <wsdl:message name="FindAreaByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAreaByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllAreasSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllAreas" />
+  </wsdl:message>
+  <wsdl:message name="FindAllAreasSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArea" />
+  </wsdl:message>
+  <wsdl:message name="InsertAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteArea" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindCountryByAbbreviationSoapIn">
+    <wsdl:part name="parameters" element="tns:FindCountryByAbbreviation" />
+  </wsdl:message>
+  <wsdl:message name="FindCountryByAbbreviationSoapOut">
+    <wsdl:part name="parameters" element="tns:FindCountryByAbbreviationResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllCountriesSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllCountries" />
+  </wsdl:message>
+  <wsdl:message name="FindAllCountriesSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistPictureByURLSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArtistPictureByURL" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistPictureByURLSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArtistPictureByURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllPicturesByArtistIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllPicturesByArtistId" />
+  </wsdl:message>
+  <wsdl:message name="FindAllPicturesByArtistIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllPicturesByArtistIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindProfilePictureByArtistIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindProfilePictureByArtistId" />
+  </wsdl:message>
+  <wsdl:message name="FindProfilePictureByArtistIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindProfilePictureByArtistIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistPictureSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArtistPicture" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistPictureSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertArtistPictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistPictureSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateArtistPicture" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistPictureSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateArtistPictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistPictureSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteArtistPicture" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistPictureSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteArtistPictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistVideoByURLSoapIn">
+    <wsdl:part name="parameters" element="tns:FindArtistVideoByURL" />
+  </wsdl:message>
+  <wsdl:message name="FindArtistVideoByURLSoapOut">
+    <wsdl:part name="parameters" element="tns:FindArtistVideoByURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVideosByArtistIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllVideosByArtistId" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVideosByArtistIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllVideosByArtistIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPromoVideoByArtistIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPromoVideoByArtistId" />
+  </wsdl:message>
+  <wsdl:message name="FindPromoVideoByArtistIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPromoVideoByArtistIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistVideoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertArtistVideo" />
+  </wsdl:message>
+  <wsdl:message name="InsertArtistVideoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertArtistVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistVideoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateArtistVideo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistVideoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateArtistVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistVideoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteArtistVideo" />
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistVideoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteArtistVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancePictureByURLSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformancePictureByURL" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancePictureByURLSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformancePictureByURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllPicturesByPerformanceIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllPicturesByPerformanceId" />
+  </wsdl:message>
+  <wsdl:message name="FindAllPicturesByPerformanceIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllPicturesByPerformanceIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformancePictureSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPerformancePicture" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformancePictureSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPerformancePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformancePictureSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePerformancePicture" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformancePictureSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePerformancePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformanceVideoByURLSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformanceVideoByURL" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformanceVideoByURLSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformanceVideoByURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVideosByPerformanceIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllVideosByPerformanceId" />
+  </wsdl:message>
+  <wsdl:message name="FindAllVideosByPerformanceIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllVideosByPerformanceIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformanceVideoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPerformanceVideo" />
+  </wsdl:message>
+  <wsdl:message name="InsertPerformanceVideoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPerformanceVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformanceVideoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePerformanceVideo" />
+  </wsdl:message>
+  <wsdl:message name="DeletePerformanceVideoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePerformanceVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistMediaSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateArtistMedia" />
+  </wsdl:message>
+  <wsdl:message name="UpdateArtistMediaSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateArtistMediaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UFOServiceSoap">
+    <wsdl:operation name="FindCategoryById">
+      <wsdl:input message="tns:FindCategoryByIdSoapIn" />
+      <wsdl:output message="tns:FindCategoryByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCategories">
+      <wsdl:input message="tns:FindAllCategoriesSoapIn" />
+      <wsdl:output message="tns:FindAllCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input message="tns:AuthenticateUserSoapIn" />
+      <wsdl:output message="tns:AuthenticateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindUserByName">
+      <wsdl:input message="tns:FindUserByNameSoapIn" />
+      <wsdl:output message="tns:FindUserByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllArtists">
+      <wsdl:input message="tns:FindAllArtistsSoapIn" />
+      <wsdl:output message="tns:FindAllArtistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistByName">
+      <wsdl:input message="tns:FindArtistByNameSoapIn" />
+      <wsdl:output message="tns:FindArtistByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistById">
+      <wsdl:input message="tns:FindArtistByIdSoapIn" />
+      <wsdl:output message="tns:FindArtistByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <wsdl:input message="tns:InsertArtistSoapIn" />
+      <wsdl:output message="tns:InsertArtistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtist">
+      <wsdl:input message="tns:UpdateArtistSoapIn" />
+      <wsdl:output message="tns:UpdateArtistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtist">
+      <wsdl:input message="tns:DeleteArtistSoapIn" />
+      <wsdl:output message="tns:DeleteArtistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
+      <wsdl:input message="tns:FindPerformanceByDateTimeAndArtistIdSoapIn" />
+      <wsdl:output message="tns:FindPerformanceByDateTimeAndArtistIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDate">
+      <wsdl:input message="tns:FindPerformancesByDateSoapIn" />
+      <wsdl:output message="tns:FindPerformancesByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndVenue">
+      <wsdl:input message="tns:FindPerformancesByDateAndVenueSoapIn" />
+      <wsdl:output message="tns:FindPerformancesByDateAndVenueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceDates">
+      <wsdl:input message="tns:GetPerformanceDatesSoapIn" />
+      <wsdl:output message="tns:GetPerformanceDatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformance">
+      <wsdl:input message="tns:InsertPerformanceSoapIn" />
+      <wsdl:output message="tns:InsertPerformanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerformance">
+      <wsdl:input message="tns:UpdatePerformanceSoapIn" />
+      <wsdl:output message="tns:UpdatePerformanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformance">
+      <wsdl:input message="tns:DeletePerformanceSoapIn" />
+      <wsdl:output message="tns:DeletePerformanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndArtist">
+      <wsdl:input message="tns:FindPerformancesByDateAndArtistSoapIn" />
+      <wsdl:output message="tns:FindPerformancesByDateAndArtistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVenues">
+      <wsdl:input message="tns:FindAllVenuesSoapIn" />
+      <wsdl:output message="tns:FindAllVenuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueById">
+      <wsdl:input message="tns:FindVenueByIdSoapIn" />
+      <wsdl:output message="tns:FindVenueByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueByName">
+      <wsdl:input message="tns:FindVenueByNameSoapIn" />
+      <wsdl:output message="tns:FindVenueByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindVenuesByAreaId">
+      <wsdl:input message="tns:FindVenuesByAreaIdSoapIn" />
+      <wsdl:output message="tns:FindVenuesByAreaIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertVenue">
+      <wsdl:input message="tns:InsertVenueSoapIn" />
+      <wsdl:output message="tns:InsertVenueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVenue">
+      <wsdl:input message="tns:UpdateVenueSoapIn" />
+      <wsdl:output message="tns:UpdateVenueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVenue">
+      <wsdl:input message="tns:DeleteVenueSoapIn" />
+      <wsdl:output message="tns:DeleteVenueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAreaByName">
+      <wsdl:input message="tns:FindAreaByNameSoapIn" />
+      <wsdl:output message="tns:FindAreaByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllAreas">
+      <wsdl:input message="tns:FindAllAreasSoapIn" />
+      <wsdl:output message="tns:FindAllAreasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <wsdl:input message="tns:InsertAreaSoapIn" />
+      <wsdl:output message="tns:InsertAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArea">
+      <wsdl:input message="tns:DeleteAreaSoapIn" />
+      <wsdl:output message="tns:DeleteAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindCountryByAbbreviation">
+      <wsdl:input message="tns:FindCountryByAbbreviationSoapIn" />
+      <wsdl:output message="tns:FindCountryByAbbreviationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCountries">
+      <wsdl:input message="tns:FindAllCountriesSoapIn" />
+      <wsdl:output message="tns:FindAllCountriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistPictureByURL">
+      <wsdl:input message="tns:FindArtistPictureByURLSoapIn" />
+      <wsdl:output message="tns:FindArtistPictureByURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByArtistId">
+      <wsdl:input message="tns:FindAllPicturesByArtistIdSoapIn" />
+      <wsdl:output message="tns:FindAllPicturesByArtistIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindProfilePictureByArtistId">
+      <wsdl:input message="tns:FindProfilePictureByArtistIdSoapIn" />
+      <wsdl:output message="tns:FindProfilePictureByArtistIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistPicture">
+      <wsdl:input message="tns:InsertArtistPictureSoapIn" />
+      <wsdl:output message="tns:InsertArtistPictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistPicture">
+      <wsdl:input message="tns:UpdateArtistPictureSoapIn" />
+      <wsdl:output message="tns:UpdateArtistPictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistPicture">
+      <wsdl:input message="tns:DeleteArtistPictureSoapIn" />
+      <wsdl:output message="tns:DeleteArtistPictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistVideoByURL">
+      <wsdl:input message="tns:FindArtistVideoByURLSoapIn" />
+      <wsdl:output message="tns:FindArtistVideoByURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByArtistId">
+      <wsdl:input message="tns:FindAllVideosByArtistIdSoapIn" />
+      <wsdl:output message="tns:FindAllVideosByArtistIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPromoVideoByArtistId">
+      <wsdl:input message="tns:FindPromoVideoByArtistIdSoapIn" />
+      <wsdl:output message="tns:FindPromoVideoByArtistIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistVideo">
+      <wsdl:input message="tns:InsertArtistVideoSoapIn" />
+      <wsdl:output message="tns:InsertArtistVideoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistVideo">
+      <wsdl:input message="tns:UpdateArtistVideoSoapIn" />
+      <wsdl:output message="tns:UpdateArtistVideoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistVideo">
+      <wsdl:input message="tns:DeleteArtistVideoSoapIn" />
+      <wsdl:output message="tns:DeleteArtistVideoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancePictureByURL">
+      <wsdl:input message="tns:FindPerformancePictureByURLSoapIn" />
+      <wsdl:output message="tns:FindPerformancePictureByURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByPerformanceId">
+      <wsdl:input message="tns:FindAllPicturesByPerformanceIdSoapIn" />
+      <wsdl:output message="tns:FindAllPicturesByPerformanceIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformancePicture">
+      <wsdl:input message="tns:InsertPerformancePictureSoapIn" />
+      <wsdl:output message="tns:InsertPerformancePictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformancePicture">
+      <wsdl:input message="tns:DeletePerformancePictureSoapIn" />
+      <wsdl:output message="tns:DeletePerformancePictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceVideoByURL">
+      <wsdl:input message="tns:FindPerformanceVideoByURLSoapIn" />
+      <wsdl:output message="tns:FindPerformanceVideoByURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByPerformanceId">
+      <wsdl:input message="tns:FindAllVideosByPerformanceIdSoapIn" />
+      <wsdl:output message="tns:FindAllVideosByPerformanceIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformanceVideo">
+      <wsdl:input message="tns:InsertPerformanceVideoSoapIn" />
+      <wsdl:output message="tns:InsertPerformanceVideoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformanceVideo">
+      <wsdl:input message="tns:DeletePerformanceVideoSoapIn" />
+      <wsdl:output message="tns:DeletePerformanceVideoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistMedia">
+      <wsdl:input message="tns:UpdateArtistMediaSoapIn" />
+      <wsdl:output message="tns:UpdateArtistMediaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UFOServiceSoap" type="tns:UFOServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FindCategoryById">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCategories">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindUserByName">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindUserByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllArtists">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllArtists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistByName">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistById">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtist">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtist">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceByDateTimeAndArtistId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDate">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndVenue">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateAndVenue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceDates">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/GetPerformanceDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformance">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerformance">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdatePerformance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformance">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndArtist">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateAndArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVenues">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVenues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueById">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindVenueById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueByName">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindVenueByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenuesByAreaId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindVenuesByAreaId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertVenue">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertVenue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVenue">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdateVenue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVenue">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteVenue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAreaByName">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAreaByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllAreas">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArea">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindCountryByAbbreviation">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindCountryByAbbreviation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCountries">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistPictureByURL">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistPictureByURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByArtistId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPicturesByArtistId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindProfilePictureByArtistId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindProfilePictureByArtistId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistPicture">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtistPicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistPicture">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistPicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistPicture">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtistPicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistVideoByURL">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistVideoByURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByArtistId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVideosByArtistId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPromoVideoByArtistId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPromoVideoByArtistId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistVideo">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtistVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistVideo">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistVideo">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtistVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancePictureByURL">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancePictureByURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByPerformanceId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPicturesByPerformanceId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformancePicture">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformancePicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformancePicture">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformancePicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceVideoByURL">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceVideoByURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByPerformanceId">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVideosByPerformanceId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformanceVideo">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformanceVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformanceVideo">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformanceVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistMedia">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistMedia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UFOServiceSoap12" type="tns:UFOServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FindCategoryById">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindCategoryById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCategories">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindUserByName">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindUserByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllArtists">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllArtists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistByName">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistById">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtist">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtist">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtist">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceByDateTimeAndArtistId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDate">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndVenue">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateAndVenue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceDates">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/GetPerformanceDates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformance">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePerformance">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdatePerformance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformance">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateAndArtist">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateAndArtist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVenues">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVenues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueById">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindVenueById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenueByName">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindVenueByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindVenuesByAreaId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindVenuesByAreaId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertVenue">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertVenue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVenue">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdateVenue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVenue">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteVenue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAreaByName">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAreaByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllAreas">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllAreas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArea">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArea">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindCountryByAbbreviation">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindCountryByAbbreviation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllCountries">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllCountries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistPictureByURL">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistPictureByURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByArtistId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPicturesByArtistId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindProfilePictureByArtistId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindProfilePictureByArtistId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistPicture">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtistPicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistPicture">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistPicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistPicture">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtistPicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindArtistVideoByURL">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindArtistVideoByURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByArtistId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVideosByArtistId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPromoVideoByArtistId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPromoVideoByArtistId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertArtistVideo">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertArtistVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistVideo">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtistVideo">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtistVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancePictureByURL">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancePictureByURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPicturesByPerformanceId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPicturesByPerformanceId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformancePicture">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformancePicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformancePicture">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformancePicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformanceVideoByURL">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceVideoByURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllVideosByPerformanceId">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllVideosByPerformanceId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPerformanceVideo">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/InsertPerformanceVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerformanceVideo">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeletePerformanceVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArtistMedia">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/UpdateArtistMedia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UFOService">
+    <wsdl:port name="UFOServiceSoap" binding="tns:UFOServiceSoap">
+      <soap:address location="http://localhost:46633/UFOService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UFOServiceSoap12" binding="tns:UFOServiceSoap12">
+      <soap12:address location="http://localhost:46633/UFOService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
