@@ -75,10 +75,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UFOService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UFOService.asmx.cs">
+      <DependentUpon>UFOService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UFO.Domain\UFO.Domain.csproj">
+      <Project>{cc7a683a-b1d1-4849-8fe1-803d879498cf}</Project>
+      <Name>UFO.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Server\UFO.Server.csproj">
+      <Project>{8ef4cc9a-b12b-4fd3-8119-159d166035e7}</Project>
+      <Name>UFO.Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
