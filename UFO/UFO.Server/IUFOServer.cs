@@ -79,17 +79,17 @@ namespace UFO.Server
 
         // PerformancePicture
         PerformancePicture FindPerformancePictureByURL(string url);
-        IList<PerformancePicture> FindAllPicturesByPerformanceId(int PerformanceId);
+        IList<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId);
 
-        bool InsertPerformancePicture(PerformancePicture PerformancePicture);
-        bool DeletePerformancePicture(PerformancePicture PerformancePicture);
+        bool InsertPerformancePicture(PerformancePicture performancePicture);
+        bool DeletePerformancePicture(PerformancePicture performancePicture);
 
         // PerformanceVideo
         PerformanceVideo FindPerformanceVideoByURL(string url);
-        IList<PerformanceVideo> FindAllVideosByPerformanceId(int PerformanceId);
+        IList<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId);
 
-        bool InsertPerformanceVideo(PerformanceVideo PerformanceVideo);
-        bool DeletePerformanceVideo(PerformanceVideo PerformanceVideo);
+        bool InsertPerformanceVideo(PerformanceVideo performanceVideo);
+        bool DeletePerformanceVideo(PerformanceVideo performanceVideo);
 
         // helpers
         bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video);
