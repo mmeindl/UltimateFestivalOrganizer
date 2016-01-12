@@ -6,31 +6,42 @@ using System.Text;
 using System.Threading.Tasks;
 using UFO.Dal.Common;
 using UFO.Domain;
+using UFO.Server.UFOWebService;
 
 namespace UFO.Server
 {
     internal class UFOWebServiceImpl : IUFOServer
     {
         // Category
-        public Category FindCategoryById(int id)
+        public Domain.Category FindCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return mapCategory(service.FindCategoryById(id));
         }
 
-        public IEnumerable<Category> FindAllCategories()
+        public IEnumerable<Domain.Category> FindAllCategories()
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllCategories()
+                .Select(c => mapCategory(c))
+                .ToList();
         }
 
         // User
         public bool AuthenticateUser(string usernername, string password, IList<string> error)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.AuthenticateUser(usernername, password, error.ToArray());
         }
 
-        public User FindUserByName(string name)
+        public Domain.User FindUserByName(string name)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return mapUser(service.FindUserByName(name));
         }
 
         // Artist
@@ -287,6 +298,16 @@ namespace UFO.Server
             result = result & UpdateArtistVideo(video);
 
             return result;
+        }
+
+        private Domain.Category mapCategory(UFOWebService.Category c)
+        {
+            return new Domain.Category(c.Name, c.Color, c.Id);
+        }
+
+        private Domain.User mapUser(UFOWebService.User u)
+        {
+            return new Domain.User(u.Username, u.Password, u.Email, u.RoleId, u.Id);
         }
 
     }
