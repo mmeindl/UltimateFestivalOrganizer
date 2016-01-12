@@ -241,11 +241,17 @@ namespace UFO.Server
         public Domain.Country FindCountryByAbbreviation(string abbreviation)
         {
             var service = new UFOService();
+
+            return mapCountry(service.FindCountryByAbbreviation(abbreviation));
         }
 
         public IList<Domain.Country> FindAllCountries()
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllCountries()
+                .Select(c => mapCountry(c))
+                .ToList();
         }
 
         // ArtistPicture
@@ -439,6 +445,20 @@ namespace UFO.Server
             area.Name = a.Name;
 
             return area;
+        }
+
+        private Domain.Country mapCountry(UFOWebService.Country c)
+        {
+            return new Domain.Country(c.Abbreviation, c.Name);
+        }
+
+        private UFOWebService.Country mapCountry(Domain.Country c)
+        {
+            UFOWebService.Country country = new UFOWebService.Country();
+            country.Abbreviation = c.Abbreviation;
+            country.Name = c.Name;
+
+            return country;
         }
     }
 }
