@@ -45,48 +45,48 @@ namespace UFO.Server
         }
 
         // Artist
-        public IEnumerable<Artist> FindAllArtists()
+        public IEnumerable<Domain.Artist> FindAllArtists()
         {
             throw new NotImplementedException();
         }
 
-        public Artist FindArtistByName(string name)
+        public Domain.Artist FindArtistByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Artist FindArtistById(int artistId)
+        public Domain.Artist FindArtistById(int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertArtist(Artist artist)
+        public bool InsertArtist(Domain.Artist artist)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateArtist(Artist artist)
+        public bool UpdateArtist(Domain.Artist artist)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteArtist(Artist artist)
+        public bool DeleteArtist(Domain.Artist artist)
         {
             throw new NotImplementedException();
         }
 
         // Performance
-        public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
+        public Domain.Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Performance> FindPerformancesByDate(DateTime date)
+        public IEnumerable<Domain.Performance> FindPerformancesByDate(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue)
+        public IEnumerable<Domain.Performance> FindPerformancesByDateAndVenue(DateTime date, Domain.Venue venue)
         {
             throw new NotImplementedException();
         }
@@ -96,200 +96,200 @@ namespace UFO.Server
             throw new NotImplementedException();
         }
 
-        public bool InsertPerformance(Performance performance)
+        public bool InsertPerformance(Domain.Performance performance)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdatePerformance(Performance performance)
+        public bool UpdatePerformance(Domain.Performance performance)
         {
             throw new NotImplementedException();
         }
         
-        public bool DeletePerformance(Performance performance)
+        public bool DeletePerformance(Domain.Performance performance)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist)
+        public IEnumerable<Domain.Performance> FindPerformancesByDateAndArtist(DateTime date, Domain.Artist artist)
         {
             throw new NotImplementedException();
         }
 
         // Venue
-        public IEnumerable<Venue> FindAllVenues()
+        public IEnumerable<Domain.Venue> FindAllVenues()
         {
             throw new NotImplementedException();
         }
 
-        public Venue FindVenueById(int id)
+        public Domain.Venue FindVenueById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Venue FindVenueByName(string name)
+        public Domain.Venue FindVenueByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Venue> FindVenuesByAreaId(int areaId)
+        public IEnumerable<Domain.Venue> FindVenuesByAreaId(int areaId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertVenue(Venue venue)
+        public bool InsertVenue(Domain.Venue venue)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateVenue(Venue venue)
+        public bool UpdateVenue(Domain.Venue venue)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteVenue(Venue venue)
+        public bool DeleteVenue(Domain.Venue venue)
         {
             throw new NotImplementedException();
         }
 
         // Area
-        public Area FindAreaByName(string name)
+        public Domain.Area FindAreaByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Area> FindAllAreas()
+        public IList<Domain.Area> FindAllAreas()
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertArea(Area area)
+        public bool InsertArea(Domain.Area area)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteArea(Area area)
+        public bool DeleteArea(Domain.Area area)
         {
             throw new NotImplementedException();
         }
 
         // Country
-        public Country FindCountryByAbbreviation(string abbreviation)
+        public Domain.Country FindCountryByAbbreviation(string abbreviation)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Country> FindAllCountries()
+        public IList<Domain.Country> FindAllCountries()
         {
             throw new NotImplementedException();
         }
 
         // ArtistPicture
-        public ArtistPicture FindArtistPictureByURL(string url)
+        public Domain.ArtistPicture FindArtistPictureByURL(string url)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ArtistPicture> FindAllPicturesByArtistId(int artistId)
+        public IList<Domain.ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public ArtistPicture FindProfilePictureByArtistId(int artistId)
+        public Domain.ArtistPicture FindProfilePictureByArtistId(int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertArtistPicture(ArtistPicture artistPicture)
+        public bool InsertArtistPicture(Domain.ArtistPicture artistPicture)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateArtistPicture(ArtistPicture artistPicture)
+        public bool UpdateArtistPicture(Domain.ArtistPicture artistPicture)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteArtistPicture(ArtistPicture artistPicture)
+        public bool DeleteArtistPicture(Domain.ArtistPicture artistPicture)
         {
             throw new NotImplementedException();
         }
 
         // ArtistVideo
-        public ArtistVideo FindArtistVideoByURL(string url)
+        public Domain.ArtistVideo FindArtistVideoByURL(string url)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
+        public IList<Domain.ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public ArtistVideo FindPromoVideoByArtistId(int artistId)
+        public Domain.ArtistVideo FindPromoVideoByArtistId(int artistId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertArtistVideo(ArtistVideo artistVideo)
+        public bool InsertArtistVideo(Domain.ArtistVideo artistVideo)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateArtistVideo(ArtistVideo artistVideo)
+        public bool UpdateArtistVideo(Domain.ArtistVideo artistVideo)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteArtistVideo(ArtistVideo artistVideo)
+        public bool DeleteArtistVideo(Domain.ArtistVideo artistVideo)
         {
             throw new NotImplementedException();
         }
 
         // PerformancePicture
-        public PerformancePicture FindPerformancePictureByURL(string url)
+        public Domain.PerformancePicture FindPerformancePictureByURL(string url)
         {
             throw new NotImplementedException();
         }
 
-        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
+        public IList<Domain.PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertPerformancePicture(PerformancePicture performancePicture)
+        public bool InsertPerformancePicture(Domain.PerformancePicture performancePicture)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeletePerformancePicture(PerformancePicture performancePicture)
+        public bool DeletePerformancePicture(Domain.PerformancePicture performancePicture)
         {
             throw new NotImplementedException();
         }
 
         // PerformanceVideo
-        public PerformanceVideo FindPerformanceVideoByURL(string url)
+        public Domain.PerformanceVideo FindPerformanceVideoByURL(string url)
         {
             throw new NotImplementedException();
         }
 
-        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
+        public IList<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
             throw new NotImplementedException();
         }
 
-        public bool InsertPerformanceVideo(PerformanceVideo performanceVideo)
+        public bool InsertPerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeletePerformanceVideo(PerformanceVideo performanceVideo)
+        public bool DeletePerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
             throw new NotImplementedException();
         }
 
         // helpers
-        public bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video)
+        public bool UpdateArtistMedia(Domain.Artist artist, Domain.ArtistPicture picture, Domain.ArtistVideo video)
         {
             bool result = true;
 
