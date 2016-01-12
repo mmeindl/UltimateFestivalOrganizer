@@ -5,6 +5,7 @@ using PdfSharp.Pdf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -49,7 +50,9 @@ namespace UFO.Commander.Views.Controls
 
         public PerformancesTab()
         {
-            server = UFOServerFactory.GetUFOServer();
+            BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
+
+            server = UFOServerFactory.GetUFOServer(type);
 
             InitializeComponent();
 

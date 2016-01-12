@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,9 @@ namespace UFO.Commander.Views.Controls
 
         public VenueTab()
         {
-            server = UFOServerFactory.GetUFOServer();
+            BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
+
+            server = UFOServerFactory.GetUFOServer(type);
 
             InitializeComponent();
 
