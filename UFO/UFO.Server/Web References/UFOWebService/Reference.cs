@@ -137,7 +137,7 @@ namespace UFO.Server.UFOWebService {
         
         /// <remarks/>
         public UFOService() {
-            this.Url = global::UFO.Server.Properties.Settings.Default.UFO_Server_UFOService_UFOService;
+            this.Url = global::UFO.Server.Properties.Settings.Default.UFO_Server_UFOWebService_UFOService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

@@ -32,5 +32,15 @@ namespace UFO.Server.Properties {
                 return ((string)(this["UFO_Server_UFOService_UFOService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:46633/UFOService.asmx")]
+        public string UFO_Server_UFOWebService_UFOService {
+            get {
+                return ((string)(this["UFO_Server_UFOWebService_UFOService"]));
+            }
+        }
     }
 }
