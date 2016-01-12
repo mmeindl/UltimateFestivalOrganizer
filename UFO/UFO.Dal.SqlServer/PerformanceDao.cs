@@ -17,6 +17,12 @@ namespace UFO.Dal.SqlServer
                 FROM Performance
                 WHERE Performance.id = @id";
 
+        const string SQL_FIND_BY_DATETIME_AND_ARTISTID =
+            @"SELECT *
+                FROM Performance
+                WHERE Performance.DateTime = @dateTime
+                AND Performance.ArtistId = @artistId";
+
         const string SQL_FIND_ALL =
             @"SELECT *
                 FROM Performance";
@@ -95,6 +101,35 @@ namespace UFO.Dal.SqlServer
         public Performance FindById(int id)
         {
             using (DbCommand command = CreateFindByIdCommand(id))
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                if (reader.Read())
+                {
+                    return new Performance(
+                        (DateTime)reader["dateTime"],
+                        (int)reader["venueId"],
+                        (int)reader["artistId"],
+                        (int)reader["Id"]
+                        );
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        private DbCommand CreateFindByDateTimeAndArtistIdCommand(DateTime dateTime, int artistId)
+        {
+            DbCommand findByDateTimeAndArtistIdCommand = database.CreateCommand(SQL_FIND_BY_DATETIME_AND_ARTISTID);
+            database.DefineParameter(findByDateTimeAndArtistIdCommand, "artistId", DbType.Int32, artistId);
+            database.DefineParameter(findByDateTimeAndArtistIdCommand, "dateTime", DbType.Int32, dateTime);
+            return findByDateTimeAndArtistIdCommand;
+        }
+
+        public Performance FindByDateTimeAndArtistId(DateTime dateTime, int artistId)
+        {
+            using (DbCommand command = CreateFindByDateTimeAndArtistIdCommand(dateTime, artistId))
             using (IDataReader reader = database.ExecuteReader(command))
             {
                 if (reader.Read())
@@ -465,7 +500,8 @@ namespace UFO.Dal.SqlServer
 
             foreach (Performance p in performances)
             {
-                if (p.DateTime <= dt.AddHours(1) && p.DateTime >= dt.AddHours(-1))
+                if (p.DateTime <= dt.AddHours(1) && p.DateTime >= dt.AddHours(-1) &&
+                    p.Id != performance.Id)
                 {
                     return false;
                 }

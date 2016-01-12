@@ -30,11 +30,6 @@ namespace UFO.Dal.SqlServer
           @"INSERT INTO Area
             VALUES (@name)";
 
-        const string SQL_UPDATE =
-          @"UPDATE Area 
-            SET Name = @name
-            WHERE Id = @id";
-
         const string SQL_DELETE =
           @"DELETE FROM Area
             WHERE Id = @id";
@@ -126,21 +121,6 @@ namespace UFO.Dal.SqlServer
         public bool Insert(Area area)
         {
             using (DbCommand command = CreateInsertCommand(area.Name))
-            {
-                return database.ExecuteNonQuery(command) == 1;
-            }
-        }
-
-        private DbCommand CreateUpdateCommand(string name)
-        {
-            DbCommand updateCommand = database.CreateCommand(SQL_UPDATE);
-            database.DefineParameter(updateCommand, "name", DbType.String, name);
-            return updateCommand;
-        }
-
-        public bool Update(Area area)
-        {
-            using (DbCommand command = CreateUpdateCommand(area.Name))
             {
                 return database.ExecuteNonQuery(command) == 1;
             }

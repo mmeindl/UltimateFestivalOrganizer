@@ -91,6 +91,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\PerformanceMediaCollectionVM.cs" />
+    <Compile Include="ViewModels\PerformancePictureVM.cs" />
+    <Compile Include="ViewModels\PerformanceVideoVM.cs" />
     <Compile Include="ViewModels\PerformanceArtistVM.cs" />
     <Compile Include="ViewModels\PerformanceRowVM.cs" />
     <Compile Include="ViewModels\PerformanceVM.cs" />
@@ -102,7 +105,8 @@
     <Compile Include="ViewModels\AreaVM.cs" />
     <Compile Include="ViewModels\VenueVM.cs" />
     <Compile Include="ViewModels\ArtistVM.cs" />
-    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\Controls\InvertObjectToBoolConverter.cs" />
+    <Compile Include="Views\Controls\ObjectToBoolConverter.cs" />
     <Compile Include="Views\Controls\VenueTab.xaml.cs">
       <DependentUpon>VenueTab.xaml</DependentUpon>
     </Compile>
@@ -121,8 +125,14 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MediaWindow.xaml.cs">
-      <DependentUpon>MediaWindow.xaml</DependentUpon>
+    <Compile Include="Views\PerformanceMediaWindow.xaml.cs">
+      <DependentUpon>PerformanceMediaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArtistMediaWindow.xaml.cs">
+      <DependentUpon>ArtistMediaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PerformanceArtistsWindow.xaml.cs">
+      <DependentUpon>PerformanceArtistsWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +206,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MediaWindow.xaml">
+    <Page Include="Views\PerformanceMediaWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArtistMediaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PerformanceArtistsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,9 +7,12 @@
         xmlns:vm="clr-namespace:UFO.Commander.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:PerformanceCollectionVM, IsDesignTimeCreatable=True}"
-        Height="auto" Width="auto">
+        Height="auto" Width="auto"> 
 
-
+    <UserControl.Resources>
+        <local:ObjectToBoolConverter x:Key="myObjectToBoolConverter"/>
+        <local:InvertObjectToBoolConverter x:Key="myInvertObjectToBoolConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -40,44 +43,11 @@
                 Width="150"
                 Margin="10"
                 Click="SendEmail">Send E-Mail</Button>
-            <!--<Button
-                Width="150"
-                Margin="10"
-                Click="TestPdf">TestPdf</Button>-->
         </StackPanel>
-
-        <!--<Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
-
-            <ComboBox ItemsSource="{Binding Path=performanceDays}"
-                      SelectedItem="{Binding Path=CurrentDate, Mode=TwoWay}"
-                      Grid.Column="0" 
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      Margin="10, 0, 0, 0"
-                      Height="30"
-                      Name="cmbPerformanceDay"/>
-
-            <ComboBox ItemsSource="{Binding Path=areas}"
-                      SelectedItem="{Binding Path=CurrentArea, Mode=TwoWay}"
-                      DisplayMemberPath="Name"
-                      Grid.Column="1"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Center"
-                      VerticalContentAlignment="Center"
-                      Margin="10, 0, 0, 0"
-                      Height="30"
-<<<<<<< HEAD
-                      Name="cmbPerformanceVenue"/>
-            <Button
+        <!--
+        <Button
                 Grid.Column="2"
-                Click="CreatePDF">PDF</Button>
-                
-        </Grid>-->
+                Click="CreatePDF">PDF</Button>-->
 
         <DataGrid Grid.Row="1"
                   Name="dgPerformances"
@@ -88,7 +58,8 @@
                   FontSize="14"
                   ItemsSource="{Binding Path=PerformanceRows}"
                   MouseLeftButtonDown="drag_performance"
-                  MouseLeftButtonUp="drop_performance">
+                  MouseLeftButtonUp="drop_performance"
+                  MouseRightButtonDown="remember_performance">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="auto" />
@@ -136,7 +107,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="14 - 15 Uhr">
+                <DataGridTemplateColumn Width="*" Header="2 - 3 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist14.Color, FallbackValue='White', Mode=OneWay}" />
@@ -144,21 +115,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist14, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist14, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist14, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist14.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist14.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist14.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist14.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist14.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist14.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="15 - 16 Uhr">
+                <DataGridTemplateColumn Width="*" Header="3 - 4 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist15.Color, FallbackValue='White', Mode=OneWay}" />
@@ -166,21 +144,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist15, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist15, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist15, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist15.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist15.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist15.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist15.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist15.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist15.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="16 - 17 Uhr">
+                <DataGridTemplateColumn Width="*" Header="4 - 5 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist16.Color, FallbackValue='White', Mode=OneWay}" />
@@ -188,21 +173,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist16, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist16, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist16, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist16.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist16.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist16.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist16.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist16.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist16.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="17 - 18 Uhr">
+                <DataGridTemplateColumn Width="*" Header="5 - 6 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist17.Color, FallbackValue='White', Mode=OneWay}" />
@@ -210,21 +202,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist17, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist17, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist17, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist17.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist17.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist17.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist17.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist17.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist17.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="18 - 19 Uhr">
+                <DataGridTemplateColumn Width="*" Header="6 - 7 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist18.Color, FallbackValue='White', Mode=OneWay}" />
@@ -232,21 +231,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist18, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist18, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist18, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist18.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist18.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist18.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist18.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist18.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist18.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="19 - 20 Uhr">
+                <DataGridTemplateColumn Width="*" Header="7 - 8 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist19.Color, FallbackValue='White', Mode=OneWay}" />
@@ -254,21 +260,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist19, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist19, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist19, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist19.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist19.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist19.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist19.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist19.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist19.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="20 - 21 Uhr">
+                <DataGridTemplateColumn Width="*" Header="8 - 9 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist20.Color, FallbackValue='White', Mode=OneWay}" />
@@ -276,21 +289,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist20, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist20, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist20, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist20.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist20.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist20.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist20.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist20.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist20.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="21 - 22 Uhr">
+                <DataGridTemplateColumn Width="*" Header="9 - 10 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist21.Color, FallbackValue='White', Mode=OneWay}" />
@@ -298,21 +318,28 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist21, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist21, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist21, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist21.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist21.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist21.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist21.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist21.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist21.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="22 - 23 Uhr">
+                <DataGridTemplateColumn Width="*" Header="10 - 11 pm">
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="{Binding Path=PerformanceArtist22.Color, FallbackValue='White', Mode=OneWay}" />
@@ -320,15 +347,22 @@
                     </DataGridTemplateColumn.CellStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="auto" HorizontalAlignment="Center">
+                            <Grid Height="auto" HorizontalAlignment="Stretch">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add" Click="AddPerformance" IsEnabled="{Binding Path=PerformanceArtist22, Converter={StaticResource myInvertObjectToBoolConverter}}"/>
+                                        <MenuItem Header="Edit media" Click="EditMedia" IsEnabled="{Binding Path=PerformanceArtist22, Converter={StaticResource myObjectToBoolConverter}}" />
+                                        <MenuItem Header="Remove" Click="RemovePerformance" IsEnabled="{Binding Path=PerformanceArtist22, Converter={StaticResource myObjectToBoolConverter}}"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist22.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist22.Country, Mode=OneWay}" Grid.Row="1" />
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=PerformanceArtist22.Category, Mode=OneWay}" Grid.Row="2" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist22.Name, Mode=OneWay}" Grid.Row="0" FontWeight="Bold"/>
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist22.Country, Mode=OneWay}" Grid.Row="1" />
+                                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding Path=PerformanceArtist22.Category, Mode=OneWay}" Grid.Row="2" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

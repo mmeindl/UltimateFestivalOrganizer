@@ -1,5 +1,4 @@
-﻿using Swk5.MediaAnnotator.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -21,11 +20,14 @@ namespace UFO.Commander.ViewModels
         private Country country;
         private Category category;
 
-        public PerformanceArtistVM(Artist artist, Category category, Country country, IUFOServer server)
+        private PerformanceVM performanceVM;
+
+        public PerformanceArtistVM(Artist artist, Category category, Country country, PerformanceVM performanceVM, IUFOServer server)
         {
             this.artist = artist;
             this.category = category;
             this.country = country;
+            this.performanceVM = performanceVM;
             this.server = server;
         }
 
@@ -47,6 +49,11 @@ namespace UFO.Commander.ViewModels
         public string Color
         {
             get { return category.Color; }
+        }
+
+        public PerformanceVM PerformanceVM
+        {
+            get { return performanceVM; }
         }
     }
 }

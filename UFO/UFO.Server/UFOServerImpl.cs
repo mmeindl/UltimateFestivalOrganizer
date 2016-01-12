@@ -91,12 +91,6 @@ namespace UFO.Server
             return userDao.FindByUsername(name);
         }
 
-        public IEnumerable<User> FindAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-
         // Artist
         public IEnumerable<Artist> FindAllArtists()
         {
@@ -117,11 +111,6 @@ namespace UFO.Server
             IArtistDao artistDao = DalFactory.CreateArtistDao(database);
 
             return artistDao.FindById(artistId);
-        }
-
-        public void InformAllArtists()
-        {
-            throw new NotImplementedException();
         }
 
         public bool InsertArtist(Artist artist)
@@ -146,14 +135,11 @@ namespace UFO.Server
         }
 
         // Performance
-        public IEnumerable<Performance> FindAllPerformances()
+        public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
-            throw new NotImplementedException();
-        }
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
 
-        public Performance FindPerformanceById(int id)
-        {
-            throw new NotImplementedException();
+            return performanceDao.FindByDateTimeAndArtistId(dateTime, artistId);
         }
 
         public IEnumerable<Performance> FindPerformancesByDate(DateTime date)
@@ -179,18 +165,25 @@ namespace UFO.Server
 
         public bool InsertPerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Insert(performance);
         }
 
         public bool UpdatePerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Update(performance);
         }
         
         public bool DeletePerformance(Performance performance)
         {
-            throw new NotImplementedException();
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+
+            return performanceDao.Delete(performance);
         }
+
         public IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
@@ -249,11 +242,6 @@ namespace UFO.Server
         }
 
         // Area
-        public Area FindAreaById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Area FindAreaByName(string name)
         {
             IAreaDao areaDao = DalFactory.CreateAreaDao(database);
@@ -273,11 +261,6 @@ namespace UFO.Server
             IAreaDao areaDao = DalFactory.CreateAreaDao(database);
 
             return areaDao.Insert(area);
-        }
-
-        public bool UpdateArea(Area area)
-        {
-            throw new NotImplementedException();
         }
 
         public bool DeleteArea(Area area)
@@ -388,6 +371,64 @@ namespace UFO.Server
             return artistVideoDao.Delete(artistVideo);
         }
 
+        // PerformancePicture
+        public PerformancePicture FindPerformancePictureByURL(string url)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.FindByURL(url);
+        }
+
+        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int PerformanceId)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.FindAllByPerformanceId(PerformanceId);
+        }
+
+        public bool InsertPerformancePicture(PerformancePicture PerformancePicture)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.Insert(PerformancePicture);
+        }
+
+        public bool DeletePerformancePicture(PerformancePicture PerformancePicture)
+        {
+            IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+
+            return PerformancePictureDao.Delete(PerformancePicture);
+        }
+
+        // PerformanceVideo
+        public PerformanceVideo FindPerformanceVideoByURL(string url)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.FindByURL(url);
+        }
+
+        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int PerformanceId)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.FindAllByPerformanceId(PerformanceId);
+        }
+
+        public bool InsertPerformanceVideo(PerformanceVideo PerformanceVideo)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.Insert(PerformanceVideo);
+        }
+
+        public bool DeletePerformanceVideo(PerformanceVideo PerformanceVideo)
+        {
+            IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+
+            return PerformanceVideoDao.Delete(PerformanceVideo);
+        }
+
         // helpers
         public bool UpdateArtistMedia(Artist artist, ArtistPicture picture, ArtistVideo video)
         {
@@ -399,7 +440,6 @@ namespace UFO.Server
 
             return result;
         }
-
 
     }
 }

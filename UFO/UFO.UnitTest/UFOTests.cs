@@ -591,7 +591,7 @@ namespace UFO.UnitTest
             IDatabase database = DalFactory.CreateDatabase();
             IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
 
-            Assert.AreEqual(pictureDao.FindAll().Count, 6);
+            Assert.AreEqual(pictureDao.FindAll().Count, 8);
         }
 
 
@@ -613,7 +613,7 @@ namespace UFO.UnitTest
             IDatabase database = DalFactory.CreateDatabase();
             IVideoDao videoDao = DalFactory.CreateVideoDao(database);
 
-            Assert.AreEqual(videoDao.FindAll().Count, 10);
+            Assert.AreEqual(videoDao.FindAll().Count, 12);
         }
 
 
@@ -628,7 +628,7 @@ namespace UFO.UnitTest
             Assert.IsNotNull(artistPictureDao.FindByURL("https://placekitten.com/150/200"));
             Assert.IsNull(artistPictureDao.FindByURL("noURL"));
         }
-
+        
         [TestMethod]
         public void ArtistPictureFindProfilePictureByArtistIdTest()
         {
@@ -646,7 +646,7 @@ namespace UFO.UnitTest
 
             Assert.IsNull(profilePicture2);
         }
-
+        
         [TestMethod]
         public void ArtistPictureFindAllByArtistIdTest()
         {
