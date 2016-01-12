@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +23,18 @@ namespace UFO.Commander.Views
     /// </summary>
     public partial class PerformanceArtistsWindow : Window
     {
-        Artist selectedArtist;
+        private Artist selectedArtist;
+        private IUFOServer server;
 
         public PerformanceArtistsWindow()
         {
             InitializeComponent();
 
-            DataContext = new ArtistCollectionVM(
-                UFOServerFactory.GetUFOServer());
+            BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
+
+            server = UFOServerFactory.GetUFOServer(type);
+
+            DataContext = new ArtistCollectionVM(server);
         }
 
         private void SelectArtist(object sender, RoutedEventArgs e)

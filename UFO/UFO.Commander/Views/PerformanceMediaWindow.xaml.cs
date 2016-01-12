@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,9 @@ namespace UFO.Commander.Views
 
         public PerformanceMediaWindow()
         {
-            server = UFOServerFactory.GetUFOServer();
+            BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
+
+            server = UFOServerFactory.GetUFOServer(type);
 
             InitializeComponent();
         }
