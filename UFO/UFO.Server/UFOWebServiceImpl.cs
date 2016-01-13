@@ -460,10 +460,7 @@ namespace UFO.Server
 
             return country;
         }
-        private Domain.PerformanceVideo mapPerformanceVideo(UFOWebService.PerformanceVideo pv)
-        {
-            return new Domain.PerformanceVideo();
-        }
+
 
 
     }
