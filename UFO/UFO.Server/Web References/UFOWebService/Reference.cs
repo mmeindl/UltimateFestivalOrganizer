@@ -1913,6 +1913,8 @@ namespace UFO.Server.UFOWebService {
         
         private int idField;
         
+        private string videoURLField;
+        
         /// <remarks/>
         public int PerformanceId {
             get {
@@ -1930,6 +1932,16 @@ namespace UFO.Server.UFOWebService {
             }
             set {
                 this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VideoURL {
+            get {
+                return this.videoURLField;
+            }
+            set {
+                this.videoURLField = value;
             }
         }
     }
@@ -1946,6 +1958,8 @@ namespace UFO.Server.UFOWebService {
         
         private int idField;
         
+        private string pictureURLField;
+        
         /// <remarks/>
         public int PerformanceId {
             get {
@@ -1963,6 +1977,16 @@ namespace UFO.Server.UFOWebService {
             }
             set {
                 this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PictureURL {
+            get {
+                return this.pictureURLField;
+            }
+            set {
+                this.pictureURLField = value;
             }
         }
     }
@@ -1980,6 +2004,8 @@ namespace UFO.Server.UFOWebService {
         private int idField;
         
         private bool isPromoVideoField;
+        
+        private string videoURLField;
         
         /// <remarks/>
         public int ArtistId {
@@ -2010,6 +2036,16 @@ namespace UFO.Server.UFOWebService {
                 this.isPromoVideoField = value;
             }
         }
+        
+        /// <remarks/>
+        public string VideoURL {
+            get {
+                return this.videoURLField;
+            }
+            set {
+                this.videoURLField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -2025,6 +2061,8 @@ namespace UFO.Server.UFOWebService {
         private int idField;
         
         private bool isProfilePictureField;
+        
+        private string pictureURLField;
         
         /// <remarks/>
         public int ArtistId {
@@ -2053,6 +2091,16 @@ namespace UFO.Server.UFOWebService {
             }
             set {
                 this.isProfilePictureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PictureURL {
+            get {
+                return this.pictureURLField;
+            }
+            set {
+                this.pictureURLField = value;
             }
         }
     }

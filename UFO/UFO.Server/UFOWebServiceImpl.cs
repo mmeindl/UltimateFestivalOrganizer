@@ -135,7 +135,7 @@ namespace UFO.Server
 
             return service.UpdatePerformance(mapPerformance(performance));
         }
-        
+
         public bool DeletePerformance(Domain.Performance performance)
         {
             var service = new UFOService();
@@ -460,5 +460,11 @@ namespace UFO.Server
 
             return country;
         }
+        private Domain.PerformanceVideo mapPerformanceVideo(UFOWebService.PerformanceVideo pv)
+        {
+            return new Domain.PerformanceVideo();
+        }
+
+
     }
 }
