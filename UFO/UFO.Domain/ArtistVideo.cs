@@ -27,6 +27,6 @@ namespace UFO.Domain
 
         public bool IsPromoVideo { get; set; }
 
-        public string VideoURL { get; }
+        public string VideoURL { get; set; }
     }
 }

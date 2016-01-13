@@ -27,6 +27,6 @@ namespace UFO.Domain
 
         public bool IsProfilePicture { get; set; }
 
-        public string PictureURL { get; }
+        public string PictureURL { get; set; }
     }
 }

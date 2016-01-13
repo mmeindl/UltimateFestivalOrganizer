@@ -533,6 +533,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="IsProfilePicture" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="FindAllPicturesByArtistId">
@@ -629,6 +630,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="IsPromoVideo" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="VideoURL" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="FindAllVideosByArtistId">
@@ -724,6 +726,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="PerformanceId" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="FindAllPicturesByPerformanceId">
@@ -791,6 +794,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="PerformanceId" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VideoURL" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="FindAllVideosByPerformanceId">

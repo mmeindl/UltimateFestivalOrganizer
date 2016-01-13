@@ -24,6 +24,6 @@ namespace UFO.Domain
 
         public int Id { get; set; }
 
-        public string PictureURL { get; }
+        public string PictureURL { get; set; }
     }
 }
