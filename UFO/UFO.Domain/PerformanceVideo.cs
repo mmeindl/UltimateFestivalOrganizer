@@ -24,6 +24,6 @@ namespace UFO.Domain
 
         public int Id { get; set; }
 
-        public string VideoURL { get; }
+        public string VideoURL { get; set; }
     }
 }
