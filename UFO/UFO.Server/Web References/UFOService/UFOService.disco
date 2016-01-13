@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://localhost:46633/UFOService.asmx?wsdl" docRef="http://localhost:46633/UFOService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://localhost:46633/UFOService.asmx" xmlns:q1="http://ufo.fh-hagenberg.at/" binding="q1:UFOServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://localhost:46633/UFOService.asmx" xmlns:q2="http://ufo.fh-hagenberg.at/" binding="q2:UFOServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-</discovery>
