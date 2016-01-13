@@ -257,84 +257,112 @@ namespace UFO.Server
         // ArtistPicture
         public Domain.ArtistPicture FindArtistPictureByURL(string url)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return mapArtistPicture(service.FindArtistPictureByURL(url));
         }
 
         public IList<Domain.ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllPicturesByArtistId(artistId)
+                .Select(p => mapArtistPicture(p))
+                .ToList();
         }
 
         public Domain.ArtistPicture FindProfilePictureByArtistId(int artistId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return mapArtistPicture(service.FindProfilePictureByArtistId(artistId));
         }
 
         public bool InsertArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.DeleteArtistPicture(mapArtistPicture(artistPicture));
         }
 
         public bool UpdateArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.UpdateArtistPicture(mapArtistPicture(artistPicture));
         }
 
         public bool DeleteArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.DeleteArtistPicture(mapArtistPicture(artistPicture));
         }
 
         // ArtistVideo
         public Domain.ArtistVideo FindArtistVideoByURL(string url)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return mapArtistVideo(service.FindArtistVideoByURL(url));
         }
 
         public IList<Domain.ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllVideosByArtistId(artistId)
+                .Select(v => mapArtistVideo(v))
+                .ToList();
         }
 
         public Domain.ArtistVideo FindPromoVideoByArtistId(int artistId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return mapArtistVideo(service.FindPromoVideoByArtistId(artistId));
         }
 
         public bool InsertArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.DeleteArtistVideo(mapArtistVideo(artistVideo));
         }
 
         public bool UpdateArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.UpdateArtistVideo(mapArtistVideo(artistVideo));
         }
 
         public bool DeleteArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+            return service.DeleteArtistVideo(mapArtistVideo(artistVideo));
         }
 
         // PerformancePicture
         public Domain.PerformancePicture FindPerformancePictureByURL(string url)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return mapPerformancePicture(service.FindPerformancePictureByURL(url));
         }
 
         public IList<Domain.PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllPicturesByPerformanceId(performanceId)
+                .Select(p => mapPerformancePicture(p))
+                .ToList();
         }
 
         public bool InsertPerformancePicture(Domain.PerformancePicture performancePicture)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.DeletePerformancePicture(mapPerformancePicture(performancePicture));
         }
 
         public bool DeletePerformancePicture(Domain.PerformancePicture performancePicture)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.DeletePerformancePicture(mapPerformancePicture(performancePicture));
         }
 
         // PerformanceVideo
