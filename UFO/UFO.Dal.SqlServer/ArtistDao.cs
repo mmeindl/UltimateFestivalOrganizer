@@ -82,7 +82,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByNameCommand(string name)
         {
             DbCommand findByNameCommand = database.CreateCommand(SQL_FIND_BY_NAME);
-            database.DefineParameter(findByNameCommand, "name", DbType.String, name);
+            database.DefineParameter(findByNameCommand, "name", DbType.AnsiString, name);
             return findByNameCommand;
         }
 
@@ -139,12 +139,12 @@ namespace UFO.Dal.SqlServer
                                               int categoryId, string websiteURL, bool isDeleted)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "name", DbType.String, name);
-            database.DefineParameter(insertCommand, "abbreviation", DbType.String, abbreviation);
-            database.DefineParameter(insertCommand, "email", DbType.String, email);
+            database.DefineParameter(insertCommand, "name", DbType.AnsiString, name);
+            database.DefineParameter(insertCommand, "abbreviation", DbType.AnsiString, abbreviation);
+            database.DefineParameter(insertCommand, "email", DbType.AnsiString, email);
             database.DefineParameter(insertCommand, "categoryId", DbType.Int32, categoryId);
-            database.DefineParameter(insertCommand, "websiteURL", DbType.String, websiteURL);
-            database.DefineParameter(insertCommand, "isDeleted", DbType.Boolean, isDeleted);
+            database.DefineParameter(insertCommand, "websiteURL", DbType.AnsiString, websiteURL);
+            database.DefineParameter(insertCommand, "isDeleted", DbType.Byte, isDeleted);
             return insertCommand;
         }
 
@@ -162,12 +162,12 @@ namespace UFO.Dal.SqlServer
         {
             DbCommand updateCommand = database.CreateCommand(SQL_UPDATE);
             database.DefineParameter(updateCommand, "id", DbType.Int32, id);
-            database.DefineParameter(updateCommand, "abbreviation", DbType.String, abbreviation);
+            database.DefineParameter(updateCommand, "abbreviation", DbType.AnsiString, abbreviation);
             database.DefineParameter(updateCommand, "categoryId", DbType.Int32, categoryId);
-            database.DefineParameter(updateCommand, "name", DbType.String, name);
-            database.DefineParameter(updateCommand, "email", DbType.String, email);
-            database.DefineParameter(updateCommand, "websiteURL", DbType.String, websiteURL);
-            database.DefineParameter(updateCommand, "isDeleted", DbType.Boolean, isDeleted);
+            database.DefineParameter(updateCommand, "name", DbType.AnsiString, name);
+            database.DefineParameter(updateCommand, "email", DbType.AnsiString, email);
+            database.DefineParameter(updateCommand, "websiteURL", DbType.AnsiString, websiteURL);
+            database.DefineParameter(updateCommand, "isDeleted", DbType.Byte, isDeleted);
             return updateCommand;
         }
 

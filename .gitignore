@@ -216,3 +216,4 @@ UFO/UFO.UnitTest/App.config
 *.config
 *.mdf
 UFO/UFO.Database/UfoDB_log.ldf
+UFO/UFO.Commander/App.xaml

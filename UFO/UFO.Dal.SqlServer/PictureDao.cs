@@ -39,7 +39,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByURLCommand(string pictureURL)
         {
             DbCommand findByURLCommand = database.CreateCommand(SQL_FIND_BY_URL);
-            database.DefineParameter(findByURLCommand, "url", DbType.String, pictureURL);
+            database.DefineParameter(findByURLCommand, "url", DbType.AnsiString, pictureURL);
             return findByURLCommand;
         }
 
@@ -79,7 +79,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string url)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "url", DbType.String, url);
+            database.DefineParameter(insertCommand, "url", DbType.AnsiString, url);
             return insertCommand;
         }
 
@@ -94,7 +94,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateDeleteCommand(string url)
         {
             DbCommand deleteCommand = database.CreateCommand(SQL_DELETE);
-            database.DefineParameter(deleteCommand, "url", DbType.String, url);
+            database.DefineParameter(deleteCommand, "url", DbType.AnsiString, url);
             return deleteCommand;
         }
 

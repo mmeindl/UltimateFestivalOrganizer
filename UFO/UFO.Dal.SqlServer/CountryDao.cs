@@ -31,7 +31,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByAbbreviationCommand(string abbreviation)
         {
             DbCommand findByAbbreviationCommand = database.CreateCommand(SQL_FIND_BY_ABBREVIATION);
-            database.DefineParameter(findByAbbreviationCommand, "abbreviation", DbType.String, abbreviation);
+            database.DefineParameter(findByAbbreviationCommand, "abbreviation", DbType.AnsiString, abbreviation);
             return findByAbbreviationCommand;
         }
 
