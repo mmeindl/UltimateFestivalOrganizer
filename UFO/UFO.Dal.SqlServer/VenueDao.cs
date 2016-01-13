@@ -166,9 +166,9 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(int areaId, string name, string shortName, decimal geoLocationLat, decimal geoLocationLon)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "name", DbType.String, name);
-            database.DefineParameter(insertCommand, "areaId", DbType.String, areaId);
-            database.DefineParameter(insertCommand, "shortName", DbType.String, shortName);
+            database.DefineParameter(insertCommand, "name", DbType.AnsiString, name);
+            database.DefineParameter(insertCommand, "areaId", DbType.AnsiString, areaId);
+            database.DefineParameter(insertCommand, "shortName", DbType.AnsiString, shortName);
             database.DefineParameter(insertCommand, "geoLocationLat", DbType.Double, geoLocationLat);
             database.DefineParameter(insertCommand, "geoLocationLon", DbType.Double, geoLocationLon);
             return insertCommand;
@@ -186,9 +186,9 @@ namespace UFO.Dal.SqlServer
         {
             DbCommand updateCommand = database.CreateCommand(SQL_UPDATE);
             database.DefineParameter(updateCommand, "id", DbType.Int32, id);
-            database.DefineParameter(updateCommand, "name", DbType.String, name);
-            database.DefineParameter(updateCommand, "areaId", DbType.String, areaId);
-            database.DefineParameter(updateCommand, "shortName", DbType.String, shortName);
+            database.DefineParameter(updateCommand, "name", DbType.AnsiString, name);
+            database.DefineParameter(updateCommand, "areaId", DbType.AnsiString, areaId);
+            database.DefineParameter(updateCommand, "shortName", DbType.AnsiString, shortName);
             database.DefineParameter(updateCommand, "geoLocationLat", DbType.Double, geoLocationLat);
             database.DefineParameter(updateCommand, "geoLocationLon", DbType.Double, geoLocationLon);
             return updateCommand;

@@ -66,7 +66,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByUserameCommand(string username)
         {
             DbCommand findByUserameCommand = database.CreateCommand(SQL_FIND_BY_USERNAME);
-            database.DefineParameter(findByUserameCommand, "username", DbType.String, username);
+            database.DefineParameter(findByUserameCommand, "username", DbType.AnsiString, username);
             return findByUserameCommand;
         }
 

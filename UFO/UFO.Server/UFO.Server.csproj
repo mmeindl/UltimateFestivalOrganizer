@@ -64,6 +64,10 @@
       <Project>{f5d9d3fd-883c-4e74-9b50-f2789fe4945f}</Project>
       <Name>UFO.Dal.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UFO.Dal.SqlServer\UFO.Dal.SqlServer.csproj">
+      <Project>{b3280911-1931-4482-a234-672d4a42f79b}</Project>
+      <Name>UFO.Dal.SqlServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UFO.Domain\UFO.Domain.csproj">
       <Project>{cc7a683a-b1d1-4849-8fe1-803d879498cf}</Project>
       <Name>UFO.Domain</Name>
