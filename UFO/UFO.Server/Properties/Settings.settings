@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UFO.Server.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="UFO_Server_UFOService_UFOService" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="UFO_Server_UFOWebService_UFOService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:46633/UFOService.asmx</Value>
     </Setting>
     <Setting Name="UFO_Server_UFOWebService_UFOService" Type="(Web Service URL)" Scope="Application">

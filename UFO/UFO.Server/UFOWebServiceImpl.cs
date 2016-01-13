@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -340,22 +340,32 @@ namespace UFO.Server
         // PerformanceVideo
         public Domain.PerformanceVideo FindPerformanceVideoByURL(string url)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return mapPerformanceVideo(service.FindPerformanceVideoByURL(url));
         }
 
         public IList<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.FindAllVideosByPerformanceId(performanceId)
+                .Select(v => mapPerformanceVideo(v))
+                .ToList();
         }
 
         public bool InsertPerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 
         public bool DeletePerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            throw new NotImplementedException();
+            var service = new UFOService();
+
+            return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 
         // helpers
@@ -462,6 +472,67 @@ namespace UFO.Server
         }
 
 
+        private Domain.ArtistPicture mapArtistPicture(UFOWebService.ArtistPicture a)
+        {
+            return new Domain.ArtistPicture(a.PictureURL, a.ArtistId, a.IsProfilePicture, a.Id);
+        }
+
+        private UFOWebService.ArtistPicture mapArtistPicture(Domain.ArtistPicture a)
+        {
+            UFOWebService.ArtistPicture artistPicture = new UFOWebService.ArtistPicture();
+            artistPicture.PictureURL = a.PictureURL;
+            artistPicture.ArtistId = a.ArtistId;
+            artistPicture.IsProfilePicture = a.IsProfilePicture;
+            artistPicture.Id = a.Id;
+
+            return artistPicture;
+        }
+
+        private Domain.ArtistVideo mapArtistVideo(UFOWebService.ArtistVideo a)
+        {
+            return new Domain.ArtistVideo(a.VideoURL, a.ArtistId, a.IsPromoVideo, a.Id);
+        }
+
+        private UFOWebService.ArtistVideo mapArtistVideo(Domain.ArtistVideo a)
+        {
+            UFOWebService.ArtistVideo artistVideo = new UFOWebService.ArtistVideo();
+            artistVideo.VideoURL = a.VideoURL;
+            artistVideo.ArtistId = a.ArtistId;
+            artistVideo.IsPromoVideo = a.IsPromoVideo;
+            artistVideo.Id = a.Id;
+
+            return artistVideo;
+        }
+
+        private Domain.PerformancePicture mapPerformancePicture(UFOWebService.PerformancePicture p)
+        {
+            return new Domain.PerformancePicture(p.PictureURL, p.PerformanceId, p.Id);
+        }
+
+        private UFOWebService.PerformancePicture mapPerformancePicture(Domain.PerformancePicture p)
+        {
+            UFOWebService.PerformancePicture PerformancePicture = new UFOWebService.PerformancePicture();
+            PerformancePicture.PictureURL = p.PictureURL;
+            PerformancePicture.PerformanceId = p.PerformanceId;
+            PerformancePicture.Id = p.Id;
+
+            return PerformancePicture;
+        }
+
+        private Domain.PerformanceVideo mapPerformanceVideo(UFOWebService.PerformanceVideo p)
+        {
+            return new Domain.PerformanceVideo(p.VideoURL, p.PerformanceId, p.Id);
+        }
+
+        private UFOWebService.PerformanceVideo mapPerformanceVideo(Domain.PerformanceVideo p)
+        {
+            UFOWebService.PerformanceVideo PerformanceVideo = new UFOWebService.PerformanceVideo();
+            PerformanceVideo.VideoURL = p.VideoURL;
+            PerformanceVideo.PerformanceId = p.PerformanceId;
+            PerformanceVideo.Id = p.Id;
+
+            return PerformanceVideo;
+        }
 
     }
 }
