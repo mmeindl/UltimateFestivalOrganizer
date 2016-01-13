@@ -53,6 +53,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UFOWebServiceImpl.cs" />
     <Compile Include="UFOServerImpl.cs" />
+    <Compile Include="Web References\UFOWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UFO.Dal.Common\UFO.Dal.Common.csproj">
@@ -70,6 +75,63 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Web References\UFOWebService\Area.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Artist.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\ArtistPicture.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\ArtistVideo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Category.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Country.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Performance.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\PerformancePicture.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\PerformanceVideo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\UFOWebService\UFOService.wsdl" />
+    <None Include="Web References\UFOWebService\User.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\UFOWebService\Venue.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:46633/UFOService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UFOWebService\</RelPath>
+      <UpdateFromURL>http://localhost:46633/UFOService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>UFO_Server_UFOWebService_UFOService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\UFOWebService\UFOService.disco" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
