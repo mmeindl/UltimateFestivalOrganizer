@@ -12,18 +12,21 @@ namespace UFO.Server
 {
     internal class UFOWebServiceImpl : IUFOServer
     {
+        private UFOService service;
+
+        public UFOWebServiceImpl()
+        {
+            service = new UFOService();
+        }
+
         // Category
         public Domain.Category FindCategoryById(int id)
         {
-            var service = new UFOService();
-
             return mapCategory(service.FindCategoryById(id));
         }
 
         public IEnumerable<Domain.Category> FindAllCategories()
         {
-            var service = new UFOService();
-
             return service.FindAllCategories()
                 .Select(c => mapCategory(c))
                 .ToList();
@@ -32,23 +35,17 @@ namespace UFO.Server
         // User
         public bool AuthenticateUser(string usernername, string password, IList<string> error)
         {
-            var service = new UFOService();
-
             return service.AuthenticateUser(usernername, password, error.ToArray());
         }
 
         public Domain.User FindUserByName(string name)
         {
-            var service = new UFOService();
-
             return mapUser(service.FindUserByName(name));
         }
 
         // Artist
         public IEnumerable<Domain.Artist> FindAllArtists()
         {
-            var service = new UFOService();
-
             return service.FindAllArtists()
                 .Select(a => mapArtist(a))
                 .ToList();
@@ -56,50 +53,38 @@ namespace UFO.Server
 
         public Domain.Artist FindArtistByName(string name)
         {
-            var service = new UFOService();
-
             return mapArtist(service.FindArtistByName(name));
         }
 
         public Domain.Artist FindArtistById(int artistId)
         {
-            var service = new UFOService();
-
             return mapArtist(service.FindArtistById(artistId));
         }
 
         public bool InsertArtist(Domain.Artist artist)
         {
-            var service = new UFOService();
-
             return service.InsertArtist(mapArtist(artist));
         }
 
         public bool UpdateArtist(Domain.Artist artist)
         {
-            var service = new UFOService();
-
             return service.UpdateArtist(mapArtist(artist));
         }
 
         public bool DeleteArtist(Domain.Artist artist)
         {
-            var service = new UFOService();
-
             return service.DeleteArtist(mapArtist(artist));
         }
 
         // Performance
         public Domain.Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
-            var service = new UFOService();
-
             return mapPerformance(service.FindPerformanceByDateTimeAndArtistId(dateTime, artistId));
         }
 
         public IEnumerable<Domain.Performance> FindPerformancesByDate(DateTime date)
         {
-            var service = new UFOService();
+            
 
             return service.FindPerformancesByDate(date)
                 .Select(p => mapPerformance(p))
@@ -108,7 +93,7 @@ namespace UFO.Server
 
         public IEnumerable<Domain.Performance> FindPerformancesByDateAndVenue(DateTime date, Domain.Venue venue)
         {
-            var service = new UFOService();
+            
 
             return service.FindPerformancesByDateAndVenue(date, mapVenue(venue))
                 .Select(p => mapPerformance(p))
@@ -117,35 +102,35 @@ namespace UFO.Server
 
         public IEnumerable<DateTime> GetPerformanceDates()
         {
-            var service = new UFOService();
+            
 
             return service.GetPerformanceDates();
         }
 
         public bool InsertPerformance(Domain.Performance performance)
         {
-            var service = new UFOService();
+            
 
             return service.InsertPerformance(mapPerformance(performance));
         }
 
         public bool UpdatePerformance(Domain.Performance performance)
         {
-            var service = new UFOService();
+            
 
             return service.UpdatePerformance(mapPerformance(performance));
         }
 
         public bool DeletePerformance(Domain.Performance performance)
         {
-            var service = new UFOService();
+            
 
             return service.DeletePerformance(mapPerformance(performance));
         }
 
         public IEnumerable<Domain.Performance> FindPerformancesByDateAndArtist(DateTime date, Domain.Artist artist)
         {
-            var service = new UFOService();
+            
 
             return service.FindPerformancesByDateAndArtist(date, mapArtist(artist))
                 .Select(p => mapPerformance(p))
@@ -155,7 +140,7 @@ namespace UFO.Server
         // Venue
         public IEnumerable<Domain.Venue> FindAllVenues()
         {
-            var service = new UFOService();
+            
 
             return service.FindAllVenues()
                 .Select(v => mapVenue(v))
@@ -164,21 +149,21 @@ namespace UFO.Server
 
         public Domain.Venue FindVenueById(int id)
         {
-            var service = new UFOService();
+            
 
             return mapVenue(service.FindVenueById(id));
         }
 
         public Domain.Venue FindVenueByName(string name)
         {
-            var service = new UFOService();
+            
 
             return mapVenue(service.FindVenueByName(name));
         }
 
         public IEnumerable<Domain.Venue> FindVenuesByAreaId(int areaId)
         {
-            var service = new UFOService();
+            
 
             return service.FindVenuesByAreaId(areaId)
                 .Select(v => mapVenue(v))
@@ -187,21 +172,21 @@ namespace UFO.Server
 
         public bool InsertVenue(Domain.Venue venue)
         {
-            var service = new UFOService();
+            
 
             return service.InsertVenue(mapVenue(venue));
         }
 
         public bool UpdateVenue(Domain.Venue venue)
         {
-            var service = new UFOService();
+            
 
             return service.UpdateVenue(mapVenue(venue));
         }
 
         public bool DeleteVenue(Domain.Venue venue)
         {
-            var service = new UFOService();
+            
 
             return service.DeleteVenue(mapVenue(venue));
         }
@@ -209,14 +194,14 @@ namespace UFO.Server
         // Area
         public Domain.Area FindAreaByName(string name)
         {
-            var service = new UFOService();
+            
 
             return mapArea(service.FindAreaByName(name));
         }
 
         public IList<Domain.Area> FindAllAreas()
         {
-            var service = new UFOService();
+            
 
             return service.FindAllAreas()
                 .Select(a => mapArea(a))
@@ -225,14 +210,14 @@ namespace UFO.Server
 
         public bool InsertArea(Domain.Area area)
         {
-            var service = new UFOService();
+            
 
             return service.InsertArea(mapArea(area));
         }
 
         public bool DeleteArea(Domain.Area area)
         {
-            var service = new UFOService();
+            
 
             return service.DeleteArea(mapArea(area));
         }
@@ -240,14 +225,14 @@ namespace UFO.Server
         // Country
         public Domain.Country FindCountryByAbbreviation(string abbreviation)
         {
-            var service = new UFOService();
+            
 
             return mapCountry(service.FindCountryByAbbreviation(abbreviation));
         }
 
         public IList<Domain.Country> FindAllCountries()
         {
-            var service = new UFOService();
+            
 
             return service.FindAllCountries()
                 .Select(c => mapCountry(c))
@@ -368,14 +353,14 @@ namespace UFO.Server
         // PerformanceVideo
         public Domain.PerformanceVideo FindPerformanceVideoByURL(string url)
         {
-            var service = new UFOService();
+            
 
             return mapPerformanceVideo(service.FindPerformanceVideoByURL(url));
         }
 
         public IList<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
-            var service = new UFOService();
+            
 
             return service.FindAllVideosByPerformanceId(performanceId)
                 .Select(v => mapPerformanceVideo(v))
@@ -384,14 +369,14 @@ namespace UFO.Server
 
         public bool InsertPerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            var service = new UFOService();
+            
 
             return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 
         public bool DeletePerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            var service = new UFOService();
+            
 
             return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
