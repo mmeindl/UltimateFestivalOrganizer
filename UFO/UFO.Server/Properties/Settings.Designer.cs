@@ -32,5 +32,7 @@ namespace UFO.Server.Properties {
                 return ((string)(this["UFO_Server_UFOWebService_UFOService"]));
             }
         }
+        
+
     }
 }
