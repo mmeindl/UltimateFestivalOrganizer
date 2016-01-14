@@ -29,7 +29,6 @@ namespace UFO.Commander.ViewModels
             this.server = server;
             Artists = new ObservableCollection<ArtistVM>();
 
-            
             LoadCategories();
             LoadCountries();
             LoadArtists();
@@ -86,8 +85,8 @@ namespace UFO.Commander.ViewModels
             IEnumerator<Artist> enumerator = artists.GetEnumerator();
             while (await Task.Run(() => enumerator.MoveNext()))
             {
-                Category category = Categories.FirstOrDefault(c => c.Id == enumerator.Current.CategoryId); //server.FindCategoryById(enumerator.Current.CategoryId);
-                Country country = Countries.FirstOrDefault(c => c.Abbreviation == enumerator.Current.CountryId);  //server.FindCountryByAbbreviation(enumerator.Current.CountryId);
+                Category category = Categories.FirstOrDefault(c => c.Id == enumerator.Current.CategoryId);
+                Country country = Countries.FirstOrDefault(c => c.Abbreviation == enumerator.Current.CountryId);
                 Artists.Add(new ArtistVM(enumerator.Current, category, country, this, server));
             }
 
