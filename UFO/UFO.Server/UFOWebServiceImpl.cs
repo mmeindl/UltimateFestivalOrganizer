@@ -214,7 +214,16 @@ namespace UFO.Server
 
         public Domain.ArtistPicture FindProfilePictureByArtistId(int artistId)
         {
-            return mapArtistPicture(service.FindProfilePictureByArtistId(artistId));
+            UFOWebService.ArtistPicture p = service.FindProfilePictureByArtistId(artistId);
+
+            if (p != null)
+            {
+                return mapArtistPicture(p);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public bool InsertArtistPicture(Domain.ArtistPicture artistPicture)
