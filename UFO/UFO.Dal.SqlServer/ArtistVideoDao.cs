@@ -153,7 +153,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+            IVideoDao videoDao = DalFactory.CreateVideoDao();
 
             string url = artistVideo.VideoURL;
             Video video = videoDao.FindByURL(url);
@@ -221,13 +221,13 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             PerformanceVideo performanceVideo = performanceVideoDao.FindByURL(url);
 
             if (performanceVideo == null)
             {
-                IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+                IVideoDao videoDao = DalFactory.CreateVideoDao();
 
                 Video video = videoDao.FindByURL(url);
                 result = videoDao.Delete(video) & result;

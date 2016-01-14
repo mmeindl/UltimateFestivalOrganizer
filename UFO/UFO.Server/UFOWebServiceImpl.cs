@@ -84,8 +84,6 @@ namespace UFO.Server
 
         public IEnumerable<Domain.Performance> FindPerformancesByDate(DateTime date)
         {
-            
-
             return service.FindPerformancesByDate(date)
                 .Select(p => mapPerformance(p))
                 .ToList();
@@ -93,8 +91,6 @@ namespace UFO.Server
 
         public IEnumerable<Domain.Performance> FindPerformancesByDateAndVenue(DateTime date, Domain.Venue venue)
         {
-            
-
             return service.FindPerformancesByDateAndVenue(date, mapVenue(venue))
                 .Select(p => mapPerformance(p))
                 .ToList();
@@ -102,36 +98,26 @@ namespace UFO.Server
 
         public IEnumerable<DateTime> GetPerformanceDates()
         {
-            
-
             return service.GetPerformanceDates();
         }
 
         public bool InsertPerformance(Domain.Performance performance)
         {
-            
-
             return service.InsertPerformance(mapPerformance(performance));
         }
 
         public bool UpdatePerformance(Domain.Performance performance)
         {
-            
-
             return service.UpdatePerformance(mapPerformance(performance));
         }
 
         public bool DeletePerformance(Domain.Performance performance)
         {
-            
-
             return service.DeletePerformance(mapPerformance(performance));
         }
 
         public IEnumerable<Domain.Performance> FindPerformancesByDateAndArtist(DateTime date, Domain.Artist artist)
         {
-            
-
             return service.FindPerformancesByDateAndArtist(date, mapArtist(artist))
                 .Select(p => mapPerformance(p))
                 .ToList();
@@ -140,8 +126,6 @@ namespace UFO.Server
         // Venue
         public IEnumerable<Domain.Venue> FindAllVenues()
         {
-            
-
             return service.FindAllVenues()
                 .Select(v => mapVenue(v))
                 .ToList();
@@ -149,22 +133,16 @@ namespace UFO.Server
 
         public Domain.Venue FindVenueById(int id)
         {
-            
-
             return mapVenue(service.FindVenueById(id));
         }
 
         public Domain.Venue FindVenueByName(string name)
         {
-            
-
             return mapVenue(service.FindVenueByName(name));
         }
 
         public IEnumerable<Domain.Venue> FindVenuesByAreaId(int areaId)
         {
-            
-
             return service.FindVenuesByAreaId(areaId)
                 .Select(v => mapVenue(v))
                 .ToList();
@@ -172,37 +150,27 @@ namespace UFO.Server
 
         public bool InsertVenue(Domain.Venue venue)
         {
-            
-
             return service.InsertVenue(mapVenue(venue));
         }
 
         public bool UpdateVenue(Domain.Venue venue)
         {
-            
-
             return service.UpdateVenue(mapVenue(venue));
         }
 
         public bool DeleteVenue(Domain.Venue venue)
         {
-            
-
             return service.DeleteVenue(mapVenue(venue));
         }
 
         // Area
         public Domain.Area FindAreaByName(string name)
         {
-            
-
             return mapArea(service.FindAreaByName(name));
         }
 
         public IList<Domain.Area> FindAllAreas()
         {
-            
-
             return service.FindAllAreas()
                 .Select(a => mapArea(a))
                 .ToList();
@@ -210,30 +178,22 @@ namespace UFO.Server
 
         public bool InsertArea(Domain.Area area)
         {
-            
-
             return service.InsertArea(mapArea(area));
         }
 
         public bool DeleteArea(Domain.Area area)
         {
-            
-
             return service.DeleteArea(mapArea(area));
         }
 
         // Country
         public Domain.Country FindCountryByAbbreviation(string abbreviation)
         {
-            
-
             return mapCountry(service.FindCountryByAbbreviation(abbreviation));
         }
 
         public IList<Domain.Country> FindAllCountries()
         {
-            
-
             return service.FindAllCountries()
                 .Select(c => mapCountry(c))
                 .ToList();
@@ -242,14 +202,11 @@ namespace UFO.Server
         // ArtistPicture
         public Domain.ArtistPicture FindArtistPictureByURL(string url)
         {
-            var service = new UFOService();
             return mapArtistPicture(service.FindArtistPictureByURL(url));
         }
 
         public IList<Domain.ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
-            var service = new UFOService();
-
             return service.FindAllPicturesByArtistId(artistId)
                 .Select(p => mapArtistPicture(p))
                 .ToList();
@@ -257,39 +214,32 @@ namespace UFO.Server
 
         public Domain.ArtistPicture FindProfilePictureByArtistId(int artistId)
         {
-            var service = new UFOService();
             return mapArtistPicture(service.FindProfilePictureByArtistId(artistId));
         }
 
         public bool InsertArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            var service = new UFOService();
             return service.DeleteArtistPicture(mapArtistPicture(artistPicture));
         }
 
         public bool UpdateArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            var service = new UFOService();
             return service.UpdateArtistPicture(mapArtistPicture(artistPicture));
         }
 
         public bool DeleteArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            var service = new UFOService();
             return service.DeleteArtistPicture(mapArtistPicture(artistPicture));
         }
 
         // ArtistVideo
         public Domain.ArtistVideo FindArtistVideoByURL(string url)
         {
-            var service = new UFOService();
             return mapArtistVideo(service.FindArtistVideoByURL(url));
         }
 
         public IList<Domain.ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
-            var service = new UFOService();
-
             return service.FindAllVideosByArtistId(artistId)
                 .Select(v => mapArtistVideo(v))
                 .ToList();
@@ -297,40 +247,32 @@ namespace UFO.Server
 
         public Domain.ArtistVideo FindPromoVideoByArtistId(int artistId)
         {
-            var service = new UFOService();
             return mapArtistVideo(service.FindPromoVideoByArtistId(artistId));
         }
 
         public bool InsertArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            var service = new UFOService();
             return service.DeleteArtistVideo(mapArtistVideo(artistVideo));
         }
 
         public bool UpdateArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            var service = new UFOService();
             return service.UpdateArtistVideo(mapArtistVideo(artistVideo));
         }
 
         public bool DeleteArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            var service = new UFOService();
             return service.DeleteArtistVideo(mapArtistVideo(artistVideo));
         }
 
         // PerformancePicture
         public Domain.PerformancePicture FindPerformancePictureByURL(string url)
         {
-            var service = new UFOService();
-
             return mapPerformancePicture(service.FindPerformancePictureByURL(url));
         }
 
         public IList<Domain.PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
-            var service = new UFOService();
-
             return service.FindAllPicturesByPerformanceId(performanceId)
                 .Select(p => mapPerformancePicture(p))
                 .ToList();
@@ -338,30 +280,22 @@ namespace UFO.Server
 
         public bool InsertPerformancePicture(Domain.PerformancePicture performancePicture)
         {
-            var service = new UFOService();
-
             return service.DeletePerformancePicture(mapPerformancePicture(performancePicture));
         }
 
         public bool DeletePerformancePicture(Domain.PerformancePicture performancePicture)
         {
-            var service = new UFOService();
-
             return service.DeletePerformancePicture(mapPerformancePicture(performancePicture));
         }
 
         // PerformanceVideo
         public Domain.PerformanceVideo FindPerformanceVideoByURL(string url)
         {
-            
-
             return mapPerformanceVideo(service.FindPerformanceVideoByURL(url));
         }
 
         public IList<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
-            
-
             return service.FindAllVideosByPerformanceId(performanceId)
                 .Select(v => mapPerformanceVideo(v))
                 .ToList();
@@ -369,15 +303,11 @@ namespace UFO.Server
 
         public bool InsertPerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            
-
             return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 
         public bool DeletePerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            
-
             return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 

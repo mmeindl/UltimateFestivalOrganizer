@@ -153,7 +153,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+            IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
             string url = artistPicture.PictureURL;
             Picture picture = pictureDao.FindByURL(url);
@@ -219,13 +219,13 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
             PerformancePicture performancePicture = performancePictureDao.FindByURL(url);
 
             if (performancePicture == null)
             {
-                IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+                IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
                 Picture picture = pictureDao.FindByURL(url);
                 result = pictureDao.Delete(picture) & result;

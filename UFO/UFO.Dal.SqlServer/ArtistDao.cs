@@ -183,7 +183,7 @@ namespace UFO.Dal.SqlServer
         public bool Delete(Artist artist)
         {
             IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             artist.IsDeleted = true;
 
