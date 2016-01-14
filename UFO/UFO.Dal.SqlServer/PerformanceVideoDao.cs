@@ -40,7 +40,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByURLCommand(string url)
         {
             DbCommand findByURLCommand = database.CreateCommand(SQL_FIND_BY_URL);
-            database.DefineParameter(findByURLCommand, "url", DbType.String, url);
+            database.DefineParameter(findByURLCommand, "url", DbType.AnsiString, url);
             return findByURLCommand;
         }
 
@@ -89,7 +89,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string url, int performanceId)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "url", DbType.String, url);
+            database.DefineParameter(insertCommand, "url", DbType.AnsiString, url);
             database.DefineParameter(insertCommand, "performanceId", DbType.Int32, performanceId);
             return insertCommand;
         }
@@ -98,7 +98,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+            IVideoDao videoDao = DalFactory.CreateVideoDao();
 
             string url = performanceVideo.VideoURL;
             Video video = videoDao.FindByURL(url);
@@ -132,8 +132,8 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IVideoDao VideoDao = DalFactory.CreateVideoDao(database);
-            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+            IVideoDao VideoDao = DalFactory.CreateVideoDao();
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
             ArtistVideo artistVideo = artistVideoDao.FindByURL(url);
 

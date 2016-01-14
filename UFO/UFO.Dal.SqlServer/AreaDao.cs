@@ -89,7 +89,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByNameCommand(string name)
         {
             DbCommand findByNameCommand = database.CreateCommand(SQL_FIND_BY_NAME);
-            database.DefineParameter(findByNameCommand, "name", DbType.String, name);
+            database.DefineParameter(findByNameCommand, "name", DbType.AnsiString, name);
             return findByNameCommand;
         }
 
@@ -114,7 +114,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string name)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "name", DbType.String, name);
+            database.DefineParameter(insertCommand, "name", DbType.AnsiString, name);
             return insertCommand;
         }
 

@@ -57,7 +57,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByURLCommand(string url)
         {
             DbCommand findByURLCommand = database.CreateCommand(SQL_FIND_BY_URL);
-            database.DefineParameter(findByURLCommand, "url", DbType.String, url);
+            database.DefineParameter(findByURLCommand, "url", DbType.AnsiString, url);
             return findByURLCommand;
         }
 
@@ -143,7 +143,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string url, int artistId, bool isPromoVideo)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "url", DbType.String, url);
+            database.DefineParameter(insertCommand, "url", DbType.AnsiString, url);
             database.DefineParameter(insertCommand, "artistId", DbType.Int32, artistId);
             database.DefineParameter(insertCommand, "isPromoVideo", DbType.Boolean, isPromoVideo);
             return insertCommand;
@@ -153,7 +153,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+            IVideoDao videoDao = DalFactory.CreateVideoDao();
 
             string url = artistVideo.VideoURL;
             Video video = videoDao.FindByURL(url);
@@ -221,13 +221,13 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             PerformanceVideo performanceVideo = performanceVideoDao.FindByURL(url);
 
             if (performanceVideo == null)
             {
-                IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+                IVideoDao videoDao = DalFactory.CreateVideoDao();
 
                 Video video = videoDao.FindByURL(url);
                 result = videoDao.Delete(video) & result;

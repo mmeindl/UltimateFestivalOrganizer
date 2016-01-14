@@ -40,7 +40,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByURLCommand(string url)
         {
             DbCommand findByURLCommand = database.CreateCommand(SQL_FIND_BY_URL);
-            database.DefineParameter(findByURLCommand, "url", DbType.String, url);
+            database.DefineParameter(findByURLCommand, "url", DbType.AnsiString, url);
             return findByURLCommand;
         }
 
@@ -89,7 +89,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string url, int performanceId)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "url", DbType.String, url);
+            database.DefineParameter(insertCommand, "url", DbType.AnsiString, url);
             database.DefineParameter(insertCommand, "performanceId", DbType.Int32, performanceId);
             return insertCommand;
         }
@@ -98,7 +98,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+            IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
             string url = performancePicture.PictureURL;
             Picture picture = pictureDao.FindByURL(url);
@@ -132,13 +132,13 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
             ArtistPicture artistPicture = artistPictureDao.FindByURL(url);
 
             if (artistPicture == null)
             {
-                IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+                IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
                 Picture picture = pictureDao.FindByURL(url);
                 result = pictureDao.Delete(picture) & result;

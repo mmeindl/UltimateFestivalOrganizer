@@ -57,7 +57,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateFindByURLCommand(string url)
         {
             DbCommand findByURLCommand = database.CreateCommand(SQL_FIND_BY_URL);
-            database.DefineParameter(findByURLCommand, "url", DbType.String, url);
+            database.DefineParameter(findByURLCommand, "url", DbType.AnsiString, url);
             return findByURLCommand;
         }
 
@@ -143,7 +143,7 @@ namespace UFO.Dal.SqlServer
         private DbCommand CreateInsertCommand(string url, int artistId, bool isProfilePicture)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT);
-            database.DefineParameter(insertCommand, "url", DbType.String, url);
+            database.DefineParameter(insertCommand, "url", DbType.AnsiString, url);
             database.DefineParameter(insertCommand, "artistId", DbType.Int32, artistId);
             database.DefineParameter(insertCommand, "isProfilePicture", DbType.Boolean, isProfilePicture);
             return insertCommand;
@@ -153,7 +153,7 @@ namespace UFO.Dal.SqlServer
         {
             bool result = true;
 
-            IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+            IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
             string url = artistPicture.PictureURL;
             Picture picture = pictureDao.FindByURL(url);
@@ -219,13 +219,13 @@ namespace UFO.Dal.SqlServer
                 result = database.ExecuteNonQuery(command) == 1;
             }
 
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
             PerformancePicture performancePicture = performancePictureDao.FindByURL(url);
 
             if (performancePicture == null)
             {
-                IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+                IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
                 Picture picture = pictureDao.FindByURL(url);
                 result = pictureDao.Delete(picture) & result;
