@@ -16,8 +16,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void CategoryFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            ICategoryDao categoryDao = DalFactory.CreateCategoryDao(database);
+            
+            ICategoryDao categoryDao = DalFactory.CreateCategoryDao();
 
             Category category = categoryDao.FindById(1);
 
@@ -29,8 +29,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void CategoryFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            ICategoryDao categoryDao = DalFactory.CreateCategoryDao(database);
+            
+            ICategoryDao categoryDao = DalFactory.CreateCategoryDao();
 
             Assert.AreEqual(categoryDao.FindAll().Count, 4);
         }
@@ -41,8 +41,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void CategoryFindByAbbreviationTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            ICountryDao countryDao = DalFactory.CreateCountryDao(database);
+            
+            ICountryDao countryDao = DalFactory.CreateCountryDao();
 
             Country country = countryDao.FindByAbbreviation("alb");
 
@@ -54,8 +54,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void CountryFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            ICountryDao countryDao = DalFactory.CreateCountryDao(database);
+            
+            ICountryDao countryDao = DalFactory.CreateCountryDao();
 
             Assert.AreEqual(countryDao.FindAll().Count, 31);
         }
@@ -66,8 +66,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+            
+            IArtistDao artistDao = DalFactory.CreateArtistDao();
 
             Artist artist = artistDao.FindById(1);
 
@@ -79,8 +79,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistFindByNameTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+            
+            IArtistDao artistDao = DalFactory.CreateArtistDao();
 
             Assert.IsNotNull(artistDao.FindByName("Zelenia Cortez"));
             Assert.IsNull(artistDao.FindByName("No Name"));
@@ -89,8 +89,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+            
+            IArtistDao artistDao = DalFactory.CreateArtistDao();
 
             Assert.AreEqual(artistDao.FindAll().Count, 66);
         }
@@ -101,8 +101,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
 
                 string name = "Tanka";
                 Artist artist = new Artist("aut", 4, name, "mail@tanka.at");
@@ -120,8 +120,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
                 
                 Artist artist = new Artist();
 
@@ -136,8 +136,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
 
                 string name = "Manuel";
                 Artist artist = artistDao.FindById(1);
@@ -159,8 +159,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
 
                 Artist artist = artistDao.FindById(1);
                 artist.CountryId = "abc";
@@ -177,8 +177,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
 
                 Artist artist = artistDao.FindById(1);
                 artist.Email = "keine Emailadresse";
@@ -194,9 +194,9 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistDao artistDao = DalFactory.CreateArtistDao(database);
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IArtistDao artistDao = DalFactory.CreateArtistDao();
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 Artist artist = artistDao.FindById(1);
 
@@ -216,8 +216,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             Performance performance = performanceDao.FindById(1);
 
@@ -229,8 +229,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             Assert.AreEqual(performanceDao.FindAll().Count, 288);
         }
@@ -238,8 +238,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindAllByDateTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             Assert.IsNotNull(performanceDao.FindAllByDate(new DateTime(2016, 07, 22)));
 
@@ -249,8 +249,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindAllInFutureTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             IList<Performance> performances = performanceDao.FindAllInFuture();
 
@@ -265,8 +265,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindAllByArtistIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             Assert.IsNotNull(performanceDao.FindAllByArtistId(1));
 
@@ -276,8 +276,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceFindAllByVenueIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+            
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             Assert.IsNotNull(performanceDao.FindAllByVenueId(1));
 
@@ -289,8 +289,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 Performance performance = new Performance(new DateTime(2016, 07, 23, 16, 00, 00), 40, 1);
 
@@ -314,8 +314,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 Performance performance = new Performance(new DateTime(2016, 07, 23, 16, 30, 00), 40, 1);
 
@@ -330,8 +330,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 DateTime dateTime = new DateTime(2016, 07, 22, 10, 00, 00);
 
@@ -365,8 +365,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 Performance performance = performanceDao.FindById(1);
 
@@ -383,8 +383,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao(database);
+                
+                IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
                 Assert.IsTrue(performanceDao.DeleteAllInFutureByArtistId(1));
 
@@ -406,8 +406,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void AreaFindByNameTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+            
+            IAreaDao areaDao = DalFactory.CreateAreaDao();
 
             Assert.IsNotNull(areaDao.FindByName("Hauptplatz"));
         }
@@ -415,8 +415,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void AreaFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+            
+            IAreaDao areaDao = DalFactory.CreateAreaDao();
 
             Assert.AreEqual(areaDao.FindAll().Count, 5);
         }
@@ -426,8 +426,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IAreaDao areaDao = DalFactory.CreateAreaDao(database);
+                
+                IAreaDao areaDao = DalFactory.CreateAreaDao();
 
                 Area area = new Area("Dom");
 
@@ -442,8 +442,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void VenueFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+            
+            IVenueDao venueDao = DalFactory.CreateVenueDao();
 
             Venue venue = venueDao.FindById(1);
 
@@ -455,8 +455,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void VenueFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+            
+            IVenueDao venueDao = DalFactory.CreateVenueDao();
 
             Assert.AreEqual(venueDao.FindAll().Count, 40);
         }
@@ -466,8 +466,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+                
+                IVenueDao venueDao = DalFactory.CreateVenueDao();
 
                 decimal lat = (Decimal) 48.995997;
                 decimal lon = (Decimal) 14.984131;
@@ -486,8 +486,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+                
+                IVenueDao venueDao = DalFactory.CreateVenueDao();
 
                 Venue venue = new Venue();
 
@@ -502,8 +502,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IVenueDao venueDao = DalFactory.CreateVenueDao(database);
+                
+                IVenueDao venueDao = DalFactory.CreateVenueDao();
 
                 string shortName = "H2";
                 Venue venue = venueDao.FindById(1);
@@ -525,8 +525,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void RoleFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IRoleDao roleDao = DalFactory.CreateRoleDao(database);
+            
+            IRoleDao roleDao = DalFactory.CreateRoleDao();
 
             Role role = roleDao.FindById(1);
 
@@ -541,8 +541,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void UserFindByIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IUserDao userDao = DalFactory.CreateUserDao(database);
+            
+            IUserDao userDao = DalFactory.CreateUserDao();
 
             User user = userDao.FindById(1);
 
@@ -554,8 +554,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void UserFindByUsernameTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IUserDao userDao = DalFactory.CreateUserDao(database);
+            
+            IUserDao userDao = DalFactory.CreateUserDao();
 
             User user = userDao.FindByUsername("TaMaAdmin");
 
@@ -567,8 +567,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void UserFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IUserDao userDao = DalFactory.CreateUserDao(database);
+            
+            IUserDao userDao = DalFactory.CreateUserDao();
 
             Assert.AreEqual(userDao.FindAll().Count, 2);
         }
@@ -578,8 +578,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PictureFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+            
+            IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
             Assert.IsNotNull(pictureDao.FindByURL("https://placekitten.com/150/200"));
             Assert.IsNull(pictureDao.FindByURL("noURL"));
@@ -588,8 +588,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PictureFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPictureDao pictureDao = DalFactory.CreatePictureDao(database);
+            
+            IPictureDao pictureDao = DalFactory.CreatePictureDao();
 
             Assert.AreEqual(pictureDao.FindAll().Count, 8);
         }
@@ -600,8 +600,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void VideoFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+            
+            IVideoDao videoDao = DalFactory.CreateVideoDao();
 
             Assert.IsNotNull(videoDao.FindByURL("https://youtu.be/3O1_3zBUKM8"));
             Assert.IsNull(videoDao.FindByURL("noURL"));
@@ -610,8 +610,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void VideoFindAllTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IVideoDao videoDao = DalFactory.CreateVideoDao(database);
+            
+            IVideoDao videoDao = DalFactory.CreateVideoDao();
 
             Assert.AreEqual(videoDao.FindAll().Count, 12);
         }
@@ -622,8 +622,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistPictureFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+            
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
             Assert.IsNotNull(artistPictureDao.FindByURL("https://placekitten.com/150/200"));
             Assert.IsNull(artistPictureDao.FindByURL("noURL"));
@@ -632,8 +632,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistPictureFindProfilePictureByArtistIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+            
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
             /* Artist 1 has ProfilePicture */
             ArtistPicture profilePicture1 = artistPictureDao.FindProfilePictureByArtistId(1);
@@ -650,8 +650,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistPictureFindAllByArtistIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+            
+            IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
             /* Artist 1 has Picture */
             Assert.IsNotNull(artistPictureDao.FindAllByArtistId(1));
@@ -665,8 +665,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+                
+                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
                 string url = "https://placekitten.com/150/1100";
                 ArtistPicture artistPicture = new ArtistPicture(url, 10);
@@ -684,8 +684,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+                
+                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
                 string url = "keine URL";
                 ArtistPicture artistPicture = new ArtistPicture(url, 10);
@@ -701,8 +701,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+                
+                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
                 ArtistPicture profilePicture = artistPictureDao.FindProfilePictureByArtistId(1);
                 profilePicture.IsProfilePicture = false;
@@ -719,8 +719,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao(database);
+                
+                IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
                 /* Artist 1 has a ProfilePicture which is also in Performances */
                 ArtistPicture profilePicture1 = artistPictureDao.FindProfilePictureByArtistId(1);
@@ -745,8 +745,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistVideoFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+            
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
             Assert.IsNotNull(artistVideoDao.FindByURL("https://youtu.be/YQHsXMglC9A"));
             Assert.IsNull(artistVideoDao.FindByURL("noURL"));
@@ -756,8 +756,8 @@ namespace UFO.UnitTest
         public void ArtistVideoFindPromoVideoByArtistIdTest()
         {
 
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+            
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
             /* Artist 1 has PromoVideo */
             ArtistVideo promoVideo1 = artistVideoDao.FindPromoVideoByArtistId(1);
@@ -774,8 +774,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void ArtistVideoFindAllByArtistIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+            
+            IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
             /* Artist 1 has Video */
             Assert.IsNotNull(artistVideoDao.FindAllByArtistId(1));
@@ -789,8 +789,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+                
+                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
                 string url = "https://youtu.be/YQHslC9AskksEdfsdf";
                 ArtistVideo artistVideo = new ArtistVideo(url, 10);
@@ -808,8 +808,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+                
+                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
                 string url = "no URL";
                 ArtistVideo artistVideo = new ArtistVideo(url, 10);
@@ -825,8 +825,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+                
+                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
                 ArtistVideo promoVideo = artistVideoDao.FindPromoVideoByArtistId(1);
                 promoVideo.IsPromoVideo = false;
@@ -843,8 +843,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao(database);
+                
+                IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
                 /* Artist 1 has a PromoVideo which is also in Performances */
                 ArtistVideo promoVideo1 = artistVideoDao.FindPromoVideoByArtistId(1);
@@ -869,8 +869,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformancePictureFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+            
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
             Assert.IsNotNull(performancePictureDao.FindByURL("https://placekitten.com/150/200"));
             Assert.IsNull(performancePictureDao.FindByURL("noURL"));
@@ -879,8 +879,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformancePictureFindAllByPerformanceIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+            
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
             /* Performance 1 has Picture */
             Assert.IsNotNull(performancePictureDao.FindAllByPerformanceId(1));
@@ -894,8 +894,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+                
+                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
                 string url = "https://placekitten.com/150/2100";
 
@@ -914,8 +914,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+                
+                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
                 string url = "no URL";
 
@@ -932,8 +932,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
+                
+                IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
 
                 string url1 = "https://placekitten.com/150/210";
                 string url2 = "https://placekitten.com/650/600";
@@ -961,8 +961,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceVideoFindByURLTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             Assert.IsNotNull(performanceVideoDao.FindByURL("https://youtu.be/YQHsXMglC9A"));
             Assert.IsNull(performanceVideoDao.FindByURL("noURL"));
@@ -971,8 +971,8 @@ namespace UFO.UnitTest
         [TestMethod]
         public void PerformanceVideoFindAllByPerformanceIdTest()
         {
-            IDatabase database = DalFactory.CreateDatabase();
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             /* Performance 1 has Video */
             Assert.IsNotNull(performanceVideoDao.FindAllByPerformanceId(1));
@@ -986,8 +986,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+                
+                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
                 string url = "https://youtu.be/YQHslC9AskksEdfsdf";
                 PerformanceVideo PerformanceVideo = new PerformanceVideo(url, 10);
@@ -1005,8 +1005,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+                
+                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
                 string url = "no URL";
                 PerformanceVideo PerformanceVideo = new PerformanceVideo(url, 10);
@@ -1022,8 +1022,8 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                IDatabase database = DalFactory.CreateDatabase();
-                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+                
+                IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
                 string url1 = "https://youtu.be/3O1_3zBUKM8";
                 string url2 = "https://youtu.be/YQHsXMglC9ASCD12345";

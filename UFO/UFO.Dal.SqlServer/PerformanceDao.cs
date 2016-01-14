@@ -416,8 +416,8 @@ namespace UFO.Dal.SqlServer
         public bool Delete(Performance performance)
         {
             IDatabase database = DalFactory.CreateDatabase();
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             bool result = true;
 
@@ -448,8 +448,8 @@ namespace UFO.Dal.SqlServer
         public bool DeleteAllInFutureByArtistId(int artistId)
         {
             IDatabase database = DalFactory.CreateDatabase();
-            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao(database);
-            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao(database);
+            IPerformancePictureDao performancePictureDao = DalFactory.CreatePerformancePictureDao();
+            IPerformanceVideoDao performanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
             bool result = true;
 

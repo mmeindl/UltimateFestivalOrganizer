@@ -41,74 +41,74 @@ namespace UFO.Dal.Common
             return (TInterface) Activator.CreateInstance(daoType, new object[] { database });
         }
 
-        public static IArtistDao CreateArtistDao(IDatabase database)
+        public static IArtistDao CreateArtistDao()
         {
-            return CreateDao<IArtistDao>(database, "ArtistDao");
+            return CreateDao<IArtistDao>(CreateDatabase(), "ArtistDao");
         }
 
-        public static IArtistPictureDao CreateArtistPictureDao(IDatabase database)
+        public static IArtistPictureDao CreateArtistPictureDao()
         {
-            return CreateDao<IArtistPictureDao>(database, "ArtistPictureDao");
+            return CreateDao<IArtistPictureDao>(CreateDatabase(), "ArtistPictureDao");
         }
 
-        public static IArtistVideoDao CreateArtistVideoDao(IDatabase database)
+        public static IArtistVideoDao CreateArtistVideoDao()
         {
-            return CreateDao<IArtistVideoDao>(database, "ArtistVideoDao");
+            return CreateDao<IArtistVideoDao>(CreateDatabase(), "ArtistVideoDao");
         }
 
-        public static ICategoryDao CreateCategoryDao(IDatabase database)
+        public static ICategoryDao CreateCategoryDao()
         {
-            return CreateDao<ICategoryDao>(database, "CategoryDao");
+            return CreateDao<ICategoryDao>(CreateDatabase(), "CategoryDao");
         }
 
-        public static ICountryDao CreateCountryDao(IDatabase database)
+        public static ICountryDao CreateCountryDao()
         {
-            return CreateDao<ICountryDao>(database, "CountryDao");
+            return CreateDao<ICountryDao>(CreateDatabase(), "CountryDao");
         }
 
-        public static IPictureDao CreatePictureDao(IDatabase database)
+        public static IPictureDao CreatePictureDao()
         {
-            return CreateDao<IPictureDao>(database, "PictureDao");
+            return CreateDao<IPictureDao>(CreateDatabase(), "PictureDao");
         }
 
-        public static IVideoDao CreateVideoDao(IDatabase database)
+        public static IVideoDao CreateVideoDao()
         {
-            return CreateDao<IVideoDao>(database, "VideoDao");
+            return CreateDao<IVideoDao>(CreateDatabase(), "VideoDao");
         }
 
-        public static IPerformanceDao CreatePerformanceDao(IDatabase database)
+        public static IPerformanceDao CreatePerformanceDao()
         {
-            return CreateDao<IPerformanceDao>(database, "PerformanceDao");
+            return CreateDao<IPerformanceDao>(CreateDatabase(), "PerformanceDao");
         }
 
-        public static IPerformancePictureDao CreatePerformancePictureDao(IDatabase database)
+        public static IPerformancePictureDao CreatePerformancePictureDao()
         {
-            return CreateDao<IPerformancePictureDao>(database, "PerformancePictureDao");
+            return CreateDao<IPerformancePictureDao>(CreateDatabase(), "PerformancePictureDao");
         }
 
-        public static IPerformanceVideoDao CreatePerformanceVideoDao(IDatabase database)
+        public static IPerformanceVideoDao CreatePerformanceVideoDao()
         {
-            return CreateDao<IPerformanceVideoDao>(database, "PerformanceVideoDao");
+            return CreateDao<IPerformanceVideoDao>(CreateDatabase(), "PerformanceVideoDao");
         }
 
-        public static IRoleDao CreateRoleDao(IDatabase database)
+        public static IRoleDao CreateRoleDao()
         {
-            return CreateDao<IRoleDao>(database, "RoleDao");
+            return CreateDao<IRoleDao>(CreateDatabase(), "RoleDao");
         }
 
-        public static IUserDao CreateUserDao(IDatabase database)
+        public static IUserDao CreateUserDao()
         {
-            return CreateDao<IUserDao>(database, "UserDao");
+            return CreateDao<IUserDao>(CreateDatabase(), "UserDao");
         }
 
-        public static IAreaDao CreateAreaDao(IDatabase database)
+        public static IAreaDao CreateAreaDao()
         {
-            return CreateDao<IAreaDao>(database, "AreaDao");
+            return CreateDao<IAreaDao>(CreateDatabase(), "AreaDao");
         }
 
-        public static IVenueDao CreateVenueDao(IDatabase database)
+        public static IVenueDao CreateVenueDao()
         {
-            return CreateDao<IVenueDao>(database, "VenueDao");
+            return CreateDao<IVenueDao>(CreateDatabase(), "VenueDao");
         }
     }
 }
