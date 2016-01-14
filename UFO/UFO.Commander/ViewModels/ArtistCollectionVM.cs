@@ -97,7 +97,6 @@ namespace UFO.Commander.ViewModels
             {
                 currentArtist = null;
             }
-
         }
 
         private void LoadCategories()
