@@ -202,6 +202,7 @@ namespace UFO.Server
         // ArtistPicture
         public Domain.ArtistPicture FindArtistPictureByURL(string url)
         {
+
             return mapArtistPicture(service.FindArtistPictureByURL(url));
         }
 
@@ -256,7 +257,16 @@ namespace UFO.Server
 
         public Domain.ArtistVideo FindPromoVideoByArtistId(int artistId)
         {
-            return mapArtistVideo(service.FindPromoVideoByArtistId(artistId));
+            UFOWebService.ArtistVideo v = service.FindPromoVideoByArtistId(artistId);
+
+            if (v != null)
+            {
+                return mapArtistVideo(v);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public bool InsertArtistVideo(Domain.ArtistVideo artistVideo)
