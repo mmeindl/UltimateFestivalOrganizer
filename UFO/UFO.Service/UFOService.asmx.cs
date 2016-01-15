@@ -260,7 +260,7 @@ namespace UFO.Service
         [WebMethod]
         public List<ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
-            return new List<ArtistVideo>(FindAllVideosByArtistId(artistId));
+            return new List<ArtistVideo>(server.FindAllVideosByArtistId(artistId));
         }
 
         [WebMethod]
