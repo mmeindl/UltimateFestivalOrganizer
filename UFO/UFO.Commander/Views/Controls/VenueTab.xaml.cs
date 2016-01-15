@@ -88,6 +88,8 @@ namespace UFO.Commander.Views.Controls
                     venueCollectionVM.CurrentArea = areaVM;
                     dgAreas.MoveFocus(new TraversalRequest(FocusNavigationDirection.Last));
                     dgAreas.ScrollIntoView(areaVM);
+
+                    txtNameNew.Clear();
                 }
             }
             catch (Exception exc)

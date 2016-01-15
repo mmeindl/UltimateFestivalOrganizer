@@ -185,7 +185,7 @@ namespace UFO.Server
         {
             return service.DeleteArea(mapArea(area));
         }
-
+        
         // Country
         public Domain.Country FindCountryByAbbreviation(string abbreviation)
         {
