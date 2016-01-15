@@ -229,7 +229,7 @@ namespace UFO.Server
 
         public bool InsertArtistPicture(Domain.ArtistPicture artistPicture)
         {
-            return service.DeleteArtistPicture(mapArtistPicture(artistPicture));
+            return service.InsertArtistPicture(mapArtistPicture(artistPicture));
         }
 
         public bool UpdateArtistPicture(Domain.ArtistPicture artistPicture)
@@ -271,7 +271,7 @@ namespace UFO.Server
 
         public bool InsertArtistVideo(Domain.ArtistVideo artistVideo)
         {
-            return service.DeleteArtistVideo(mapArtistVideo(artistVideo));
+            return service.InsertArtistVideo(mapArtistVideo(artistVideo));
         }
 
         public bool UpdateArtistVideo(Domain.ArtistVideo artistVideo)
@@ -299,7 +299,7 @@ namespace UFO.Server
 
         public bool InsertPerformancePicture(Domain.PerformancePicture performancePicture)
         {
-            return service.DeletePerformancePicture(mapPerformancePicture(performancePicture));
+            return service.InsertPerformancePicture(mapPerformancePicture(performancePicture));
         }
 
         public bool DeletePerformancePicture(Domain.PerformancePicture performancePicture)
@@ -322,7 +322,7 @@ namespace UFO.Server
 
         public bool InsertPerformanceVideo(Domain.PerformanceVideo performanceVideo)
         {
-            return service.DeletePerformanceVideo(mapPerformanceVideo(performanceVideo));
+            return service.InsertPerformanceVideo(mapPerformanceVideo(performanceVideo));
         }
 
         public bool DeletePerformanceVideo(Domain.PerformanceVideo performanceVideo)

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UFO.Domain;
 using UFO.Server;
@@ -45,31 +46,19 @@ namespace UFO.Commander.ViewModels
 
                     if (currentArtist != null)
                     {
-                        if (CurrentArtist.ProfilePicture == null)
-                        {
-                            ArtistPicture pic = server.FindProfilePictureByArtistId(CurrentArtist.Id);
-
-                            if (pic != null)
-                                CurrentArtist.ProfilePicture = new ArtistPictureVM(pic, CurrentArtist, server);
-                        }
-
-                        if (CurrentArtist.PromoVideo == null)
-                        {
-                            ArtistVideo vid = server.FindPromoVideoByArtistId(CurrentArtist.Id);
-
-                            if (vid != null)
-                                CurrentArtist.PromoVideo = new ArtistVideoVM(vid, CurrentArtist, server);
-                        }
-
                         if (CurrentArtist.Pictures.Count == 0)
                         {
                             currentArtist.LoadPictures();
                         }
 
+                        CurrentArtist.ProfilePicture = currentArtist.Pictures.FirstOrDefault(p => p.IsProfilePicture == true);
+
                         if (CurrentArtist.Videos.Count == 0)
                         {
                             currentArtist.LoadVideos();
                         }
+
+                        CurrentArtist.PromoVideo = currentArtist.Videos.FirstOrDefault(v => v.IsPromoVideo == true);
                     }
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentArtist)));
                 }
