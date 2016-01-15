@@ -169,27 +169,25 @@ namespace UFO.Commander.ViewModels
             get { return artistCollection; }
         }
 
-        public async void LoadPictures()
+        public void LoadPictures()
         {
             Pictures.Clear();
             IEnumerable<ArtistPicture> pictures = server.FindAllPicturesByArtistId(Id);
 
-            IEnumerator<ArtistPicture> enumerator = pictures.GetEnumerator();
-            while (await Task.Run(() => enumerator.MoveNext()))
+            foreach (ArtistPicture picture in pictures)
             {
-                Pictures.Add(new ArtistPictureVM(enumerator.Current, this, server));
+                Pictures.Add(new ArtistPictureVM(picture, this, server));
             }
         }
 
-        public async void LoadVideos()
+        public void LoadVideos()
         {
             Videos.Clear();
             IEnumerable<ArtistVideo> videos = server.FindAllVideosByArtistId(Id);
-
-            IEnumerator<ArtistVideo> enumerator = videos.GetEnumerator();
-            while (await Task.Run(() => enumerator.MoveNext()))
+            
+            foreach (ArtistVideo video in videos)
             {
-                Videos.Add(new ArtistVideoVM(enumerator.Current, this, server));
+                Videos.Add(new ArtistVideoVM(video, this, server));
             }
         }
     }
