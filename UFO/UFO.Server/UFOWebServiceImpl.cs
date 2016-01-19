@@ -77,12 +77,24 @@ namespace UFO.Server
         }
 
         // Performance
+        public Domain.Performance FindPerformanceById(int id)
+        {
+            return mapPerformance(service.FindPerformanceById(id));
+        }
+
         public Domain.Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
             return mapPerformance(service.FindPerformanceByDateTimeAndArtistId(dateTime, artistId));
         }
 
         public IEnumerable<Domain.Performance> FindPerformancesByDate(DateTime date)
+        {
+            return service.FindPerformancesByDate(date)
+                .Select(p => mapPerformance(p))
+                .ToList();
+        }
+
+        public IEnumerable<Domain.Performance> FindPerformancesByDateTime(DateTime date)
         {
             return service.FindPerformancesByDate(date)
                 .Select(p => mapPerformance(p))

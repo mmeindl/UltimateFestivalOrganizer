@@ -13,6 +13,7 @@ namespace UFO.Dal.Common
         Performance FindByDateTimeAndArtistId(DateTime dateTime, int artistId);
         IList<Performance> FindAll();
         IList<Performance> FindAllByDate(DateTime date);
+        IList<Performance> FindAllByDateTime(DateTime date);
         IList<Performance> FindByDateAndVenue(DateTime date, Venue venue);
         IList<Performance> FindByDateAndArtist(DateTime date, Artist artist);
         IList<Performance> FindAllInFuture();

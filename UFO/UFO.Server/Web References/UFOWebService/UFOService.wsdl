@@ -178,6 +178,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FindPerformanceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformanceByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformanceByIdResult" type="tns:Performance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Performance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VenueId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="FindPerformanceByDateTimeAndArtistId">
         <s:complexType>
           <s:sequence>
@@ -193,14 +215,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Performance">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="VenueId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="FindPerformancesByDate">
         <s:complexType>
           <s:sequence>
@@ -220,6 +234,20 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="Performance" nillable="true" type="tns:Performance" />
         </s:sequence>
       </s:complexType>
+      <s:element name="FindPerformancesByDateTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindPerformancesByDateTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindPerformancesByDateTimeResult" type="tns:ArrayOfPerformance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FindPerformancesByDateAndVenue">
         <s:complexType>
           <s:sequence>
@@ -922,6 +950,12 @@
   <wsdl:message name="DeleteArtistSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteArtistResponse" />
   </wsdl:message>
+  <wsdl:message name="FindPerformanceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformanceById" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformanceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformanceByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="FindPerformanceByDateTimeAndArtistIdSoapIn">
     <wsdl:part name="parameters" element="tns:FindPerformanceByDateTimeAndArtistId" />
   </wsdl:message>
@@ -933,6 +967,12 @@
   </wsdl:message>
   <wsdl:message name="FindPerformancesByDateSoapOut">
     <wsdl:part name="parameters" element="tns:FindPerformancesByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="FindPerformancesByDateTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:FindPerformancesByDateTimeResponse" />
   </wsdl:message>
   <wsdl:message name="FindPerformancesByDateAndVenueSoapIn">
     <wsdl:part name="parameters" element="tns:FindPerformancesByDateAndVenue" />
@@ -1215,6 +1255,10 @@
       <wsdl:input message="tns:DeleteArtistSoapIn" />
       <wsdl:output message="tns:DeleteArtistSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="FindPerformanceById">
+      <wsdl:input message="tns:FindPerformanceByIdSoapIn" />
+      <wsdl:output message="tns:FindPerformanceByIdSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
       <wsdl:input message="tns:FindPerformanceByDateTimeAndArtistIdSoapIn" />
       <wsdl:output message="tns:FindPerformanceByDateTimeAndArtistIdSoapOut" />
@@ -1222,6 +1266,10 @@
     <wsdl:operation name="FindPerformancesByDate">
       <wsdl:input message="tns:FindPerformancesByDateSoapIn" />
       <wsdl:output message="tns:FindPerformancesByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateTime">
+      <wsdl:input message="tns:FindPerformancesByDateTimeSoapIn" />
+      <wsdl:output message="tns:FindPerformancesByDateTimeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FindPerformancesByDateAndVenue">
       <wsdl:input message="tns:FindPerformancesByDateAndVenueSoapIn" />
@@ -1476,6 +1524,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="FindPerformanceById">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
       <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceByDateTimeAndArtistId" style="document" />
       <wsdl:input>
@@ -1487,6 +1544,15 @@
     </wsdl:operation>
     <wsdl:operation name="FindPerformancesByDate">
       <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateTime">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateTime" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1947,6 +2013,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="FindPerformanceById">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FindPerformanceByDateTimeAndArtistId">
       <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformanceByDateTimeAndArtistId" style="document" />
       <wsdl:input>
@@ -1958,6 +2033,15 @@
     </wsdl:operation>
     <wsdl:operation name="FindPerformancesByDate">
       <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPerformancesByDateTime">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindPerformancesByDateTime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
