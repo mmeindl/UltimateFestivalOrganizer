@@ -85,6 +85,12 @@ namespace UFO.Service
 
         // Performance
         [WebMethod]
+        public List<Performance> FindAllPerformances()
+        {
+            return new List<Performance>(server.FindAllPerformances());
+        }
+
+        [WebMethod]
         public Performance FindPerformanceById(int id)
         {
             return server.FindPerformanceById(id);

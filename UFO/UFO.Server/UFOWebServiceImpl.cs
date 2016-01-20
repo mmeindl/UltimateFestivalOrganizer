@@ -77,6 +77,13 @@ namespace UFO.Server
         }
 
         // Performance
+        public IEnumerable<Domain.Performance> FindAllPerformances()
+        {
+            return service.FindAllPerformances()
+                .Select(p => mapPerformance(p))
+                .ToList();
+        }
+
         public Domain.Performance FindPerformanceById(int id)
         {
             return mapPerformance(service.FindPerformanceById(id));
