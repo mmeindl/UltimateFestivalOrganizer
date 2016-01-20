@@ -178,6 +178,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="FindAllPerformances">
+        <s:complexType />
+      </s:element>
+      <s:element name="FindAllPerformancesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FindAllPerformancesResult" type="tns:ArrayOfPerformance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPerformance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Performance" nillable="true" type="tns:Performance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Performance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VenueId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="FindPerformanceById">
         <s:complexType>
           <s:sequence>
@@ -192,14 +215,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Performance">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="VenueId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ArtistId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="FindPerformanceByDateTimeAndArtistId">
         <s:complexType>
           <s:sequence>
@@ -229,11 +244,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfPerformance">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Performance" nillable="true" type="tns:Performance" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="FindPerformancesByDateTime">
         <s:complexType>
           <s:sequence>
@@ -950,6 +960,12 @@
   <wsdl:message name="DeleteArtistSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteArtistResponse" />
   </wsdl:message>
+  <wsdl:message name="FindAllPerformancesSoapIn">
+    <wsdl:part name="parameters" element="tns:FindAllPerformances" />
+  </wsdl:message>
+  <wsdl:message name="FindAllPerformancesSoapOut">
+    <wsdl:part name="parameters" element="tns:FindAllPerformancesResponse" />
+  </wsdl:message>
   <wsdl:message name="FindPerformanceByIdSoapIn">
     <wsdl:part name="parameters" element="tns:FindPerformanceById" />
   </wsdl:message>
@@ -1255,6 +1271,10 @@
       <wsdl:input message="tns:DeleteArtistSoapIn" />
       <wsdl:output message="tns:DeleteArtistSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="FindAllPerformances">
+      <wsdl:input message="tns:FindAllPerformancesSoapIn" />
+      <wsdl:output message="tns:FindAllPerformancesSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FindPerformanceById">
       <wsdl:input message="tns:FindPerformanceByIdSoapIn" />
       <wsdl:output message="tns:FindPerformanceByIdSoapOut" />
@@ -1517,6 +1537,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteArtist">
       <soap:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPerformances">
+      <soap:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPerformances" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2006,6 +2035,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteArtist">
       <soap12:operation soapAction="http://ufo.fh-hagenberg.at/DeleteArtist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindAllPerformances">
+      <soap12:operation soapAction="http://ufo.fh-hagenberg.at/FindAllPerformances" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

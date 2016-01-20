@@ -49,6 +49,8 @@ namespace UFO.Server.UFOWebService {
         
         private System.Threading.SendOrPostCallback DeleteArtistOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FindAllPerformancesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FindPerformanceByIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback FindPerformanceByDateTimeAndArtistIdOperationCompleted;
@@ -204,6 +206,9 @@ namespace UFO.Server.UFOWebService {
         
         /// <remarks/>
         public event DeleteArtistCompletedEventHandler DeleteArtistCompleted;
+        
+        /// <remarks/>
+        public event FindAllPerformancesCompletedEventHandler FindAllPerformancesCompleted;
         
         /// <remarks/>
         public event FindPerformanceByIdCompletedEventHandler FindPerformanceByIdCompleted;
@@ -624,6 +629,33 @@ namespace UFO.Server.UFOWebService {
             if ((this.DeleteArtistCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DeleteArtistCompleted(this, new DeleteArtistCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ufo.fh-hagenberg.at/FindAllPerformances", RequestNamespace="http://ufo.fh-hagenberg.at/", ResponseNamespace="http://ufo.fh-hagenberg.at/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Performance[] FindAllPerformances() {
+            object[] results = this.Invoke("FindAllPerformances", new object[0]);
+            return ((Performance[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FindAllPerformancesAsync() {
+            this.FindAllPerformancesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void FindAllPerformancesAsync(object userState) {
+            if ((this.FindAllPerformancesOperationCompleted == null)) {
+                this.FindAllPerformancesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFindAllPerformancesOperationCompleted);
+            }
+            this.InvokeAsync("FindAllPerformances", new object[0], this.FindAllPerformancesOperationCompleted, userState);
+        }
+        
+        private void OnFindAllPerformancesOperationCompleted(object arg) {
+            if ((this.FindAllPerformancesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FindAllPerformancesCompleted(this, new FindAllPerformancesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2795,6 +2827,32 @@ namespace UFO.Server.UFOWebService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void FindAllPerformancesCompletedEventHandler(object sender, FindAllPerformancesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FindAllPerformancesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FindAllPerformancesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Performance[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Performance[])(this.results[0]));
             }
         }
     }

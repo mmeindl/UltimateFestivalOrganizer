@@ -128,6 +128,13 @@ namespace UFO.Server
         }
 
         // Performance
+        public IEnumerable<Performance> FindAllPerformances()
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+
+            return performanceDao.FindAll();
+        }
+
         public Performance FindPerformanceById(int id)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
