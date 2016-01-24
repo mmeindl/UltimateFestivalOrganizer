@@ -274,6 +274,35 @@ namespace UFO.UnitTest
         }
 
         [TestMethod]
+        public void PerformanceFindByDateAndArtistTest()
+        {
+
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+            IArtistDao artistDao = DalFactory.CreateArtistDao();
+
+            Assert.IsNotNull(performanceDao.FindByDateAndArtist(new DateTime(2016, 07, 22), artistDao.FindById(1)));
+        }
+
+        [TestMethod]
+        public void PerformanceFindByDateAndVenueTest()
+        {
+
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+            IVenueDao venueDao = DalFactory.CreateVenueDao();
+
+            Assert.IsNotNull(performanceDao.FindByDateAndVenue(new DateTime(2016, 07, 22), venueDao.FindById(1)));
+        }
+
+        [TestMethod]
+        public void PerformanceFindAllByDateTimeTest()
+        {
+
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+
+            Assert.IsNotNull(performanceDao.FindAllByDateTime(new DateTime(2016, 07, 22, 10, 0, 0)));
+        }
+
+        [TestMethod]
         public void PerformanceFindAllByVenueIdTest()
         {
             
@@ -404,6 +433,16 @@ namespace UFO.UnitTest
         /* ----- Area ----- */
 
         [TestMethod]
+        public void AreaFindByIdTest()
+        {
+
+            IAreaDao areaDao = DalFactory.CreateAreaDao();
+
+            Assert.IsNotNull(areaDao.FindById(1));
+            Assert.IsNull(areaDao.FindById(-1));
+        }
+
+        [TestMethod]
         public void AreaFindByNameTest()
         {
             
@@ -437,6 +476,27 @@ namespace UFO.UnitTest
             }
         }
 
+        [TestMethod]
+        public void AreaDeleteTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+
+                IAreaDao areaDao = DalFactory.CreateAreaDao();
+
+                Area area = new Area("Test");
+
+                areaDao.Insert(area);
+                area = areaDao.FindByName("Test");
+
+                Assert.IsTrue(areaDao.Delete(area));
+
+                Assert.IsNull(areaDao.FindByName("Test"));
+
+                scope.Dispose();
+            }
+        }
+
         /* ----- VENUE ----- */
 
         [TestMethod]
@@ -453,12 +513,38 @@ namespace UFO.UnitTest
         }
 
         [TestMethod]
+        public void VenueFindByAreaIdTest()
+        {
+
+            IVenueDao venueDao = DalFactory.CreateVenueDao();
+
+            IList<Venue> venue = venueDao.FindByAreaId(1);
+
+            Assert.IsNotNull(venue);
+        }
+
+        [TestMethod]
         public void VenueFindAllTest()
         {
             
             IVenueDao venueDao = DalFactory.CreateVenueDao();
 
             Assert.AreEqual(venueDao.FindAll().Count, 40);
+        }
+
+        [TestMethod]
+        public void VenueFindByNameTest()
+        {
+
+            IVenueDao venueDao = DalFactory.CreateVenueDao();
+
+            Venue venue = venueDao.FindByName("Broken Arrow");
+
+            Assert.IsNotNull(venue);
+
+            venue = venueDao.FindByName("noVenue");
+
+            Assert.IsNull(venue);
         }
 
         [TestMethod]
@@ -486,7 +572,6 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                
                 IVenueDao venueDao = DalFactory.CreateVenueDao();
 
                 Venue venue = new Venue();
@@ -502,7 +587,6 @@ namespace UFO.UnitTest
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                
                 IVenueDao venueDao = DalFactory.CreateVenueDao();
 
                 string shortName = "H2";
@@ -514,6 +598,30 @@ namespace UFO.UnitTest
                 venue = venueDao.FindById(1);
 
                 Assert.IsTrue(venue.ShortName == shortName);
+
+                scope.Dispose();
+            }
+        }
+
+        [TestMethod]
+        public void VenueDeleteTest()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                IVenueDao venueDao = DalFactory.CreateVenueDao();
+
+                decimal lat = (Decimal)48.995997;
+                decimal lon = (Decimal)14.984131;
+
+                Venue venue = new Venue(1, "Tanka Tanzt", "H1", lon, lat);
+
+                venueDao.Insert(venue);
+
+                venue = venueDao.FindByName("Tanka Tanzt");
+
+                Assert.IsTrue(venueDao.Delete(venue));
+
+                Assert.IsNull(venueDao.FindByName("Tanka Tanzt"));
 
                 scope.Dispose();
             }
