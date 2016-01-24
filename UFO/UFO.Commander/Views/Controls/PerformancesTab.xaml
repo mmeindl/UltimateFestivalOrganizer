@@ -42,6 +42,7 @@
             <Button
                 Width="150"
                 Margin="10"
+                Name="btnSendEmail"
                 Click="SendEmail">Send E-Mail</Button>
         </StackPanel>
         <!--

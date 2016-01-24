@@ -641,8 +641,8 @@ namespace UFO.UnitTest
             Assert.IsNotNull(profilePicture1);
             Assert.IsTrue(profilePicture1.IsProfilePicture);
 
-            /*Artist 2 has no ProfilePicture */
-            ArtistPicture profilePicture2 = artistPictureDao.FindProfilePictureByArtistId(2);
+            /*Artist 66 has no ProfilePicture */
+            ArtistPicture profilePicture2 = artistPictureDao.FindProfilePictureByArtistId(66);
 
             Assert.IsNull(profilePicture2);
         }
@@ -765,8 +765,8 @@ namespace UFO.UnitTest
             Assert.IsNotNull(promoVideo1);
             Assert.IsTrue(promoVideo1.IsPromoVideo);
 
-            /* Artist 2 has no PromoVideo */
-            ArtistVideo promoVideo2 = artistVideoDao.FindPromoVideoByArtistId(2);
+            /* Artist 66 has no PromoVideo */
+            ArtistVideo promoVideo2 = artistVideoDao.FindPromoVideoByArtistId(66);
 
             Assert.IsNull(promoVideo2);
         }
