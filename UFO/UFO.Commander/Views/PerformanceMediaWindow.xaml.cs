@@ -66,6 +66,7 @@ namespace UFO.Commander.Views
                     result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
 
+            // update datacontext
             if (success)
             {
                 picture = server.FindPerformancePictureByURL(picture.PictureURL);
@@ -83,6 +84,7 @@ namespace UFO.Commander.Views
 
             success = server.DeletePerformancePicture(picture);
 
+            // update datacontext
             if (success)
             {
                 pictureVM.PerformanceMediaCollectionVM.Pictures.Remove(pictureVM);
@@ -112,7 +114,8 @@ namespace UFO.Commander.Views
                 else
                     result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
-            
+
+            // update datacontext
             if (success)
             {
                 video = server.FindPerformanceVideoByURL(video.VideoURL);
@@ -130,6 +133,7 @@ namespace UFO.Commander.Views
 
             success = server.DeletePerformanceVideo(video);
 
+            // update datacontext
             if (success)
             {
                 videoVM.PerformanceMediaCollectionVM.Videos.Remove(videoVM);

@@ -85,6 +85,7 @@ namespace UFO.Commander.Views.Controls
                     result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
+            // update datacontext
             if (success)
             {
                 artist = server.FindArtistByName(artist.Name);
@@ -102,13 +103,26 @@ namespace UFO.Commander.Views.Controls
 
             ArtistVM currentArtist = artistVM.ArtistCollection.Artists[0];
 
+            bool success = false;
 
-            artistVM.ArtistCollection.Artists.Remove(artistVM);
+            try
+            {
+                success = server.DeleteArtist(artistVM.Artist);
+            }
+            catch (Exception exc)
+            {
+            }
 
-            artistVM.ArtistCollection.CurrentArtist = currentArtist;
-            dgArtists.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
-            dgArtists.ScrollIntoView(currentArtist);
-            server.DeleteArtist(artistVM.Artist);
+            // update datacontext
+            if (success)
+            {
+                artistVM.ArtistCollection.Artists.Remove(artistVM);
+
+                artistVM.ArtistCollection.CurrentArtist = currentArtist;
+                dgArtists.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
+                dgArtists.ScrollIntoView(currentArtist);
+            }
+            
         }
 
 
@@ -163,6 +177,7 @@ namespace UFO.Commander.Views.Controls
                     result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
+            // undo datacontext changes
             if (!success)
             {
                 artist.Name = oldName;
