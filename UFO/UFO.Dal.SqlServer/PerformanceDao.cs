@@ -32,6 +32,11 @@ namespace UFO.Dal.SqlServer
                 FROM Performance
                 WHERE DATEDIFF(DAY ,dateTime, @date) = 0";
 
+        const string SQL_FIND_ALL_BY_DATETIME =
+            @"SELECT *
+                FROM Performance
+                WHERE Performance.DateTime = @dateTime";
+
         const string SQL_FIND_ALL_BY_DATE_AND_VENUE =
             @"SELECT *
                 FROM Performance
@@ -178,6 +183,30 @@ namespace UFO.Dal.SqlServer
         }
 
         public IList<Performance> FindAllByDate(DateTime date)
+        {
+            using (DbCommand command = CreateFindAllByDate(date))
+            using (IDataReader reader = database.ExecuteReader(command))
+            {
+                IList<Performance> result = new List<Performance>();
+                while (reader.Read())
+                    result.Add(new Performance(
+                        (DateTime)reader["dateTime"],
+                        (int)reader["venueId"],
+                        (int)reader["artistId"],
+                        (int)reader["Id"])
+                    );
+                return result;
+            }
+        }
+
+        private DbCommand CreateFindAllByDateTime(DateTime date)
+        {
+            DbCommand findAllByDateTime = database.CreateCommand(SQL_FIND_ALL_BY_DATETIME);
+            database.DefineParameter(findAllByDateTime, "datetime", DbType.DateTime, date);
+            return findAllByDateTime;
+        }
+
+        public IList<Performance> FindAllByDateTime(DateTime date)
         {
             using (DbCommand command = CreateFindAllByDate(date))
             using (IDataReader reader = database.ExecuteReader(command))

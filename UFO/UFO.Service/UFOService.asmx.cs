@@ -85,6 +85,18 @@ namespace UFO.Service
 
         // Performance
         [WebMethod]
+        public List<Performance> FindAllPerformances()
+        {
+            return new List<Performance>(server.FindAllPerformances());
+        }
+
+        [WebMethod]
+        public Performance FindPerformanceById(int id)
+        {
+            return server.FindPerformanceById(id);
+        }
+
+        [WebMethod]
         public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
             return server.FindPerformanceByDateTimeAndArtistId(dateTime, artistId);
@@ -94,6 +106,12 @@ namespace UFO.Service
         public List<Performance> FindPerformancesByDate(DateTime date)
         {
             return new List<Performance>(server.FindPerformancesByDate(date));
+        }
+
+        [WebMethod]
+        public List<Performance> FindPerformancesByDateTime(DateTime date)
+        {
+            return new List<Performance>(server.FindPerformancesByDateTime(date));
         }
 
         [WebMethod]
@@ -260,7 +278,7 @@ namespace UFO.Service
         [WebMethod]
         public List<ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
-            return new List<ArtistVideo>(FindAllVideosByArtistId(artistId));
+            return new List<ArtistVideo>(server.FindAllVideosByArtistId(artistId));
         }
 
         [WebMethod]

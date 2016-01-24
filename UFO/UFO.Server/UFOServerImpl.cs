@@ -128,6 +128,20 @@ namespace UFO.Server
         }
 
         // Performance
+        public IEnumerable<Performance> FindAllPerformances()
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+
+            return performanceDao.FindAll();
+        }
+
+        public Performance FindPerformanceById(int id)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+
+            return performanceDao.FindById(id);
+        }
+
         public Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId)
         {
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
@@ -140,6 +154,13 @@ namespace UFO.Server
             IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
 
             return performanceDao.FindAllByDate(date);
+        }
+
+        public IEnumerable<Performance> FindPerformancesByDateTime(DateTime date)
+        {
+            IPerformanceDao performanceDao = DalFactory.CreatePerformanceDao();
+
+            return performanceDao.FindAllByDateTime(date);
         }
 
         public IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue)

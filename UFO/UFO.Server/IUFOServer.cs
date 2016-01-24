@@ -66,8 +66,11 @@ namespace UFO.Server
         IList<Country> FindAllCountries();
 
         //Performance
+        IEnumerable<Performance> FindAllPerformances();
+        Performance FindPerformanceById(int id);
         Performance FindPerformanceByDateTimeAndArtistId(DateTime dateTime, int artistId);
         IEnumerable<Performance> FindPerformancesByDate(DateTime date);
+        IEnumerable<Performance> FindPerformancesByDateTime(DateTime date);
         IEnumerable<Performance> FindPerformancesByDateAndVenue(DateTime date, Venue venue);
         IEnumerable<Performance> FindPerformancesByDateAndArtist(DateTime date, Artist artist);
 

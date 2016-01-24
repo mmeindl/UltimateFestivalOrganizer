@@ -49,9 +49,15 @@ namespace UFO.Server.UFOWebService {
         
         private System.Threading.SendOrPostCallback DeleteArtistOperationCompleted;
         
+        private System.Threading.SendOrPostCallback FindAllPerformancesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FindPerformanceByIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FindPerformanceByDateTimeAndArtistIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback FindPerformancesByDateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback FindPerformancesByDateTimeOperationCompleted;
         
         private System.Threading.SendOrPostCallback FindPerformancesByDateAndVenueOperationCompleted;
         
@@ -202,10 +208,19 @@ namespace UFO.Server.UFOWebService {
         public event DeleteArtistCompletedEventHandler DeleteArtistCompleted;
         
         /// <remarks/>
+        public event FindAllPerformancesCompletedEventHandler FindAllPerformancesCompleted;
+        
+        /// <remarks/>
+        public event FindPerformanceByIdCompletedEventHandler FindPerformanceByIdCompleted;
+        
+        /// <remarks/>
         public event FindPerformanceByDateTimeAndArtistIdCompletedEventHandler FindPerformanceByDateTimeAndArtistIdCompleted;
         
         /// <remarks/>
         public event FindPerformancesByDateCompletedEventHandler FindPerformancesByDateCompleted;
+        
+        /// <remarks/>
+        public event FindPerformancesByDateTimeCompletedEventHandler FindPerformancesByDateTimeCompleted;
         
         /// <remarks/>
         public event FindPerformancesByDateAndVenueCompletedEventHandler FindPerformancesByDateAndVenueCompleted;
@@ -618,6 +633,62 @@ namespace UFO.Server.UFOWebService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ufo.fh-hagenberg.at/FindAllPerformances", RequestNamespace="http://ufo.fh-hagenberg.at/", ResponseNamespace="http://ufo.fh-hagenberg.at/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Performance[] FindAllPerformances() {
+            object[] results = this.Invoke("FindAllPerformances", new object[0]);
+            return ((Performance[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FindAllPerformancesAsync() {
+            this.FindAllPerformancesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void FindAllPerformancesAsync(object userState) {
+            if ((this.FindAllPerformancesOperationCompleted == null)) {
+                this.FindAllPerformancesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFindAllPerformancesOperationCompleted);
+            }
+            this.InvokeAsync("FindAllPerformances", new object[0], this.FindAllPerformancesOperationCompleted, userState);
+        }
+        
+        private void OnFindAllPerformancesOperationCompleted(object arg) {
+            if ((this.FindAllPerformancesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FindAllPerformancesCompleted(this, new FindAllPerformancesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ufo.fh-hagenberg.at/FindPerformanceById", RequestNamespace="http://ufo.fh-hagenberg.at/", ResponseNamespace="http://ufo.fh-hagenberg.at/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Performance FindPerformanceById(int id) {
+            object[] results = this.Invoke("FindPerformanceById", new object[] {
+                        id});
+            return ((Performance)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FindPerformanceByIdAsync(int id) {
+            this.FindPerformanceByIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void FindPerformanceByIdAsync(int id, object userState) {
+            if ((this.FindPerformanceByIdOperationCompleted == null)) {
+                this.FindPerformanceByIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFindPerformanceByIdOperationCompleted);
+            }
+            this.InvokeAsync("FindPerformanceById", new object[] {
+                        id}, this.FindPerformanceByIdOperationCompleted, userState);
+        }
+        
+        private void OnFindPerformanceByIdOperationCompleted(object arg) {
+            if ((this.FindPerformanceByIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FindPerformanceByIdCompleted(this, new FindPerformanceByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ufo.fh-hagenberg.at/FindPerformanceByDateTimeAndArtistId", RequestNamespace="http://ufo.fh-hagenberg.at/", ResponseNamespace="http://ufo.fh-hagenberg.at/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Performance FindPerformanceByDateTimeAndArtistId(System.DateTime dateTime, int artistId) {
             object[] results = this.Invoke("FindPerformanceByDateTimeAndArtistId", new object[] {
@@ -674,6 +745,35 @@ namespace UFO.Server.UFOWebService {
             if ((this.FindPerformancesByDateCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.FindPerformancesByDateCompleted(this, new FindPerformancesByDateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://ufo.fh-hagenberg.at/FindPerformancesByDateTime", RequestNamespace="http://ufo.fh-hagenberg.at/", ResponseNamespace="http://ufo.fh-hagenberg.at/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Performance[] FindPerformancesByDateTime(System.DateTime date) {
+            object[] results = this.Invoke("FindPerformancesByDateTime", new object[] {
+                        date});
+            return ((Performance[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void FindPerformancesByDateTimeAsync(System.DateTime date) {
+            this.FindPerformancesByDateTimeAsync(date, null);
+        }
+        
+        /// <remarks/>
+        public void FindPerformancesByDateTimeAsync(System.DateTime date, object userState) {
+            if ((this.FindPerformancesByDateTimeOperationCompleted == null)) {
+                this.FindPerformancesByDateTimeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFindPerformancesByDateTimeOperationCompleted);
+            }
+            this.InvokeAsync("FindPerformancesByDateTime", new object[] {
+                        date}, this.FindPerformancesByDateTimeOperationCompleted, userState);
+        }
+        
+        private void OnFindPerformancesByDateTimeOperationCompleted(object arg) {
+            if ((this.FindPerformancesByDateTimeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.FindPerformancesByDateTimeCompleted(this, new FindPerformancesByDateTimeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2733,6 +2833,58 @@ namespace UFO.Server.UFOWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void FindAllPerformancesCompletedEventHandler(object sender, FindAllPerformancesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FindAllPerformancesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FindAllPerformancesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Performance[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Performance[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void FindPerformanceByIdCompletedEventHandler(object sender, FindPerformanceByIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FindPerformanceByIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FindPerformanceByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Performance Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Performance)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void FindPerformanceByDateTimeAndArtistIdCompletedEventHandler(object sender, FindPerformanceByDateTimeAndArtistIdCompletedEventArgs e);
     
     /// <remarks/>
@@ -2770,6 +2922,32 @@ namespace UFO.Server.UFOWebService {
         private object[] results;
         
         internal FindPerformancesByDateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Performance[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Performance[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void FindPerformancesByDateTimeCompletedEventHandler(object sender, FindPerformancesByDateTimeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class FindPerformancesByDateTimeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal FindPerformancesByDateTimeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

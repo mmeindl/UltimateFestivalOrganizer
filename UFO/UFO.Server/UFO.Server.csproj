@@ -119,6 +119,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:46633/UFOService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\UFOWebService\</RelPath>
@@ -130,12 +136,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>UFO_Server_UFOWebService_UFOService</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\UFOWebService\UFOService.disco" />
