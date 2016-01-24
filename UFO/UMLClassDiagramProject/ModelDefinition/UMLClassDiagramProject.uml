@@ -311,6 +311,14 @@
               LastKnownName="Edit Artist Media"
               LastKnownLocation="UMLClassDiagramProject.uml" />
           </generalization>
+          <generalization
+            Id="f6e6b108-db8b-4439-bc6d-de5b50a53edf"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="afaf3f9a-3e0e-4f23-b6d5-45fcd5eb6a60"
+              LastKnownName="Edit Artist"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
         </generalsInternal>
         <additions>
           <include
@@ -716,6 +724,18 @@
                 LastKnownName="MessageOccurrenceSpecification18"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
               <messageOccurrenceSpecificationMoniker
+                Id="33bf17ad-6009-4460-9f7b-86c46c4d238f"
+                LastKnownName="MessageOccurrenceSpecification57"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="5b3c68a7-58ea-4d54-93bc-fcc1664ac42a"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="b951bb6f-f171-43bc-bbc9-56fab5f0eff8"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <messageOccurrenceSpecificationMoniker
                 Id="8f07be09-dc89-43b1-8772-00a09a761d26"
                 LastKnownName="MessageOccurrenceSpecification13"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
@@ -765,7 +785,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </coveredLifelines>
             <finish>
@@ -784,14 +804,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="2447aaf0-32b5-4b35-8ccd-877e539696c3"
                 LastKnownName="MessageOccurrenceSpecification16"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="476e79c8-aef8-44d4-93a2-368d030174e5"
-                LastKnownName="MessageOccurrenceSpecification27"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="788adff3-b773-43fd-bfc7-8d4a102039bd"
-                LastKnownName="MessageOccurrenceSpecification30"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="8927e28b-0799-4852-a513-9cc645d5f9f2"
@@ -821,7 +833,7 @@
             <covered>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -841,118 +853,10 @@
             <covered>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="5d25419b-a3c5-4afe-8c21-3247946a84b3"
-            name="BehaviorExecutionSpecification8">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-                LastKnownName=": UFO.Domain Object"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="c1b2eb94-f7d6-4a6f-9832-96a3bb2c2449"
-                LastKnownName="ExecutionOccurrenceSpecification16"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="1f944600-770b-4412-bd50-0c515a41d5a5"
-                LastKnownName="ExecutionOccurrenceSpecification15"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="7cbad52a-501e-41a8-bc3f-ee08d09ee44a"
-                LastKnownName="MessageOccurrenceSpecification28"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="0958c1a0-5e05-4598-8672-f561cc7b61d9"
-                LastKnownName="MessageOccurrenceSpecification29"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="1f944600-770b-4412-bd50-0c515a41d5a5"
-            name="ExecutionOccurrenceSpecification15">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="d590e98a-982f-4d7d-946a-80895cec8938"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UMLClassDiagramProject.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-                LastKnownName=": UFO.Domain Object"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="7cbad52a-501e-41a8-bc3f-ee08d09ee44a"
-            name="MessageOccurrenceSpecification28">
-            <covered>
-              <lifelineMoniker
-                Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-                LastKnownName=": UFO.Domain Object"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="476e79c8-aef8-44d4-93a2-368d030174e5"
-            name="MessageOccurrenceSpecification27">
-            <covered>
-              <lifelineMoniker
-                Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="0958c1a0-5e05-4598-8672-f561cc7b61d9"
-            name="MessageOccurrenceSpecification29">
-            <covered>
-              <lifelineMoniker
-                Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-                LastKnownName=": UFO.Domain Object"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="788adff3-b773-43fd-bfc7-8d4a102039bd"
-            name="MessageOccurrenceSpecification30">
-            <covered>
-              <lifelineMoniker
-                Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="c1b2eb94-f7d6-4a6f-9832-96a3bb2c2449"
-            name="ExecutionOccurrenceSpecification16">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="0abbb73b-f76a-46cf-888c-1d7e90c1866e"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UMLClassDiagramProject.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-                LastKnownName=": UFO.Domain Object"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
           <behaviorExecutionSpecification
             Id="8a87bdde-2e71-431c-af7a-d6668fe32edd"
             name="BehaviorExecutionSpecification9">
@@ -988,6 +892,14 @@
                 LastKnownName="MessageOccurrenceSpecification42"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
               <messageOccurrenceSpecificationMoniker
+                Id="ba101ce8-ecbc-4220-944d-82d4471dba9f"
+                LastKnownName="MessageOccurrenceSpecification43"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="9366aa98-e434-4ca4-85cd-450f6659f85c"
+                LastKnownName="MessageOccurrenceSpecification46"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <messageOccurrenceSpecificationMoniker
                 Id="1aa46d8c-de05-4960-9708-074b4680e464"
                 LastKnownName="MessageOccurrenceSpecification33"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
@@ -1012,22 +924,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
+            Id="8927e28b-0799-4852-a513-9cc645d5f9f2"
+            name="MessageOccurrenceSpecification31">
+            <covered>
+              <lifelineMoniker
+                Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
+                LastKnownName="UFO.Server"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
             Id="b48e028a-6618-4a15-8ded-58ced2cc86a8"
             name="MessageOccurrenceSpecification32">
             <covered>
               <lifelineMoniker
                 Id="3b6b516c-9236-42d8-ade0-f616f9727945"
                 LastKnownName="UFO.SqlServer"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="8927e28b-0799-4852-a513-9cc645d5f9f2"
-            name="MessageOccurrenceSpecification31">
-            <covered>
-              <lifelineMoniker
-                Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1139,9 +1051,69 @@
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="5a9a39eb-1386-4b32-b70e-71175a510648"
+            name="BehaviorExecutionSpecification12">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="06bee352-def2-4b5c-979a-6f47049d04c6"
+                LastKnownName="ufoDB"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="80441027-f216-490c-81dd-5593013a06d3"
+                LastKnownName="ExecutionOccurrenceSpecification24"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="4e648b02-d5f9-4cd5-afbb-9c7a3f6321b4"
+                LastKnownName="ExecutionOccurrenceSpecification23"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="a440a518-b96c-4cf3-813e-11a2006b43f4"
+                LastKnownName="MessageOccurrenceSpecification44"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="8af44c30-7bab-4408-8299-c72afb13fe18"
+                LastKnownName="MessageOccurrenceSpecification45"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="4e648b02-d5f9-4cd5-afbb-9c7a3f6321b4"
+            name="ExecutionOccurrenceSpecification23">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="3faa6aeb-527d-4150-ac58-f46934724f50"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UMLClassDiagramProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="06bee352-def2-4b5c-979a-6f47049d04c6"
+                LastKnownName="ufoDB"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="1aa46d8c-de05-4960-9708-074b4680e464"
-            name="MessageOccurrenceSpecification33">
+            Id="a440a518-b96c-4cf3-813e-11a2006b43f4"
+            name="MessageOccurrenceSpecification44">
+            <covered>
+              <lifelineMoniker
+                Id="06bee352-def2-4b5c-979a-6f47049d04c6"
+                LastKnownName="ufoDB"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="ba101ce8-ecbc-4220-944d-82d4471dba9f"
+            name="MessageOccurrenceSpecification43">
             <covered>
               <lifelineMoniker
                 Id="3b6b516c-9236-42d8-ade0-f616f9727945"
@@ -1150,12 +1122,60 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
+            Id="8af44c30-7bab-4408-8299-c72afb13fe18"
+            name="MessageOccurrenceSpecification45">
+            <covered>
+              <lifelineMoniker
+                Id="06bee352-def2-4b5c-979a-6f47049d04c6"
+                LastKnownName="ufoDB"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="9366aa98-e434-4ca4-85cd-450f6659f85c"
+            name="MessageOccurrenceSpecification46">
+            <covered>
+              <lifelineMoniker
+                Id="3b6b516c-9236-42d8-ade0-f616f9727945"
+                LastKnownName="UFO.SqlServer"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="80441027-f216-490c-81dd-5593013a06d3"
+            name="ExecutionOccurrenceSpecification24">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="c741a030-72e4-4b40-a926-9dffcf9a9dee"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UMLClassDiagramProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="06bee352-def2-4b5c-979a-6f47049d04c6"
+                LastKnownName="ufoDB"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
             Id="323c0cb2-dbcf-4dbb-a346-c7ca80de6c3b"
             name="MessageOccurrenceSpecification34">
             <covered>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="1aa46d8c-de05-4960-9708-074b4680e464"
+            name="MessageOccurrenceSpecification33">
+            <covered>
+              <lifelineMoniker
+                Id="3b6b516c-9236-42d8-ade0-f616f9727945"
+                LastKnownName="UFO.SqlServer"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1193,7 +1213,7 @@
             <covered>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1211,7 +1231,91 @@
             <covered>
               <lifelineMoniker
                 Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="33bf17ad-6009-4460-9f7b-86c46c4d238f"
+            name="MessageOccurrenceSpecification57">
+            <covered>
+              <lifelineMoniker
+                Id="58ce0d4c-683d-4621-9543-bc66f268b2c7"
+                LastKnownName="UFO.Commander"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification
+            Id="e6f26c25-84dd-42f9-bf6b-34c05511f48c"
+            name="BehaviorExecutionSpecification17">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="58ce0d4c-683d-4621-9543-bc66f268b2c7"
+                LastKnownName="UFO.Commander"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="b951bb6f-f171-43bc-bbc9-56fab5f0eff8"
+                LastKnownName="ExecutionOccurrenceSpecification34"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="5b3c68a7-58ea-4d54-93bc-fcc1664ac42a"
+                LastKnownName="ExecutionOccurrenceSpecification33"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="3fcddaa6-22c2-48ca-9fb1-77b6142ff9a2"
+                LastKnownName="MessageOccurrenceSpecification58"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="5b3c68a7-58ea-4d54-93bc-fcc1664ac42a"
+            name="ExecutionOccurrenceSpecification33">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="693fde0a-bee2-4b7a-ad60-c189543e5665"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UMLClassDiagramProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="58ce0d4c-683d-4621-9543-bc66f268b2c7"
+                LastKnownName="UFO.Commander"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="3fcddaa6-22c2-48ca-9fb1-77b6142ff9a2"
+            name="MessageOccurrenceSpecification58">
+            <covered>
+              <lifelineMoniker
+                Id="58ce0d4c-683d-4621-9543-bc66f268b2c7"
+                LastKnownName="UFO.Commander"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="b951bb6f-f171-43bc-bbc9-56fab5f0eff8"
+            name="ExecutionOccurrenceSpecification34">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="98f31992-036b-4ac3-8497-8f1fc30798cb"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UMLClassDiagramProject.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="58ce0d4c-683d-4621-9543-bc66f268b2c7"
+                LastKnownName="UFO.Commander"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -1289,14 +1393,9 @@
           </lifeline>
           <lifeline
             Id="1c861f46-52b9-4e44-aaaa-670081dcdd91"
-            name="UFO.Service"
+            name="UFO.Server"
             isActor="false"
-            lifelineDisplayName="UFO.Service">
-            <represents>
-              <propertyMoniker
-                Id="881194c9-21d7-4ddb-9d58-fdde3a561759"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </represents>
+            lifelineDisplayName="UFO.Server">
             <topLevelOccurrences>
               <executionOccurrenceSpecificationMoniker
                 Id="68605ce8-a819-46ff-97ce-3a1798a40da3"
@@ -1305,22 +1404,6 @@
               <executionOccurrenceSpecificationMoniker
                 Id="b5302d71-59f4-476e-9d79-65329d017b8b"
                 LastKnownName="ExecutionOccurrenceSpecification10"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </topLevelOccurrences>
-          </lifeline>
-          <lifeline
-            Id="5bc38b36-396c-4565-9dd1-48b40522aa25"
-            name=": UFO.Domain Object"
-            isActor="false"
-            lifelineDisplayName=": UFO.Domain Object">
-            <topLevelOccurrences>
-              <executionOccurrenceSpecificationMoniker
-                Id="1f944600-770b-4412-bd50-0c515a41d5a5"
-                LastKnownName="ExecutionOccurrenceSpecification15"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="c1b2eb94-f7d6-4a6f-9832-96a3bb2c2449"
-                LastKnownName="ExecutionOccurrenceSpecification16"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </topLevelOccurrences>
           </lifeline>
@@ -1354,13 +1437,21 @@
                 Id="c4447d65-9d1f-44da-b59d-575ad2d44953"
                 LastKnownName="ExecutionOccurrenceSpecification22"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="4e648b02-d5f9-4cd5-afbb-9c7a3f6321b4"
+                LastKnownName="ExecutionOccurrenceSpecification23"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="80441027-f216-490c-81dd-5593013a06d3"
+                LastKnownName="ExecutionOccurrenceSpecification24"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
             </topLevelOccurrences>
           </lifeline>
         </lifelines>
         <messages>
           <message
             Id="a09016c7-5092-4bea-94c0-a302ad0f4a23"
-            name="AddArtist()"
+            name="ShowPerformances()"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -1379,7 +1470,7 @@
           </message>
           <message
             Id="b2b07c1c-340b-4a74-9988-23d05b8ce194"
-            name="Validate()"
+            name="GetPerformances()"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -1397,46 +1488,8 @@
             </receiveEvent>
           </message>
           <message
-            Id="df48678e-c4a8-449f-b419-061919bc8198"
-            name="&lt;&lt;create&gt;&gt;"
-            messageKind="Complete"
-            messageSort="CreateMessage"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="476e79c8-aef8-44d4-93a2-368d030174e5"
-                LastKnownName="MessageOccurrenceSpecification27"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="7cbad52a-501e-41a8-bc3f-ee08d09ee44a"
-                LastKnownName="MessageOccurrenceSpecification28"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="708bce45-7371-4051-a654-8ea5b0cd75ff"
-            name="&lt;&lt;return&gt;&gt;"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="0958c1a0-5e05-4598-8672-f561cc7b61d9"
-                LastKnownName="MessageOccurrenceSpecification29"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="788adff3-b773-43fd-bfc7-8d4a102039bd"
-                LastKnownName="MessageOccurrenceSpecification30"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </receiveEvent>
-          </message>
-          <message
             Id="044f408a-2d47-4310-959f-44655398039d"
-            name="InsertArtist(Artist)"
+            name="LoadPerformances()"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -1455,7 +1508,7 @@
           </message>
           <message
             Id="de0f232e-9ecb-4dd1-a1dd-c368b314ebaf"
-            name="Insert(Artist)"
+            name="FindVenuesByAreaId(id)"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -1488,6 +1541,44 @@
               <messageOccurrenceSpecificationMoniker
                 Id="2e087154-2752-44f1-a87e-7de159fc2458"
                 LastKnownName="MessageOccurrenceSpecification42"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="5bb08b4f-82bc-46b9-a5a4-749c2ab0dba1"
+            name="FindPerformancesByDateAndVenue(date, venue)"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="ba101ce8-ecbc-4220-944d-82d4471dba9f"
+                LastKnownName="MessageOccurrenceSpecification43"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="a440a518-b96c-4cf3-813e-11a2006b43f4"
+                LastKnownName="MessageOccurrenceSpecification44"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="bbcf1f1c-401b-470f-a5e5-775d8dbdd430"
+            name="&lt;&lt;return&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="8af44c30-7bab-4408-8299-c72afb13fe18"
+                LastKnownName="MessageOccurrenceSpecification45"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="9366aa98-e434-4ca4-85cd-450f6659f85c"
+                LastKnownName="MessageOccurrenceSpecification46"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </receiveEvent>
           </message>
@@ -1530,6 +1621,25 @@
             </receiveEvent>
           </message>
           <message
+            Id="2689716e-7fe2-4e5b-9a25-9ddd89e8593a"
+            name="&lt;&lt;create PerformancesCollectionVM&gt;&gt;"
+            messageKind="Complete"
+            messageSort="CreateMessage"
+            createSelfMessage="true">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="33bf17ad-6009-4460-9f7b-86c46c4d238f"
+                LastKnownName="MessageOccurrenceSpecification57"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="3fcddaa6-22c2-48ca-9fb1-77b6142ff9a2"
+                LastKnownName="MessageOccurrenceSpecification58"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </receiveEvent>
+          </message>
+          <message
             Id="569946ca-9458-41f9-a883-54531b87c3ed"
             name="&lt;&lt;return&gt;&gt;"
             messageKind="Complete"
@@ -1549,24 +1659,6 @@
             </receiveEvent>
           </message>
         </messages>
-        <ownedAttributesInternal>
-          <property
-            Id="881194c9-21d7-4ddb-9d58-fdde3a561759"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <subsystemMoniker
-                Id="3cdf6aaf-eabc-4ff7-8b28-6d787162c376"
-                LastKnownName="UFO.Service"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1587,16 +1679,6 @@
     <packageHasNamedElement>
       <executionEvent
         Id="9d28f197-9630-4927-9044-c126046cd652"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="d590e98a-982f-4d7d-946a-80895cec8938"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="0abbb73b-f76a-46cf-888c-1d7e90c1866e"
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1635,7 +1717,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </coveredLifelines>
             <finish>
@@ -1683,7 +1765,7 @@
             <covered>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -1703,7 +1785,7 @@
             <covered>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1789,7 +1871,7 @@
             <covered>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1952,22 +2034,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="0a03dacb-f4e0-455d-a453-30c5eb4348a3"
-            name="MessageOccurrenceSpecification48">
-            <covered>
-              <lifelineMoniker
-                Id="403e23fd-a714-4654-b9ad-8d1299948ef8"
-                LastKnownName="ufoDB"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="17507603-5919-48f7-b155-8e1a0b9a651b"
             name="MessageOccurrenceSpecification47">
             <covered>
               <lifelineMoniker
                 Id="637fa613-d11d-4936-9ac5-e8313838e15f"
                 LastKnownName="UFO.SqlServer"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="0a03dacb-f4e0-455d-a453-30c5eb4348a3"
+            name="MessageOccurrenceSpecification48">
+            <covered>
+              <lifelineMoniker
+                Id="403e23fd-a714-4654-b9ad-8d1299948ef8"
+                LastKnownName="ufoDB"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2025,7 +2107,7 @@
             <covered>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2048,22 +2130,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
+            Id="99ff3dc7-f17d-4a8c-9ccf-cc4bb7f91c92"
+            name="MessageOccurrenceSpecification29">
+            <covered>
+              <lifelineMoniker
+                Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
+                LastKnownName="UFO.Server"
+                LastKnownLocation="UMLClassDiagramProject.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
             Id="eb22b3a8-0cd7-4781-90c7-f47f8c24ff03"
             name="MessageOccurrenceSpecification30">
             <covered>
               <lifelineMoniker
                 Id="168d152c-30b4-4b6c-92ca-c3935f199005"
                 LastKnownName="UFO.Commander"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="99ff3dc7-f17d-4a8c-9ccf-cc4bb7f91c92"
-            name="MessageOccurrenceSpecification29">
-            <covered>
-              <lifelineMoniker
-                Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2081,7 +2163,7 @@
             <covered>
               <lifelineMoniker
                 Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-                LastKnownName="UFO.Service"
+                LastKnownName="UFO.Server"
                 LastKnownLocation="UMLClassDiagramProject.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -2305,14 +2387,9 @@
           </lifeline>
           <lifeline
             Id="93cde94f-b55c-4dd7-adfb-da4719ef8ae7"
-            name="UFO.Service"
+            name="UFO.Server"
             isActor="false"
-            lifelineDisplayName="UFO.Service">
-            <represents>
-              <propertyMoniker
-                Id="5262a5d6-7f2e-4cae-99a5-2aff6a5d077a"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </represents>
+            lifelineDisplayName="UFO.Server">
             <topLevelOccurrences>
               <executionOccurrenceSpecificationMoniker
                 Id="c4dea6e5-3ee1-49d5-a9b0-96eb5728fedd"
@@ -2557,24 +2634,6 @@
             </receiveEvent>
           </message>
         </messages>
-        <ownedAttributesInternal>
-          <property
-            Id="5262a5d6-7f2e-4cae-99a5-2aff6a5d077a"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <subsystemMoniker
-                Id="3cdf6aaf-eabc-4ff7-8b28-6d787162c376"
-                LastKnownName="UFO.Service"
-                LastKnownLocation="UMLClassDiagramProject.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2635,6 +2694,40 @@
     <packageHasNamedElement>
       <executionEvent
         Id="2fd2fdfc-c10e-465b-9c0a-f4c8cbdd5935"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="afaf3f9a-3e0e-4f23-b6d5-45fcd5eb6a60"
+        name="Edit Artist"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="64413304-8985-4b3e-8d8d-ff6fb3898ef1"
+        name="Delete Artist2"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="3faa6aeb-527d-4150-ac58-f46934724f50"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="c741a030-72e4-4b40-a926-9dffcf9a9dee"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="693fde0a-bee2-4b7a-ad60-c189543e5665"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="98f31992-036b-4ac3-8497-8f1fc30798cb"
         name="ExecutionEvent" />
     </packageHasNamedElement>
   </packagedElements>

@@ -122,6 +122,10 @@
             <useCaseMoniker Id="f59312c4-670f-4925-931f-a425c3a4b034" LastKnownName="Edit Artist Media" />
             <elementDefinition Id="d61c31f8-5b40-400e-9ea8-19f9d6d4d338" />
           </generalization>
+          <generalization Id="4dbe9314-7f83-46d3-8028-968764734caa" isSubstitutable="false">
+            <useCaseMoniker Id="c575313e-d4ca-4b82-9e3b-20c7b49b2411" LastKnownName="Edit Artist" />
+            <elementDefinition Id="f6e6b108-db8b-4439-bc6d-de5b50a53edf" />
+          </generalization>
         </generalsInternal>
         <additions>
           <include Id="4423cb8f-e82e-4573-aa91-cd1115f00574">
@@ -163,11 +167,6 @@
     <useCaseModelRootHasTypes>
       <useCase Id="21444f9e-f592-43e5-8a04-74a62a06cd9d" name="Add Performance" isAbstract="false" isLeaf="false">
         <elementDefinition Id="8ffc276e-43dc-4bdd-a234-7d825d910f75" />
-      </useCase>
-    </useCaseModelRootHasTypes>
-    <useCaseModelRootHasTypes>
-      <useCase Id="c685ae8b-c881-4910-a76a-a22325ed7902" name="Change Promovideo" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="5cb4de22-eb76-4854-9945-cffbfabb0b5d" />
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
@@ -217,14 +216,6 @@
             <useCaseMoniker Id="ac37710d-e2fb-43cb-a643-933821fe51a3" LastKnownName="Remove Media" />
             <elementDefinition Id="e63d546a-761e-41c0-b5ae-25b7beef81c7" />
           </generalization>
-          <generalization Id="94e90a6a-a2c6-4574-9ce1-198ef85d425d" isSubstitutable="false">
-            <useCaseMoniker Id="c685ae8b-c881-4910-a76a-a22325ed7902" LastKnownName="Change Promovideo" />
-            <elementDefinition Id="01ce60b0-91be-4963-bc97-7288d18661cb" />
-          </generalization>
-          <generalization Id="bc0339d0-39eb-4f12-aea8-f445bb5e1f38" isSubstitutable="false">
-            <useCaseMoniker Id="856181d4-e3b3-463a-a836-dc8e46b08360" LastKnownName="Change Profilepic" />
-            <elementDefinition Id="217c5029-63c7-471b-89a3-42a0335251ff" />
-          </generalization>
         </generalsInternal>
       </useCase>
     </useCaseModelRootHasTypes>
@@ -236,11 +227,6 @@
     <useCaseModelRootHasTypes>
       <useCase Id="5ef80176-4ab8-4922-83f5-954a062e153b" name="Add Artist" isAbstract="false" isLeaf="false">
         <elementDefinition Id="d6a11c24-8260-4353-96ad-f1ce50318d4f" />
-      </useCase>
-    </useCaseModelRootHasTypes>
-    <useCaseModelRootHasTypes>
-      <useCase Id="856181d4-e3b3-463a-a836-dc8e46b08360" name="Change Profilepic" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="488689bf-4691-477f-8be0-22f3079614c9" />
       </useCase>
     </useCaseModelRootHasTypes>
     <useCaseModelRootHasTypes>
@@ -281,6 +267,11 @@
     <useCaseModelRootHasTypes>
       <useCase Id="bd922129-55fd-4d86-a5fa-25cbc99b1d69" name="Edit Venue" isAbstract="false" isLeaf="false">
         <elementDefinition Id="4ed41701-85b5-4f30-bd66-e9311a7e474f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c575313e-d4ca-4b82-9e3b-20c7b49b2411" name="Edit Artist" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="afaf3f9a-3e0e-4f23-b6d5-45fcd5eb6a60" />
       </useCase>
     </useCaseModelRootHasTypes>
   </packagedElements>
