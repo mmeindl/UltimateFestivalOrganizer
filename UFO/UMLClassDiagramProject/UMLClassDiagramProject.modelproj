@@ -29,12 +29,12 @@
       <SubType>Content</SubType>
       <DependentUpon>ShowPerformances.sequencediagram</DependentUpon>
     </Content>
-    <Content Include="UMLSequenceDiagram1.sequencediagram">
+    <Content Include="addArtostSequenceDiagram.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="UMLSequenceDiagram1.sequencediagram.layout">
+    <Content Include="addArtostSequenceDiagram.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>UMLSequenceDiagram1.sequencediagram</DependentUpon>
+      <DependentUpon>addArtostSequenceDiagram.sequencediagram</DependentUpon>
     </Content>
     <Content Include="UMLUseCaseDiagram1.usecasediagram">
       <SubType>Content</SubType>
