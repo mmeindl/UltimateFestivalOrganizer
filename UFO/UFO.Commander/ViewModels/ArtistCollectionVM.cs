@@ -46,6 +46,7 @@ namespace UFO.Commander.ViewModels
 
                     if (currentArtist != null)
                     {
+                        // load pictures and videos if not already done
                         if (CurrentArtist.Pictures.Count == 0)
                         {
                             currentArtist.LoadPictures();

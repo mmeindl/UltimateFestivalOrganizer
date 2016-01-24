@@ -48,11 +48,16 @@ namespace UFO.Commander.Views.Controls
         XFont fntAbbreviation = new XFont(fontFamStr, 14);
         XFont fntLegend = new XFont(fontFamStr, 10);
 
+        private IList<Category> categories;
+        private IList<Country> countries;
+
         public PerformancesTab()
         {
             BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
 
             server = UFOServerFactory.GetUFOServer(type);
+            this.categories = server.FindAllCategories().ToList();
+            this.countries = server.FindAllCountries().ToList();
 
             InitializeComponent();
 
@@ -62,13 +67,11 @@ namespace UFO.Commander.Views.Controls
         private void drag_performance(object sender, MouseButtonEventArgs e)
         {
             PerformanceCollectionVM performanceCollectionVM = ((FrameworkElement)sender).DataContext as PerformanceCollectionVM;
-
             DataGridCell cell = GetCell((DependencyObject)e.OriginalSource);
 
             GetPerformanceFromCell(cell);
 
             Cursor = Cursors.Cross;
-
             isDragging = true;
         }
 
@@ -95,17 +98,20 @@ namespace UFO.Commander.Views.Controls
                     }
                     catch (Exception exc)
                     {
-                        // nothing to do
                     }
 
+                    // update datacontext
                     if (success)
                     {
+                        // switch performances (change time, venue, artist)
                         PerformanceVM dropSpot = new PerformanceVM(new Performance(performanceVMtoDrop.Performance.DateTime.Date +
                                                                                    new TimeSpan(selectedPerformanceVM.Performance.DateTime.Hour, 0, 0),
                                                                                    selectedPerformanceVM.Performance.VenueId,
                                                                                    performanceVMtoDrop.Performance.ArtistId,
                                                                                    performanceVMtoDrop.Performance.Id),
                                                                    selectedPerformanceVM.PerformanceRowVM,
+                                                                   this.countries,
+                                                                   this.categories,
                                                                    server);
 
                         PerformanceVM dragSpot = new PerformanceVM(new Performance(selectedPerformanceVM.Performance.DateTime.Date +
@@ -114,6 +120,8 @@ namespace UFO.Commander.Views.Controls
                                                                                    selectedPerformanceVM.Performance.ArtistId,
                                                                                    selectedPerformanceVM.Performance.Id),
                                                                    performanceVMtoDrop.PerformanceRowVM,
+                                                                   this.countries,
+                                                                   this.categories,
                                                                    server);
 
                         PerformanceRowVM dropRow = dropSpot.PerformanceRowVM;
@@ -169,9 +177,6 @@ namespace UFO.Commander.Views.Controls
             PerformanceArtistsWindow performanceArtistWindow = new PerformanceArtistsWindow();
             performanceArtistWindow.ShowDialog();
 
-            
-            
-            
             try
             {
                 var artist = performanceArtistWindow.Artist;
@@ -181,11 +186,12 @@ namespace UFO.Commander.Views.Controls
 
                 bool success = server.InsertPerformance(p);
 
+                // update datacontext
                 if (success)
                 {
                     p = server.FindPerformanceByDateTimeAndArtistId(p.DateTime, p.ArtistId);
 
-                    PerformanceVM pVM = new PerformanceVM(p, performanceVM.PerformanceRowVM, server);
+                    PerformanceVM pVM = new PerformanceVM(p, performanceVM.PerformanceRowVM, this.countries, this.categories, server);
 
                     PerformanceRowVM row = pVM.PerformanceRowVM;
                     int perfIndex = pVM.Performance.DateTime.Hour - 14;
@@ -201,7 +207,6 @@ namespace UFO.Commander.Views.Controls
             }
             catch (Exception exc)
             {
-                // nothing to do
             }
 
             selectedPerformanceVM = null;
@@ -215,11 +220,14 @@ namespace UFO.Commander.Views.Controls
             {
                 bool success = server.DeletePerformance(performanceVM.Performance);
 
+                // update datacontext
                 if (success)
                 {
                     PerformanceVM p = new PerformanceVM(new Performance(new DateTime(2000, 1, 1) + new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
                                                                         performanceVM.Performance.VenueId, 0),
                                                         selectedPerformanceVM.PerformanceRowVM,
+                                                        this.countries,
+                                                        this.categories,
                                                         server);
 
                     PerformanceRowVM row = p.PerformanceRowVM;
@@ -299,6 +307,8 @@ namespace UFO.Commander.Views.Controls
             MessageBox.Show("E-mails were sent!", "Success");
 
         }
+
+        // email helpers
 
         private string CreateMessageBody(Artist artist, DateTime date)
         {
@@ -399,7 +409,6 @@ namespace UFO.Commander.Views.Controls
                     new XRect(x + i, y, page.Width, page.Height), XStringFormats.TopLeft);
                 time++;
             }
-
         }
 
         private void DrawContent(double x, double y, PdfPage page, XGraphics gfx, int areaId, DateTime date)
@@ -452,7 +461,7 @@ namespace UFO.Commander.Views.Controls
             CreatePDF();
         }
 
-        // Helpers
+        // edit performances helpers
 
         private DataGridCell GetCell(DependencyObject dep)
         {

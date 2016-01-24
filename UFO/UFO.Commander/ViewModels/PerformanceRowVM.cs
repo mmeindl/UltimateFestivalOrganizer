@@ -22,12 +22,18 @@ namespace UFO.Commander.ViewModels
 
         private PerformanceCollectionVM performanceCollectionVM;
 
+        private IList<Category> categories;
+        private IList<Country> countries;
+
         public PerformanceRowVM(IEnumerable<Performance> performances, Venue venue, PerformanceCollectionVM performanceCollectionVM, IUFOServer server)
         {
             this.venue = venue;
             this.performanceCollectionVM = performanceCollectionVM;
             this.VenuePerformances = new ObservableCollection<PerformanceVM>();
             this.server = server;
+
+            this.categories = server.FindAllCategories().ToList();
+            this.countries = server.FindAllCountries().ToList();
 
             LoadPerformances(performances);
         }
@@ -42,6 +48,7 @@ namespace UFO.Commander.ViewModels
             get { return venue.ShortName; }
         }
 
+        // getter/setter for the artist at a certain venue for each time (14:00 - 22:00)
         public PerformanceArtistVM PerformanceArtist14
         {
             get
@@ -193,13 +200,18 @@ namespace UFO.Commander.ViewModels
 
         private async void LoadPerformances(IEnumerable<Performance> performances)
         {
-            
             VenuePerformances.Clear();
-            for (int i = 0; i < 9; ++i)
+
+            // creates a list of performances for each hour
+            // each hour gets an empty performance, signaled with the artist id 0
+            for (int i = 14; i < 23; ++i)
             {
-                VenuePerformances.Add(new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 14 + i, 0, 0, 0), venue.Id, 0), this, server));
+                VenuePerformances.Add(new PerformanceVM(new Performance(new DateTime(2000, 1, 1, i, 0, 0, 0), venue.Id, 0),
+                    this, this.countries, this.categories, server));
             }
 
+            // allocates the right list by comparing the times
+            // overwrites the empty performances at the certain place
             IEnumerator<Performance> enumerator = performances.GetEnumerator();
             while (await Task.Run(() => enumerator.MoveNext()))
             {

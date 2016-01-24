@@ -18,8 +18,6 @@ namespace UFO.Commander.Views
             InitializeComponent();
             myMap.Focus();
             myMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
-
-            
         }
 
         private void viewMap_ViewChangeOnFrame(object sender, MapEventArgs e)

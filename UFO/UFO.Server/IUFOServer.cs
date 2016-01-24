@@ -20,7 +20,7 @@ namespace UFO.Server
 
         // ArtistPicture
         ArtistPicture FindArtistPictureByURL(string url);
-        IList<ArtistPicture> FindAllPicturesByArtistId(int artistId);
+        IEnumerable<ArtistPicture> FindAllPicturesByArtistId(int artistId);
         ArtistPicture FindProfilePictureByArtistId(int artistId);
 
         bool InsertArtistPicture(ArtistPicture artistPicture);
@@ -29,7 +29,7 @@ namespace UFO.Server
 
         // ArtistVideo
         ArtistVideo FindArtistVideoByURL(string url);
-        IList<ArtistVideo> FindAllVideosByArtistId(int artistId);
+        IEnumerable<ArtistVideo> FindAllVideosByArtistId(int artistId);
         ArtistVideo FindPromoVideoByArtistId(int artistId);
 
         bool InsertArtistVideo(ArtistVideo artistVideo);
@@ -38,7 +38,7 @@ namespace UFO.Server
 
         //Area
         Area FindAreaByName(string name);
-        IList<Area> FindAllAreas();
+        IEnumerable<Area> FindAllAreas();
 
         bool InsertArea(Area area);
         bool DeleteArea(Area area);
@@ -63,7 +63,7 @@ namespace UFO.Server
 
         //Country
         Country FindCountryByAbbreviation(string abbreviation);
-        IList<Country> FindAllCountries();
+        IEnumerable<Country> FindAllCountries();
 
         //Performance
         IEnumerable<Performance> FindAllPerformances();
@@ -82,14 +82,14 @@ namespace UFO.Server
 
         // PerformancePicture
         PerformancePicture FindPerformancePictureByURL(string url);
-        IList<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId);
+        IEnumerable<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId);
 
         bool InsertPerformancePicture(PerformancePicture performancePicture);
         bool DeletePerformancePicture(PerformancePicture performancePicture);
 
         // PerformanceVideo
         PerformanceVideo FindPerformanceVideoByURL(string url);
-        IList<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId);
+        IEnumerable<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId);
 
         bool InsertPerformanceVideo(PerformanceVideo performanceVideo);
         bool DeletePerformanceVideo(PerformanceVideo performanceVideo);

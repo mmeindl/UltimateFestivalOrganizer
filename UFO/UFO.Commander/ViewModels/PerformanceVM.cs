@@ -21,20 +21,42 @@ namespace UFO.Commander.ViewModels
 
         private PerformanceRowVM performanceRowVM;
 
-        public PerformanceVM(Performance performance, PerformanceRowVM performanceRowVM, IUFOServer server)
+        private IList<Country> countries;
+        private IList<Category> categories;
+
+        public PerformanceVM(Performance performance, PerformanceRowVM performanceRowVM, IList<Country> countries, IList<Category> categories, IUFOServer server)
         {
             this.performance = performance;
             this.performanceRowVM = performanceRowVM;
             this.server = server;
 
+            this.countries = countries;
+            this.categories = categories;
+
             if (performance.Id != 0)
             {
                 Artist artist = server.FindArtistById(performance.ArtistId);
-                performanceArtistVM = new PerformanceArtistVM(artist,
-                                                              server.FindCategoryById(artist.CategoryId),
-                                                              server.FindCountryByAbbreviation(artist.CountryId),
-                                                              this,
-                                                              server);
+
+                Country country = null;
+                Category category = null;
+
+                foreach (Country c in countries)
+                {
+                    if (c.Abbreviation.Equals(artist.CountryId))
+                    {
+                        country = c;
+                    }
+                }
+
+                foreach (Category c in categories)
+                {
+                    if (c.Id.Equals(artist.CategoryId))
+                    {
+                        category = c;
+                    }
+                }
+
+                performanceArtistVM = new PerformanceArtistVM(artist, category, country, this, server);
             }
         }
 
@@ -75,11 +97,27 @@ namespace UFO.Commander.ViewModels
                     performance = value;
 
                     Artist artist = server.FindArtistById(performance.ArtistId);
-                    performanceArtistVM = new PerformanceArtistVM(artist,
-                                                                  server.FindCategoryById(artist.CategoryId),
-                                                                  server.FindCountryByAbbreviation(artist.CountryId),
-                                                                  this,
-                                                                  server);
+
+                    Country country = null;
+                    Category category = null;
+
+                    foreach (Country c in countries)
+                    {
+                        if (c.Abbreviation.Equals(artist.CountryId))
+                        {
+                            country = c;
+                        }
+                    }
+
+                    foreach (Category c in categories)
+                    {
+                        if (c.Id.Equals(artist.CategoryId))
+                        {
+                            category = c;
+                        }
+                    }
+
+                    performanceArtistVM = new PerformanceArtistVM(artist, category, country, this, server);
 
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Performance)));
                 }

@@ -23,6 +23,7 @@ namespace UFO.Commander.Views.Controls
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // nothing to do here
             throw new NotImplementedException();
         }
     }
