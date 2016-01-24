@@ -104,13 +104,11 @@ namespace UFO.Commander.ViewModels
 
         private void LoadPerformanceDays()
         {
-            IList<DateTime> dates = server.GetPerformanceDates().ToList();
+            performanceDays = server.GetPerformanceDates();
 
-            performanceDays = days;
-
-            if (days.Count() > 0)
+            if (performanceDays.Count() > 0)
             {
-                currentDate = days[0];
+                currentDate = performanceDays.First();
             }
         }
 
