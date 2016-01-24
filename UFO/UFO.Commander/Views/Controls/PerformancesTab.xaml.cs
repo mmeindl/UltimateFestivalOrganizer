@@ -263,7 +263,7 @@ namespace UFO.Commander.Views.Controls
 
         private void SendEmail(object sender, RoutedEventArgs e)
         {
-
+            btnSendEmail.IsEnabled = false;
             SmtpClient smtpClient = new SmtpClient();
             NetworkCredential basicCredential =
                 new NetworkCredential("ufo.swk@gmx.at", "?ufoswk1");
@@ -296,16 +296,17 @@ namespace UFO.Commander.Views.Controls
 
                 try
                 {
-                    smtpClient.Send(message);
+                    smtpClient.SendAsync(message, artist.Email);
                 }
                 catch (Exception ex)
                 {
-                    //Error, could not send the message
-                    //MessageBox.Show(ex.Message, "Error");
+                    //Error, could not send the message would appear at every artist, because 
+                    //the test-addresses aren't reachable
+                    MessageBox.Show(String.Format("{0}: {1}", artist.Email, ex.Message), "Error");
                 }
             }
             MessageBox.Show("E-mails were sent!", "Success");
-
+            btnSendEmail.IsEnabled = true;
         }
 
         // email helpers
@@ -363,6 +364,7 @@ namespace UFO.Commander.Views.Controls
             }
 
         }
+        // create PDF helpers
 
         private void DrawVenueLegend(double x, double y, PdfPage page, XGraphics gfx, int areaId)
         {
@@ -454,11 +456,6 @@ namespace UFO.Commander.Views.Controls
                 xPos = x;
             }
 
-        }
-
-        private void TestPdf(object sender, RoutedEventArgs e)
-        {
-            CreatePDF();
         }
 
         // edit performances helpers
