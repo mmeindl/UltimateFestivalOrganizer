@@ -22,6 +22,13 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="Copy of addArtistSequenceDiagram.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Copy of addArtistSequenceDiagram.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Copy of addArtistSequenceDiagram.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="ShowPerformances.sequencediagram">
       <SubType>Content</SubType>
     </Content>
@@ -29,12 +36,12 @@
       <SubType>Content</SubType>
       <DependentUpon>ShowPerformances.sequencediagram</DependentUpon>
     </Content>
-    <Content Include="addArtostSequenceDiagram.sequencediagram">
+    <Content Include="addArtistSequenceDiagram.sequencediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="addArtostSequenceDiagram.sequencediagram.layout">
+    <Content Include="addArtistSequenceDiagram.sequencediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>addArtostSequenceDiagram.sequencediagram</DependentUpon>
+      <DependentUpon>addArtistSequenceDiagram.sequencediagram</DependentUpon>
     </Content>
     <Content Include="UMLUseCaseDiagram1.usecasediagram">
       <SubType>Content</SubType>
