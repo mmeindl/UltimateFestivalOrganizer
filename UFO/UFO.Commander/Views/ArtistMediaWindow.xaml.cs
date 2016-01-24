@@ -66,6 +66,7 @@ namespace UFO.Commander.Views
                 MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
+            // undo datacontext changes
             if (!success)
             {
                 artist.WebsiteURL = oldWebsite;
@@ -84,10 +85,12 @@ namespace UFO.Commander.Views
                     MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
                 }
 
+                // undo datacontext changes
                 if (!success)
                 {
                     newPicture.IsProfilePicture = false;
                 }
+                // update datacontext
                 else
                 {
                     if (oldPicture != null)
@@ -109,10 +112,12 @@ namespace UFO.Commander.Views
                     MessageBoxResult result = MessageBox.Show(msgSaveException, msgWindowTitle);
                 }
 
+                // undo datacontext changes
                 if (!success)
                 {
                     newVideo.IsPromoVideo = false;
                 }
+                // update datacontext
                 else
                 {
                     if (oldVideo != null)
@@ -144,6 +149,7 @@ namespace UFO.Commander.Views
                     result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
 
+            // update datacontext
             if (success)
             {
                 picture = server.FindArtistPictureByURL(picture.PictureURL);
@@ -161,6 +167,7 @@ namespace UFO.Commander.Views
 
             success = server.DeleteArtistPicture(picture);
 
+            // update datacontext
             if (success)
             {
                 if (picture.IsProfilePicture)
@@ -192,7 +199,8 @@ namespace UFO.Commander.Views
                 else
                     result = MessageBox.Show(msgInvalidURLPathException, msgWindowTitle);
             }
-            
+
+            // update datacontext
             if (success)
             {
                 video = server.FindArtistVideoByURL(video.VideoURL);
@@ -210,6 +218,7 @@ namespace UFO.Commander.Views
 
             success = server.DeleteArtistVideo(video);
 
+            // update datacontext
             if (success)
             {
                 if (video.IsPromoVideo)

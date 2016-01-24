@@ -87,6 +87,8 @@ namespace UFO.Commander.ViewModels
             IEnumerable<Venue> venues = server.FindVenuesByAreaId(currentArea.Id);
 
             IEnumerator<Venue> enumerator = venues.GetEnumerator();
+
+            // creates a row for each venue in the timetable
             while (await Task.Run(() => enumerator.MoveNext()))
             {
                 IEnumerable<Performance> performances = server.FindPerformancesByDateAndVenue(currentDate, enumerator.Current);
@@ -102,13 +104,7 @@ namespace UFO.Commander.ViewModels
 
         private void LoadPerformanceDays()
         {
-            IEnumerable<DateTime> dates = server.GetPerformanceDates();
-            IList<DateTime> days = new List<DateTime>();
-
-            foreach (DateTime day in dates)
-            {
-                days.Add(day);
-            }
+            IList<DateTime> dates = server.GetPerformanceDates().ToList();
 
             performanceDays = days;
 

@@ -78,6 +78,7 @@ namespace UFO.Commander.Views.Controls
                 Area area = new Area(name);
                 bool success = server.InsertArea(area);
 
+                // update datacontext
                 if (success)
                 {
                     area = server.FindAreaByName(name);
@@ -112,6 +113,7 @@ namespace UFO.Commander.Views.Controls
             {
                 bool success = server.DeleteArea(areaVM.Area);
 
+                // update datacontext
                 if (success)
                 {
                     areaVM.VenueCollectionVM.Areas.Remove(areaVM);
@@ -167,6 +169,7 @@ namespace UFO.Commander.Views.Controls
                     result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
+            // update datacontext
             if (success)
             {
                 venue = server.FindVenueByName(venue.Name);
@@ -233,13 +236,16 @@ namespace UFO.Commander.Views.Controls
                     result = MessageBox.Show(msgSaveException, msgWindowTitle);
             }
 
+            // undo datacontext changes
             if (!success)
             {
                 venueVM.Name = oldName;
                 venueVM.ShortName = oldShortName;
                 venueVM.GeoLocationLat = oldGeoLat;
                 venueVM.GeoLocationLon = oldGeoLon;
-            } else
+            }
+            else
+            // update datacontext
             {
                 editMapPane.Visibility = Visibility.Collapsed;
                 editLocationGrid.Visibility = Visibility.Visible;
@@ -254,6 +260,7 @@ namespace UFO.Commander.Views.Controls
             {
                 bool success = server.DeleteVenue(venueVM.Venue);
 
+                // update datacontext
                 if (success)
                 {
                     venueVM.VenueCollectionVM.Venues.Remove(venueVM);

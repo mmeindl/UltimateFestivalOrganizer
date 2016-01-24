@@ -38,6 +38,7 @@ namespace UFO.Commander.Views
 
         }
 
+        // refresh context on tab switch
         private void performances_Clicked(object sender, MouseButtonEventArgs e)
         {
             Performances.DataContext = new PerformanceCollectionVM(server);

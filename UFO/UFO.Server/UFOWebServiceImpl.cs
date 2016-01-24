@@ -361,6 +361,7 @@ namespace UFO.Server
             return result;
         }
 
+        // mapper
         private Domain.Category mapCategory(UFOWebService.Category c)
         {
             return new Domain.Category(c.Name, c.Color, c.Id);
