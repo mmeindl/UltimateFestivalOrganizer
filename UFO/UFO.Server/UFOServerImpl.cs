@@ -263,7 +263,7 @@ namespace UFO.Server
             return areaDao.FindByName(name);
         }
 
-        public IList<Area> FindAllAreas()
+        public IEnumerable<Area> FindAllAreas()
         {
             IAreaDao areaDao = DalFactory.CreateAreaDao();
 
@@ -292,7 +292,7 @@ namespace UFO.Server
             return countryDao.FindByAbbreviation(abbreviation);
         }
 
-        public IList<Country> FindAllCountries()
+        public IEnumerable<Country> FindAllCountries()
         {
             ICountryDao countryDao = DalFactory.CreateCountryDao();
 
@@ -307,7 +307,7 @@ namespace UFO.Server
             return artistPictureDao.FindByURL(url);
         }
 
-        public IList<ArtistPicture> FindAllPicturesByArtistId(int artistId)
+        public IEnumerable<ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
             IArtistPictureDao artistPictureDao = DalFactory.CreateArtistPictureDao();
 
@@ -350,7 +350,7 @@ namespace UFO.Server
             return artistVideoDao.FindByURL(url);
         }
 
-        public IList<ArtistVideo> FindAllVideosByArtistId(int artistId)
+        public IEnumerable<ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
             IArtistVideoDao artistVideoDao = DalFactory.CreateArtistVideoDao();
 
@@ -393,7 +393,7 @@ namespace UFO.Server
             return PerformancePictureDao.FindByURL(url);
         }
 
-        public IList<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
+        public IEnumerable<PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
             IPerformancePictureDao PerformancePictureDao = DalFactory.CreatePerformancePictureDao();
 
@@ -422,7 +422,7 @@ namespace UFO.Server
             return PerformanceVideoDao.FindByURL(url);
         }
 
-        public IList<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
+        public IEnumerable<PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
             IPerformanceVideoDao PerformanceVideoDao = DalFactory.CreatePerformanceVideoDao();
 
