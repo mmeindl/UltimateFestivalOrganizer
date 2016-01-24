@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="32779c4e-0fc5-48e7-bdbd-b36dd5fc1a41"
+  name="UMLClassDiagramProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="81ab7cb6-41af-4a0f-bb15-b0edf72a25e2"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="925deb2b-9d94-4da7-8843-c090fae752c1"
+        name="Interface1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d02cc8e8-142d-4394-817f-60731a51b28b"
+        name="Class2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="c4ac1bb3-2665-4e6e-a2d8-a2e7a72c7021"
+        name="Admin"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="6c09caaa-6b3e-4ad5-8532-ad7cb6dcafc6"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Login"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9591f454-c634-465c-bcda-04b3491332a2"
+              LastKnownName="Login"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cf1ff066-bffb-4c5c-87a7-88d1b271945d"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="851063f9-4331-4836-bf26-4f4b0a1ed17b"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="22ffb19e-fece-48dd-a93b-0d985b6ce40a"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage Performances"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="f3f6d83c-144f-4b70-a33a-fa574bae1cd5"
+              LastKnownName="Manage Performances"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="59a0dba4-afab-4099-b0a6-207ef5aabdca"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="64aee921-fc7b-4706-8419-03d67f2add61"
+                  name="Manage Performances"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="417c81fd-58f3-46ad-9b8d-7bb319f89d81"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage Artist"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="3f76fa53-92ab-4138-9e6f-4c1ad5c9a187"
+              LastKnownName="Manage Artist"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="680485e8-9ad2-4007-a782-bd3d625827b4"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b53cb9a2-8ceb-40ea-8200-84b436cfeaf2"
+                  name="Manage Artist"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f4f9104d-2d19-4c56-88c6-4ab43a337297"
+            isDerived="false"
+            sourceEndRoleName="Admin"
+            targetEndRoleName="Manage Venues"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="eb569d88-d52c-4eb1-9914-745e7b055827"
+              LastKnownName="Manage Venues"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7033243c-d104-43bf-a81c-44af775c2a2c"
+                  name="Admin"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ecec9cc4-1412-429c-b8e0-1d065e42ef13"
+                  name="Manage Venues"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="5a9e343c-8e9a-4e21-8a1d-9bbd5eea1b27"
+        name="Actor1"
+        isAbstract="true"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="3cdf6aaf-eabc-4ff7-8b28-6d787162c376"
+        name="UFO.Service"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9591f454-c634-465c-bcda-04b3491332a2"
+        name="Login"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f3f6d83c-144f-4b70-a33a-fa574bae1cd5"
+        name="Manage Performances"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="dba41094-01c7-4a97-8bdc-df4c3d4b1d7d"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="8ffc276e-43dc-4bdd-a234-7d825d910f75"
+              LastKnownName="Add Performance"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="d719d54b-27e4-4900-aabd-a6eee8defe26"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="2d260120-a3b9-4071-84ed-69f9a6fef800"
+              LastKnownName="Move Performance"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="cf2688ec-bb33-4dc3-8b1b-2504ed3c73e4"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="58db19ef-2cd3-4bea-958e-7178acc64237"
+              LastKnownName="Delete Performance"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="de306da2-c5cc-45de-b0bd-669fba8185aa"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="bf62e5df-9046-4d8e-b9cd-cade0ea25833"
+              LastKnownName="Edit Performance Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+        <additions>
+          <include
+            Id="fb415d59-e4ab-4199-ae16-ac0ceee369ed">
+            <useCaseMoniker
+              Id="9591f454-c634-465c-bcda-04b3491332a2"
+              LastKnownName="Login"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3f76fa53-92ab-4138-9e6f-4c1ad5c9a187"
+        name="Manage Artist"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="87e7e3e6-7b1e-4e10-8f9b-a2e09e77da9e"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="d6a11c24-8260-4353-96ad-f1ce50318d4f"
+              LastKnownName="Add Artist"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="9861a79b-dc39-4c36-89cd-754e6d2c0aa2"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="bd2e7a3a-4c47-4322-9b78-18d84dddec16"
+              LastKnownName="Delete Artist"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="d61c31f8-5b40-400e-9ea8-19f9d6d4d338"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="cfebea1e-903f-4656-ab69-56f86a403088"
+              LastKnownName="Edit Artist Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+        <additions>
+          <include
+            Id="d6019c2c-845e-4cd1-9585-2524c2fe1d72">
+            <useCaseMoniker
+              Id="9591f454-c634-465c-bcda-04b3491332a2"
+              LastKnownName="Login"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="eb569d88-d52c-4eb1-9914-745e7b055827"
+        name="Manage Venues"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="57b85f67-b908-4f2a-820f-dcf2ed5ea810"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="19828522-f935-42f3-96ca-8c0311f618aa"
+              LastKnownName="Add Venue"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="879ad1ea-f740-4c8e-b0e4-fce0f3574e4e"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="4ed41701-85b5-4f30-bd66-e9311a7e474f"
+              LastKnownName="Edit Venue"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="261d121b-8dd4-46e3-af46-ceb1414b9f40"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="5cf5a2e2-a7af-46d7-9355-cdff6133dad5"
+              LastKnownName="Delete Venue"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="1c6e80d8-f49b-4cf4-a8ac-26eba0ab923b"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="39656e6b-65c1-453d-947b-b90ce8bd0265"
+              LastKnownName="Manage Areas"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+        <additions>
+          <include
+            Id="5f1682c1-47c1-4e39-8253-b9e45c5eb1a5">
+            <useCaseMoniker
+              Id="9591f454-c634-465c-bcda-04b3491332a2"
+              LastKnownName="Login"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8ffc276e-43dc-4bdd-a234-7d825d910f75"
+        name="Add Performance"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9b6f16ee-379f-483c-8710-081f8101a6bc"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="fd5eef90-ea25-419b-9670-1cb0fe02d9de"
+        name="UseCase11"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5cb4de22-eb76-4854-9945-cffbfabb0b5d"
+        name="Change Promovideo"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0d4243c1-c485-40b5-8b36-5c17f7254258"
+        name="Remove Media"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3dacd0ec-0808-4f2b-a6ea-b36399c8ed4f"
+        name="Add Media"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="58db19ef-2cd3-4bea-958e-7178acc64237"
+        name="Delete Performance"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2d260120-a3b9-4071-84ed-69f9a6fef800"
+        name="Move Performance"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="bf62e5df-9046-4d8e-b9cd-cade0ea25833"
+        name="Edit Performance Media"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="dcfe48df-e005-498b-8efa-717735e884da"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="3dacd0ec-0808-4f2b-a6ea-b36399c8ed4f"
+              LastKnownName="Add Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="cdfbec8b-d3c7-44da-af69-0ea8c5bfc5f7"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="0d4243c1-c485-40b5-8b36-5c17f7254258"
+              LastKnownName="Remove Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3e4d80aa-ca99-435f-8ec3-314bea1a76bc"
+        name="UseCase111"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0c3b42cf-8178-4542-80d5-277e5b234e38"
+        name="UseCase112"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c73ce025-e293-4e17-91c6-d521022726e3"
+        name="UseCase113"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2f72a40a-2ff4-4ee7-8d6e-fc9df2e1a785"
+        name="UseCase114"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="20ba9c9e-0a88-479e-a48b-19c44a3d91e4"
+        name="UseCase115"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0dc0e56b-2aa5-45e6-be0e-9f61c4650487"
+        name="UseCase116"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e2a86797-e1a8-45e2-bb7d-fc1cc6d23bf8"
+        name="UseCase12"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="dafc913e-aa66-41fa-9172-717de246efc4"
+        name="UseCase13"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="44960447-061c-4ce6-a2d7-edcc5bd74199"
+        name="UseCase14"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2b96021e-57e0-486a-995d-4b2f626c93a6"
+        name="UseCase15"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="35b6bafa-d509-4808-8775-b20500f1caa7"
+        name="UseCase16"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="eb46f393-7f91-487b-810d-24d479666ad3"
+        name="Edit Performance Media1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cfebea1e-903f-4656-ab69-56f86a403088"
+        name="Edit Artist Media"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="3e292d5f-587c-43a4-931b-39b5f30a804b"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="3dacd0ec-0808-4f2b-a6ea-b36399c8ed4f"
+              LastKnownName="Add Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="e63d546a-761e-41c0-b5ae-25b7beef81c7"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="0d4243c1-c485-40b5-8b36-5c17f7254258"
+              LastKnownName="Remove Media"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="01ce60b0-91be-4963-bc97-7288d18661cb"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="5cb4de22-eb76-4854-9945-cffbfabb0b5d"
+              LastKnownName="Change Promovideo"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="217c5029-63c7-471b-89a3-42a0335251ff"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="488689bf-4691-477f-8be0-22f3079614c9"
+              LastKnownName="Change Profilepic"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="bd2e7a3a-4c47-4322-9b78-18d84dddec16"
+        name="Delete Artist"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d6a11c24-8260-4353-96ad-f1ce50318d4f"
+        name="Add Artist"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="488689bf-4691-477f-8be0-22f3079614c9"
+        name="Change Profilepic"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="19828522-f935-42f3-96ca-8c0311f618aa"
+        name="Add Venue"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5cf5a2e2-a7af-46d7-9355-cdff6133dad5"
+        name="Delete Venue"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c23f7b8b-daf3-4d42-80e0-aedfc802a091"
+        name="Manage Venues"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="585124d3-bcc8-4ced-bcf4-51e8b60d46a3"
+        name="Add Area"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="63e10fea-27fc-48e1-90fa-1abf4c2bb2ca"
+        name="Delete Area"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="39656e6b-65c1-453d-947b-b90ce8bd0265"
+        name="Manage Areas"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="cf734e7a-cc38-426b-82b2-45a53b993b45"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="585124d3-bcc8-4ced-bcf4-51e8b60d46a3"
+              LastKnownName="Add Area"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+          <generalization
+            Id="2375ff91-419a-4c29-8390-5d7a51036524"
+            isSubstitutable="false">
+            <useCaseMoniker
+              Id="63e10fea-27fc-48e1-90fa-1abf4c2bb2ca"
+              LastKnownName="Delete Area"
+              LastKnownLocation="UMLClassDiagramProject.uml" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4ed41701-85b5-4f30-bd66-e9311a7e474f"
+        name="Edit Venue"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

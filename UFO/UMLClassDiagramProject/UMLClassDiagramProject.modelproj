@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{b5217520-25fb-4206-9f07-1098831b0ada}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>UMLClassDiagramProject</Name>
+    <RootNamespace>UMLClassDiagramProject</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="UMLUseCaseDiagram1.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UMLUseCaseDiagram1.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UMLUseCaseDiagram1.usecasediagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\UMLClassDiagramProject.uml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UFO.Commander\UFO.Commander.csproj">
+      <Name>UFO.Commander</Name>
+      <Project>{9585a5cf-ab41-49f7-833b-1ed1ceae9f6c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Dal.Common\UFO.Dal.Common.csproj">
+      <Name>UFO.Dal.Common</Name>
+      <Project>{f5d9d3fd-883c-4e74-9b50-f2789fe4945f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Dal.SqlServer\UFO.Dal.SqlServer.csproj">
+      <Name>UFO.Dal.SqlServer</Name>
+      <Project>{b3280911-1931-4482-a234-672d4a42f79b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Domain\UFO.Domain.csproj">
+      <Name>UFO.Domain</Name>
+      <Project>{cc7a683a-b1d1-4849-8fe1-803d879498cf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Server\UFO.Server.csproj">
+      <Name>UFO.Server</Name>
+      <Project>{8ef4cc9a-b12b-4fd3-8119-159d166035e7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UFO.Service\UFO.Service.csproj">
+      <Name>UFO.Service</Name>
+      <Project>{bfe86396-67f5-474b-814c-dbb04431e025}</Project>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
