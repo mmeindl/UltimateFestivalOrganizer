@@ -188,7 +188,7 @@ namespace UFO.Server
             return mapArea(service.FindAreaByName(name));
         }
 
-        public IList<Domain.Area> FindAllAreas()
+        public IEnumerable<Domain.Area> FindAllAreas()
         {
             return service.FindAllAreas()
                 .Select(a => mapArea(a))
@@ -211,7 +211,7 @@ namespace UFO.Server
             return mapCountry(service.FindCountryByAbbreviation(abbreviation));
         }
 
-        public IList<Domain.Country> FindAllCountries()
+        public IEnumerable<Domain.Country> FindAllCountries()
         {
             return service.FindAllCountries()
                 .Select(c => mapCountry(c))
@@ -225,7 +225,7 @@ namespace UFO.Server
             return mapArtistPicture(service.FindArtistPictureByURL(url));
         }
 
-        public IList<Domain.ArtistPicture> FindAllPicturesByArtistId(int artistId)
+        public IEnumerable<Domain.ArtistPicture> FindAllPicturesByArtistId(int artistId)
         {
             return service.FindAllPicturesByArtistId(artistId)
                 .Select(p => mapArtistPicture(p))
@@ -267,7 +267,7 @@ namespace UFO.Server
             return mapArtistVideo(service.FindArtistVideoByURL(url));
         }
 
-        public IList<Domain.ArtistVideo> FindAllVideosByArtistId(int artistId)
+        public IEnumerable<Domain.ArtistVideo> FindAllVideosByArtistId(int artistId)
         {
             return service.FindAllVideosByArtistId(artistId)
                 .Select(v => mapArtistVideo(v))
@@ -309,7 +309,7 @@ namespace UFO.Server
             return mapPerformancePicture(service.FindPerformancePictureByURL(url));
         }
 
-        public IList<Domain.PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
+        public IEnumerable<Domain.PerformancePicture> FindAllPicturesByPerformanceId(int performanceId)
         {
             return service.FindAllPicturesByPerformanceId(performanceId)
                 .Select(p => mapPerformancePicture(p))
@@ -332,7 +332,7 @@ namespace UFO.Server
             return mapPerformanceVideo(service.FindPerformanceVideoByURL(url));
         }
 
-        public IList<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
+        public IEnumerable<Domain.PerformanceVideo> FindAllVideosByPerformanceId(int performanceId)
         {
             return service.FindAllVideosByPerformanceId(performanceId)
                 .Select(v => mapPerformanceVideo(v))

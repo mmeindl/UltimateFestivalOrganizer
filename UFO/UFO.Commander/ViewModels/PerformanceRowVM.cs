@@ -22,12 +22,18 @@ namespace UFO.Commander.ViewModels
 
         private PerformanceCollectionVM performanceCollectionVM;
 
+        private IList<Category> categories;
+        private IList<Country> countries;
+
         public PerformanceRowVM(IEnumerable<Performance> performances, Venue venue, PerformanceCollectionVM performanceCollectionVM, IUFOServer server)
         {
             this.venue = venue;
             this.performanceCollectionVM = performanceCollectionVM;
             this.VenuePerformances = new ObservableCollection<PerformanceVM>();
             this.server = server;
+
+            this.categories = server.FindAllCategories().ToList();
+            this.countries = server.FindAllCountries().ToList();
 
             LoadPerformances(performances);
         }
@@ -193,11 +199,11 @@ namespace UFO.Commander.ViewModels
 
         private async void LoadPerformances(IEnumerable<Performance> performances)
         {
-            
             VenuePerformances.Clear();
             for (int i = 0; i < 9; ++i)
             {
-                VenuePerformances.Add(new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 14 + i, 0, 0, 0), venue.Id, 0), this, server));
+                VenuePerformances.Add(new PerformanceVM(new Performance(new DateTime(2000, 1, 1, 14 + i, 0, 0, 0), venue.Id, 0),
+                    this, this.countries, this.categories, server));
             }
 
             IEnumerator<Performance> enumerator = performances.GetEnumerator();

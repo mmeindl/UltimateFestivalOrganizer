@@ -48,11 +48,16 @@ namespace UFO.Commander.Views.Controls
         XFont fntAbbreviation = new XFont(fontFamStr, 14);
         XFont fntLegend = new XFont(fontFamStr, 10);
 
+        private IList<Category> categories;
+        private IList<Country> countries;
+
         public PerformancesTab()
         {
             BLType type = (BLType)Enum.Parse(typeof(BLType), ConfigurationManager.AppSettings["BLType"]);
 
             server = UFOServerFactory.GetUFOServer(type);
+            this.categories = server.FindAllCategories().ToList();
+            this.countries = server.FindAllCountries().ToList();
 
             InitializeComponent();
 
@@ -106,6 +111,8 @@ namespace UFO.Commander.Views.Controls
                                                                                    performanceVMtoDrop.Performance.ArtistId,
                                                                                    performanceVMtoDrop.Performance.Id),
                                                                    selectedPerformanceVM.PerformanceRowVM,
+                                                                   this.countries,
+                                                                   this.categories,
                                                                    server);
 
                         PerformanceVM dragSpot = new PerformanceVM(new Performance(selectedPerformanceVM.Performance.DateTime.Date +
@@ -114,6 +121,8 @@ namespace UFO.Commander.Views.Controls
                                                                                    selectedPerformanceVM.Performance.ArtistId,
                                                                                    selectedPerformanceVM.Performance.Id),
                                                                    performanceVMtoDrop.PerformanceRowVM,
+                                                                   this.countries,
+                                                                   this.categories,
                                                                    server);
 
                         PerformanceRowVM dropRow = dropSpot.PerformanceRowVM;
@@ -185,7 +194,7 @@ namespace UFO.Commander.Views.Controls
                 {
                     p = server.FindPerformanceByDateTimeAndArtistId(p.DateTime, p.ArtistId);
 
-                    PerformanceVM pVM = new PerformanceVM(p, performanceVM.PerformanceRowVM, server);
+                    PerformanceVM pVM = new PerformanceVM(p, performanceVM.PerformanceRowVM, this.countries, this.categories, server);
 
                     PerformanceRowVM row = pVM.PerformanceRowVM;
                     int perfIndex = pVM.Performance.DateTime.Hour - 14;
@@ -220,6 +229,8 @@ namespace UFO.Commander.Views.Controls
                     PerformanceVM p = new PerformanceVM(new Performance(new DateTime(2000, 1, 1) + new TimeSpan(performanceVM.Performance.DateTime.Hour, 0, 0),
                                                                         performanceVM.Performance.VenueId, 0),
                                                         selectedPerformanceVM.PerformanceRowVM,
+                                                        this.countries,
+                                                        this.categories,
                                                         server);
 
                     PerformanceRowVM row = p.PerformanceRowVM;
